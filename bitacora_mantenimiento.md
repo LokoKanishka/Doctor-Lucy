@@ -8,3 +8,4 @@
 | 2026-02-26 | Revisión de Procesos | Éxito | Identificados procesos de Python (OpenClaw) y Uvicorn (TTS) como principales usuarios. |
 | 2026-02-26 | Limpieza Masiva de Disco | Éxito | Eliminadas carpetas Lucy_Workspace, Lucy-C y ~30GB de caché. Liberados >70GB aprox. |
 | 2026-02-26 | Mantenimiento Proactivo | Éxito | Creado script de automatización. Eliminados residuos de Python y detectados Snaps obsoletos e infracciones de logs. |
+| 2026-02-26 | Revisión de Inicio y Aliases | Éxito | Creados aliases lucy-salud, lucy-limpieza y lucy-pro. Verificadas apps de inicio (arranque limpio). |
