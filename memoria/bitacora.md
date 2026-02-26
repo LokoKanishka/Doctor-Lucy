@@ -1,0 +1,121 @@
+# 📒 Bitácora de Sesiones — Antigravity
+
+> Log cronológico de sesiones. Cada entrada documenta acciones, éxitos, fallos, y lecciones aprendidas.
+
+---
+
+## 2026-02-25 — Sesión inaugural
+
+**Objetivo**: Crear workflow de prueba en n8n y sistema de memoria persistente.
+
+### Acciones
+
+| # | Acción | Resultado | Lección |
+|---|--------|-----------|---------|
+| 1 | Crear workflow `.agents/workflows/prueba_x1.md` | ✅ Éxito | Los workflows van en `.agents/workflows/` con frontmatter YAML |
+| 2 | Publicar workflow en n8n via `curl` desde sandbox | ❌ Timeout | **No puedo acceder a `localhost:5678` desde el sandbox.** curl se cuelga |
+| 3 | Publicar via browser propio (Playwright) | ❌ Login requerido | El browser del sandbox no tiene la sesión de Chrome/diego |
+| 4 | GET a la API via `docker exec n8n-lucy wget` | ✅ Éxito | `docker exec` sí puede hablar con la API interna del container |
+| 5 | POST via `docker exec n8n-lucy wget --post-data` | ❌ Se cuelga | `wget --post-data` parece tener un bug o timeout dentro del container Alpine |
+| 6 | POST via `docker exec n8n-lucy node -e '...'` | ✅ Éxito (HTTP 200) | **Node.js dentro del container es la ruta confiable para POST** |
+| 7 | Crear sistema de memoria persistente | ✅ Éxito | Esta bitácora misma |
+
+### Lecciones clave
+
+- **Ruta de acceso a n8n**: `docker exec n8n-lucy node -e '<script>'` — es la ÚNICA forma confiable desde mi sandbox
+- **`wget` en Alpine** es poco confiable para POST con body JSON grande
+- **El browser del sandbox** no comparte sesión con Chrome del usuario
+- **Los workflows de Antigravity** van en `.agents/workflows/` (no confundir con workflows de n8n en `workflows/`)
+
+### Archivos creados/modificados
+
+- `workflows/prueba_x1.json` — Workflow de prueba publicado en n8n
+- `.agents/workflows/prueba_x1.md` — Workflow de Antigravity
+- `memoria/` — Sistema de memoria completo (este directorio)
+
+---
+
+## 2026-02-25 (cont.) — Fix del workflow "My workflow 2"
+
+**Objetivo**: Corregir el nodo "herramienta - Lector Local" que tenía `/etc/os-release` hardcodeado y causaba error de permisos.
+
+### Acciones
+
+| # | Acción | Resultado | Lección |
+|---|--------|-----------|---------|
+| 1 | GET workflow via API (`docker exec node`) | ✅ Éxito | El GET funciona bien pero puede ser lento con workflows grandes |
+| 2 | PUT para corregir fileSelector via API | ✅ HTTP 200 | La API acepta el cambio pero n8n mantiene draft/published separados |
+| 3 | Verificar en UI | ❌ Seguía mostrando `/etc/os-release` | El PUT actualiza el draft, pero la UI puede no refrescar automáticamente |
+| 4 | Múltiples docker exec simultaneos | ❌ Container saturado | **NUNCA dejar docker exec colgados** — saturan el container y lo bloquean |
+| 5 | `docker restart n8n-lucy` | ✅ Pero Docker también se atascó | Los procesos zombie del host bloquean Docker, necesita `sudo systemctl restart docker` |
+| 6 | Usuario ejecuta el fix desde su terminal | ✅ HTTP 200, fileSelector correcto | **La ruta más confiable: que el usuario ejecute el comando directamente** |
+
+### Lecciones clave
+
+- **Docker se satura fácil**: Si dejás múltiples `docker exec` colgados, el container se bloquea. Matar con `pkill` no siempre funciona → requiere `sudo systemctl restart docker`
+- **API de n8n — sistema de versiones**: PUT devuelve HTTP 200 pero n8n mantiene draft y published por separado. Para que tome efecto, hay que Publish desde la UI
+- **Delegación al usuario**: Cuando Docker se atasca desde el sandbox, es más rápido pedirle al usuario que ejecute el comando directamente
+- **Archivo de test válido**: `/home/node/.n8n-files/instrucciones.txt` (mapeado desde `./data` del host)
+
+---
+
+## 2026-02-25 (cont.) — Toma de Control Absoluto de n8n
+
+**Objetivo**: Obtener una forma rápida, confiable y segura de controlar n8n desde el sandbox, porque el método de `docker exec node` demostró saturar Docker con procesos zombies.
+
+### Acciones
+
+| # | Acción | Resultado | Lección |
+|---|--------|-----------|---------|
+| 1 | Crear bridge Node.js + Wrapper Python (`docker exec`) | ❌ Lento / Zombie-prone | `docker exec` no es sustentable para automatización intensiva porque bloquea el OS del host cuando se encolan peticiones. |
+| 2 | Limpiar todos los procesos estancados (`pkill -9`) | ✅ Éxito parcial | Hubo que usar pkill a lo bestia para limpiar el entorno host. |
+| 3 | **BREAKTHROUGH**: Conectar a n8n vía IP Bridge de Docker | ✅ Instantáneo (<0.1s) | Obtener la IP con `docker inspect` (ej: `172.29.0.4`) y hacer HTTP directo desde Python bypassa `docker exec` por completo. |
+| 4 | Reescribir `n8n_cli.py` full HTTP | ✅ Éxito (`test`, `list`, `create`, `update` vuelan) | **Esta es la forma definitiva de operar n8n.** |
+| 5 | Cachear IP en `.n8n_ip` | ✅ Éxito | Evita tener que correr `docker inspect` (lento) en cada llamada del CLI. Se refresca si la IP cambia. |
+| 6 | Truncar respuestas de la API (`stripHeavy`) | ✅ Éxito | La API de n8n es lenta devolviendo `activeVersion` y meta pesada. Interceptar la respuesta JSON y limpiar campos la hace usable. |
+| 7 | Probar comando `execute` | ❌ 405 Method Not Allowed | Descubrimiento: los workflows que empiezan con "When Executed by Another Workflow" **no se pueden llamar vía API REST o Webhook externo**. Solo un workflow llamador (padre) puede ejecutarlos. |
+| 8 | Sinergia con Usuario | ✅ Éxito (VSCode Extensions) | El usuario instaló **n8n Atom 3.0** y **n8n as code** en su IDE. El usuario controla la UI, Antigravity controla el backend. |
+
+### Lecciones clave
+
+- **Red Docker Bridge**: El sandbox SI puede hablar con los containers usando sus IPs internas tipo `172.29.0.x`. Esto bypassa todos los problemas de `localhost` y `pkill`.
+- **API `GET /workflows/:id` es ineficiente**: Por diseño interno de n8n, pedir un workflow individual demora porque serializa demasiada data. `GET /workflows` es rápido.
+- **`stripHeavy`**: Al parsear una respuesta de n8n individual, SIEMPRE hacer pop/delete de `activeVersion`, `shared`, `pinData` antes de que los LLMs intenten leerlo para ahorrar decenas de miles de tokens de contexto.
+- **Triggers**: Si un sub-workflow se necesita ejecutar por API, NO usar "When Executed by Another Workflow". Usar "Webhook" en su lugar.
+- **Stack Expandido**: El uso de **n8n Atom 3.0** y **n8n as code** en el IDE permite una simbiosis perfecta: el humano diseña visualmente y la IA opera el backend/JSON.
+
+---
+
+## 2026-02-25 (cont.) — Automatización Gmail CV (Handover Notes)
+
+**Objetivo**: Automatizar el envío de correos con adjuntos CV desde un archivo Excel a los colegios, filtrando por comuna y usando n8n.
+
+### Estado Actual (Handover pre-reinicio)
+- Se armó el directorio `/home/lucy-ubuntu/Escritorio/NIN/gmail_cv/` conteniendo `workflow.json`, `README.md` y la carpeta `data/` con el PDF y el Excel.
+- Las rutas del n8n se ajustaron a rutas absolutas del host en lugar del `.n8n-files` del contenedor para solucionar errores de lectura de volúmenes.
+- **Cambio de arquitectura**: Reemplazamos el nodo nativo de Gmail (OAuth2) por el nodo genérico `emailSend` (SMTP) usando contraseñas de aplicaciones de Google para simplificar la configuración del lado del usuario.
+- El usuario reportó ralentizaciones severas de la IA. Mediante un diagnóstico descubrí que había procesos colgados de `curl` y `docker exec` saturando el host debido al modelo asíncrono. Fueron aniquilados vía `pkill`.
+- **Qué hacer en el próximo arranque**: Leer esta bitácora. Verificar con el usuario si el Mail CV salió bien o si hubo drama con las contraseñas de App. Si todo está OK, arrancar con la Forja (Pilar 2) o lo que el usuario decida. Todo el código de la sesión de hoy ya está respaldado en Git.
+
+---
+
+## 2026-02-26 — Fix del Workflow Gmail CV y n8n_cli
+
+**Objetivo**: Corregir error de importación y activación del workflow del CV debido a nodos obsoletos y pulir el script de control de n8n.
+
+### Acciones
+
+| # | Acción | Resultado | Lección |
+|---|--------|-----------|---------|
+| 1 | Analizar error "Unrecognized node type" en la UI | ✅ Éxito | El workflow usaba `n8n-nodes-base.spreadsheetFileRead` (obsoleto). |
+| 2 | Reemplazar nodo en `workflow.json` | ✅ Éxito | Se actualizó a `n8n-nodes-base.extractFromFile`. |
+| 3 | Actualizar workflow vía `n8n_cli.py` | ✅ HTTP 200 | El CLI actualizó existosamente la definición en la base de n8n. |
+| 4 | Testear activación (`activate`) desde API | ❌ Falló ("active is read-only") | La propiedad `active` no se puede cambiar vía `PUT /workflows/:id`. Requiere `POST /workflows/:id/activate`. |
+| 5 | Corregir `n8n_cli.py` | ✅ Éxito | Se actualizaron los comandos `activate` y `deactivate` para usar los endpoints oficiales POST y reportar credenciales faltantes. |
+| 6 | Intentar activar nuevamente | ❌ Faltan credenciales | El workflow requiere que el usuario asigne manualmente la credencial SMTP desde la UI. Se le indicó cómo hacerlo. |
+
+### Estado Actual (Handover)
+- El workflow está listo y corregido en la base de datos de n8n.
+- Solo requiere que el usuario asigne la Credencial SMTP en la UI de n8n y presione "Publish".
+- El CLI de n8n (`n8n_cli.py`) tiene los verbos activate/deactivate parcheados a la API actual de n8n.
+- Todo guardado en el repo. Listos para empezar "La Forja" en la próxima sesión si el usuario lo decide.
