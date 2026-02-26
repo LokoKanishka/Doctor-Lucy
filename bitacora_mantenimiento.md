@@ -13,7 +13,23 @@
 | 2026-02-26 | Auditoría de Seguridad | Éxito | Verificados puertos y usuarios. Todo en orden; ClamAV opcional para escaneos futuros. |
 | 2026-02-26 | Preparación de Trasplante | Éxito | Reducido Windows a 380GB (eliminado Darktide y basura IA). Sistema listo para clonar. |
 | 2026-02-26 | Detección de Multi-disco | Éxito | Identificado disco NVMe de 1.9TB con partición de Windows (NTFS). |
-| 2026-02-26 | Sincronización Final | Éxito | Todos los cambios (limpieza, auditoría, scripts) subidos a GitHub. Sesión cerrada. |
+| 2026-02-26 | Sincronización Final | Éxito | Todos los cambios (limpieza, auditoría, scripts) subidos a GitHub. |
+| 2026-02-26 | Extensión de Voz (VS Code Speech) | En Progreso | Cambiado marketplace de Antigravity a Microsoft. Pendiente: reiniciar VS Code, buscar "VS Code Speech" e instalar. |
+
+## ⏳ Tareas Pendientes (reanudar aquí si hay reinicio)
+
+1. **Voz en Antigravity (VS Code)**:
+   - El marketplace de Antigravity ya está configurado en Microsoft (`https://marketplace.visualstudio.com/_apis/public/gallery`).
+   - Reiniciar VS Code → Extensiones → Buscar **"VS Code Speech"** (Microsoft) → Instalar.
+   - Luego activar TTS en Antigravity para que responda en voz alta.
+
+2. **Trasplante de Discos (Pendiente manual)**:
+   - Ubuntu está en `/dev/sda` (SSD 465GB).
+   - Windows está en `/dev/nvme0n1` (NVMe 1.9TB). Ahora ocupa **380GB** (limpio y listo).
+   - Próximo paso: crear USB con **Rescuezilla** y clonar desde fuera del sistema.
+
+3. **Desinstalar apps no deseadas** (requiere sudo del usuario):
+   - Ejecutar: `sudo apt-get purge -y thunderbird transmission-gtk transmission-common easyeffects rhythmbox rhythmbox-data shotwell cheese simple-scan totem remmina usb-creator-gtk usb-creator-common && sudo apt-get autoremove -y`
 
 ---
-*Fin de la sesión de mantenimiento proactivo.*
+*Bitácora activa - Última actualización: 2026-02-26 16:40*
