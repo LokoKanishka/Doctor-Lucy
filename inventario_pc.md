@@ -4,8 +4,9 @@
 - **CPU**: AMD Ryzen 9 7950X 16-Core Processor (32 vCPUs)
 - **RAM**: 124 GiB (128 GiB total)
 - **Placa Base**: ASUS ROG STRIX X670E-E GAMING WIFI
-- **Almacenamiento**: 457G (/dev/sda2), 368G usados (85%)
-- **Arquitectura**: x86_64
+## Almacenamiento
+- **Unidad Principal (Ubuntu)**: SSD 465GB (`/dev/sda`). Actualmente al 64% de uso.
+- **Unidad Secundaria (Windows)**: NVMe 1.9TB (`/dev/nvme0n1`). Particiones NTFS detectadas.
 
 ## Sistema Operativo
 - **SO**: Ubuntu 24.04.4 LTS

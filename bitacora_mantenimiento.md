@@ -10,3 +10,5 @@
 | 2026-02-26 | Mantenimiento Proactivo | Éxito | Creado script de automatización. Eliminados residuos de Python y detectados Snaps obsoletos e infracciones de logs. |
 | 2026-02-26 | Revisión de Inicio y Aliases | Éxito | Creados aliases lucy-salud, lucy-limpieza y lucy-pro. Verificadas apps de inicio (arranque limpio). |
 | 2026-02-26 | Eliminación de Apps No Deseadas | Éxito | Desinstaladas Thunderbird, Transmission, Rhythmbox, etc. Limpiado menú de aplicaciones. |
+| 2026-02-26 | Auditoría de Seguridad | Éxito | Verificados puertos y usuarios. Todo en orden; ClamAV opcional para escaneos futuros. |
+| 2026-02-26 | Detección de Multi-disco | Éxito | Identificado disco NVMe de 1.9TB con partición de Windows (NTFS). |
