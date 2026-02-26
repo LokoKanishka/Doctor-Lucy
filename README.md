@@ -9,9 +9,12 @@ Este repositorio es la bitácora y centro de control para el mantenimiento de es
 - **Optimización de Ubuntu**: Automatizar tareas de limpieza y salud del sistema.
 
 ## Estructura
-- `pc_inventory.md`: Datos técnicos del hardware y software.
-- `maintenance_log.md`: Bitácora de acciones realizadas.
-- `scripts/`: Herramientas de automatización para limpieza y monitoreo.
+- `inventario_pc.md`: Datos técnicos del hardware y software.
+- `bitacora_mantenimiento.md`: Registro de acciones realizadas.
+- `scripts/`: Herramientas de automatización:
+    - `./scripts/sys_check.sh`: Chequeo de salud rápido.
+    - `./scripts/cleanup.sh`: Identifica archivos grandes.
+    - `./scripts/mantenimiento_proactivo.sh`: Limpieza profunda (Snaps, Logs, etc).
 
 ---
 *Mantenido por Antigravity (Sovereign AI Automation Protocol)*
