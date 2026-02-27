@@ -35,6 +35,7 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ## 📜 Historial de Intervenciones
 | Fecha | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- |
+| 2026-02-27 | **Memoria Persistente SQLite** | Éxito | Módulo `memoria/` creado con 5 archivos Python. 7/7 tests pasados. Push a GitHub. |
 | 2026-02-27 | **Chequeo de Salud** | Éxito | Sin zombies, CPU estable. 68% disco (sda2). Sugerida limpieza APT. |
 | 2026-02-27 | **Auditoría Integral** | Éxito | Ejecutado workflow completo. Sistema estable, 316GB libres. |
 | 2026-02-27 | **Configuración de Voz** | Revertido | Instalada y luego desinstalada por mal funcionamiento. |
@@ -51,15 +52,17 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ## ⏳ Tareas Pendientes
 
 ### 1. 🎤 Voz y Audio
-- [x] **Instalar extensión** "VS Code Speech".
-- [x] **Configurar TTS** en Antigravity para respuesta por voz (verificado 7851).
+- [~] ~~Instalar extensión "VS Code Speech"~~ (revertido, no funcionaba).
 
-### 2. 💽 Hardware
+### 2. 🧠 Memoria y Arquitectura
+- [x] **Sistema de Memoria SQLite**: Módulo `memoria/` operativo. Sesiones persistentes, búsqueda por keywords, compresión automática.
+
+### 3. 💽 Hardware
 - [ ] **Sincronización de Discos**: Clonar sistema a disco nuevo usando Rescuezilla.
 - [ ] Monitorear espacio en `sda2` (actualmente al 68%).
 
-### 3. 🔒 Seguridad
-- [ ] Identificar `script.py` persistente (ahora sabemos que es de AllTalk Docker).
+### 4. 🔒 Seguridad
+- [x] Identificar `script.py` persistente (confirmado: es de AllTalk Docker. No es amenaza).
 - [ ] Evaluar cierre de puertos 5432/5678 hacia la LAN.
 
 ---
