@@ -19,8 +19,7 @@ Este documento contiene la lista completa de aplicaciones detectadas en el siste
 
 ## 🎬 Multimedia y Gráficos
 - **OBS Studio**: Grabación y transmisión de pantalla.
-- **Audacious / Rhythmbox**: Reproductores de música libres.
-- **Shotwell**: Organizador de fotos.
+- **Audacious**: Reproductor de música liviano.
 - **VLC Media Player**: Reproductor de video universal.
 - **Spotify**: Streaming de música.
 - **Sunshine**: Servidor para streaming de juegos/escritorio.
@@ -28,8 +27,6 @@ Este documento contiene la lista completa de aplicaciones detectadas en el siste
 ## 🌐 Navegación y Comunicación
 - **Google Chrome**: (Con múltiples perfiles: Amarillo, Naranja, Roja, etc.).
 - **Firefox**: Navegador web secundario.
-- **Thunderbird**: Cliente de correo electrónico.
-- **Remmina**: Cliente de escritorio remoto.
 
 ## 📄 Oficina y Documentos
 - **LibreOffice (Writer, Calc, Impress)**: Suite de oficina (Word, Excel, PowerPoint).
