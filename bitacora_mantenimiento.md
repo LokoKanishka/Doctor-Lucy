@@ -23,7 +23,7 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ### 🐳 Docker (Contenedores Activos)
 - **Voz (TTS)**: `lucy_voice_alltalk` (AllTalk TTS)
 - **Cerebro/IA**: `lucy_open_webui`, `n8n-lucy`, `ollama`
-- **Memoria**: `lucy_memory_qdrant`, `lucy_memory_redis`, `sales_assist_db` (Postgres)
+- **Memoria**: `lucy_memory_qdrant`, `lucy_memory_redis`
 - **Utilidades**: `searxng-lucy`, `lucy_ui_dockge`, `lucy_ui_panel`
 
 ### 🌐 Servicios de Red (Atención)
@@ -35,7 +35,8 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ## 📜 Historial de Intervenciones
 | Fecha | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- |
-| 2026-02-26 | **Limpieza de Backup** | Éxito | Eliminada infraestructura "Sales Assist" que corría desde `Escritorio/Bk`. |
+| 2026-02-26 | **Limpieza de Aplicaciones** | Éxito | Desinstaladas: Thunderbird, Transmission, Rhythmbox, Shotwell, Cheese, Escáner y Remmina. Menú más limpio. |
+| 2026-02-26 | **Infraestructura Fantasma** | Éxito | Detenidos y eliminados 5 contenedores de "Sales Assist" (Postgres, Keycloak, Grafana, etc.) de la carpeta `Bk`. |
 | 2026-02-26 | **Auditoría Integral** | Éxito | Generado `auditoria_sistema.md` y creado workflow automatizado. |
 | 2026-02-26 | **Limpieza Masiva** | Éxito | Liberados >70GB. Eliminados residuos de Python, caché y apps obsoletas. |
 | 2026-02-26 | **Doctor de Lucy** | Éxito | Repositorio reiniciado y organizado exclusivamente para mantenimiento. |
