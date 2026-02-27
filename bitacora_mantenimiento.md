@@ -35,8 +35,9 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ## 📜 Historial de Intervenciones
 | Fecha | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- |
-| 2026-02-26 | **Limpieza de Aplicaciones** | Éxito | Desinstaladas: Thunderbird, Transmission, Rhythmbox, Shotwell, Cheese, Escáner y Remmina. Menú más limpio. |
-| 2026-02-26 | **Infraestructura Fantasma** | Éxito | Detenidos y eliminados 5 contenedores de "Sales Assist" (Postgres, Keycloak, Grafana, etc.) de la carpeta `Bk`. |
+| 2026-02-27 | **Configuración Marketplace** | Éxito | Cambiado a Microsoft para habilitar extensión de voz. Requiere reinicio. |
+| 2026-02-27 | **Limpieza de Aplicaciones** | Éxito | Desinstaladas: Thunderbird, Transmission, Rhythmbox, Shotwell, Cheese, Escáner y Remmina. |
+| 2026-02-26 | **Infraestructura Fantasma** | Éxito | Detenidos y eliminados 5 contenedores de "Sales Assist" en `Escritorio/Bk`. |
 | 2026-02-26 | **Auditoría Integral** | Éxito | Generado `auditoria_sistema.md` y creado workflow automatizado. |
 | 2026-02-26 | **Limpieza Masiva** | Éxito | Liberados >70GB. Eliminados residuos de Python, caché y apps obsoletas. |
 | 2026-02-26 | **Doctor de Lucy** | Éxito | Repositorio reiniciado y organizado exclusivamente para mantenimiento. |
