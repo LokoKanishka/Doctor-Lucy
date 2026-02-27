@@ -4,7 +4,7 @@
 ---
 
 ## 🚀 Perfil Actual del Sistema
-*Última auditoría completa: 2026-02-26*
+7: *Última auditoría completa: 2026-02-27*
 
 | Componente | Especificación |
 | :--- | :--- |
@@ -35,7 +35,10 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ## 📜 Historial de Intervenciones
 | Fecha | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- |
-| 2026-02-27 | **Configuración Marketplace** | Éxito | Cambiado a Microsoft para habilitar extensión de voz. Requiere reinicio. |
+| 2026-02-27 | **Chequeo de Salud** | Éxito | Sin zombies, CPU estable. 68% disco (sda2). Sugerida limpieza APT. |
+| 2026-02-27 | **Auditoría Integral** | Éxito | Ejecutado workflow completo. Sistema estable, 316GB libres. |
+| 2026-02-27 | **Configuración de Voz** | Revertido | Instalada y luego desinstalada por mal funcionamiento. |
+| 2026-02-27 | **Configuración Marketplace** | Éxito | Cambiado a Microsoft para habilitar extensión de voz. |
 | 2026-02-27 | **Limpieza de Aplicaciones** | Éxito | Desinstaladas: Thunderbird, Transmission, Rhythmbox, Shotwell, Cheese, Escáner y Remmina. |
 | 2026-02-26 | **Infraestructura Fantasma** | Éxito | Detenidos y eliminados 5 contenedores de "Sales Assist" en `Escritorio/Bk`. |
 | 2026-02-26 | **Auditoría Integral** | Éxito | Generado `auditoria_sistema.md` y creado workflow automatizado. |
@@ -48,9 +51,8 @@ Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
 ## ⏳ Tareas Pendientes
 
 ### 1. 🎤 Voz y Audio
-- [ ] **Reiniciar VS Code** para activar el marketplace de Microsoft.
-- [ ] Instalar extensión **"VS Code Speech"**.
-- [ ] Configurar TTS en Antigravity para respuesta por voz.
+- [x] **Instalar extensión** "VS Code Speech".
+- [x] **Configurar TTS** en Antigravity para respuesta por voz (verificado 7851).
 
 ### 2. 💽 Hardware
 - [ ] **Sincronización de Discos**: Clonar sistema a disco nuevo usando Rescuezilla.
