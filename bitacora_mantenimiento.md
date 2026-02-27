@@ -16,6 +16,7 @@
 | 2026-02-26 | Sincronización Final | Éxito | Todos los cambios (limpieza, auditoría, scripts) subidos a GitHub. |
 | 2026-02-26 | Extensión de Voz (VS Code Speech) | En Progreso | Cambiado marketplace de Antigravity a Microsoft. Pendiente: reiniciar VS Code, buscar "VS Code Speech" e instalar. |
 | 2026-02-26 | Auditoría Completa del Sistema | Éxito | OS: Ubuntu 24.04.4, Kernel 6.17.0, 32 CPUs, 124GB RAM, RTX 5090 32GB. Disco sda2 al 68%. Servicios activos: docker, ollama, nvidia, n8n, open-webui, qdrant, postgresql. Puertos 5432 y 5678 expuestos en LAN. Modelos Ollama: ~102GB. Workflow de auditoría creado en `.agents/workflows/auditoria_sistema.md`. |
+| 2026-02-26 | Limpieza de Infraestructura Fantasma | Éxito | Se detuvieron y eliminaron 5 contenedores de "Sales Assist" que corrían desde un backup en `Escritorio/Bk`. Liberados recursos de RAM y red. |
 
 ## ⏳ Tareas Pendientes (reanudar aquí si hay reinicio)
 
