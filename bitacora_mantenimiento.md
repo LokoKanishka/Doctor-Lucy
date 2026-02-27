@@ -1,34 +1,62 @@
-# Bitácora de Mantenimiento - Doctor Lucy
-
-| Fecha | Acción | Resultado | Notas |
-| :--- | :--- | :--- | :--- |
-| 2026-02-26 | Reinicio de Repositorio | Éxito | Se eliminaron archivos no relacionados del proyecto anterior. |
-| 2026-02-26 | Inicialización del Sistema | Éxito | Se recolectaron datos básicos de hardware y SO. |
-| 2026-02-26 | Inventario de PC Creado | Éxito | Documentadas estadísticas de Ryzen 9 7950X y estado de disco (85% lleno). |
-| 2026-02-26 | Revisión de Procesos | Éxito | Identificados procesos de Python (OpenClaw) y Uvicorn (TTS) como principales usuarios. |
-| 2026-02-26 | Limpieza Masiva de Disco | Éxito | Eliminadas carpetas Lucy_Workspace, Lucy-C y ~30GB de caché. Liberados >70GB aprox. |
-| 2026-02-26 | Mantenimiento Proactivo | Éxito | Creado script de automatización. Eliminados residuos de Python y detectados Snaps obsoletos e infracciones de logs. |
-| 2026-02-26 | Revisión de Inicio y Aliases | Éxito | Creados aliases lucy-salud, lucy-limpieza y lucy-pro. Verificadas apps de inicio (arranque limpio). |
-| 2026-02-26 | Eliminación de Apps No Deseadas | Éxito | Desinstaladas Thunderbird, Transmission, Rhythmbox, etc. Limpiado menú de aplicaciones. |
-| 2026-02-26 | Auditoría de Seguridad | Éxito | Verificados puertos y usuarios. Todo en orden; ClamAV opcional para escaneos futuros. |
-| 2026-02-26 | Preparación de Trasplante | Éxito | Reducido Windows a 380GB (eliminado Darktide y basura IA). Sistema listo para clonar. |
-| 2026-02-26 | Detección de Multi-disco | Éxito | Identificado disco NVMe de 1.9TB con partición de Windows (NTFS). |
-| 2026-02-26 | Sincronización Final | Éxito | Todos los cambios (limpieza, auditoría, scripts) subidos a GitHub. |
-| 2026-02-26 | Extensión de Voz (VS Code Speech) | En Progreso | Cambiado marketplace de Antigravity a Microsoft. Pendiente: reiniciar VS Code, buscar "VS Code Speech" e instalar. |
-| 2026-02-26 | Auditoría Completa del Sistema | Éxito | OS: Ubuntu 24.04.4, Kernel 6.17.0, 32 CPUs, 124GB RAM, RTX 5090 32GB. Disco sda2 al 68%. Servicios activos: docker, ollama, nvidia, n8n, open-webui, qdrant, postgresql. Puertos 5432 y 5678 expuestos en LAN. Modelos Ollama: ~102GB. Workflow de auditoría creado en `.agents/workflows/auditoria_sistema.md`. |
-| 2026-02-26 | Limpieza de Infraestructura Fantasma | Éxito | Se detuvieron y eliminaron 5 contenedores de "Sales Assist" que corrían desde un backup en `Escritorio/Bk`. Liberados recursos de RAM y red. |
-
-## ⏳ Tareas Pendientes (reanudar aquí si hay reinicio)
-
-1. **Voz en Antigravity (VS Code)**:
-   - El marketplace de Antigravity ya está configurado en Microsoft (`https://marketplace.visualstudio.com/_apis/public/gallery`).
-   - Reiniciar VS Code → Extensiones → Buscar **"VS Code Speech"** (Microsoft) → Instalar.
-   - Luego activar TTS en Antigravity para que responda en voz alta.
-
-2. **Trasplante de Discos (Pendiente manual)**:
-   - Ubuntu está en `/dev/sda` (SSD 465GB).
-   - Windows está en `/dev/nvme0n1` (NVMe 1.9TB). Ahora ocupa **380GB** (limpio y listo).
-   - Próximo paso: crear USB con **Rescuezilla** y clonar desde fuera del sistema.
+# 🩺 Doctor Lucy — Biblioteca Histórica del Sistema
+> Archivo de referencia para mantenimiento, auditoría y evolución de la máquina.
 
 ---
-*Bitácora activa - Última actualización: 2026-02-26 18:21*
+
+## 🚀 Perfil Actual del Sistema
+*Última auditoría completa: 2026-02-26*
+
+| Componente | Especificación |
+| :--- | :--- |
+| **OS** | Ubuntu 24.04.4 LTS (Noble Numbat) |
+| **Kernel** | 6.17.0-14-generic |
+| **CPU** | Ryzen 9 7950X (32 núcleos lógicos) @ 5.8GHz max |
+| **RAM** | 124 GB DDR5 |
+| **GPU** | NVIDIA GeForce RTX 5090 (32 GB VRAM) |
+| **Almacenamiento** | SSD 465GB (Linux /) + NVMe 1.9TB (Windows NTFS) |
+
+---
+
+## 📦 Infraestructura y Servicios Clave
+Estado de los motores que mueven los proyectos (Cunningham, NIN, Doctor Lucy).
+
+### 🐳 Docker (Contenedores Activos)
+- **Voz (TTS)**: `lucy_voice_alltalk` (AllTalk TTS)
+- **Cerebro/IA**: `lucy_open_webui`, `n8n-lucy`, `ollama`
+- **Memoria**: `lucy_memory_qdrant`, `lucy_memory_redis`, `sales_assist_db` (Postgres)
+- **Utilidades**: `searxng-lucy`, `lucy_ui_dockge`, `lucy_ui_panel`
+
+### 🌐 Servicios de Red (Atención)
+- **Puertos LAN**: 5432 (DB), 5678 (n8n), 8080 (UI), 7851 (TTS) - *Abiertos a la red local.*
+- **Túneles**: `cloudflared` instalado (Túnel Cloudflare activo).
+
+---
+
+## 📜 Historial de Intervenciones
+| Fecha | Acción | Resultado | Notas |
+| :--- | :--- | :--- | :--- |
+| 2026-02-26 | **Limpieza de Backup** | Éxito | Eliminada infraestructura "Sales Assist" que corría desde `Escritorio/Bk`. |
+| 2026-02-26 | **Auditoría Integral** | Éxito | Generado `auditoria_sistema.md` y creado workflow automatizado. |
+| 2026-02-26 | **Limpieza Masiva** | Éxito | Liberados >70GB. Eliminados residuos de Python, caché y apps obsoletas. |
+| 2026-02-26 | **Doctor de Lucy** | Éxito | Repositorio reiniciado y organizado exclusivamente para mantenimiento. |
+| 2026-02-26 | **Prep. Trasplante** | Éxito | Reducida partición Windows a 380GB. Sistema listo para clonar con Rescuezilla. |
+
+---
+
+## ⏳ Tareas Pendientes
+
+### 1. 🎤 Voz y Audio
+- [ ] **Reiniciar VS Code** para activar el marketplace de Microsoft.
+- [ ] Instalar extensión **"VS Code Speech"**.
+- [ ] Configurar TTS en Antigravity para respuesta por voz.
+
+### 2. 💽 Hardware
+- [ ] **Sincronización de Discos**: Clonar sistema a disco nuevo usando Rescuezilla.
+- [ ] Monitorear espacio en `sda2` (actualmente al 68%).
+
+### 3. 🔒 Seguridad
+- [ ] Identificar `script.py` persistente (ahora sabemos que es de AllTalk Docker).
+- [ ] Evaluar cierre de puertos 5432/5678 hacia la LAN.
+
+---
+*Este documento es dinámico. Consultar [auditoria_sistema.md](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/auditoria_sistema.md) para detalles técnicos profundos.*
