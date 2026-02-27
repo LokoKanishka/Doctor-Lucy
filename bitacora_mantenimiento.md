@@ -15,6 +15,7 @@
 | 2026-02-26 | Detección de Multi-disco | Éxito | Identificado disco NVMe de 1.9TB con partición de Windows (NTFS). |
 | 2026-02-26 | Sincronización Final | Éxito | Todos los cambios (limpieza, auditoría, scripts) subidos a GitHub. |
 | 2026-02-26 | Extensión de Voz (VS Code Speech) | En Progreso | Cambiado marketplace de Antigravity a Microsoft. Pendiente: reiniciar VS Code, buscar "VS Code Speech" e instalar. |
+| 2026-02-26 | Auditoría Completa del Sistema | Éxito | OS: Ubuntu 24.04.4, Kernel 6.17.0, 32 CPUs, 124GB RAM, RTX 5090 32GB. Disco sda2 al 68%. Servicios activos: docker, ollama, nvidia, n8n, open-webui, qdrant, postgresql. Puertos 5432 y 5678 expuestos en LAN. Modelos Ollama: ~102GB. Workflow de auditoría creado en `.agents/workflows/auditoria_sistema.md`. |
 
 ## ⏳ Tareas Pendientes (reanudar aquí si hay reinicio)
 
@@ -28,8 +29,5 @@
    - Windows está en `/dev/nvme0n1` (NVMe 1.9TB). Ahora ocupa **380GB** (limpio y listo).
    - Próximo paso: crear USB con **Rescuezilla** y clonar desde fuera del sistema.
 
-3. **Desinstalar apps no deseadas** (requiere sudo del usuario):
-   - Ejecutar: `sudo apt-get purge -y thunderbird transmission-gtk transmission-common easyeffects rhythmbox rhythmbox-data shotwell cheese simple-scan totem remmina usb-creator-gtk usb-creator-common && sudo apt-get autoremove -y`
-
 ---
-*Bitácora activa - Última actualización: 2026-02-26 16:40*
+*Bitácora activa - Última actualización: 2026-02-26 18:21*
