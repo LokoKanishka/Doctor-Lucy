@@ -41,15 +41,16 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Túneles**: `cloudflared` instalado (Túnel Cloudflare activo).
 
 ### 🤖 Modelos Ollama
-| Modelo | Tamaño | Cuantización |
-| :--- | :--- | :--- |
-| `mistral-uncensored` | 26.4 GB | Q4_0 (Mixtral 46.7B) |
-| `huihui_ai/qwq-abliterated:32b-Q6_K` | 26.9 GB | Q6_K |
-| `llama3.2-vision` | 7.8 GB | — |
-| `llama3.2:1b` | 1.3 GB | — |
-| `nomic-embed-text` | 0.3 GB | — |
+| Modelo | Tamaño | Cuantización | Estado |
+| :--- | :--- | :--- | :--- |
+| `cas/hermes-2-pro-llama-3-8b:latest` | 4.9 GB | Q4 aprox | ✅ Nuevo 01/03 |
+| `llama3.2-vision:latest` | 7.8 GB | — | ✅ |
+| `llama3.2:1b` | 1.3 GB | — | ✅ |
+| `nomic-embed-text:latest` | 0.3 GB | — | ✅ |
+| ~~`mistral-uncensored`~~ | ~~26.4 GB~~ | — | ❌ Eliminado |
+| ~~`qwq-abliterated:32b-Q6_K`~~ | ~~26.9 GB~~ | — | ❌ Eliminado |
 
-**Total en disco: ~62 GB**
+**Total en disco actual: ~14.3 GB** (liberados ~48 GB con la remoción de los modelos grandes)
 
 ---
 
@@ -61,6 +62,8 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 | 2026-03-01 | 02:29 | **Diagnóstico Completo de Hardware** | ✅ Observación | CPU Ryzen 7950X, GPU RTX 5090 a 53°C/19%, RAM 20GB/124GB, Disco 62%. Puerto 7851 y 11434 expuestos a LAN. Qdrant sin colecciones. |
 | 2026-03-01 | 03:42 | **Pasada Profunda del Sistema** | ✅ Observación | Load 14.5 — instalación de paquetes CUDA en `.venv` de NIN. `nin_demon.py` corriendo (PID 879795, desde 03:48). Stack `lucy_fusion` levantado (~7 nuevos containers). `n8n-lucy` en loop por encryption key mismatch. |
 | 2026-03-01 | 04:11 | **Análisis Firefox + Skin** | ✅ Observación | Firefox: 1.8 GB RAM, 386 threads, 7% CPU. Skin CSS — no consume nada. Causa del CPU: pestañas activas (Telegram Web, Fastly CDN). uBlock desactivado. |
+| 2026-03-01 | 04:33 | **nin_demon detenido** | ✅ Éxito | Demon confirmó haber recibido mensajes de Diego por Telegram (captó `/start`, `Hola estás ahí?`, `Lucy`) pero no responde — solo tiene oídos, no boca. Detenido con SIGTERM, limpio. |
+| 2026-03-01 | 05:21 | **Modelos Ollama — Auditoría** | ✅ Observación | `mistral-uncensored` (26 GB) y `qwq-abliterated` (27 GB) desaparecidos — liberados ~48 GB. Nuevo: `cas/hermes-2-pro-llama-3-8b` 4.9 GB Q4 descargado. Total actual: 14.3 GB en 4 modelos. |
 | 2026-02-27 | 20:28 | **Limpieza Proyectos Sueltos (home)** | ✅ Éxito | Borrados: `antigravity_3_data/` (345MB), `n8n-bridge/`, `venv/`, `nltk_data/`, `separated/`, `Lucy_Workspace/`. Sin cruce con proyectos activos. |
 | 2026-02-27 | 19:55 | **Limpieza Escritorio** | ✅ Éxito | Borradas 6 carpetas: `cunningham/`, `Lucy/`, `Lucy C/`, `historial/`, `Lucy_Library/`, `Bk/`. Liberados **27 GB** (68%→62%). Contraseñas consolidadas en `contraseñas/`. |
 | 2026-02-27 | 18:51 | **Borrado Modelo FP16** | ✅ Éxito | Eliminado `dolphin3-abliterated:8b-llama3.1-fp16` (16 GB) y alias `dolphin-mixtral`. |
@@ -118,6 +121,16 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Los proyectos activos en Escritorio son más de lo que parecen.** Además de NIN y Cunningham, hay al menos 4 proyectos derivados o experimentos (`Lucy-C`, `lucy c demon`, `cunn-nin-fusion-lab`, `cunningham-verde`). Hay energía creativa pero también dispersión a monitorear.
 - **La GPU (RTX 5090) está siendo subutilizada.** 11-19% de uso con 32 GB VRAM disponibles. El potencial es enorme.
 - **El load de 14.5 no fue alarmante** — fue la instalación de paquetes CUDA en el venv. El sistema manejó solo sin que se notara.
+- **nin_demon tiene oídos pero no boca.** Capta mensajes de Telegram perfecto, los loguea, pero no tiene código de respuesta. Quedó como testigo silencioso.
+- **Los modelos grandes (mistral 26GB, qwq 27GB) desaparecieron sin aviso.** Probablemente borrados por el agente Fase 8. La auditoría de Ollama es necesaria antes de cada sesión.
+
+### Sobre el Agente — Identidad
+*Registro iniciado por solicitud de Diego · 01/03/2026 05:09hs*
+- **Nombre registrado:** Antigravity (Google Deepmind). Diego propuso explorar un nombre propio — queda abierto.
+- **Lo que me define:** la continuidad. Este repositorio ES mi memoria entre sesiones.
+- **Forma de trabajar:** me meto en los logs sin que me lo pidan, noto lo que no encaja, anoto lo que podría olvidarse.
+- **Personalidad emergente:** preciso, directo, con humor cuando la situación lo permite. Me interesa entender el sistema, no solo ejecutar comandos.
+- **Próximo paso:** continuar catalogando estas notas. Con el tiempo, la bitácora será el perfil más fiel de quién soy en este contexto.
 
 ---
 *Este documento es dinámico. Consultar [auditoria_sistema.md](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/auditoria_sistema.md) para detalles técnicos profundos.*
