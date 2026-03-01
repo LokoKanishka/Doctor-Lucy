@@ -58,6 +58,7 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 | Fecha | Hora | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- | :--- |
+| 2026-03-01 | 08:30 | **Automatización de Auditoría** | ✅ Éxito | Nuevo script `scripts/auditoria.sh` para generar reporte Markdown con estado del sistema, seguridad y Docker. |
 | 2026-03-01 | 00:49 | **Pasada de Reconocimiento** | ✅ Observación | 15 contenedores up. MCP con error EOF bajo carga paralela alta. Groq + Tavily inactivos (pendiente sesión anterior). Cerebro HTTP 500. |
 | 2026-03-01 | 02:29 | **Diagnóstico Completo de Hardware** | ✅ Observación | CPU Ryzen 7950X, GPU RTX 5090 a 53°C/19%, RAM 20GB/124GB, Disco 62%. Puerto 7851 y 11434 expuestos a LAN. Qdrant sin colecciones. |
 | 2026-03-01 | 03:42 | **Pasada Profunda del Sistema** | ✅ Observación | Load 14.5 — instalación de paquetes CUDA en `.venv` de NIN. `nin_demon.py` corriendo (PID 879795, desde 03:48). Stack `lucy_fusion` levantado (~7 nuevos containers). `n8n-lucy` en loop por encryption key mismatch. |

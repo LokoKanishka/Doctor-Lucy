@@ -15,6 +15,13 @@ Este repositorio es la bitácora y centro de control para el mantenimiento de es
     - `./scripts/sys_check.sh`: Chequeo de salud rápido.
     - `./scripts/cleanup.sh`: Identifica archivos grandes.
     - `./scripts/mantenimiento_proactivo.sh`: Limpieza profunda (Snaps, Logs, etc).
+    - `./scripts/auditoria.sh`: Genera un reporte de auditoría del sistema en Markdown.
 
 ---
 *Mantenido por Antigravity (Sovereign AI Automation Protocol)*
+
+
+## Uso rápido
+- Generar auditoría actualizada:
+  - `./scripts/auditoria.sh`
+  - o `./scripts/auditoria.sh reporte.md` para definir archivo de salida.
