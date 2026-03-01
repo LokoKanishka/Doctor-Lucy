@@ -58,13 +58,18 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 | Fecha | Hora | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-03-01 | 08:30 | **Automatización de Auditoría** | ✅ Éxito | Nuevo script `scripts/auditoria.sh` para generar reporte Markdown con estado del sistema, seguridad y Docker. |
+| 2026-03-01 | 06:15 | **Alt — Test de Estrés ✅** | ✅ Éxito | Alt (Qwen2.5-Coder-14B Q8) generó script Python completo (asyncio + aiohttp + Qdrant) en **8.5 segundos** al 100% GPU. 16 GB VRAM. Alias definido: `Alt = qwen2.5-coder:14b-instruct-q8_0`. |
+| 2026-03-01 | 06:00 | **NIN Fase 7: Graph RAG** | ✅ Éxito | Colección `nin_knowledge_graph` en Qdrant. Ingesta de tripletas semánticas desde Telegram. Nuevo workflow n8n: `Tool: Consultar Grafo NiN`. |
+| 2026-03-01 | 06:00 | **NIN Fase 8: Alt integrado** | ✅ Éxito | NiN-Demon v1.4 — `ask_hermes()` conectado a Alt. Dataset Colmena-Core generado (28 ejemplos). Scripts: `graph_memory_tool.py`, `nin_specialist_inference.py`. |
+| 2026-03-01 | 05:45 | **Limpieza modelos Ollama** | ✅ Éxito | Eliminados: QwQ Q6 (27GB), Mistral-Uncensored (26GB), Hermes Q4 (4.9GB). Liberados ~58 GB. Quedaron: Alt (15.7GB), llama3.2-vision (7.8GB), llama3.2:1b (1.3GB), nomic-embed (0.3GB). Total: 25.1 GB. |
+| 2026-03-01 | 05:33 | **Sincronización Codex → Lucy** | ✅ Éxito | PR de Codex mergeado en GitHub: script `auditoria.sh` (90 líneas). Auditoría regenerada desde Lucy real (Codex la había generado desde su sandbox). |
+| 2026-03-01 | 08:30 | **Automatización de Auditoría** | ✅ Éxito | Nuevo script `scripts/auditoria.sh` integrado al repo por Codex (ChatGPT). Genera reporte Markdown con estado del sistema, seguridad y Docker. |
 | 2026-03-01 | 00:49 | **Pasada de Reconocimiento** | ✅ Observación | 15 contenedores up. MCP con error EOF bajo carga paralela alta. Groq + Tavily inactivos (pendiente sesión anterior). Cerebro HTTP 500. |
 | 2026-03-01 | 02:29 | **Diagnóstico Completo de Hardware** | ✅ Observación | CPU Ryzen 7950X, GPU RTX 5090 a 53°C/19%, RAM 20GB/124GB, Disco 62%. Puerto 7851 y 11434 expuestos a LAN. Qdrant sin colecciones. |
-| 2026-03-01 | 03:42 | **Pasada Profunda del Sistema** | ✅ Observación | Load 14.5 — instalación de paquetes CUDA en `.venv` de NIN. `nin_demon.py` corriendo (PID 879795, desde 03:48). Stack `lucy_fusion` levantado (~7 nuevos containers). `n8n-lucy` en loop por encryption key mismatch. |
-| 2026-03-01 | 04:11 | **Análisis Firefox + Skin** | ✅ Observación | Firefox: 1.8 GB RAM, 386 threads, 7% CPU. Skin CSS — no consume nada. Causa del CPU: pestañas activas (Telegram Web, Fastly CDN). uBlock desactivado. |
-| 2026-03-01 | 04:33 | **nin_demon detenido** | ✅ Éxito | Demon confirmó haber recibido mensajes de Diego por Telegram (captó `/start`, `Hola estás ahí?`, `Lucy`) pero no responde — solo tiene oídos, no boca. Detenido con SIGTERM, limpio. |
-| 2026-03-01 | 05:21 | **Modelos Ollama — Auditoría** | ✅ Observación | `mistral-uncensored` (26 GB) y `qwq-abliterated` (27 GB) desaparecidos — liberados ~48 GB. Nuevo: `cas/hermes-2-pro-llama-3-8b` 4.9 GB Q4 descargado. Total actual: 14.3 GB en 4 modelos. |
+| 2026-03-01 | 03:42 | **Pasada Profunda del Sistema** | ✅ Observación | Load 14.5 — instalación de paquetes CUDA en `.venv` de NIN. `nin_demon.py` arrancado. Stack `lucy_fusion` levantado (22 containers total). `n8n-lucy` en loop por encryption key mismatch. |
+| 2026-03-01 | 04:11 | **Análisis Firefox + Skin** | ✅ Observación | Firefox: 1.8 GB RAM, 386 threads, 7% CPU. Skin CSS inofensivo. uBlock desactivado. |
+| 2026-03-01 | 04:33 | **nin_demon detenido** | ✅ Éxito | Solo tiene oídos (lee Telegram), no boca (no responde). Detenido limpio. Relanzado luego por NIN v1.4. |
+| 2026-03-01 | 05:21 | **Modelos Ollama — Primera auditoría** | ✅ Observación | `mistral-uncensored` y `qwq-abliterated` ya habían desaparecido. Hermes Q4 presente (luego también eliminado). |
 | 2026-02-27 | 20:28 | **Limpieza Proyectos Sueltos (home)** | ✅ Éxito | Borrados: `antigravity_3_data/` (345MB), `n8n-bridge/`, `venv/`, `nltk_data/`, `separated/`, `Lucy_Workspace/`. Sin cruce con proyectos activos. |
 | 2026-02-27 | 19:55 | **Limpieza Escritorio** | ✅ Éxito | Borradas 6 carpetas: `cunningham/`, `Lucy/`, `Lucy C/`, `historial/`, `Lucy_Library/`, `Bk/`. Liberados **27 GB** (68%→62%). Contraseñas consolidadas en `contraseñas/`. |
 | 2026-02-27 | 18:51 | **Borrado Modelo FP16** | ✅ Éxito | Eliminado `dolphin3-abliterated:8b-llama3.1-fp16` (16 GB) y alias `dolphin-mixtral`. |
