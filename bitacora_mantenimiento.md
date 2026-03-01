@@ -88,7 +88,7 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - [ ] **Qdrant vacío**: No hay colecciones en `:6333`. Verificar si el RAG del Búnker está indexando correctamente.
 
 ### 3. 💽 Hardware
-- [ ] **Sincronización de Discos**: Clonar sistema a disco nuevo usando Rescuezilla.
+- [ ] **MIGRACIÓN AL NVME 2TB** ⚡ — Semana del 01/03/2026: Formatear el ADATA NVMe 1.9TB (actualmente Windows NTFS en `/dev/nvme0n1p3`, sin montar en Linux) y reinstalar/migrar el sistema Linux. Pasar de 164 GB libres (SSD CT500) a ~1.8 TB. Permite expandir Ollama, Docker volumes y proyectos sin límite de espacio.
 - [ ] Monitorear espacio en `sda2` (actualmente al **62%** — 270 GB / 457 GB).
 
 ### 4. 🔒 Seguridad
