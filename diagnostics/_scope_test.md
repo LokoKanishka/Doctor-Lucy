@@ -1,22 +1,22 @@
 # Auditoría del sistema (Doctor Lucy)
 
-- Timestamp: `2026-03-02 17:34:17`
+- Timestamp: `2026-03-02 17:45:43`
 - Scope default: **PROJECT-ONLY** (sin Docker/Network salvo opt-in)
 - TIMEOUT_S: `3`
 
 ## Salud local (safe)
 
 ### CPU / Load
- 17:34:17 up  2:00,  2 users,  load average: 1,53, 1,02, 0,82
+ 17:45:43 up  2:11,  2 users,  load average: 1,13, 0,85, 0,81
 
 ### Memoria
                total       usado       libre  compartido   búf/caché  disponible
-Mem:           124Gi        26Gi        56Gi       265Mi        43Gi        98Gi
+Mem:           124Gi        26Gi        55Gi       224Mi        43Gi        98Gi
 Inter:         8,0Gi          0B       8,0Gi
 
 ### Disco
 S.ficheros     Tamaño Usados  Disp Uso% Montado en
-/dev/sda2        457G   269G  166G  62% /
+/dev/sda2        457G   269G  165G  63% /
 
 ## Salud del proyecto (RAG local)
 

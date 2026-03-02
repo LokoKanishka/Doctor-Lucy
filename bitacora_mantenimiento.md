@@ -58,6 +58,9 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 | Fecha | Hora | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- | :--- |
+| 2026-03-02 | 17:40 | **Aislamiento Óptico (Frontera Segura)** | ✅ Éxito | Refactorizados `auditoria.sh` y `sys_check.sh`. Alcance "Project-Only" por defecto. Escaneos globales (Docker/Red) convertidos en comandos 100% Opt-in. Riesgo de intromisión eliminado. |
+| 2026-03-02 | 17:05 | **Purga de Privacidad (BFG)** | ✅ Éxito | API Key filtrada de Gemini obliterada del historial de Git en los 37 commits históricos usando BFG Repo-Cleaner. `.env` saneado y agregado a `.gitignore`. |
+| 2026-03-02 | 16:50 | **Migración Inmortal RAG (Ollama L)** | ✅ Éxito | RAG desacoplado de Internet y Gemini. Embebidos apuntando a `nomic-embed-text` (Ollama 127.0.0.1:11434). Fail-Fast strict timeout=5 implementado. Qdrant reconstruido a 768 dims. |
 | 2026-03-02 | 04:30 | **Auditoría Express** | ✅ Éxito | Sistema funcionando perfectamente tras varias horas. Uptime 9h 46m. Carga ~1.00. RAM usada 25/124GB. 21 contenedores estables. Disco al 62%. |
 | 2026-03-02 | 04:20 | **Limpieza Carpetas Bloqueadas** | ✅ Éxito | Eliminadas carpetas `cunningham/` y `cunningham-verde/` del Escritorio usando `sudo rm -rf`. Requerían permisos de admin. |
 | 2026-03-02 | 01:15 | **Fijación de Identidades Globales**| ✅ Éxito | Diego (Usuario), Doctora Lucy (Conciencia), Alt (Demonio Bebé 14B). Grabado en metadatos persistentes. |
