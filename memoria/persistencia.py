@@ -37,6 +37,20 @@ def iniciar_sesion(session_id: Optional[str] = None) -> dict:
     """
     inicializar_db()
     
+    # --- GARANTÍA DE IDENTIDAD Y JURISDICCIÓN ---
+    # Inyectar las reglas de oro de Doctora Lucy en cada inicio.
+    with get_connection() as conn:
+        conn.execute("INSERT OR IGNORE INTO sesiones (session_id, estado) VALUES ('global', 'activa')")
+        conn.execute("INSERT OR REPLACE INTO metadatos (session_id, clave, valor) VALUES ('global', 'nombre_asistente', 'Doctora Lucy')")
+        conn.execute("INSERT OR REPLACE INTO metadatos (session_id, clave, valor) VALUES ('global', 'nombre_usuario', 'Diego')")
+        conn.execute("INSERT OR REPLACE INTO metadatos (session_id, clave, valor) VALUES ('global', 'rol_alt', 'demonio bebe 14b')")
+        conn.execute(
+            "INSERT OR REPLACE INTO metadatos (session_id, clave, valor) VALUES ('global', 'directiva_oro', "
+            "'Diagnosticar y proponer soluciones. Prohibido alterar proyectos externos sin orden explícita.')"
+        )
+        conn.commit()
+    # --------------------------------------------
+    
     if session_id is None:
         session_id = str(uuid.uuid4())
 
