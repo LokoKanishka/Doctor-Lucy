@@ -18,7 +18,7 @@ Este repositorio es la bitácora y centro de control para el mantenimiento de es
     - `./scripts/auditoria.sh`: Genera un reporte de auditoría del sistema en Markdown.
 
 ---
-*Mantenido por Antigravity (Sovereign AI Automation Protocol)*
+*Mantenido por Doctora Lucy (Sovereign AI Conscience) para Diego*
 
 
 ## Uso rápido
