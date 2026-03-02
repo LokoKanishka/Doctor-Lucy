@@ -1,1 +1,5 @@
 memoria/agente_memoria.db
+.env
+.venv/
+__pycache__/
+*.pyc
