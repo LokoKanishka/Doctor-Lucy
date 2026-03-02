@@ -1,27 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Doctor Lucy - System Health Check Script
-# Identifies zombie processes and high CPU usage.
+# Doctor Lucy - System Health Check Script (Safe Opt-in wrapper)
 
-echo "--- Doctor Lucy: Health Check ---"
+FULL=0
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --full) FULL=1 ;;
+    -h|--help)
+      echo "Uso: ./scripts/sys_check.sh [--full]"
+      exit 0
+      ;;
+    *) echo "Arg desconocido: $1" >&2; exit 2 ;;
+  esac
+  shift
+done
+
+echo "--- Doctor Lucy: System Health Check ---"
 date
 
-echo -e "\n[1] Zombie Processes:"
-ZOMBIES=$(ps -ef | grep defunct | grep -v grep)
-if [ -z "$ZOMBIES" ]; then
-    echo "No zombie processes found."
+if [ "$FULL" -eq 1 ]; then
+  echo "[Modo FULL] Ejecutando auditoría con alcance de host (Docker & Network opt-in activado)..."
+  ./scripts/auditoria.sh --docker --network
 else
-    echo "WARNING: Zombie processes found!"
-    echo "$ZOMBIES"
+  echo "[Modo DEFAULT] Ejecutando auditoría de proyecto local segura..."
+  ./scripts/auditoria.sh
 fi
-
-echo -e "\n[2] High CPU usage (Top 5):"
-ps -eo pcpu,pid,user,comm --sort=-pcpu | head -n 6
-
-echo -e "\n[3] Memory Status:"
-free -h
-
-echo -e "\n[4] Disk space on root (Summary):"
-df -h / | tail -n 1
 
 echo -e "\n--- End of Health Check ---"

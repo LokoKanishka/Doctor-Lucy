@@ -1,90 +1,171 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
-# Doctor Lucy - Auditoría rápida del sistema
-# Genera un informe en Markdown con datos de salud y seguridad básicos.
+# ===== Config =====
+TIMEOUT_S="${TIMEOUT_S:-6}"
+OUT_DIR="${OUT_DIR:-.}"
+REPORT="${REPORT:-$OUT_DIR/auditoria_sistema.md}"
 
-OUTPUT_FILE="${1:-auditoria_sistema.md}"
-NOW="$(date '+%Y-%m-%d %H:%M:%S %Z')"
-HOST="$(hostname)"
-USER_NAME="$(whoami)"
-KERNEL="$(uname -r)"
-OS_PRETTY="$(grep '^PRETTY_NAME=' /etc/os-release 2>/dev/null | cut -d= -f2- | tr -d '"')"
+# Jurisdicción Docker (preferible label)
+DOCKER_LABEL_KEY="${DOCKER_LABEL_KEY:-doctor_lucy}"
+DOCKER_LABEL_VAL="${DOCKER_LABEL_VAL:-true}"
 
-TMP_PORTS="$(mktemp)"
-TMP_DOCKER="$(mktemp)"
-trap 'rm -f "$TMP_PORTS" "$TMP_DOCKER"' EXIT
+# Fallback por nombre (si no hay labels)
+NAME_REGEX="${NAME_REGEX:-doctor|lucy|rag|qdrant|ollama}"
 
+mkdir -p "$OUT_DIR"
+
+have() { command -v "$1" >/dev/null 2>&1; }
+run_to() { # run_to <cmd...>
+  if have timeout; then timeout "$TIMEOUT_S" "$@"; else "$@"; fi
+}
+
+usage() {
+  cat <<'USAGE'
+Uso: ./scripts/auditoria.sh [--docker] [--docker-global] [--network] [--out FILE] [--timeout N]
+
+Default (sin flags): NO toca Docker ni escanea puertos. Solo métricas locales + salud del proyecto.
+
+Flags:
+  --docker         Audita contenedores SOLO bajo jurisdicción (label/patrón).
+  --docker-global  Audita TODOS los contenedores (host-wide).
+  --network        Muestra info de red/puertos (marcado como host-wide; requiere permisos para ver procesos).
+  --out FILE       Ruta del reporte (default ./auditoria_sistema.md)
+  --timeout N      Timeout por comando (default 6)
+USAGE
+}
+
+DO_DOCKER=0
+DO_DOCKER_GLOBAL=0
+DO_NETWORK=0
+
+# ===== Argparse =====
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --docker) DO_DOCKER=1 ;;
+    --docker-global) DO_DOCKER_GLOBAL=1 ;;
+    --network) DO_NETWORK=1 ;;
+    --out) REPORT="$2"; shift ;;
+    --timeout) TIMEOUT_S="$2"; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) echo "Arg desconocido: $1" >&2; usage; exit 2 ;;
+  esac
+  shift
+done
+
+ts="$(date +%Y-%m-%d\ %H:%M:%S)"
 {
-  echo "# 🔍 Auditoría del Sistema — Doctor Lucy"
-  echo "**Última actualización:** ${NOW}"
-  echo "**Host:** ${HOST} | **Usuario:** ${USER_NAME}"
+  echo "# Auditoría del sistema (Doctor Lucy)"
   echo
-  echo "---"
+  echo "- Timestamp: \`$ts\`"
+  echo "- Scope default: **PROJECT-ONLY** (sin Docker/Network salvo opt-in)"
+  echo "- TIMEOUT_S: \`$TIMEOUT_S\`"
   echo
-  echo "## 💻 Estado del Sistema"
-  echo "- **OS:** ${OS_PRETTY:-No detectado}"
-  echo "- **Kernel:** ${KERNEL}"
-  echo "- **Uptime:** $(uptime -p 2>/dev/null || echo 'No disponible')"
-  echo "- **Carga promedio:** $(uptime | awk -F'load average: ' '{print $2}' 2>/dev/null || echo 'No disponible')"
-  echo
-  echo "## ⚙️ Recursos"
-  echo "- **Memoria (free -h):**"
-  echo '```'
-  free -h || true
-  echo '```'
-  echo "- **Disco raíz (df -h /):**"
-  echo '```'
-  df -h / || true
-  echo '```'
-  echo
-  echo "## 🔒 Seguridad básica"
-  echo "### Puertos en escucha no-localhost"
-  if ss -tulpn 2>/dev/null | awk 'NR>1 {print $1,$5,$7}' | grep -E '0\.0\.0\.0|\[::\]' > "$TMP_PORTS"; then
-    echo '```'
-    cat "$TMP_PORTS"
-    echo '```'
-  else
-    echo "No se detectaron puertos públicos en escucha."
-  fi
-  echo
-  echo "### Firewall"
-  if command -v ufw >/dev/null 2>&1; then
-    echo "- UFW instalado. Estado:"
-    echo '```'
-    ufw status 2>/dev/null || echo "Sin permisos para consultar ufw status"
-    echo '```'
-  else
-    echo "- UFW no instalado."
-  fi
-  echo
-  echo "### Antivirus"
-  if command -v clamscan >/dev/null 2>&1; then
-    echo "- ClamAV detectado (clamscan disponible)."
-  else
-    echo "- ClamAV no detectado."
-  fi
-  echo
-  echo "## 🐳 Docker"
-  if command -v docker >/dev/null 2>&1; then
-    if docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' > "$TMP_DOCKER" 2>/dev/null; then
-      echo '```'
-      cat "$TMP_DOCKER"
-      echo '```'
-    else
-      echo "Docker instalado pero sin permisos para listar contenedores."
-    fi
-  else
-    echo "Docker no instalado."
-  fi
-  echo
-  echo "## ✅ Recomendaciones rápidas"
-  echo "- Revisar puertos expuestos a 0.0.0.0 / [::] y cerrar los no necesarios."
-  echo "- Si hay poco espacio en /, correr limpieza de paquetes y cachés."
-  echo "- Validar que servicios críticos de Docker estén en estado healthy."
-  echo
-  echo "---"
-  echo "*Auditoría generada automáticamente por scripts/auditoria.sh*"
-} > "$OUTPUT_FILE"
+} > "$REPORT"
 
-echo "Reporte generado en: $OUTPUT_FILE"
+append() { cat >> "$REPORT"; }
+
+# ===== 0) Métricas locales seguras =====
+{
+  echo "## Salud local (safe)"
+  echo
+  echo "### CPU / Load"
+  if have uptime; then run_to uptime || true; fi
+  echo
+  echo "### Memoria"
+  if have free; then run_to free -h || true; fi
+  echo
+  echo "### Disco"
+  if have df; then run_to df -h / || true; fi
+  echo
+} | append
+
+# ===== 1) Salud del proyecto (RAG local típico) =====
+{
+  echo "## Salud del proyecto (RAG local)"
+  echo
+  # Ollama
+  if have curl; then
+    echo "### Ollama (127.0.0.1:11434)"
+    if run_to curl -fsS --max-time "$TIMEOUT_S" "http://127.0.0.1:11434/api/tags" >/dev/null 2>&1; then
+      echo "- Estado: OK"
+    else
+      echo "- Estado: WARN/FAIL (no responde en ${TIMEOUT_S}s)"
+    fi
+    echo
+  fi
+
+  # Qdrant (si aplica; intenta 6333 por defecto, no “descubre” nada global)
+  if have curl; then
+    echo "### Qdrant (127.0.0.1:6333)"
+    if run_to curl -fsS --max-time "$TIMEOUT_S" "http://127.0.0.1:6333/readyz" >/dev/null 2>&1; then
+      echo "- Estado: OK"
+    else
+      echo "- Estado: WARN/FAIL (no responde en ${TIMEOUT_S}s)"
+    fi
+    echo
+  fi
+} | append
+
+# ===== 2) Docker (opt-in) =====
+if [ "$DO_DOCKER" -eq 1 ] || [ "$DO_DOCKER_GLOBAL" -eq 1 ]; then
+  {
+    echo "## Docker (OPT-IN)"
+    echo
+    if ! have docker; then
+      echo "- Docker: no instalado"
+      echo
+    else
+      if [ "$DO_DOCKER_GLOBAL" -eq 1 ]; then
+        echo "- Scope: **HOST-WIDE** (docker global habilitado explícitamente)"
+        echo
+        run_to docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' || true
+      else
+        echo "- Scope: **PROJECT-ONLY** (jurisdicción por label/patrón)"
+        echo "- Label objetivo: \`${DOCKER_LABEL_KEY}=${DOCKER_LABEL_VAL}\`"
+        echo "- Fallback name regex: \`$NAME_REGEX\`"
+        echo
+        # Primero intenta por label (si hay contenedores etiquetados)
+        if run_to docker ps --filter "label=${DOCKER_LABEL_KEY}=${DOCKER_LABEL_VAL}" --format '{{.ID}}' | grep -q .; then
+          run_to docker ps --filter "label=${DOCKER_LABEL_KEY}=${DOCKER_LABEL_VAL}" \
+            --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' || true
+        else
+          # Fallback: filtra por nombre
+          run_to docker ps --format '{{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' \
+            | awk -v re="$NAME_REGEX" 'BEGIN{IGNORECASE=1} $0 ~ re {print}' \
+            | { echo -e "NAMES\tIMAGE\tSTATUS\tPORTS"; cat; } || true
+          echo
+          echo "> Nota: No encontré labels \`${DOCKER_LABEL_KEY}=${DOCKER_LABEL_VAL}\`. Considerá etiquetar contenedores del proyecto."
+        fi
+      fi
+      echo
+    fi
+  } | append
+fi
+
+# ===== 3) Network (opt-in) =====
+if [ "$DO_NETWORK" -eq 1 ]; then
+  {
+    echo "## Network / Puertos (OPT-IN)"
+    echo
+    echo "- Scope: **HOST-WIDE** (red/puertos son globales por naturaleza)"
+    echo "- Nota: \`ss -tulpn\` puede requerir permisos para ver procesos."
+    echo
+    if have ss; then
+      run_to ss -tulpn || true
+    elif have netstat; then
+      run_to netstat -tulpn || true
+    else
+      echo "- No hay \`ss\` ni \`netstat\`."
+    fi
+    echo
+  } | append
+fi
+
+# ===== Footer =====
+{
+  echo "---"
+  echo "Fin del reporte."
+} | append
+
+echo "OK: reporte generado en $REPORT"
