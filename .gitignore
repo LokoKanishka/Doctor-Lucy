@@ -3,3 +3,7 @@ memoria/agente_memoria.db
 .venv/
 __pycache__/
 *.pyc
+
+# Ignorar archivos pesados o de base de datos
+*.AppImage
+Memoria_Principal_Lucy/
