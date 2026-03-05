@@ -7,3 +7,6 @@ __pycache__/
 # Ignorar archivos pesados o de base de datos
 *.AppImage
 Memoria_Principal_Lucy/
+n8n_data/
+.venv/
+n8n_db_copy.sqlite
