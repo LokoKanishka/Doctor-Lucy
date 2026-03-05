@@ -53,6 +53,46 @@ CREATE INDEX IF NOT EXISTS idx_mensajes_session ON mensajes(session_id);
 CREATE INDEX IF NOT EXISTS idx_mensajes_rol ON mensajes(rol);
 CREATE INDEX IF NOT EXISTS idx_metadatos_clave ON metadatos(clave);
 CREATE INDEX IF NOT EXISTS idx_cache_hash ON cache_global(clave_hash);
+
+-- ═══════════════════════════════════════════════════
+-- Knowledge Graph — Memoria a Largo Plazo
+-- ═══════════════════════════════════════════════════
+
+-- Nodos del grafo (personas, conceptos, herramientas, preferencias...)
+CREATE TABLE IF NOT EXISTS kg_entidades (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre          TEXT UNIQUE NOT NULL,
+    tipo            TEXT NOT NULL DEFAULT 'auto',
+    metadata        TEXT DEFAULT '{}',
+    creado_en       TEXT NOT NULL,
+    actualizado_en  TEXT NOT NULL
+);
+
+-- Aristas dirigidas entre entidades
+CREATE TABLE IF NOT EXISTS kg_relaciones (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    origen          TEXT NOT NULL REFERENCES kg_entidades(nombre),
+    destino         TEXT NOT NULL REFERENCES kg_entidades(nombre),
+    tipo            TEXT NOT NULL,
+    metadata        TEXT DEFAULT '{}',
+    creado_en       TEXT NOT NULL,
+    actualizado_en  TEXT NOT NULL
+);
+
+-- Notas textuales asociadas a una entidad
+CREATE TABLE IF NOT EXISTS kg_observaciones (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    entidad_nombre  TEXT NOT NULL REFERENCES kg_entidades(nombre),
+    contenido       TEXT NOT NULL,
+    creado_en       TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_kg_ent_nombre ON kg_entidades(nombre);
+CREATE INDEX IF NOT EXISTS idx_kg_ent_tipo ON kg_entidades(tipo);
+CREATE INDEX IF NOT EXISTS idx_kg_rel_origen ON kg_relaciones(origen);
+CREATE INDEX IF NOT EXISTS idx_kg_rel_destino ON kg_relaciones(destino);
+CREATE INDEX IF NOT EXISTS idx_kg_rel_tipo ON kg_relaciones(tipo);
+CREATE INDEX IF NOT EXISTS idx_kg_obs_entidad ON kg_observaciones(entidad_nombre);
 """
 
 

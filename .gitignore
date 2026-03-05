@@ -10,3 +10,9 @@ Memoria_Principal_Lucy/
 n8n_data/
 .venv/
 n8n_db_copy.sqlite
+bfg.jar
+agente_memoria.db
+
+# Búnker de memoria (trackear el JSONL para backup en la nube)
+data/*
+!data/lucy_bunker_log.jsonl

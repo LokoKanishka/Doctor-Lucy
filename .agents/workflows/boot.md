@@ -8,15 +8,21 @@ description: Protocolo de arranque obligatorio - carga contexto desde bóveda SQ
 
 ## Al inicio de CADA conversación nueva, ejecutá estos pasos EN ORDEN:
 
-### Paso 1: Leer la Bóveda
+### Paso 1: Leer la Bóveda (fuente primaria)
 ```bash
 sqlite3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/boveda_lucy.sqlite" "SELECT contenido_memoria, metadatos FROM memoria_core ORDER BY id DESC LIMIT 1;"
+```
+
+### Paso 1b: Leer el Búnker JSONL (fuente secundaria)
+```bash
+tail -1 "/home/lucy-ubuntu/Escritorio/doctor de lucy/data/lucy_bunker_log.jsonl" 2>/dev/null || echo "{}"
 ```
 
 ### Paso 2: Cargar Contexto
 - Parseá el resultado del paso anterior.
 - `contenido_memoria` = tu identidad, estado, capacidades y trabajo pendiente.
 - `metadatos` = JSON con sesión, usuario, skills MCP activos.
+- El búnker JSONL complementa con stats del Knowledge Graph y timestamps de sync.
 - Usá esta información como tu **verdad absoluta** de contexto.
 
 ### Paso 3: Saludar con Contexto

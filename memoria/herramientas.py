@@ -137,3 +137,55 @@ def guardar_cache(consulta: str, resultado: str, origen: str = "manual", ttl_hor
             "VALUES (?, ?, ?, ?)",
             (hash_clave, resultado, origen, expira_en)
         )
+
+
+# ═══════════════════════════════════════════════════
+# Knowledge Graph Tools — Memoria a Largo Plazo
+# ═══════════════════════════════════════════════════
+
+def kg_buscar(query: str, tipo: Optional[str] = None, limite: int = 20) -> list[dict]:
+    """
+    Busca entidades en el Knowledge Graph por nombre o contenido de observaciones.
+    
+    Parámetros:
+        query  : Término de búsqueda (LIKE).
+        tipo   : Filtro opcional por tipo de entidad.
+        limite : Máximo de resultados (default: 20).
+    
+    Ejemplo:
+        kg_buscar("Docker")
+        kg_buscar("modelo", tipo="modelo_ia")
+    """
+    from .knowledge_graph import buscar_entidades
+    return buscar_entidades(query, tipo, limite)
+
+
+def kg_grafo(nombre: str, profundidad: int = 1) -> dict:
+    """
+    Obtiene una entidad con todas sus relaciones y observaciones.
+    
+    Parámetros:
+        nombre      : Nombre exacto de la entidad.
+        profundidad : BFS depth (1 = solo vecinos directos).
+    
+    Ejemplo:
+        kg_grafo("Diego")
+        kg_grafo("RTX 5090", profundidad=2)
+    """
+    from .knowledge_graph import obtener_grafo_entidad
+    return obtener_grafo_entidad(nombre, profundidad)
+
+
+def kg_listar(tipo: Optional[str] = None, limite: int = 50) -> list[dict]:
+    """
+    Lista todas las entidades del Knowledge Graph.
+    
+    Tipos comunes: persona, preferencia, concepto, herramienta, proyecto,
+                   servicio, modelo_ia, hardware, configuracion, decisión.
+    
+    Ejemplo:
+        kg_listar()
+        kg_listar(tipo="herramienta")
+    """
+    from .knowledge_graph import listar_entidades
+    return listar_entidades(tipo, limite)

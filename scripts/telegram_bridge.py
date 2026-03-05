@@ -1,0 +1,48 @@
+import sys
+import json
+import urllib.request
+import urllib.parse
+
+# Credenciales oficiales de @DocLucyBot
+TG_TOKEN = "8547120935:AAFIQvH5-HTYLIvVMBUxxCjg_TC7AZAMwu0"
+DIEGO_ID = "5154360597"
+
+def get_bot_info():
+    url = f"https://api.telegram.org/bot{TG_TOKEN}/getMe"
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as response:
+        return json.loads(response.read().decode())
+
+def send_message(text):
+    # Validar primero el bot
+    info = get_bot_info()
+    bot_username = info['result']['username']
+    
+    url = f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": DIEGO_ID,
+        "text": text,
+        "parse_mode": "Markdown"
+    }
+    
+    data = json.dumps(payload).encode('utf-8')
+    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
+    
+    with urllib.request.urlopen(req) as response:
+        result = json.loads(response.read().decode())
+        return result, bot_username
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Uso: python3 telegram_bridge.py 'mensaje'")
+        sys.exit(1)
+    
+    mensaje = sys.argv[1]
+    try:
+        resultado, username = send_message(mensaje)
+        if resultado.get("ok"):
+            print(f"✅ Mensaje enviado exitosamente desde @{username}")
+        else:
+            print(f"❌ Error reportado por Telegram: {resultado}")
+    except Exception as e:
+        print(f"💥 Error crítico: {e}")

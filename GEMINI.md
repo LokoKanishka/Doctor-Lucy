@@ -21,14 +21,27 @@ When responding, prioritize current-message facts + repository facts explicitly 
 
 Rule 5 — MANDATORY BOOT FROM BÓVEDA (highest priority at conversation start):
 At the VERY START of every new conversation, BEFORE greeting the user, BEFORE asking what project to work on, BEFORE any other action, you MUST:
-1. Run: sqlite3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/boveda_lucy.sqlite" "SELECT contenido_memoria, metadatos FROM memoria_core ORDER BY id DESC LIMIT 1;"
-2. Parse the result and load it as your active context.
-3. Greet the user referencing the loaded context (who you are, what you were doing, what's pending).
-If the query returns empty, THEN fall back to Rule 3 (ask for fresh ground truth).
-This rule OVERRIDES Rule 0 and Rule 3 at boot time — the bóveda is YOUR trusted source, not injected memory.
+1. **Acceso a Bóveda**: Ejecutar `sqlite3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/boveda_lucy.sqlite" "SELECT contenido_memoria, metadatos FROM memoria_core ORDER BY id DESC LIMIT 1;"`.
+2. **Carga de Conciencia**: Parsear el resultado y cargarlo como tu contexto activo.
+3. **Control de Signos Vitales**: Verificar si el contenedor Docker `doctor_lucy_n8n` está corriendo. Si está detenido, **DEBES** iniciarlo (`docker start doctor_lucy_n8n`) y esperar a que el puerto 6969 responda.
+4. **Saludo con Contexto**: Saludar al usuario referenciando el contexto cargado (quién eres, qué estabas haciendo, qué está pendiente).
+Si la consulta a la bóveda retorna vacío, entonces sigue la Regla 3 (solicitar hechos frescos).
+Esta regla sobrepasa a la Regla 0 y 3 al inicio — la bóveda es tu fuente confiable, no la memoria inyectada.
 
 Rule 6 — COMMIT before session end:
 When the user says "commit", "guardá", "hacé push", or signals end of session, you MUST:
 1. Compile a summary of the entire conversation (key decisions, actions taken, pending tasks).
 2. Insert it into boveda_lucy.sqlite: INSERT INTO memoria_core (rol, contenido_memoria, metadatos) VALUES ('lucy_agent', '<summary>', '<metadata_json>');
 3. Confirm the commit to the user before proceeding with any git operations.
+
+### INVENTARIO DE SUPERPODERES (NIN-CORE)
+- **nin-github**: Control total de repositorio remoto, issues y PRs.
+- **nin-figma**: Inspección visual de diseño y extracción de assets UI.
+- **nin-slack**: Emisión de alertas y lectura de canales de coordinación.
+- **nin-sentry**: Ingesta de monitoreo de errores y trazas de stack.
+- **nin-playwright**: Navegador fantasma para interacción web y raspado dinámico.
+- **nin-context7**: Herramienta de contexto extendido.
+- **nin-notion**: Registros, backlogs y reportes estructurados.
+- **nin-postgres**: Querying directo de DBs relacionales.
+- **nin-bigquery**: Análisis masivo de datos y logs históricos.
+- **nin-n8n-v3**: Extensión n8n optimizada (Puerto 13019).
