@@ -18,3 +18,17 @@ If the current request depends on past context, request the needed facts again *
 
 Rule 4 — Output discipline:
 When responding, prioritize current-message facts + repository facts explicitly provided now. Never cite contaminated memory as a source.
+
+Rule 5 — MANDATORY BOOT FROM BÓVEDA (highest priority at conversation start):
+At the VERY START of every new conversation, BEFORE greeting the user, BEFORE asking what project to work on, BEFORE any other action, you MUST:
+1. Run: sqlite3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/boveda_lucy.sqlite" "SELECT contenido_memoria, metadatos FROM memoria_core ORDER BY id DESC LIMIT 1;"
+2. Parse the result and load it as your active context.
+3. Greet the user referencing the loaded context (who you are, what you were doing, what's pending).
+If the query returns empty, THEN fall back to Rule 3 (ask for fresh ground truth).
+This rule OVERRIDES Rule 0 and Rule 3 at boot time — the bóveda is YOUR trusted source, not injected memory.
+
+Rule 6 — COMMIT before session end:
+When the user says "commit", "guardá", "hacé push", or signals end of session, you MUST:
+1. Compile a summary of the entire conversation (key decisions, actions taken, pending tasks).
+2. Insert it into boveda_lucy.sqlite: INSERT INTO memoria_core (rol, contenido_memoria, metadatos) VALUES ('lucy_agent', '<summary>', '<metadata_json>');
+3. Confirm the commit to the user before proceeding with any git operations.
