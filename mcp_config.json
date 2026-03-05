@@ -38,7 +38,7 @@
             ],
             "env": {
                 "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMWJiZjc3NC01MjU5LTQ1NTYtYmEyZi1iZWNkNmU5ZTFjMTUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzcxOTUzNjAxfQ.KWWMMroSIVe2rUvmrE1mzkxyQFoHW9m7X3AVc-U-P6I",
-                "N8N_HOST": "http://localhost:6969"
+                "N8N_HOST": "http://localhost:5688"
             }
         },
         "google-cloud": {
