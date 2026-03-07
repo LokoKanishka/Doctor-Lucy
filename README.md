@@ -12,7 +12,6 @@ Este repositorio es la bitácora y centro de control para el mantenimiento de es
 - `inventario_pc.md`: Datos técnicos del hardware y software.
 - `bitacora_mantenimiento.md`: Registro de acciones realizadas.
 - `scripts/`: Herramientas de automatización:
-- `guiones/`: Wrappers de compatibilidad para rutas antiguas (`guiones/*.sh`) que redirigen a `scripts/*.sh`.
     - `./scripts/sys_check.sh`: Chequeo de salud rápido.
     - `./scripts/cleanup.sh`: Identifica archivos grandes.
     - `./scripts/mantenimiento_proactivo.sh`: Limpieza profunda (Snaps, Logs, etc).
