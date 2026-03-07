@@ -21,9 +21,19 @@ run_to() { # run_to <cmd...>
   if have timeout; then timeout "$TIMEOUT_S" "$@"; else "$@"; fi
 }
 
+require_opt_value() { # require_opt_value <flag> <next-token>
+  local flag="$1"
+  local next="${2:-}"
+  if [ -z "$next" ] || [ "${next#-}" != "$next" ]; then
+    echo "Falta valor válido para $flag" >&2
+    usage
+    exit 2
+  fi
+}
+
 usage() {
   cat <<'USAGE'
-Uso: ./scripts/auditoria.sh [--docker] [--docker-global] [--network] [--out FILE] [--timeout N]
+Uso: ./scripts/auditoria.sh [--docker] [--docker-global] [--network] [--out FILE] [--timeout N] [OUT_FILE]
 
 Default (sin flags): NO toca Docker ni escanea puertos. Solo métricas locales + salud del proyecto.
 
@@ -47,10 +57,18 @@ while [ $# -gt 0 ]; do
     --docker-global) DO_DOCKER_GLOBAL=1 ;;
     --network) DO_NETWORK=1 ;;
     --out)
-      [ $# -ge 2 ] || { echo "Falta valor para --out" >&2; usage; exit 2; }
+      require_opt_value "--out" "${2:-}"
       REPORT="$2"; shift ;;
     --timeout)
-      [ $# -ge 2 ] || { echo "Falta valor para --timeout" >&2; usage; exit 2; }
+      require_opt_value "--timeout" "${2:-}"
+      case "$2" in
+        ""|*[!0-9]*)
+          echo "Valor inválido para --timeout: $2 (usar entero positivo en segundos)" >&2
+          usage
+          exit 2
+          ;;
+      esac
+      [ "$2" -gt 0 ] || { echo "--timeout debe ser mayor a 0" >&2; usage; exit 2; }
       TIMEOUT_S="$2"; shift ;;
     -h|--help) usage; exit 0 ;;
     -* ) echo "Arg desconocido: $1" >&2; usage; exit 2 ;;
@@ -93,6 +111,16 @@ append() { cat >> "$REPORT"; }
   echo
   echo "### Disco"
   if have df; then run_to df -h / || true; fi
+  echo
+  echo "### Procesos zombie"
+  if have ps; then
+    z_count="$(run_to sh -c "ps -eo stat= | awk '/^Z/{c++} END{print c+0}'" 2>/dev/null || echo 0)"
+    echo "- Zombies detectados: $z_count"
+    if [ "$z_count" -gt 0 ]; then
+      echo "- Muestra (PID PPID STAT CMD):"
+      run_to ps -eo pid,ppid,stat,cmd --sort=ppid | awk '$3 ~ /^Z/ {print}' | head -n 10 || true
+    fi
+  fi
   echo
 } | append
 
