@@ -154,3 +154,8 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 ---
 *Este documento es dinámico. Consultar [auditoria_sistema.md](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/auditoria_sistema.md) para detalles técnicos profundos.*
 2026-03-05 03:36:00 - Auditoría completa realizada. Estado ÓPTIMO.
+
+## Mantenimiento 2026-03-06
+- **Limpieza**: Se eliminaron logs de n8n (`n8nEventLog-*.log`) y se ejecutó `VACUUM` en `database.sqlite`.
+- **Temporales**: Eliminación de archivos `*.tmp` y carpetas `__pycache__`.
+- **Servicios**: Se intentó reparar `lucy_fusion_searxng` ajustando permisos a 777 en su carpeta de configuración. El servicio sigue reportando Error 127/Permission Denied en logs internos. Pendiente revisión de `settings.yml`.
