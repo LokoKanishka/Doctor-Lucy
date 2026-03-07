@@ -5,6 +5,7 @@ set -euo pipefail
 TIMEOUT_S="${TIMEOUT_S:-6}"
 OUT_DIR="${OUT_DIR:-.}"
 REPORT="${REPORT:-$OUT_DIR/auditoria_sistema.md}"
+DEFAULT_REPORT="$OUT_DIR/auditoria_sistema.md"
 
 # Jurisdicción Docker (preferible label)
 DOCKER_LABEL_KEY="${DOCKER_LABEL_KEY:-doctor_lucy}"
@@ -45,10 +46,25 @@ while [ $# -gt 0 ]; do
     --docker) DO_DOCKER=1 ;;
     --docker-global) DO_DOCKER_GLOBAL=1 ;;
     --network) DO_NETWORK=1 ;;
-    --out) REPORT="$2"; shift ;;
-    --timeout) TIMEOUT_S="$2"; shift ;;
+    --out)
+      [ $# -ge 2 ] || { echo "Falta valor para --out" >&2; usage; exit 2; }
+      REPORT="$2"; shift ;;
+    --timeout)
+      [ $# -ge 2 ] || { echo "Falta valor para --timeout" >&2; usage; exit 2; }
+      TIMEOUT_S="$2"; shift ;;
     -h|--help) usage; exit 0 ;;
-    *) echo "Arg desconocido: $1" >&2; usage; exit 2 ;;
+    -* ) echo "Arg desconocido: $1" >&2; usage; exit 2 ;;
+    *)
+      # Compatibilidad retro: permite salida posicional
+      # (ejemplo heredado: ./scripts/auditoria.sh reporte.md)
+      if [ "$REPORT" = "$DEFAULT_REPORT" ]; then
+        REPORT="$1"
+      else
+        echo "Arg desconocido: $1" >&2
+        usage
+        exit 2
+      fi
+      ;;
   esac
   shift
 done
