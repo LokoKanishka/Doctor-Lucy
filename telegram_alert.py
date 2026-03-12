@@ -4,9 +4,15 @@ import json
 import ssl
 import sys
 
-# Credenciales hardcodeadas por seguridad/simplicidad en el entorno aislado
-TOKEN = "8547120935:AAFIQvH5-HTYLIvVMBUxxCjg_TC7AZAMwu0"
-CHAT_ID = "5154360597"
+import os
+from dotenv import load_dotenv
+
+# Cargar variables de entorno
+load_dotenv()
+
+# Credenciales desde el entorno
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_DIEGO_ID")
 
 def send_telegram_message(message):
     try:

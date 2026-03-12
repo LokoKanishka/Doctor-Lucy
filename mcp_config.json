@@ -7,7 +7,7 @@
                 "@modelcontextprotocol/server-github"
             ],
             "env": {
-                "GITHUB_PERSONAL_ACCESS_TOKEN": "REEMPLAZAR_CON_PAT_SI_Falla_MCP"
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "REEMPLAZAR_CON_ENV_VAR"
             }
         },
         "telegram-lucy": {
@@ -16,8 +16,8 @@
                 "/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/telegram_bridge.py"
             ],
             "env": {
-                "TG_TOKEN": "8547120935:AAFIQvH5-HTYLIvVMBUxxCjg_TC7AZAMwu0",
-                "DIEGO_ID": "5154360597"
+                "TG_TOKEN": "REEMPLAZAR_CON_ENV_VAR",
+                "DIEGO_ID": "REEMPLAZAR_CON_ENV_VAR"
             }
         },
         "web-search": {
@@ -27,7 +27,7 @@
                 "@modelcontextprotocol/server-web-search"
             ],
             "env": {
-                "TAVILY_API_KEY": "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"
+                "TAVILY_API_KEY": "REEMPLAZAR_CON_ENV_VAR"
             }
         },
         "nin-n8n-v3": {
@@ -37,7 +37,7 @@
                 "@n8n/mcp-server-n8n"
             ],
             "env": {
-                "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMWJiZjc3NC01MjU5LTQ1NTYtYmEyZi1iZWNkNmU5ZTFjMTUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzcxOTUzNjAxfQ.KWWMMroSIVe2rUvmrE1mzkxyQFoHW9m7X3AVc-U-P6I",
+                "N8N_API_KEY": "REEMPLAZAR_CON_ENV_VAR",
                 "N8N_HOST": "http://localhost:5688"
             }
         },
@@ -48,7 +48,7 @@
                 "@modelcontextprotocol/server-google-cloud"
             ],
             "env": {
-                "GOOGLE_API_KEY": "AIzaSyCSltCiICu2lVNi9O6LyRedZIRh4o7f2-w"
+                "GOOGLE_API_KEY": "REEMPLAZAR_CON_ENV_VAR"
             }
         },
         "health-dashboard": {
