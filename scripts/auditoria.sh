@@ -4,8 +4,8 @@ set -euo pipefail
 # ===== Config =====
 TIMEOUT_S="${TIMEOUT_S:-6}"
 OUT_DIR="${OUT_DIR:-.}"
-REPORT="${REPORT:-$OUT_DIR/auditoria_sistema.md}"
-DEFAULT_REPORT="$OUT_DIR/auditoria_sistema.md"
+REPORT="${REPORT:-$OUT_DIR/diagnostics/auditoria_sistema.md}"
+DEFAULT_REPORT="$OUT_DIR/diagnostics/auditoria_sistema.md"
 
 # Jurisdicción Docker (preferible label)
 DOCKER_LABEL_KEY="${DOCKER_LABEL_KEY:-doctor_lucy}"
@@ -41,7 +41,7 @@ Flags:
   --docker         Audita contenedores SOLO bajo jurisdicción (label/patrón).
   --docker-global  Audita TODOS los contenedores (host-wide).
   --network        Muestra info de red/puertos (marcado como host-wide; requiere permisos para ver procesos).
-  --out FILE       Ruta del reporte (default ./auditoria_sistema.md)
+  --out FILE       Ruta del reporte (default ./diagnostics/auditoria_sistema.md)
   --timeout N      Timeout por comando (default 6)
 USAGE
 }

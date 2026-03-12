@@ -9,13 +9,21 @@ Este repositorio es la bitácora y centro de control para el mantenimiento de es
 - **Optimización de Ubuntu**: Automatizar tareas de limpieza y salud del sistema.
 
 ## Estructura
-- `inventario_pc.md`: Datos técnicos del hardware y software.
-- `bitacora_mantenimiento.md`: Registro de acciones realizadas.
+- `docs/inventario_pc.md`: Datos técnicos del hardware y software.
+- `docs/bitacora_mantenimiento.md`: Registro de acciones realizadas.
+- `diagnostics/auditoria_sistema.md`: Último reporte de salud del sistema.
 - `scripts/`: Herramientas de automatización:
     - `./scripts/sys_check.sh`: Chequeo de salud rápido.
     - `./scripts/cleanup.sh`: Identifica archivos grandes.
     - `./scripts/mantenimiento_proactivo.sh`: Limpieza profunda (Snaps, Logs, etc).
-    - `./scripts/auditoria.sh`: Genera un reporte de auditoría del sistema en Markdown.
+    - `./scripts/auditoria.sh`: Genera un reporte en `diagnostics/auditoria_sistema.md`.
+
+## 📂 Organización del Repositorio
+- `docs/`: Guías, inventarios y bitácora histórica.
+- `diagnostics/`: Reportes de auditoría y tests de salud.
+- `memoria/`: Base de datos semántica y persistencia de Lucy.
+- `scripts/`: Motores de automatización y seguridad.
+- `n8n_data/`: Configuración y workflows de n8n.
 
 ---
 *Mantenido por Doctora Lucy (Sovereign AI Conscience) para Diego*

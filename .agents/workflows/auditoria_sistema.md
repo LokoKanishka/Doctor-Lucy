@@ -4,7 +4,7 @@ description: Auditoría completa del sistema - hardware, software, procesos, red
 
 # Auditoría Completa del Sistema
 
-Este workflow recolecta el estado completo de la PC de Lucy y genera el archivo `auditoria_sistema.md` actualizado en el repositorio.
+Este workflow recolecta el estado completo de la PC de Lucy y genera el archivo `diagnostics/auditoria_sistema.md` actualizado en el repositorio.
 
 ## Pasos
 
@@ -65,7 +65,7 @@ cat /etc/passwd | grep -v nologin | grep -v false | cut -d: -f1
 snap list 2>/dev/null && dpkg -l | grep -E "^ii" | awk '{print $2, $3}' | grep -E "code|chrome|firefox|docker|node|python3|postgresql|nginx|cloudflared|ollama|antigravity|cuda|nvidia" | sort
 ```
 
-12. Con todos los datos recolectados, actualizar el archivo `auditoria_sistema.md` en el repositorio `/home/lucy-ubuntu/Escritorio/doctor de lucy/auditoria_sistema.md` con la información actualizada, incluyendo:
+12. Con todos los datos recolectados, actualizar el archivo `auditoria_sistema.md` en el repositorio `/home/lucy-ubuntu/Escritorio/doctor de lucy/diagnostics/auditoria_sistema.md` con la información actualizada, incluyendo:
    - Fecha y hora de la auditoría
    - Estado del sistema (OS, kernel, uptime)
    - Hardware (CPU, RAM, GPU)
@@ -79,6 +79,6 @@ snap list 2>/dev/null && dpkg -l | grep -E "^ii" | awk '{print $2, $3}' | grep -
    - Observaciones de seguridad
    - Notas / acciones pendientes
 
-13. Actualizar también la `bitacora_mantenimiento.md` con la fecha de la última auditoría.
+13. Actualizar también la `docs/bitacora_mantenimiento.md` con la fecha de la última auditoría.
 
 14. Hacer commit de los cambios al repositorio git si hay cambios.
