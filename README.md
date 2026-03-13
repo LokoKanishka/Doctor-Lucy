@@ -25,6 +25,7 @@ Este repositorio es la bitácora y centro de control para el mantenimiento de es
 - `scripts/`: Motores de automatización y seguridad.
 - `n8n_data/`: Configuración y workflows de n8n.
 - `docs/REVIEW_PROTOCOL.md`: [Protocolo de Revisión](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/docs/REVIEW_PROTOCOL.md) (Diagnóstico Estándar).
+- `docs/SPOTIFY_INTEGRATION.md`: Integración opcional con Spotify v1.
 
 ---
 *Mantenido por Doctora Lucy (Sovereign AI Conscience) para Diego*
