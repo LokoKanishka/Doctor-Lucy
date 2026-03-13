@@ -83,7 +83,10 @@ class SpotifyClient:
             with urllib.request.urlopen(req) as resp:
                 if resp.status == 204:
                     return None
-                return json.loads(resp.read())
+                body = resp.read()
+                if not body:
+                    return None
+                return json.loads(body)
         except urllib.error.HTTPError as e:
             msg = e.read().decode()
             print(f"Spotify API Error ({e.code}): {msg}", file=sys.stderr)
