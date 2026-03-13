@@ -14,8 +14,16 @@ load_dotenv()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_DIEGO_ID")
 
-def send_telegram_message(message):
+def send_telegram_message(message, dry_run=False):
     try:
+        if dry_run:
+            return {
+                "success": True, 
+                "message": "DRY-RUN: mensaje no enviado", 
+                "target": CHAT_ID, 
+                "text": message
+            }
+
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         
         ctx = ssl.create_default_context()
@@ -40,9 +48,17 @@ def send_telegram_message(message):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print(json.dumps({"error": "Se requiere un mensaje como argumento."}))
+        print(json.dumps({"error": "Uso: python3 telegram_alert.py [--dry-run] 'mensaje'"}))
         sys.exit(1)
     
-    msg = sys.argv[1]
-    result = send_telegram_message(msg)
+    dry_run = "--dry-run" in sys.argv
+    # Filtrar el flag de los argumentos para extraer el mensaje
+    args_filtered = [a for a in sys.argv[1:] if a != "--dry-run"]
+    
+    if not args_filtered:
+        print(json.dumps({"error": "Se requiere un mensaje como argumento."}))
+        sys.exit(1)
+        
+    msg = args_filtered[0]
+    result = send_telegram_message(msg, dry_run=dry_run)
     print(json.dumps(result))
