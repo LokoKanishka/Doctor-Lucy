@@ -153,6 +153,11 @@ class SpotifyClient:
         self._api_request('PUT', endpoint, payload={"uris": [uri]})
         print(f"Reproduciendo URI: {uri}{f' en {device_id}' if device_id else ''}")
 
+    def transfer(self, device_id, force_play=True):
+        payload = {"device_ids": [device_id], "play": force_play}
+        self._api_request('PUT', '/me/player', payload=payload)
+        print(f"Reproducción transferida al dispositivo {device_id}.")
+
     def search(self, query, limit=5):
         q = urllib.parse.quote(query)
         res = self._api_request('GET', f'/search?q={q}&type=track&limit={limit}')
@@ -269,6 +274,11 @@ def main():
     subparsers.add_parser("next", help="Salta a la siguiente pista")
     subparsers.add_parser("previous", help="Vuelve a la pista anterior")
     
+    transfer_parser = subparsers.add_parser("transfer", help="Transfiere la reproducción a un dispositivo")
+    transfer_parser.add_argument("device_id", type=str, help="ID del dispositivo")
+    transfer_parser.add_argument("--pause", action="store_false", dest="play", help="No iniciar reproducción tras transferencia")
+    transfer_parser.set_defaults(play=True)
+    
     vol_parser = subparsers.add_parser("volume", help="Ajusta el volumen (0-100)")
     vol_parser.add_argument("percent", type=int, help="Porcentaje de volumen (0-100)")
     
@@ -304,6 +314,8 @@ def main():
         client.next()
     elif args.command == "previous":
         client.previous()
+    elif args.command == "transfer":
+        client.transfer(args.device_id, args.play)
     elif args.command == "volume":
         if 0 <= args.percent <= 100:
             client.volume(args.percent)
