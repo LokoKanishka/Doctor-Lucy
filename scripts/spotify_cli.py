@@ -120,13 +120,19 @@ class SpotifyClient:
             vol = d.get('volume_percent', 'N/A')
             print(f"[{active}] {d['name']} (ID: {d['id']}, Type: {d['type']}, Volume: {vol}%)")
 
-    def play(self):
-        self._api_request('PUT', '/me/player/play')
-        print("Reproducción iniciada.")
+    def play(self, device_id=None):
+        endpoint = '/me/player/play'
+        if device_id:
+            endpoint += f"?device_id={device_id}"
+        self._api_request('PUT', endpoint)
+        print(f"Reproducción iniciada{f' en {device_id}' if device_id else ''}.")
 
-    def pause(self):
-        self._api_request('PUT', '/me/player/pause')
-        print("Reproducción pausada.")
+    def pause(self, device_id=None):
+        endpoint = '/me/player/pause'
+        if device_id:
+            endpoint += f"?device_id={device_id}"
+        self._api_request('PUT', endpoint)
+        print(f"Reproducción pausada{f' en {device_id}' if device_id else ''}.")
 
     def next(self):
         self._api_request('POST', '/me/player/next')
@@ -140,9 +146,25 @@ class SpotifyClient:
         self._api_request('PUT', f'/me/player/volume?volume_percent={vol}')
         print(f"Volumen fijado a {vol}%.")
 
-    def play_uri(self, uri):
-        self._api_request('PUT', '/me/player/play', payload={"uris": [uri]})
-        print(f"Reproduciendo URI: {uri}")
+    def play_uri(self, uri, device_id=None):
+        endpoint = '/me/player/play'
+        if device_id:
+            endpoint += f"?device_id={device_id}"
+        self._api_request('PUT', endpoint, payload={"uris": [uri]})
+        print(f"Reproduciendo URI: {uri}{f' en {device_id}' if device_id else ''}")
+
+    def search(self, query, limit=5):
+        q = urllib.parse.quote(query)
+        res = self._api_request('GET', f'/search?q={q}&type=track&limit={limit}')
+        tracks = res.get('tracks', {}).get('items', [])
+        if not tracks:
+            print(f"No se encontraron resultados para: {query}")
+            return
+        print(f"Resultados para '{query}':")
+        for i, t in enumerate(tracks):
+            artists = ", ".join([a['name'] for a in t.get('artists', [])])
+            print(f"{i+1}. {t['name']} - {artists} (URI: {t['uri']})")
+        return tracks
 
 
 def run_auth_server():
@@ -238,8 +260,12 @@ def main():
     subparsers.add_parser("auth", help="Inicia servidor local para obtener el REFRESH_TOKEN")
     subparsers.add_parser("status", help="Muestra el estado de reproducción actual")
     subparsers.add_parser("devices", help="Lista los dispositivos disponibles")
-    subparsers.add_parser("play", help="Reanuda la reproducción")
-    subparsers.add_parser("pause", help="Pausa la reproducción")
+    play_parser = subparsers.add_parser("play", help="Reanuda la reproducción")
+    play_parser.add_argument("--device", help="ID del dispositivo")
+
+    pause_parser = subparsers.add_parser("pause", help="Pausa la reproducción")
+    pause_parser.add_argument("--device", help="ID del dispositivo")
+
     subparsers.add_parser("next", help="Salta a la siguiente pista")
     subparsers.add_parser("previous", help="Vuelve a la pista anterior")
     
@@ -248,6 +274,11 @@ def main():
     
     uri_parser = subparsers.add_parser("play_uri", help="Reproduce una URI específica de Spotify")
     uri_parser.add_argument("uri", type=str, help="URI de Spotify (ej: spotify:track:...)")
+    uri_parser.add_argument("--device", help="ID del dispositivo")
+
+    search_parser = subparsers.add_parser("search", help="Busca canciones en Spotify")
+    search_parser.add_argument("query", type=str, help="Término de búsqueda")
+    search_parser.add_argument("--limit", type=int, default=5, help="Límite de resultados")
 
     args = parser.parse_args()
 
@@ -266,9 +297,9 @@ def main():
     elif args.command == "devices":
         client.devices()
     elif args.command == "play":
-        client.play()
+        client.play(args.device)
     elif args.command == "pause":
-        client.pause()
+        client.pause(args.device)
     elif args.command == "next":
         client.next()
     elif args.command == "previous":
@@ -279,7 +310,9 @@ def main():
         else:
             print("El volumen debe estar entre 0 y 100", file=sys.stderr)
     elif args.command == "play_uri":
-        client.play_uri(args.uri)
+        client.play_uri(args.uri, args.device)
+    elif args.command == "search":
+        client.search(args.query, args.limit)
 
 if __name__ == "__main__":
     main()

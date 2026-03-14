@@ -34,7 +34,7 @@ Si aún no tienes un `SPOTIFY_REFRESH_TOKEN`, puedes usar el propio script para 
    - El script imprimirá en la terminal el valor final de tu `SPOTIFY_REFRESH_TOKEN`.
 4. Copia ese valor y añádelo en tu archivo `.env`. ¡Listo!
 
-## 3. Comandos Disponibles
+### 3. Comandos Disponibles
 
 Todos los comandos se ejecutan a través de `scripts/spotify_cli.py`:
 
@@ -43,9 +43,12 @@ Todos los comandos se ejecutan a través de `scripts/spotify_cli.py`:
 | `auth` | Inicia el flujo OAuth para obtener tokens | `python3 scripts/spotify_cli.py auth` |
 | `status` | Muestra estado de la reproducción actual | `python3 scripts/spotify_cli.py status` |
 | `devices` | Lista los dispositivos activos en Spotify | `python3 scripts/spotify_cli.py devices` |
-| `play` | Reanuda la reproducción pausada | `python3 scripts/spotify_cli.py play` |
-| `pause` | Pausa la reproducción actual | `python3 scripts/spotify_cli.py pause` |
+| `search` | Busca pistas y muestra sus URIs | `python3 scripts/spotify_cli.py search "Cyberpunk"` |
+| `play` | Reanuda la reproducción pausada | `python3 scripts/spotify_cli.py play [--device ID]` |
+| `pause` | Pausa la reproducción actual | `python3 scripts/spotify_cli.py pause [--device ID]` |
 | `next` | Salta a la siguiente pista | `python3 scripts/spotify_cli.py next` |
 | `previous` | Vuelve a la pista anterior | `python3 scripts/spotify_cli.py previous` |
 | `volume` | Fija el nivel de volumen (0-100) | `python3 scripts/spotify_cli.py volume 50` |
-| `play_uri`| Reproduce una URI específica de Spotify | `python3 scripts/spotify_cli.py play_uri spotify:track:xxx` |
+| `play_uri`| Reproduce una URI específica | `python3 scripts/spotify_cli.py play_uri URI [--device ID]` |
+
+> **Tip**: Puedes obtener el `--device ID` ejecutando el comando `devices`. Es útil si quieres forzar la reproducción en un dispositivo específico de la red.
