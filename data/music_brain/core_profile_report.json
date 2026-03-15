@@ -1,0 +1,290 @@
+{
+  "timestamp": "2026-03-15T03:26:49.916796",
+  "total_core_artists": 403,
+  "top_genres": [
+    {
+      "name": "Rock",
+      "weight": 14289
+    },
+    {
+      "name": "Pop",
+      "weight": 7351
+    },
+    {
+      "name": "Electronic",
+      "weight": 6577
+    },
+    {
+      "name": "Blues",
+      "weight": 4759
+    },
+    {
+      "name": "Jazz",
+      "weight": 3206
+    },
+    {
+      "name": "Metal",
+      "weight": 3104
+    },
+    {
+      "name": "Rap / Hip-Hop",
+      "weight": 2079
+    },
+    {
+      "name": "Classical / Cinematic",
+      "weight": 1041
+    },
+    {
+      "name": "Folk / Acoustic",
+      "weight": 834
+    },
+    {
+      "name": "Ambient / Drone",
+      "weight": 735
+    }
+  ],
+  "top_subgenres": [
+    {
+      "name": "Alternative / Indie",
+      "weight": 6887
+    },
+    {
+      "name": "Classic Rock",
+      "weight": 5310
+    },
+    {
+      "name": "Hard Rock",
+      "weight": 4281
+    },
+    {
+      "name": "Pop Rock",
+      "weight": 4240
+    },
+    {
+      "name": "Blues Rock",
+      "weight": 4008
+    },
+    {
+      "name": "Trip-Hop",
+      "weight": 2677
+    },
+    {
+      "name": "Psychedelic Rock",
+      "weight": 2492
+    },
+    {
+      "name": "IDM / Electronica",
+      "weight": 2333
+    },
+    {
+      "name": "Heavy Metal",
+      "weight": 2285
+    },
+    {
+      "name": "Art Rock",
+      "weight": 2116
+    },
+    {
+      "name": "Folk Rock",
+      "weight": 1728
+    },
+    {
+      "name": "Progressive Rock",
+      "weight": 1722
+    },
+    {
+      "name": "Synth-Pop",
+      "weight": 1685
+    },
+    {
+      "name": "Rock Experimental",
+      "weight": 1558
+    },
+    {
+      "name": "Alternative Metal",
+      "weight": 1261
+    }
+  ],
+  "top_scenes": [
+    {
+      "name": "guitarist",
+      "weight": 3
+    },
+    {
+      "name": "English singer‐songwriter",
+      "weight": 2
+    },
+    {
+      "name": "Polish score composer",
+      "weight": 2
+    },
+    {
+      "name": "Canadian score composer",
+      "weight": 2
+    },
+    {
+      "name": "techno",
+      "weight": 2
+    },
+    {
+      "name": "blues musician",
+      "weight": 2
+    },
+    {
+      "name": "British rock band",
+      "weight": 2
+    },
+    {
+      "name": "Danish singer",
+      "weight": 2
+    },
+    {
+      "name": "Australian musical project",
+      "weight": 1
+    },
+    {
+      "name": "Irish dance‐pop singer‐songwriter Yasmine Byrne",
+      "weight": 1
+    }
+  ],
+  "top_countries": [
+    {
+      "name": "Estados Unidos",
+      "weight": 7440
+    },
+    {
+      "name": "Reino Unido",
+      "weight": 5188
+    },
+    {
+      "name": "Argentina",
+      "weight": 3497
+    },
+    {
+      "name": "Francia",
+      "weight": 1465
+    },
+    {
+      "name": "España",
+      "weight": 750
+    },
+    {
+      "name": "Irlanda",
+      "weight": 679
+    },
+    {
+      "name": "Australia",
+      "weight": 658
+    },
+    {
+      "name": "Suecia",
+      "weight": 506
+    },
+    {
+      "name": "Canadá",
+      "weight": 486
+    },
+    {
+      "name": "Polonia",
+      "weight": 477
+    }
+  ],
+  "top_decades": [
+    {
+      "name": "1960s",
+      "weight": 1359
+    },
+    {
+      "name": "1990s",
+      "weight": 1316
+    },
+    {
+      "name": "1980s",
+      "weight": 1045
+    },
+    {
+      "name": "1970s",
+      "weight": 880
+    },
+    {
+      "name": "2010s",
+      "weight": 661
+    },
+    {
+      "name": "2000s",
+      "weight": 602
+    },
+    {
+      "name": "2020s",
+      "weight": 433
+    },
+    {
+      "name": "1940s",
+      "weight": 407
+    },
+    {
+      "name": "1930s",
+      "weight": 328
+    },
+    {
+      "name": "1950s",
+      "weight": 254
+    }
+  ],
+  "top_artist_types": [
+    {
+      "type": "Person",
+      "count": 207
+    },
+    {
+      "type": "Group",
+      "count": 178
+    }
+  ],
+  "emblematic_artists_by_genre": {
+    "Rock": [
+      "Pink Floyd",
+      "Portishead",
+      "Massive Attack",
+      "Rammstein"
+    ],
+    "Pop": [
+      "Pink Floyd",
+      "Dead Can Dance",
+      "Morcheeba",
+      "The Doors"
+    ],
+    "Electronic": [
+      "Morcheeba",
+      "Portishead",
+      "Massive Attack",
+      "Enya"
+    ],
+    "Blues": [
+      "Pink Floyd",
+      "The Doors",
+      "Patricio Rey y sus Redonditos de Ricota",
+      "Metallica"
+    ],
+    "Jazz": [
+      "Portishead",
+      "Wax Tailor",
+      "Van Morrison",
+      "FRANK"
+    ],
+    "Metal": [
+      "Rammstein",
+      "Metallica",
+      "Led Zeppelin",
+      "Almafuerte"
+    ]
+  },
+  "observations": [
+    "El género con mayor peso acumulado en el núcleo es 'Rock', dominante por masa de artistas y puntuación total.",
+    "El 49% del peso Core proviene de artistas angloamericanos (UK + EE.UU.).",
+    "Argentina es la tercera presencia más fuerte con un 14% del peso — el rock nacional tiene raíces profundas en este perfil.",
+    "Existe una tensión marcada entre el universo electrónico (32%) y el rock puro (68%) dentro del núcleo.",
+    "La escena Trip-Hop de Bristol (Massive Attack, Portishead, Morcheeba, Tricky) tiene presencia estructural en el perfil.",
+    "Fuerte presencia de rock psicodélico y progresivo de los 60s/70s — Pink Floyd y Led Zeppelin dominan esta escena."
+  ]
+}
