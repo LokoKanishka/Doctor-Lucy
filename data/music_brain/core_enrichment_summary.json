@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-03-15T03:20:18.529018",
+  "total_core_artists": 403,
+  "artists_enriched_ok": 308,
+  "artists_partial": 87,
+  "artists_failed": 8,
+  "sources_coverage": {
+    "musicbrainz": 395,
+    "wikipedia": 308
+  },
+  "missing_apis": [
+    "Last.fm (requires API Key)",
+    "Discogs (requires API Key)"
+  ]
+}

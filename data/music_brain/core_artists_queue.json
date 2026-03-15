@@ -1,0 +1,2420 @@
+[
+  {
+    "artist_id": "0k17h0D3J5VfsdmQ1iZtE9",
+    "name": "Pink Floyd",
+    "score": 307,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6sq7prp0tj9Abn89khmfja",
+    "name": "Dead Can Dance",
+    "score": 226,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6bWxFw65IEJzBYjx3SxUXd",
+    "name": "Morcheeba",
+    "score": 178,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6liAMWkVf5LH7YR9yfFy1Y",
+    "name": "Portishead",
+    "score": 170,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6FXMGgJwohJLUSr5nVlf9X",
+    "name": "Massive Attack",
+    "score": 165,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1f8646DgHta6Gl3eLxZTdk",
+    "name": "Ayub Ogada",
+    "score": 156,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6wWVKhxIU2cEi0K81v7HvP",
+    "name": "Rammstein",
+    "score": 156,
+    "status": "pending"
+  },
+  {
+    "artist_id": "22WZ7M8sxp5THdruNY3gXt",
+    "name": "The Doors",
+    "score": 151,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6byQKddO1b34lXC2ZEjehQ",
+    "name": "Patricio Rey y sus Redonditos de Ricota",
+    "score": 151,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0xGI8ZVWgiCWicV1lD1Hrk",
+    "name": "JAZZY",
+    "score": 150,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6uothxMWeLWIhsGeF7cyo4",
+    "name": "Enya",
+    "score": 149,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2ye2Wgw4gimLv2eAKyk1NB",
+    "name": "Metallica",
+    "score": 142,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7ltDVBr6mKbRvohxheJ9h1",
+    "name": "ROSAL\u00cdA",
+    "score": 136,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6vgw0jwJkUnW2NR1rzsQU3",
+    "name": "Chinese Man",
+    "score": 133,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6ZIgPKHzpcswB8zh7sRIhx",
+    "name": "Divididos",
+    "score": 133,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0B6mwRbxKrvUvklMk9571H",
+    "name": "Churupaca",
+    "score": 132,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1lJhME1ZpzsEa5M0wW6Mso",
+    "name": "Charlotte de Witte",
+    "score": 132,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2FcC4sDMXme2ziI7tGKMK8",
+    "name": "David Gilmour",
+    "score": 132,
+    "status": "pending"
+  },
+  {
+    "artist_id": "432R46LaYsJZV2Gmc4jUV5",
+    "name": "Joy Division",
+    "score": 131,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7rmuxvt1D8dIU920lNcR67",
+    "name": "Rebekah",
+    "score": 129,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7JksKqLDuYE8QYj2WjiNQr",
+    "name": "Sona Jobarteh",
+    "score": 127,
+    "status": "pending"
+  },
+  {
+    "artist_id": "36QJpDe2go2KgaRleHCDTp",
+    "name": "Led Zeppelin",
+    "score": 127,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7bu3H8JO7d0UbMoVzbo70s",
+    "name": "The Cure",
+    "score": 125,
+    "status": "pending"
+  },
+  {
+    "artist_id": "40DqL6Tv84cKT2pH2NMs9r",
+    "name": "Roger Waters",
+    "score": 125,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1jBRvUY23iEpMeGCKZ2RO3",
+    "name": "Marina Fages",
+    "score": 123,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3LY3yBRRL9yxCZxaxkdUir",
+    "name": "El Plan De La Mariposa",
+    "score": 120,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0WwSkZ7LtFUFjGjMZBMt6T",
+    "name": "Dire Straits",
+    "score": 120,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3qwabfaWewpfli7hMNM3O8",
+    "name": "R\u00f3is\u00edn Murphy",
+    "score": 119,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4k1ELeJKT1ISyDv8JivPpB",
+    "name": "The Prodigy",
+    "score": 119,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3C4MmUJYQN9svNdedAR2BK",
+    "name": "Lisa Gerrard",
+    "score": 118,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4iBwchw0U0GZv5RfVYSMxN",
+    "name": "Anyma",
+    "score": 117,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6iDLp4OFuSX3Ahb0ItIZ86",
+    "name": "Vidia Wesenlund",
+    "score": 117,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3qwxSif06Qwzykdln8ZGfG",
+    "name": "Wax Tailor",
+    "score": 116,
+    "status": "pending"
+  },
+  {
+    "artist_id": "44NX2ffIYHr6D4n7RaZF7A",
+    "name": "Van Morrison",
+    "score": 116,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4fyLwv5M6ogaYlQKcmEeyF",
+    "name": "Sun and Moon Dance",
+    "score": 114,
+    "status": "pending"
+  },
+  {
+    "artist_id": "762310PdDnwsDxAQxzQkfX",
+    "name": "Depeche Mode",
+    "score": 114,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5r2JG9bxzdaGLiu4cq9X9t",
+    "name": "Estas Tonne",
+    "score": 114,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3iTsJGG39nMg9YiolUgLMQ",
+    "name": "Morrissey",
+    "score": 113,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3mNygoyrEKLgo6sx0MzwOL",
+    "name": "Ali Farka Tour\u00e9",
+    "score": 112,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6qYd7xlmeeeDkPfx6mZ9PV",
+    "name": "Almafuerte",
+    "score": 111,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6mdiAmATAx73kdxrNrnlao",
+    "name": "Iron Maiden",
+    "score": 110,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5jGCmalf8UZDPL2zJVpoCl",
+    "name": "FRANK",
+    "score": 109,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5EP020iZcwBqHRnJftibXX",
+    "name": "Hooverphonic",
+    "score": 109,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7mlge4peaoNgzTsY6M32RB",
+    "name": "Marianne Faithfull",
+    "score": 107,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4Ha5UQP6Z8qh5V2D9EqG2Z",
+    "name": "ZSwine",
+    "score": 107,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6sz0k1q2aEtG5dxEgr4YWV",
+    "name": "Rokia Traor\u00e9",
+    "score": 106,
+    "status": "pending"
+  },
+  {
+    "artist_id": "29TpNOsTNYbLb6Xa10H0PR",
+    "name": "Miss Monique",
+    "score": 105,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2Gu6Q05ExIGwHTF43kqLBI",
+    "name": "David Lynch",
+    "score": 104,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1w5Kfo2jwwIPruYS2UWh56",
+    "name": "Pearl Jam",
+    "score": 104,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4aaBjq7VqqQvpSF69GglvO",
+    "name": "Moloko",
+    "score": 104,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4TIrC99WSg0tOtBCGDjMRY",
+    "name": "Boogie Belgique",
+    "score": 103,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7w29UYBi0qsHi5RTcv3lmA",
+    "name": "Bj\u00f6rk",
+    "score": 103,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6MxyNXnnmwQwdW2PD0gXYO",
+    "name": "Bersuit Vergarabat",
+    "score": 102,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4Z8W4fKeB5YxbusRsdQVPb",
+    "name": "Radiohead",
+    "score": 102,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6hhA8TKRNryM8FNzqCqdDO",
+    "name": "Tricky",
+    "score": 102,
+    "status": "pending"
+  },
+  {
+    "artist_id": "19eLuQmk9aCobbVDHc6eek",
+    "name": "Louis Armstrong",
+    "score": 102,
+    "status": "pending"
+  },
+  {
+    "artist_id": "31fWtiCtU07AlqZ5drzplX",
+    "name": "Dum Chica",
+    "score": 101,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3BKRHy30ifxgYVDRgzrtmh",
+    "name": "Irfan",
+    "score": 100,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5EBH204cwRkvAWknwTAjCQ",
+    "name": "Marea",
+    "score": 98,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5V0MlUE1Bft0mbLlND7FJz",
+    "name": "Ella Fitzgerald",
+    "score": 97,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2R57sY41L9XvGPiIgHOaYq",
+    "name": "The Pretty Reckless",
+    "score": 97,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7pvL2bMcPtEGYzwTcULQKj",
+    "name": "Steve Marriott",
+    "score": 96,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0X380XXQSNBYuleKzav5UO",
+    "name": "Nine Inch Nails",
+    "score": 96,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1P6U1dCeHxPui5pIrGmndZ",
+    "name": "Air",
+    "score": 95,
+    "status": "pending"
+  },
+  {
+    "artist_id": "70GBRlKEGjfueop2lfdQ4Q",
+    "name": "Mar\u00eda Jos\u00e9 Llergo",
+    "score": 95,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3qAPxVwIQRBuz5ImPUxpZT",
+    "name": "Heroes Del Silencio",
+    "score": 95,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6ipac2Z0d0L6LWS7tTudcp",
+    "name": "Winona Riders",
+    "score": 93,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6SUXawtssJ0OtZGnp6BB1j",
+    "name": "Sonarea",
+    "score": 93,
+    "status": "pending"
+  },
+  {
+    "artist_id": "30TrHDLNCKQVTYWOn9QqOC",
+    "name": "Beth Hart",
+    "score": 93,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1LTFJvVvRw7ghAyThxYmnF",
+    "name": "Glass Beams",
+    "score": 92,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3RGLhK1IP9jnYFH4BRFJBS",
+    "name": "The Clash",
+    "score": 92,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0copVQkrcbfv5CzOyXuLKy",
+    "name": "Fantasm",
+    "score": 92,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2WqAAr2uu86jVDDGK4NRvX",
+    "name": "VINO",
+    "score": 92,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6nVcjUJemqpJjc1WevwTvL",
+    "name": "La Vela Puerca",
+    "score": 91,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3RNrq3jvMZxD9ZyoOZbQOD",
+    "name": "Korn",
+    "score": 91,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7cC7jkVtiRu4JDIrG1X51P",
+    "name": "Jorge Luis Borges",
+    "score": 91,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3erL8NEQbmmOXhO6yyVWxO",
+    "name": "Celestial Aeon Project",
+    "score": 91,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5a2EaR3hamoenG9rDuVn8j",
+    "name": "Prince",
+    "score": 91,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6OlOGcrJ8WIRYJXcsGjed4",
+    "name": "BLURREDMOVEMENT",
+    "score": 91,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2QsynagSdAqZj3U9HgDzjD",
+    "name": "Bob Marley & The Wailers",
+    "score": 90,
+    "status": "pending"
+  },
+  {
+    "artist_id": "07vycW8ICLf5hKb22PFWXw",
+    "name": "Marcin Przyby\u0142owicz",
+    "score": 90,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5CE2IfdYZEQGIDsfiRm8SI",
+    "name": "DJ Shadow",
+    "score": 89,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2Omy3P5hFZym7FKum1JA1s",
+    "name": "UFO",
+    "score": 89,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3pkmfqaBNsMqnXus05PNfP",
+    "name": "Handsome Boy Modeling School",
+    "score": 89,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3OsRAKCvk37zwYcnzRf5XF",
+    "name": "Moby",
+    "score": 89,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0oSGxfWSnnOXhD2fKuz2Gy",
+    "name": "David Bowie",
+    "score": 89,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6mwXlhRao6ThMMjARoOTIc",
+    "name": "Camionero",
+    "score": 88,
+    "status": "pending"
+  },
+  {
+    "artist_id": "42mveNsBgkZr7J2aMZQouQ",
+    "name": "Asynje",
+    "score": 88,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2SNzxY1OsSCHBLVi77mpPQ",
+    "name": "Joe Bonamassa",
+    "score": 88,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6C27P7GFMsRv9rvnVTXwR9",
+    "name": "Daemonia Nymphe",
+    "score": 88,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1H6X7yhnXZg73f9bssaj1Q",
+    "name": "Judeline",
+    "score": 87,
+    "status": "pending"
+  },
+  {
+    "artist_id": "53Ik4pv6iE2gZ7Xc4BKlFJ",
+    "name": "Las manos de Filippi",
+    "score": 87,
+    "status": "pending"
+  },
+  {
+    "artist_id": "40Yq4vzPs9VNUrIBG5Jr2i",
+    "name": "The Smashing Pumpkins",
+    "score": 87,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1eYhYunlNJlDoQhtYBvPsi",
+    "name": "Ray Charles",
+    "score": 87,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1OwarW4LEHnoep20ixRA0y",
+    "name": "Robert Plant",
+    "score": 87,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1QB4oo4JbSRdxNyidIuD0W",
+    "name": "Jim Morrison",
+    "score": 87,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3zJriU41e7xy7PVHIhflBo",
+    "name": "Buenos Vampiros",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3TNt4aUIxgfy9aoaft5Jj2",
+    "name": "Yeah Yeah Yeahs",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0z5DFXmhT4ZNzWElsM7V89",
+    "name": "Erasure",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3IYUhFvPQItj6xySrBmZkd",
+    "name": "Creedence Clearwater Revival",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "10AzTrYMPVVmpKoBP5bX9W",
+    "name": "Sumo",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0nUGkxUncFeXt0Dr0hhrc4",
+    "name": "Indio Solari",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1HVwzNriKEjaeE06okqSpx",
+    "name": "Carla Bruni",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0YC192cP3KPCRWx8zr8MfZ",
+    "name": "Hans Zimmer",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5MTN31B0DYG43RQJ9zT5fq",
+    "name": "Social Kid",
+    "score": 86,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2pAajGWerK3ghwToNWFENS",
+    "name": "Puscifer",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3Zv88mwGGY7hVHalCh7sQH",
+    "name": "Kalie Kaimann",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5ikWl4mjoiFlLPvkFRZETq",
+    "name": "Trevor Morris",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1O7aMVbDeSXY2LiVBhb13w",
+    "name": "The Herbaliser",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "568ZhdwyaiCyOGJRtNYhWf",
+    "name": "Deep Purple",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4rUyBlggM5tZUH5QZn9ZuO",
+    "name": "Silvio Rodr\u00edguez",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "27a0GiCba9K9lnkKidroFU",
+    "name": "Canned Heat",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5fsDcuclIe8ZiBD5P787K1",
+    "name": "Stevie Ray Vaughan",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "14lZi2xEonJg9DyYk9JBak",
+    "name": "Onlynumbers",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6V3nQK9DukU16erRknwTUK",
+    "name": "RetiredOrphan",
+    "score": 85,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6oBm8HB0yfrIc9IHbxs6in",
+    "name": "Lykke Li",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0ffEREi3eBDgVZTHgBFQQN",
+    "name": "Smash Stereo",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3zhMQz4U8XeOPq1Nphrd6a",
+    "name": "Me And That Man",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1nVq0hKIVReeaiB3xJgKf0",
+    "name": "Molchat Doma",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4P70aqttdpJ9vuYFDmf7f6",
+    "name": "Vangelis",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5bOsFzuJ6QZMr86ezC4oXY",
+    "name": "The Ink Spots",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4JzBPiRKBOG8U0jef4M60l",
+    "name": "Geoffrey Oryema",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5fD2qYm3eTtnx2EbsD1ELy",
+    "name": "Light4storm",
+    "score": 84,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7aIbYf49waEyLNCyBG4BsG",
+    "name": "Perly I Lotry",
+    "score": 83,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0b2B3PwcYzQAhuJacmcYgc",
+    "name": "The HU",
+    "score": 83,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1KWypURks7WDG739zuJlOd",
+    "name": "Sylvagus",
+    "score": 83,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4MDRNxNtr5Zwyhgk6TC0ur",
+    "name": "Matteo Tura",
+    "score": 83,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3syUzJVGOFtfucBhO9icNN",
+    "name": "Gress",
+    "score": 82,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7zx5Um40vqELG9joJelSPb",
+    "name": "SIERRA VEINS",
+    "score": 82,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4jO41bgpC8DyhIQKU6bL2P",
+    "name": "Roxane Genot",
+    "score": 81,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0Qeg2Ytz5AcfvkIO3RYV3z",
+    "name": "Corvus Corax",
+    "score": 81,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3WrFJ7ztbogyGnTHbHJFl2",
+    "name": "The Beatles",
+    "score": 81,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6sKLLGj7SqbP2qDBdEOoZ6",
+    "name": "Martina Topley-Bird",
+    "score": 81,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7dnwceXIyod0GslFy3KqA1",
+    "name": "Oto Kage",
+    "score": 81,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4AYkFtEBnNnGuoo8HaHErd",
+    "name": "Madness",
+    "score": 80,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1Qv4E1VgZOGnOYd99Kp5Bs",
+    "name": "Las Pelotas",
+    "score": 80,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6LG6fIvh2XpjqHUuR7NRtt",
+    "name": "Texas Hippie Coalition",
+    "score": 79,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2haNFSI2XvHycF4x0nhp2w",
+    "name": "La Mississippi",
+    "score": 79,
+    "status": "pending"
+  },
+  {
+    "artist_id": "27VhXJzIph9c75cBh1e8XM",
+    "name": "P.T. Adamczyk",
+    "score": 79,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0OcclcP5o8VKH2TRqSY2A7",
+    "name": "Howard Shore",
+    "score": 78,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5xLSa7l4IV1gsQfhAMvl0U",
+    "name": "B.B. King",
+    "score": 78,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1WgXqy2Dd70QQOU7Ay074N",
+    "name": "AURORA",
+    "score": 77,
+    "status": "pending"
+  },
+  {
+    "artist_id": "448GEwyUiojEHd8vsFheaB",
+    "name": "Brendan Perry",
+    "score": 77,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1JdeDdujDbS6ZeSlkXqx3a",
+    "name": "Loreena McKennitt",
+    "score": 76,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0360rTDeUjEyBXaz2Ki00a",
+    "name": "Paul Leonard-Morgan",
+    "score": 76,
+    "status": "pending"
+  },
+  {
+    "artist_id": "776Uo845nYHJpNaStv1Ds4",
+    "name": "Jimi Hendrix",
+    "score": 75,
+    "status": "pending"
+  },
+  {
+    "artist_id": "22bE4uQ6baNwSHPVcDxLCe",
+    "name": "The Rolling Stones",
+    "score": 75,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1I63B220b78lbVEduNdCfh",
+    "name": "Slow Blues",
+    "score": 75,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6UJiNrSX9rpIiNpgTbBxJ2",
+    "name": "Alka (BR)",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1O3ZOjqFLEnbpZexcRjocn",
+    "name": "RJD2",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "65CKKZilbcSKkAPC9a5Mvh",
+    "name": "Oumou Sangar\u00e9",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3yY2gUcIsjMr8hjo51PoJ8",
+    "name": "The Smiths",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3ohcHMuUq1717s8AH17hfT",
+    "name": "The White Buffalo",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1dfeR4HaWDbWqFHLkxsg1d",
+    "name": "Queen",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4tNxq9NGKTKaX8OkZBLgf0",
+    "name": "Nightmares On Wax",
+    "score": 74,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1nm9PdmvzPXJmIlMOk5XLy",
+    "name": "Marilina Bertoldi",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6I8TDGeUmmLom8auKPzMdX",
+    "name": "CA7RIEL & Paco Amoroso",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6V6omUMPOxHJF0BQ0Dy3Ch",
+    "name": "RepliK",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5eAWCfyUhZtHHtBdNk56l1",
+    "name": "System Of A Down",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5tzixIjD4uBPCqZTljYvQi",
+    "name": "Inon Zur",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1QOmebWGB6FdFtW7Bo3F0W",
+    "name": "Gustavo Cerati",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "13JJKrUewC1CJYmIDXQNoH",
+    "name": "El Cuarteto De Nos",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4DMlDJn7CPSSS0DuUf1vrH",
+    "name": "Snowy White",
+    "score": 73,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7nkLRaWHImCvWGHdNGnhVE",
+    "name": "Ten Years After",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2yRDg9eD2z1c62WQW1oz6D",
+    "name": "Tatyana Kalmykova",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5140UckyWFUNGkZcI8k9KE",
+    "name": "JVLIAH",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2iZU07KIJC7pcXk7UQAWZh",
+    "name": "Patobest",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4STEdt6oH8RopaxpfWrO5Z",
+    "name": "Cruzando El Charco",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4ZDoy7AWNgQVmX7T0u0B1j",
+    "name": "No Te Va Gustar",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "711MCceyCBcFnzjGY4Q7Un",
+    "name": "AC/DC",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "43ZHCT0cAZBISjO8DG9PnE",
+    "name": "Elvis Presley",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2qFr8w5sWUITRlzZ9kZotF",
+    "name": "Jefferson Airplane",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1uyFiOgdudAFNxNKGHQsKc",
+    "name": "Chrystabell",
+    "score": 72,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3hbnUwHvxyFxeJ9veCzOE7",
+    "name": "Mad Professor",
+    "score": 71,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6Lt6KFXX3P0v6vfrynQAMo",
+    "name": "Beth Gibbons",
+    "score": 71,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5Ho1vKl1Uz8bJlk4vbmvmf",
+    "name": "Amelie Lens",
+    "score": 71,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2ziB7fzrXBoh1HUPS6sVFn",
+    "name": "Audioslave",
+    "score": 71,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1l2oLiukA9i5jEtIyNWIEP",
+    "name": "Carpenter Brut",
+    "score": 71,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6mLXvSt7Xxy2r9uBba1O6Z",
+    "name": "Dawn Penn",
+    "score": 70,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3dRfiJ2650SZu6GbydcHNb",
+    "name": "John Williams",
+    "score": 70,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1nIUhcKHnK6iyumRyoV68C",
+    "name": "Ennio Morricone",
+    "score": 70,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0NJ6wlOAsAJ1PN4VRdTPKA",
+    "name": "Wardruna",
+    "score": 70,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5KbIofwaAvbvvkzG2zbmGD",
+    "name": "Michael Stearns",
+    "score": 70,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2covUE0E07tHZLpu2KLh2n",
+    "name": "Guillaume David",
+    "score": 70,
+    "status": "pending"
+  },
+  {
+    "artist_id": "37MCoi4pcUf9EKsPXeuCqU",
+    "name": "Tan Bionica",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "34jw2BbxjoYalTp8cJFCPv",
+    "name": "Heart",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "08YvZ2qzFrDSITfHLbPKMP",
+    "name": "Lamb",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6Nm62oNQCdPxVoiQtFSksF",
+    "name": "Estelares",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3qm84nBOXUEQ2vnTfUTTFC",
+    "name": "Guns N' Roses",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1wGIhYkKWSq4yACtTkCkSX",
+    "name": "Canserbero",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6j6Ld5h0aFgH0VQWQNazS7",
+    "name": "Hermetica",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6olE6TJLqED3rqDCT0FyPh",
+    "name": "Nirvana",
+    "score": 69,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4tZwfgrHOc3mvqYlEYSvVi",
+    "name": "Daft Punk",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4FmJD0mpgQ70SNt2EKK8tq",
+    "name": "Miracle Of Sound",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1EJWNhiYbOyeUHbsS7Kp1P",
+    "name": "Sneaker Pimps",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "27Owkm4TGlMqb0BqaEt3PW",
+    "name": "Molotov",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6HCnsY0Rxi3cg53xreoAIm",
+    "name": "Emancipator",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1GhPHrq36VKCY3ucVaZCfo",
+    "name": "The Chemical Brothers",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6HzVTgf7SWVWNo93bT5TEv",
+    "name": "The Architect",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0AD4odMWVQ2wUSlgxOB5Rl",
+    "name": "Jeff Beck",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2nszamLjZFgu3Yx77mKxuC",
+    "name": "UNKLE",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3ICflSq6ZgYAIrm2CTkfVP",
+    "name": "The Animals",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0Wxy5Qka8BN9crcFkiAxSR",
+    "name": "Howlin' Wolf",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6HnHBbeScFiQKXt3sUQA3Z",
+    "name": "Eydie Gorm\u00e9",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4MVyzYMgTwdP7Z49wAZHx0",
+    "name": "Lynyrd Skynyrd",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1DptMAbvFajxK4ZObg1OdA",
+    "name": "\u00c9ric Serra",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "14H7ag1wpQOsPPQJOD6Dqr",
+    "name": "Zero 7",
+    "score": 68,
+    "status": "pending"
+  },
+  {
+    "artist_id": "63tficClWA0HEI8bnlbA2l",
+    "name": "Otyken",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0SnyKkoyBaB2fG8IJH4xmU",
+    "name": "Los Piojos",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5icXwn4kNVG6IZz7TmaaFI",
+    "name": "Nanna Barslev",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6waa8mKu91GjzD4NlONlNJ",
+    "name": "The Hollies",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6QBXN3vAlzmX5e6QQvkiVU",
+    "name": "Mariama",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2dB4ya2W1Gvng8gjWSPu2H",
+    "name": "Eiv\u00f8r",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2hGh5VOeeqimQFxqXvfCUf",
+    "name": "John Coltrane",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1CPwHx5lgVxv0rfcp7UXLx",
+    "name": "Ry Cooder",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3QgSmABpItIdj908ek80n5",
+    "name": "Morphine",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "179BpmLkQCRIoU68Co80f5",
+    "name": "Gramatik",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4BFMTELQyWJU1SwqcXMBm3",
+    "name": "The Stooges",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5ZNxiPcbKgaNcBrERMpqeu",
+    "name": "M\u00e4go de Oz",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6tbjWDEIzxoDsBA1FuhfPW",
+    "name": "Madonna",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6v8FB84lnmJs434UJf2Mrm",
+    "name": "Neil Young",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1WPcVNert9hn7mHsPKDn7j",
+    "name": "\u00c9dith Piaf",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5dCuFngSPyOOnTAvrC7v2s",
+    "name": "Freddie King",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2ODUxmFxJSyvGiimNhMHbO",
+    "name": "Johnny Winter",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4y6J8jwRAwO4dssiSmN91R",
+    "name": "Muddy Waters",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5jv5Bn43OqH8fxEBTk8lJx",
+    "name": "Doyle W. Donehoo",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "06HL4z0CvFAxyc27GXpf02",
+    "name": "Taylor Swift",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5Lv9Qc7dCi7vps4rQ5MfTV",
+    "name": "SAMURAI",
+    "score": 67,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2GriEOyt1ZtKOiI8ayaUOd",
+    "name": "Witchy Tips",
+    "score": 66,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1btv9qmIpbp7q1ixCYNdHu",
+    "name": "Adam Beyer",
+    "score": 66,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6OJk7QGuqddbEUnzdHBHhI",
+    "name": "Yogi Lang",
+    "score": 66,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2CtiNJi0zB35RHYXViVjKG",
+    "name": "BALTHVS",
+    "score": 66,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2iLMJdaqsQ44X7MPRD7rR5",
+    "name": "Arc De Soleil",
+    "score": 66,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3NqV2DJoAWsjl787bWaHW7",
+    "name": "Amyl and The Sniffers",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6gRaeWdE7T2FCClI72x4Ln",
+    "name": "Andy Chango",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "62peb1sKdVJQD00xYvMCKF",
+    "name": "Kovacs",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4nVa6XlBFlIkF6msW57PHp",
+    "name": "Hanumankind",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0WhGV9lzljq2QKJ8ipw6jx",
+    "name": "New York Dolls",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2S0rCVs10P1Q0v51wmOrM5",
+    "name": "Preservation Hall Jazz Band",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5Vvw0luxWWEm1bHVSterU0",
+    "name": "Namakopuri",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2r8uP2smU2xmLqLM99hXbv",
+    "name": "Shadowmaw",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6ob0DwL4uI6eR5i9cc5tNn",
+    "name": "widerberg",
+    "score": 65,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7DoOkp29czR1xjPtxHiaZo",
+    "name": "Harlem Hamfats",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1D0ulc9Z5jJV7Gtuw7t33U",
+    "name": "Old Man Saxon",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2yEwvVSSSUkcLeSTNyHKh8",
+    "name": "TOOL",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7x3f7c0fBanNlQwpx1255g",
+    "name": "Fran\u00e7oise Hardy",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0HCkZtmMJLvUyWT5m0ojBX",
+    "name": "Peter Gundry",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "01Er12nK5rrnHx8usFPJAs",
+    "name": "Derek Fiechter",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5wtcfpKrb4no7xivzYRfXG",
+    "name": "Hexperos",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1u7kkVrr14iBvrpYnZILJR",
+    "name": "Sex Pistols",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7CHilrn81OdYjkh4uSVnYM",
+    "name": "Velvet Revolver",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6zvul52xwTWzilBZl6BUbT",
+    "name": "Pixies",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "13bb43GIQWR0f6rYeQcrUV",
+    "name": "Cris Velasco",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0d9jxJR6bbkLTYDO7z5OTA",
+    "name": "VANNOOD",
+    "score": 64,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2L3kwZFd16zjHz9a5kEPAm",
+    "name": "Ane Brun",
+    "score": 63,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5HwQ6LgbaJ9OifrTioZmRi",
+    "name": "Rajna",
+    "score": 63,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0f8MDDzIc6M4uH1xH0o0gy",
+    "name": "Robert Johnson",
+    "score": 63,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0kbYTNQb4Pb1rPbbaF0pT4",
+    "name": "Miles Davis",
+    "score": 63,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0L8ExT028jH3ddEcZwqJJ5",
+    "name": "Red Hot Chili Peppers",
+    "score": 63,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0q9kpdDkEA3H17gcRMjgVS",
+    "name": "Elmore James",
+    "score": 63,
+    "status": "pending"
+  },
+  {
+    "artist_id": "42D00VQsIgAb68LZK0zWYS",
+    "name": "L.B. One",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0fDF0jjmdouCIeWhNnblwV",
+    "name": "Buckethead",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5zRIFTHDQwGWKZ7z61fFKb",
+    "name": "The White Flames",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7KTtecVDKYpIseUdqdNDpd",
+    "name": "Zambayonny",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7DakWF6Sq7Q4JjvMXqJu1N",
+    "name": "El Mister y Los Marsupiales Extintos",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0FprLhGnoCew9TcVhtuxXi",
+    "name": "Nikolay Madoyan",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "34xAiSyQG6nlH0eZNLjbLW",
+    "name": "Shivaree",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4K8Mrjr9IvA8QU0Vjj4BED",
+    "name": "Skay Beilinson",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4KL9W3Y0keGcIdRuX2TkRN",
+    "name": "Trobar de Morte",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0wUUKwtuCvOtk9GklaUMj2",
+    "name": "Artesia",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2Hkut4rAAyrQxRdof7FVJq",
+    "name": "Rush",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1ViF5mdcW7pEn7md71YjOL",
+    "name": "Kid Loco",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "56R43sgGa6BTTr7xkE5TyE",
+    "name": "Call Me Sleeper",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6dAj0ZeUsbtbK7oKhjAXdM",
+    "name": "Somei Satoh",
+    "score": 62,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7HvQfRNJCvPXTVirKKB0Nn",
+    "name": "Moondog",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0xybuiDEYo3YuT3fLPaIyE",
+    "name": "Pentagram",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "54ne4EVHi744nu9u5A5WNX",
+    "name": "Peg Leg Sam",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6jRUKVZllu1wtgXHbqvUmT",
+    "name": "El Kuelgue",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5pg9cOudU7ezj3FnUABgu6",
+    "name": "NAFTA",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3mvkWMe6swnknwscwvGCHO",
+    "name": "Amon Tobin",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5AVBFCn4Hq4KY2Xjc5Gj4y",
+    "name": "Blues Saraceno",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4Yzt0tmj3PqRqVlkuYmQjW",
+    "name": "Spyros Giasafakis",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7Ey4PD4MYsKc5I2dolUwbH",
+    "name": "Aerosmith",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "72o2T9aqYR2PFNYpzYrMmw",
+    "name": "The Tiger Lillies",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4rRxk7StcvSY3Rs3yt7Dx7",
+    "name": "Jonna Jinton",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3XBw8ImFEo86mEB2dYh0vS",
+    "name": "Zoe Gotusso",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5jMGnqJkgPaiJzwy5bOcYX",
+    "name": "Christone \"Kingfish\" Ingram",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5NGO30tJxFlKixkPSgXcFE",
+    "name": "The Police",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "49DW3KvkyjHO35mK1JnSyS",
+    "name": "The Cult",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2F9pvj94b52wGKs0OqiNi2",
+    "name": "Babasonicos",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7DtrCdyysCDj5BlVKcassv",
+    "name": "Rev. Gary Davis",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4aKdmOXdUKX07HVd3sGgzw",
+    "name": "Rezz",
+    "score": 61,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5UefiThiZ352HWMOgZvOhx",
+    "name": "Dhafer Youssef",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6jZSXmTCxZhFfYELtp78Ci",
+    "name": "Fatima Hajji",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "58gIcdW6E0jd0846aI1sVj",
+    "name": "Gauchito Club",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3w9xEAItKEIFjQoR88mtsO",
+    "name": "Adri\u00e1n Berra",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5rLsN2LxYaEPLa1N7I2mPB",
+    "name": "El Mat\u00f3 a un Polic\u00eda Motorizado",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3jO7X5KupvwmWTHGtHgcgo",
+    "name": "Charly Garc\u00eda",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7E0i3aKAcm8iGK15QePkog",
+    "name": "Pier",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3j0wOTIKdpQfXAEsdRZqLx",
+    "name": "Hades",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "09C3CKFxKEw1n1Z7kvT3jb",
+    "name": "Deathpact",
+    "score": 60,
+    "status": "pending"
+  },
+  {
+    "artist_id": "55FMUrZOO1qeugFN7tYVZq",
+    "name": "Milky Dolly",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2FS22haX3FYbyOsUAkuYqZ",
+    "name": "Los Fabulosos Cadillacs",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0xd98Eey4R8a7Tzm1sJfhn",
+    "name": "Aerotuca",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "33yogRYdM0M5dc9VxfoqaJ",
+    "name": "Taj Farrant",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "72T7x96EAqN2UWvAgobYfv",
+    "name": "Sizzla",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6Iv9dXeKX45ff7qe0LDuFW",
+    "name": "Los Caballeros De La Quema",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4h7NLIlg1oYdEtfQJfyto0",
+    "name": "Nouvelle Vague",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0HNFg6mSgz7WLcN74CI3oT",
+    "name": "Ricardo Iorio",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3g2kUQ6tHLLbmkV7T4GPtL",
+    "name": "Fiona Apple",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3rxeQlsv0Sc2nyYaZ5W71T",
+    "name": "Chet Baker",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3dOfwznaY7FEKpF8aw1q9i",
+    "name": "Gustavo Cordera",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0Ty63ceoRnnJKVEYP0VQpk",
+    "name": "Sting",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4tpUmLEVLCGFr93o8hFFIB",
+    "name": "Blondie",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4F7Q5NV6h5TSwCainz8S5A",
+    "name": "Duke Ellington",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6PAt558ZEZl0DmdXlnjMgD",
+    "name": "Eric Clapton",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6UAMLsapd2AyfEAEVFaxmc",
+    "name": "La 25",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0hXFJVIeduP8fbaEmVKlDn",
+    "name": "Blacanblus",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3AA28KZvwAUcZuOKwyblJQ",
+    "name": "Gorillaz",
+    "score": 59,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1q1wfzh2xtpj27TnIAqIvd",
+    "name": "Karl Jenkins",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "45QpZznbXYo3nWy0TIhvgv",
+    "name": "Max Romeo",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7lzordPuZEXxwt9aoVZYmG",
+    "name": "Billy Idol",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3RhKSqhIE9U22yFEobw68e",
+    "name": "Tiken Jah Fakoly",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3NTWQktHThSN9KHFDG1Qzj",
+    "name": "Hetty and the Jazzato Band",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0bdfiayQAKewqEvaU6rXCv",
+    "name": "M\u00d8",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2pDQ9BUHNAf4yr3REAiZM1",
+    "name": "Qntal",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5Qq1l4rcIl1LE2g4RRzXOi",
+    "name": "Loire Cotler",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2nCACYdIndYchzX4bxLcTW",
+    "name": "Toumani Diabat\u00e9",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "51Blml2LZPmy7TTiAg47vQ",
+    "name": "U2",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "12VaqyEhgwDRuFfEqbnrpz",
+    "name": "PJ Harvey",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0Q7HmY08qjZ6SrCb9DYji7",
+    "name": "La Portuaria",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2Eo4Yaukt9d6dnZrY5hQKi",
+    "name": "Ciro y los Persas",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4h8IEOdrg60WM5XGyNOCVU",
+    "name": "Lilly Palmer",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6OO01j5rLKCyPg4i3FuzIT",
+    "name": "\u00c1rbol",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2ST5XwWB4uXGKk2NXP8DUI",
+    "name": "Los Cafres",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1rKrEdI6GKirxWHxIUPYms",
+    "name": "Agnes Obel",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0BkAYxgwF9VQiid4wI07yJ",
+    "name": "Clannad",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2vx09t0z5I1PnBWnyPPvWI",
+    "name": "Luca Prodan",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6ULt24uY5oov72S2fY1qoi",
+    "name": "Edmundo Rivero",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6kACVPfCOnqzgfEF5ryl0x",
+    "name": "Johnny Cash",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0cc6vw3VN8YlIcvr1v7tBL",
+    "name": "M\u00f6tley Cr\u00fce",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1tpXaFf2F55E7kVJON4j4G",
+    "name": "Black Rebel Motorcycle Club",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4og9jrin5xH5JiFPbeGUPb",
+    "name": "The Skatalites",
+    "score": 58,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3ESG6pj6a0LvUKklENalT6",
+    "name": "Doris Day",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6OW74CoDmE4vf9pZXuh4jV",
+    "name": "Sukha Deva",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0Y5ldP4uHArYLgHdljfmAu",
+    "name": "Hedningarna",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6B28AjXpmQglsDG2hHAwg3",
+    "name": "R\u00fanahild",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1DO3ytbfXlJUOoy77yH7IH",
+    "name": "Forndom",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3levBQpAaupSjwwjz64BMC",
+    "name": "Stellamara",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1vQmLYgD92RwmsfHqTwjmQ",
+    "name": "Medi\u00e6val B\u00e6bes",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7y97mc3bZRFXzT2szRM4L4",
+    "name": "Fr\u00e9d\u00e9ric Chopin",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "12Chz98pHFMPJEknJQMWvI",
+    "name": "Muse",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2wjmZuSHtRx96Qxb8HiP2o",
+    "name": "Guasones",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2osoVujXgV0PA8lhqDKYFw",
+    "name": "Callejeros",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "65EXuYHVoehCKqp0kOS6px",
+    "name": "Parov Stelar",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1yNOfXGQNGjAynk77wv85x",
+    "name": "John Lee Hooker",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5l8VQNuIg0turYE1VtM9zV",
+    "name": "Leonard Cohen",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1DFr97A9HnbV3SKTJFu62M",
+    "name": "Mot\u00f6rhead",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4NpFxQe2UvRCAjto3JqlSl",
+    "name": "Greta Van Fleet",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6eMlKSBFAoXVJLoeHmwKEj",
+    "name": "Robert Cray",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2wPOgnQ6eW3X73uIJZ4YFE",
+    "name": "Faun",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2AM4ilv6UzW0uMRuqKtDgN",
+    "name": "ZZ Top",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2d0hyoQ5ynDBnkvAbJKORj",
+    "name": "Rage Against The Machine",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3y1DgnVXqckGJrbwOKchdU",
+    "name": "Peter Green",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0iOVhN3tnSvgDbcg25JoJb",
+    "name": "Etta James",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "55j4xUfI5AATqETp8AnrRp",
+    "name": "Memphis La Blusera",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7Cg2eqV6oHNE0P54WfajIX",
+    "name": "Julio Sosa",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2rJkmlVHePMo2gk0InTZRS",
+    "name": "Vera Lynn",
+    "score": 57,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2Tf04IeDjDcpy9TZb02CGy",
+    "name": "Dizzi Dulcimer",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4BkdqpIEhl0tKZ5xpAo5pR",
+    "name": "Sowulo",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3MqjsWDLhq8SyY6N3PE8yW",
+    "name": "Aterciopelados",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5Z1XZyEFY0dewG8faEIiEx",
+    "name": "Django Reinhardt",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "74ASZWbe4lXaubB36ztrGX",
+    "name": "Bob Dylan",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "62uiaKAdkbY94iXJnXyKzc",
+    "name": "Peyton Parrish",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7sTKZr30LqC928DZ5P9mNQ",
+    "name": "Heilung",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "67ea9eGLXYMsO2eYQRui3w",
+    "name": "The Who",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "05Q9xndTxhXhD5trpmTtfU",
+    "name": "Carlos Gardel",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "41ZMMuFFLPTVPkUsSI5KlV",
+    "name": "Jimmy Reed",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2gCsNOpiBaMNh20jQ5prf0",
+    "name": "Buddy Guy",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1uFixbBAduJkFAeRKznkvW",
+    "name": "Albert Collins",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7MlyHuGRHi31yYlrttDqgT",
+    "name": "The Distillers",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "42TFhl7WlMRXiNqzSrnzPL",
+    "name": "Lou Reed",
+    "score": 56,
+    "status": "pending"
+  },
+  {
+    "artist_id": "0UQ0RWEEfYZYDzbACuhIhM",
+    "name": "Justin Bell",
+    "score": 55,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1YzCsTRb22dQkh9lghPIrp",
+    "name": "Billie Holiday",
+    "score": 54,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3h94ZSG5d6bfJZMoCTHQYb",
+    "name": "Tales From The Dream World",
+    "score": 54,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3mY59hXbxn6FdObPv3t0bf",
+    "name": "Void Stare",
+    "score": 54,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7qlhXQA7QMXRwHtfTcQoyJ",
+    "name": "Infraction",
+    "score": 54,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5FEb8EBFBoTJOCXigSGuE8",
+    "name": "Abou Diarra",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2UeCWtSeEYnoJ3PmhHXjVR",
+    "name": "Yuval Ron",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "2PmIyxmEFsNfQJjEifPDZC",
+    "name": "RAT BOY",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "602DnpaSXJB4b9DZrvxbDc",
+    "name": "Peggy Lee",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3WQnrXUftP8r2KIZK5UhSd",
+    "name": "Voidnet",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "1ldNdtZX38LAsOk0ciLvb2",
+    "name": "F.O.O.L",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4tpDw1W5WG1Tf7puULUur5",
+    "name": "Gold Geisha",
+    "score": 53,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7Lf3LOZp3U3u2f6cWMd3AH",
+    "name": "Paul Weller",
+    "score": 52,
+    "status": "pending"
+  },
+  {
+    "artist_id": "5v8bwWRbu7AI3YFhzoM6Ha",
+    "name": "The Mills Brothers",
+    "score": 52,
+    "status": "pending"
+  },
+  {
+    "artist_id": "4VKHNaUBImLsxPOCdG5Mwl",
+    "name": "Mimi Maura",
+    "score": 51,
+    "status": "pending"
+  },
+  {
+    "artist_id": "6TVdVlY6irsNPkMHT2HkfD",
+    "name": "Space 92",
+    "score": 51,
+    "status": "pending"
+  },
+  {
+    "artist_id": "7mC3RkNNTV6p2j9w4F8Ip4",
+    "name": "Layton Giordani",
+    "score": 51,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3nFnQg8Kav6UMFFjQ1dspY",
+    "name": "Kutxi Romero",
+    "score": 50,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3ABaec4jjl95VqmG1iD4k2",
+    "name": "Green Velvet",
+    "score": 50,
+    "status": "pending"
+  },
+  {
+    "artist_id": "3GKGEnbmQnaTNGJL6ZGryj",
+    "name": "Birds on a Wire",
+    "score": 50,
+    "status": "pending"
+  },
+  {
+    "artist_id": "50cxojNr9EQcyLgrOhXujY",
+    "name": "Marcello De Francisci",
+    "score": 50,
+    "status": "pending"
+  }
+]
