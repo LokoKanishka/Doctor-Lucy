@@ -58,7 +58,7 @@ class SpotifyClient:
             }
         )
         try:
-            with urllib.request.urlopen(req) as resp:
+            with urllib.request.urlopen(req, timeout=10) as resp:
                 res = json.loads(resp.read())
                 self.access_token = res['access_token']
                 return self.access_token
@@ -80,7 +80,7 @@ class SpotifyClient:
         
         req = urllib.request.Request(url, data=data, headers=headers, method=method)
         try:
-            with urllib.request.urlopen(req) as resp:
+            with urllib.request.urlopen(req, timeout=10) as resp:
                 if resp.status == 204:
                     return None
                 body = resp.read()
@@ -256,7 +256,7 @@ def run_auth_server():
                 }
             )
             try:
-                with urllib.request.urlopen(req) as resp:
+                with urllib.request.urlopen(req, timeout=10) as resp:
                     res = json.loads(resp.read())
                     refresh_token = res.get('refresh_token')
                     
