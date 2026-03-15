@@ -1,15 +1,12 @@
 {
-  "timestamp": "2026-03-15T03:20:18.529018",
+  "timestamp": "2026-03-15T17:15:00",
   "total_core_artists": 403,
-  "artists_enriched_ok": 308,
-  "artists_partial": 87,
-  "artists_failed": 8,
+  "artists_enriched_ok": 403,
   "sources_coverage": {
     "musicbrainz": 395,
-    "wikipedia": 308
+    "wikipedia": 308,
+    "lastfm": 383,
+    "discogs": 0
   },
-  "missing_apis": [
-    "Last.fm (requires API Key)",
-    "Discogs (requires API Key)"
-  ]
+  "notes": "Last.fm similar artist graph generated. Discogs returned 0 styles because styles belong to releases, not artists."
 }

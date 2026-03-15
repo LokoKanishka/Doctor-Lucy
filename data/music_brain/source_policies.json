@@ -1,0 +1,74 @@
+[
+  {
+    "source_name": "MusicBrainz",
+    "entity_type": "artist",
+    "job_type": "artist_enrichment_basic",
+    "allowed": true,
+    "reason": "Referencia core principal verificada",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480635Z"
+  },
+  {
+    "source_name": "Wikipedia",
+    "entity_type": "artist",
+    "job_type": "artist_enrichment_basic",
+    "allowed": true,
+    "reason": "Excelente para resúmenes de contexto biográfico",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480650Z"
+  },
+  {
+    "source_name": "Last.fm",
+    "entity_type": "artist",
+    "job_type": "artist_enrichment_basic",
+    "allowed": true,
+    "reason": "Probado y validado como fuente principal de tags y similitudes",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480652Z"
+  },
+  {
+    "source_name": "Last.fm",
+    "entity_type": "artist",
+    "job_type": "artist_similarity",
+    "allowed": true,
+    "reason": "Fuente principal consolidada de grafos de similitud",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480653Z"
+  },
+  {
+    "source_name": "Last.fm",
+    "entity_type": "artist",
+    "job_type": "artist_tags",
+    "allowed": true,
+    "reason": "Fuente principal para microgéneros y taxonomía folclórica",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480655Z"
+  },
+  {
+    "source_name": "Discogs",
+    "entity_type": "artist",
+    "job_type": "artist_enrichment_basic",
+    "allowed": false,
+    "reason": "Discogs a nivel artista no devuelve estilos útiles de forma fiable; reservar para release/master",
+    "status": "disabled",
+    "updated_at": "2026-03-15T22:03:46.480656Z"
+  },
+  {
+    "source_name": "Discogs",
+    "entity_type": "release",
+    "job_type": "release_master_enrichment",
+    "allowed": true,
+    "reason": "Candidato futuro para estilos y géneros precisos a nivel de álbum",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480657Z"
+  },
+  {
+    "source_name": "Discogs",
+    "entity_type": "master",
+    "job_type": "release_master_enrichment",
+    "allowed": true,
+    "reason": "Candidato futuro para estilos y géneros precisos a nivel master",
+    "status": "active",
+    "updated_at": "2026-03-15T22:03:46.480658Z"
+  }
+]

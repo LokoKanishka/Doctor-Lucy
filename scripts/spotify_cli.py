@@ -41,55 +41,49 @@ class SpotifyClient:
             print("ERROR: SPOTIFY_REFRESH_TOKEN no está configurado. Ejecuta el comando 'auth' primero.", file=sys.stderr)
             sys.exit(1)
         
-        auth_string = f"{self.client_id}:{self.client_secret}"
-        auth_b64 = base64.b64encode(auth_string.encode()).decode()
-        
-        data = urllib.parse.urlencode({
-            'grant_type': 'refresh_token',
-            'refresh_token': self.refresh_token
-        }).encode()
-        
-        req = urllib.request.Request(
-            'https://accounts.spotify.com/api/token',
-            data=data,
-            headers={
-                'Authorization': f'Basic {auth_b64}',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        )
+        import subprocess
+        cmd = [
+            "curl", "-s", "-X", "POST",
+            "-H", "Content-Type: application/x-www-form-urlencoded",
+            "-d", f"grant_type=refresh_token&refresh_token={self.refresh_token}&client_id={self.client_id}&client_secret={self.client_secret}",
+            "https://accounts.spotify.com/api/token"
+        ]
         try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                res = json.loads(resp.read())
-                self.access_token = res['access_token']
+            res = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            data = json.loads(res.stdout)
+            if 'access_token' in data:
+                self.access_token = data['access_token']
                 return self.access_token
-        except urllib.error.HTTPError as e:
-            msg = e.read().decode()
-            print(f"Error obteniendo token: {msg}", file=sys.stderr)
+            else:
+                print(f"Error obteniendo token: {data}", file=sys.stderr)
+                sys.exit(1)
+        except subprocess.CalledProcessError as e:
+            print(f"Error executing curl for token: {e.stderr}", file=sys.stderr)
             sys.exit(1)
 
     def _api_request(self, method, endpoint, payload=None):
         token = self.get_access_token()
         url = f"https://api.spotify.com/v1{endpoint}"
-        headers = {
-            'Authorization': f'Bearer {token}',
-            'Content-Type': 'application/json'
-        }
-        data = None
-        if payload is not None:
-            data = json.dumps(payload).encode()
+        import subprocess
         
-        req = urllib.request.Request(url, data=data, headers=headers, method=method)
+        cmd = [
+            "curl", "-s", "-X", method,
+            "-H", f"Authorization: Bearer {token}",
+            "-H", "Content-Type: application/json"
+        ]
+        
+        if payload is not None:
+            cmd.extend(["-d", json.dumps(payload)])
+            
+        cmd.append(url)
+        
         try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                if resp.status == 204:
-                    return None
-                body = resp.read()
-                if not body:
-                    return None
-                return json.loads(body)
-        except urllib.error.HTTPError as e:
-            msg = e.read().decode()
-            print(f"Spotify API Error ({e.code}): {msg}", file=sys.stderr)
+            res = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            if not res.stdout.strip():
+                return None
+            return json.loads(res.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"Spotify API Error: {e.stderr}", file=sys.stderr)
             sys.exit(1)
 
     def status(self):

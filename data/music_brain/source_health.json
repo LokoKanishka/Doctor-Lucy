@@ -1,0 +1,46 @@
+[
+  {
+    "source_name": "MusicBrainz",
+    "job_type": "artist_enrichment_basic",
+    "success_count": 403,
+    "empty_count": 0,
+    "error_count": 0,
+    "status": "healthy",
+    "last_success_at": "2026-03-15T22:03:46.480659Z",
+    "last_failure_at": null,
+    "notes": "Validado al 100% en bootstraps y fase 1/2"
+  },
+  {
+    "source_name": "Wikipedia",
+    "job_type": "artist_enrichment_basic",
+    "success_count": 308,
+    "empty_count": 95,
+    "error_count": 0,
+    "status": "healthy",
+    "last_success_at": "2026-03-15T22:03:46.480661Z",
+    "last_failure_at": null,
+    "notes": "Validado en fase 1/2"
+  },
+  {
+    "source_name": "Last.fm",
+    "job_type": "artist_enrichment_basic",
+    "success_count": 383,
+    "empty_count": 20,
+    "error_count": 1,
+    "status": "healthy",
+    "last_success_at": "2026-03-15T22:03:46.480662Z",
+    "last_failure_at": null,
+    "notes": "Validado en fase 3C con éxito"
+  },
+  {
+    "source_name": "Discogs",
+    "job_type": "artist_enrichment_basic",
+    "success_count": 0,
+    "empty_count": 403,
+    "error_count": 0,
+    "status": "disabled",
+    "last_success_at": null,
+    "last_failure_at": null,
+    "notes": "Disabled by policy: empty styles returned at API artist level"
+  }
+]
