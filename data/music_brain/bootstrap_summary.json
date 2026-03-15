@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-15T02:22:20.881752",
+  "granted_scopes": [
+    "user-top-read",
+    "user-follow-read",
+    "user-read-recently-played",
+    "user-read-playback-state",
+    "playlist-read-private",
+    "playlist-read-collaborative",
+    "user-modify-playback-state",
+    "user-library-read",
+    "user-read-currently-playing"
+  ],
+  "missing_scopes_for_audit": [],
+  "endpoints_status": {
+    "followed_artists": {
+      "status": "SUCCESS",
+      "count": 866
+    },
+    "playlists": {
+      "status": "SUCCESS",
+      "count": 45
+    },
+    "saved_tracks": {
+      "status": "SUCCESS",
+      "count": 83
+    },
+    "saved_albums": {
+      "status": "SUCCESS",
+      "count": 20
+    },
+    "top_artists_short": {
+      "status": "SUCCESS",
+      "count": 47
+    },
+    "top_artists_medium": {
+      "status": "SUCCESS",
+      "count": 142
+    },
+    "top_artists_long": {
+      "status": "SUCCESS",
+      "count": 628
+    },
+    "top_tracks_short": {
+      "status": "SUCCESS",
+      "count": 689
+    },
+    "top_tracks_medium": {
+      "status": "SUCCESS",
+      "count": 2114
+    },
+    "top_tracks_long": {
+      "status": "SUCCESS",
+      "count": 8668
+    },
+    "recently_played": {
+      "status": "SUCCESS",
+      "count": 50
+    }
+  }
+}

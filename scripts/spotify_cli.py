@@ -199,7 +199,17 @@ def run_auth_server():
     client_secret = get_env_var("SPOTIFY_CLIENT_SECRET", True)
     redirect_uri = get_env_var("SPOTIFY_REDIRECT_URI", True)
     
-    scope = "user-read-playback-state user-modify-playback-state"
+    scope = (
+        "user-read-playback-state "
+        "user-modify-playback-state "
+        "user-follow-read "
+        "user-library-read "
+        "playlist-read-private "
+        "playlist-read-collaborative "
+        "user-top-read "
+        "user-read-recently-played "
+        "user-read-currently-playing"
+    )
     auth_url = (
         "https://accounts.spotify.com/authorize?"
         + urllib.parse.urlencode({
@@ -262,8 +272,18 @@ def run_auth_server():
                     
                     print("\n" + "=" * 60)
                     print("¡ÉXITO! Refresh token obtenido.")
-                    print("Agrega la siguiente línea a tu archivo .env:\n")
-                    print(f"SPOTIFY_REFRESH_TOKEN={refresh_token}")
+                    env_path = ".env"
+                    import os
+                    if os.path.exists(env_path):
+                        with open(env_path, "r") as f:
+                            lines = f.readlines()
+                        with open(env_path, "w") as f:
+                            for line in lines:
+                                if line.startswith("SPOTIFY_REFRESH_TOKEN="):
+                                    f.write(f"SPOTIFY_REFRESH_TOKEN={refresh_token}\n")
+                                else:
+                                    f.write(line)
+                    print("El token ha sido guardado localmente en .env de forma segura.")
                     print("=" * 60 + "\n")
             except urllib.error.HTTPError as e:
                 print(f"Error obteniendo token: {e.read().decode()}", file=sys.stderr)

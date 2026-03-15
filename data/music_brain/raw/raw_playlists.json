@@ -1,0 +1,1814 @@
+[
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/0b8Dyf15UDwzjZ21Ku2FK7"
+    },
+    "href": "https://api.spotify.com/v1/playlists/0b8Dyf15UDwzjZ21Ku2FK7",
+    "id": "0b8Dyf15UDwzjZ21Ku2FK7",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da846034018a679040b4193c908d",
+        "width": null
+      }
+    ],
+    "name": "The Thunder, Perfect Mind",
+    "owner": {
+      "display_name": "Shadylane",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/or1ry8xqd6v4cih22o228godn"
+      },
+      "href": "https://api.spotify.com/v1/users/or1ry8xqd6v4cih22o228godn",
+      "id": "or1ry8xqd6v4cih22o228godn",
+      "type": "user",
+      "uri": "spotify:user:or1ry8xqd6v4cih22o228godn"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAA16JrFFOBhI6BHkvnXXxREHhhhuU1",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/0b8Dyf15UDwzjZ21Ku2FK7/items",
+      "total": 66
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:0b8Dyf15UDwzjZ21Ku2FK7"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4mNSQaXjCoyUtbssax5BD1"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4mNSQaXjCoyUtbssax5BD1",
+    "id": "4mNSQaXjCoyUtbssax5BD1",
+    "images": null,
+    "name": "My Playlist #30",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAAfjq8+jnRVpriaVQ5GLbTGlF4w4W",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4mNSQaXjCoyUtbssax5BD1/items",
+      "total": 0
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4mNSQaXjCoyUtbssax5BD1"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6tugHnhmA8mmxm1ADs79CG"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6tugHnhmA8mmxm1ADs79CG",
+    "id": "6tugHnhmA8mmxm1ADs79CG",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84261a01508eb1f11293bc022f",
+        "width": null
+      }
+    ],
+    "name": "Sof\u00eda",
+    "owner": {
+      "display_name": "Julie",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/317xdtkxy4wd72ofv3fmzmllwkfe"
+      },
+      "href": "https://api.spotify.com/v1/users/317xdtkxy4wd72ofv3fmzmllwkfe",
+      "id": "317xdtkxy4wd72ofv3fmzmllwkfe",
+      "type": "user",
+      "uri": "spotify:user:317xdtkxy4wd72ofv3fmzmllwkfe"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAANI69DmoD7+TRxdu/ndNV9KVB7clO",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6tugHnhmA8mmxm1ADs79CG/items",
+      "total": 43
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6tugHnhmA8mmxm1ADs79CG"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/55tRCmc2sXbHoiL22UKgmo"
+    },
+    "href": "https://api.spotify.com/v1/playlists/55tRCmc2sXbHoiL22UKgmo",
+    "id": "55tRCmc2sXbHoiL22UKgmo",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0210cf6246742cc49070fd514cab67616d00001e02204230e5ba86debdc7ddc116ab67616d00001e0224a7874db45f85653ab70c4eab67616d00001e0231e9866a471d9707c77d1f04",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0210cf6246742cc49070fd514cab67616d00001e02204230e5ba86debdc7ddc116ab67616d00001e0224a7874db45f85653ab70c4eab67616d00001e0231e9866a471d9707c77d1f04",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0210cf6246742cc49070fd514cab67616d00001e02204230e5ba86debdc7ddc116ab67616d00001e0224a7874db45f85653ab70c4eab67616d00001e0231e9866a471d9707c77d1f04",
+        "width": 60
+      }
+    ],
+    "name": "Guitarra y martina",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABWC2l1bXS7CbcQ6iPKsk1Ui2i5yl",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/55tRCmc2sXbHoiL22UKgmo/items",
+      "total": 4
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:55tRCmc2sXbHoiL22UKgmo"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/65WuujrbIiWy0oy8iLTudw"
+    },
+    "href": "https://api.spotify.com/v1/playlists/65WuujrbIiWy0oy8iLTudw",
+    "id": "65WuujrbIiWy0oy8iLTudw",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e02abd6980a0f2f2c9cc13581e0",
+        "width": null
+      }
+    ],
+    "name": "Come Back",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAAp0Ismste66iV2L38E3+rlX3SBc9",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/65WuujrbIiWy0oy8iLTudw/items",
+      "total": 1
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:65WuujrbIiWy0oy8iLTudw"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/2ciFQ9QWh4JNG3tNsgr5Gz"
+    },
+    "href": "https://api.spotify.com/v1/playlists/2ciFQ9QWh4JNG3tNsgr5Gz",
+    "id": "2ciFQ9QWh4JNG3tNsgr5Gz",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e020ce07088a4cf2395183c99eaab67616d00001e0237616dc3ba4e1e2743c2c31dab67616d00001e02690adb233e1d4d68cafc8ab2ab67616d00001e02ef3e9ff2ea6f2576ce57053d",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e020ce07088a4cf2395183c99eaab67616d00001e0237616dc3ba4e1e2743c2c31dab67616d00001e02690adb233e1d4d68cafc8ab2ab67616d00001e02ef3e9ff2ea6f2576ce57053d",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e020ce07088a4cf2395183c99eaab67616d00001e0237616dc3ba4e1e2743c2c31dab67616d00001e02690adb233e1d4d68cafc8ab2ab67616d00001e02ef3e9ff2ea6f2576ce57053d",
+        "width": 60
+      }
+    ],
+    "name": "moto",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACl/Ut1X2R6OcHorluxuO7JvEhCor",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/2ciFQ9QWh4JNG3tNsgr5Gz/items",
+      "total": 8
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:2ciFQ9QWh4JNG3tNsgr5Gz"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6zGed0uFVRgnK74bAccLZg"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6zGed0uFVRgnK74bAccLZg",
+    "id": "6zGed0uFVRgnK74bAccLZg",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e020cb9e4d49412fce4ae730004ab67616d00001e021a04649cc2ddb348a9e08f23ab67616d00001e02205599f7f8470a91fa581ba0ab67616d00001e02734e0d6079436db07bf39080",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e020cb9e4d49412fce4ae730004ab67616d00001e021a04649cc2ddb348a9e08f23ab67616d00001e02205599f7f8470a91fa581ba0ab67616d00001e02734e0d6079436db07bf39080",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e020cb9e4d49412fce4ae730004ab67616d00001e021a04649cc2ddb348a9e08f23ab67616d00001e02205599f7f8470a91fa581ba0ab67616d00001e02734e0d6079436db07bf39080",
+        "width": 60
+      }
+    ],
+    "name": "BB King Slow Blues",
+    "owner": {
+      "display_name": "danktits",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/danktits"
+      },
+      "href": "https://api.spotify.com/v1/users/danktits",
+      "id": "danktits",
+      "type": "user",
+      "uri": "spotify:user:danktits"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACqKJ21QscROmktY6sILm5M4s8nuK",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6zGed0uFVRgnK74bAccLZg/items",
+      "total": 13
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6zGed0uFVRgnK74bAccLZg"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4URh31Jv3N6U6lGdgcm9Uz"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4URh31Jv3N6U6lGdgcm9Uz",
+    "id": "4URh31Jv3N6U6lGdgcm9Uz",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e023237d05ae797cb254136256bab67616d00001e0255655d4da6a33114635bfc95ab67616d00001e0283eb795953e3ca891414b3feab67616d00001e02ea13a8d8d12836eb7f32741b",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e023237d05ae797cb254136256bab67616d00001e0255655d4da6a33114635bfc95ab67616d00001e0283eb795953e3ca891414b3feab67616d00001e02ea13a8d8d12836eb7f32741b",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e023237d05ae797cb254136256bab67616d00001e0255655d4da6a33114635bfc95ab67616d00001e0283eb795953e3ca891414b3feab67616d00001e02ea13a8d8d12836eb7f32741b",
+        "width": 60
+      }
+    ],
+    "name": "Bumker",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAD8zzxW1D4U3X4Lnnco+cQScMECc2",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4URh31Jv3N6U6lGdgcm9Uz/items",
+      "total": 13
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4URh31Jv3N6U6lGdgcm9Uz"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1Q9iTqPYhvsvbR5VbCQwPS"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1Q9iTqPYhvsvbR5VbCQwPS",
+    "id": "1Q9iTqPYhvsvbR5VbCQwPS",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0220ffc40b619f58482bc7ccf1ab67616d00001e02682f248bcbbf7e3688c3dd9dab67616d00001e0295154b699fd06bf1e42c0600ab67616d00001e0296532527bfaa6eec94406415",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0220ffc40b619f58482bc7ccf1ab67616d00001e02682f248bcbbf7e3688c3dd9dab67616d00001e0295154b699fd06bf1e42c0600ab67616d00001e0296532527bfaa6eec94406415",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0220ffc40b619f58482bc7ccf1ab67616d00001e02682f248bcbbf7e3688c3dd9dab67616d00001e0295154b699fd06bf1e42c0600ab67616d00001e0296532527bfaa6eec94406415",
+        "width": 60
+      }
+    ],
+    "name": "Princesa martina meditacion",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAGCZMGGwzs81kbi9kBCIbm9AiRfEW",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1Q9iTqPYhvsvbR5VbCQwPS/items",
+      "total": 22
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1Q9iTqPYhvsvbR5VbCQwPS"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/5ZXWoSb06FE0TzaprMim7e"
+    },
+    "href": "https://api.spotify.com/v1/playlists/5ZXWoSb06FE0TzaprMim7e",
+    "id": "5ZXWoSb06FE0TzaprMim7e",
+    "images": null,
+    "name": "Mi playlist n.\u00b0\u00a023",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAATMsDLnHcCtam33CpVKjES1GonCx",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/5ZXWoSb06FE0TzaprMim7e/items",
+      "total": 0
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:5ZXWoSb06FE0TzaprMim7e"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/0yfa6TiIbmT1KxZ8W3Wgyh"
+    },
+    "href": "https://api.spotify.com/v1/playlists/0yfa6TiIbmT1KxZ8W3Wgyh",
+    "id": "0yfa6TiIbmT1KxZ8W3Wgyh",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67656300005f1f28d7aced90053f033a0c9954",
+        "width": null
+      }
+    ],
+    "name": "dolina",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABxK0ESpDyOsxcazH8goxFVs3XaaN",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/0yfa6TiIbmT1KxZ8W3Wgyh/items",
+      "total": 5
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:0yfa6TiIbmT1KxZ8W3Wgyh"
+  },
+  {
+    "collaborative": false,
+    "description": "si acepto",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6I5sRMNwHkdjU4xoRIZTnl"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6I5sRMNwHkdjU4xoRIZTnl",
+    "id": "6I5sRMNwHkdjU4xoRIZTnl",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e02443e7506a8f5ffd6446c356fab67616d00001e02d1bf711267281458ad505059ab67616d00001e02dc5cd149f1cdbec4cfedb234ab67616d00001e02e8f95ff9405e95795996a62b",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e02443e7506a8f5ffd6446c356fab67616d00001e02d1bf711267281458ad505059ab67616d00001e02dc5cd149f1cdbec4cfedb234ab67616d00001e02e8f95ff9405e95795996a62b",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e02443e7506a8f5ffd6446c356fab67616d00001e02d1bf711267281458ad505059ab67616d00001e02dc5cd149f1cdbec4cfedb234ab67616d00001e02e8f95ff9405e95795996a62b",
+        "width": 60
+      }
+    ],
+    "name": "martina tal vez julieta",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACLncL4PGuAz9SxmA8/r0yzGNv8dj",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6I5sRMNwHkdjU4xoRIZTnl/items",
+      "total": 5
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6I5sRMNwHkdjU4xoRIZTnl"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6KcIaxppf00sCNe0RYfISh"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6KcIaxppf00sCNe0RYfISh",
+    "id": "6KcIaxppf00sCNe0RYfISh",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0220ffc40b619f58482bc7ccf1ab67616d00001e02682f248bcbbf7e3688c3dd9dab67616d00001e0295154b699fd06bf1e42c0600ab67616d00001e02a6cb015b1f5fa7ffc67b841c",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0220ffc40b619f58482bc7ccf1ab67616d00001e02682f248bcbbf7e3688c3dd9dab67616d00001e0295154b699fd06bf1e42c0600ab67616d00001e02a6cb015b1f5fa7ffc67b841c",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0220ffc40b619f58482bc7ccf1ab67616d00001e02682f248bcbbf7e3688c3dd9dab67616d00001e0295154b699fd06bf1e42c0600ab67616d00001e02a6cb015b1f5fa7ffc67b841c",
+        "width": 60
+      }
+    ],
+    "name": "DcD",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAFuYd7f8or1QTK2l093ovZMVarQYi",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6KcIaxppf00sCNe0RYfISh/items",
+      "total": 20
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6KcIaxppf00sCNe0RYfISh"
+  },
+  {
+    "collaborative": false,
+    "description": "some of my favorites \ud83e\udd40 algumas das minhas favoritas",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/0M2rKXNVdcZkS82Kp5WImv"
+    },
+    "href": "https://api.spotify.com/v1/playlists/0M2rKXNVdcZkS82Kp5WImv",
+    "id": "0M2rKXNVdcZkS82Kp5WImv",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da843acf564754afaf0db9078159",
+        "width": null
+      }
+    ],
+    "name": "Alexia Evellyn \u263d",
+    "owner": {
+      "display_name": "ALEXIA EVELLYN ~ Listen Hold on",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/evellynalexia"
+      },
+      "href": "https://api.spotify.com/v1/users/evellynalexia",
+      "id": "evellynalexia",
+      "type": "user",
+      "uri": "spotify:user:evellynalexia"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAABVJyp5aTmxnIMwFl+QWtgu79vna34",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/0M2rKXNVdcZkS82Kp5WImv/items",
+      "total": 137
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:0M2rKXNVdcZkS82Kp5WImv"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4l06PURncnoIwQAMgaBDab"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4l06PURncnoIwQAMgaBDab",
+    "id": "4l06PURncnoIwQAMgaBDab",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84c8d506ab0ac51f7aff36b9b0",
+        "width": null
+      }
+    ],
+    "name": "JSM",
+    "owner": {
+      "display_name": "Javier Santa Mar\u00eda",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/11157897437"
+      },
+      "href": "https://api.spotify.com/v1/users/11157897437",
+      "id": "11157897437",
+      "type": "user",
+      "uri": "spotify:user:11157897437"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAHjasrzxCKm9C4gwwL/CEtmoDu+Ul",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4l06PURncnoIwQAMgaBDab/items",
+      "total": 27
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4l06PURncnoIwQAMgaBDab"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/74fOdidGCqxTs6sVQzOpIM"
+    },
+    "href": "https://api.spotify.com/v1/playlists/74fOdidGCqxTs6sVQzOpIM",
+    "id": "74fOdidGCqxTs6sVQzOpIM",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e020477dd8444fff100e43d2f58ab67616d00001e021bf0d775489d09ae53fcd09dab67616d00001e0266fc428c55f772d63f2d469bab67616d00001e02bd5b848b692f571fe69541ca",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e020477dd8444fff100e43d2f58ab67616d00001e021bf0d775489d09ae53fcd09dab67616d00001e0266fc428c55f772d63f2d469bab67616d00001e02bd5b848b692f571fe69541ca",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e020477dd8444fff100e43d2f58ab67616d00001e021bf0d775489d09ae53fcd09dab67616d00001e0266fc428c55f772d63f2d469bab67616d00001e02bd5b848b692f571fe69541ca",
+        "width": 60
+      }
+    ],
+    "name": "Trip",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACqBF8/+h+z9S/YJFIubKmSiou6b9",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/74fOdidGCqxTs6sVQzOpIM/items",
+      "total": 9
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:74fOdidGCqxTs6sVQzOpIM"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1GHTOvagArtC9JnCd0JdpE"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1GHTOvagArtC9JnCd0JdpE",
+    "id": "1GHTOvagArtC9JnCd0JdpE",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0299919a7fa6c2a195c4809c2cab67616d00001e029b7d6fd48f769d477f2e2d8dab67616d00001e02aeb4411938140a5b9bdecb1aab67616d00001e02d0f3669491a119b3fcc322de",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0299919a7fa6c2a195c4809c2cab67616d00001e029b7d6fd48f769d477f2e2d8dab67616d00001e02aeb4411938140a5b9bdecb1aab67616d00001e02d0f3669491a119b3fcc322de",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0299919a7fa6c2a195c4809c2cab67616d00001e029b7d6fd48f769d477f2e2d8dab67616d00001e02aeb4411938140a5b9bdecb1aab67616d00001e02d0f3669491a119b3fcc322de",
+        "width": 60
+      }
+    ],
+    "name": "Laud Medieval y Renacentista",
+    "owner": {
+      "display_name": "A",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/annnruuu"
+      },
+      "href": "https://api.spotify.com/v1/users/annnruuu",
+      "id": "annnruuu",
+      "type": "user",
+      "uri": "spotify:user:annnruuu"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAADqWUTUXTVyaqgnc/qPDIalV09xel",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1GHTOvagArtC9JnCd0JdpE/items",
+      "total": 1121
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1GHTOvagArtC9JnCd0JdpE"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6tMpraodeJ7kX0vlnHgAhY"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6tMpraodeJ7kX0vlnHgAhY",
+    "id": "6tMpraodeJ7kX0vlnHgAhY",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0204eeea24891f6ea40b1e2841ab67616d00001e0273dfb5b8787a47ffe34dc874ab67616d00001e0298a37a4f85f06b144d32c7fcab67616d00001e02b532a04a1aec872b6ef22c6f",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0204eeea24891f6ea40b1e2841ab67616d00001e0273dfb5b8787a47ffe34dc874ab67616d00001e0298a37a4f85f06b144d32c7fcab67616d00001e02b532a04a1aec872b6ef22c6f",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0204eeea24891f6ea40b1e2841ab67616d00001e0273dfb5b8787a47ffe34dc874ab67616d00001e0298a37a4f85f06b144d32c7fcab67616d00001e02b532a04a1aec872b6ef22c6f",
+        "width": 60
+      }
+    ],
+    "name": "trip ",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAADR9Vn2EuOwKOmi/HJ1R+a+svL+3V",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6tMpraodeJ7kX0vlnHgAhY/items",
+      "total": 11
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6tMpraodeJ7kX0vlnHgAhY"
+  },
+  {
+    "collaborative": false,
+    "description": "This playlist is personally selected by Hempress Sativa, Dub Station comprises of strictly the best roots Reggae Inna Foundation Style.",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4jarDkcuyoAoShel3xe533"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4jarDkcuyoAoShel3xe533",
+    "id": "4jarDkcuyoAoShel3xe533",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84df2f3ff52c62639238ba6371",
+        "width": null
+      }
+    ],
+    "name": "DUB STATION",
+    "owner": {
+      "display_name": "hempresssativa",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/hempresssativa"
+      },
+      "href": "https://api.spotify.com/v1/users/hempresssativa",
+      "id": "hempresssativa",
+      "type": "user",
+      "uri": "spotify:user:hempresssativa"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAA1PEJI1xVTg1f1um2QTBbYad0PslB",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4jarDkcuyoAoShel3xe533/items",
+      "total": 147
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4jarDkcuyoAoShel3xe533"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/0v36xk3Eyppo5PAVMHRqnZ"
+    },
+    "href": "https://api.spotify.com/v1/playlists/0v36xk3Eyppo5PAVMHRqnZ",
+    "id": "0v36xk3Eyppo5PAVMHRqnZ",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0212e29c24c09b9a2008d3e1f3ab67616d00001e0212fc04758f311fffcc1ac0e1ab67616d00001e021a4a9963298a1c42ce79ba10ab67616d00001e02e6c602f0f919687a043a5837",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0212e29c24c09b9a2008d3e1f3ab67616d00001e0212fc04758f311fffcc1ac0e1ab67616d00001e021a4a9963298a1c42ce79ba10ab67616d00001e02e6c602f0f919687a043a5837",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0212e29c24c09b9a2008d3e1f3ab67616d00001e0212fc04758f311fffcc1ac0e1ab67616d00001e021a4a9963298a1c42ce79ba10ab67616d00001e02e6c602f0f919687a043a5837",
+        "width": 60
+      }
+    ],
+    "name": "negras",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACl+DWxEAJQcDm1z7feWXRRveS+BJ",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/0v36xk3Eyppo5PAVMHRqnZ/items",
+      "total": 8
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:0v36xk3Eyppo5PAVMHRqnZ"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4ji1aZZbJCZhVRowiTU7cb"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4ji1aZZbJCZhVRowiTU7cb",
+    "id": "4ji1aZZbJCZhVRowiTU7cb",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e020a9216322932919f518cdc27ab67616d00001e020b03290cc000546090c5523bab67616d00001e02d1bf711267281458ad505059ab67616d00001e02f8bca1ed3ed7c13d76ddb5a9",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e020a9216322932919f518cdc27ab67616d00001e020b03290cc000546090c5523bab67616d00001e02d1bf711267281458ad505059ab67616d00001e02f8bca1ed3ed7c13d76ddb5a9",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e020a9216322932919f518cdc27ab67616d00001e020b03290cc000546090c5523bab67616d00001e02d1bf711267281458ad505059ab67616d00001e02f8bca1ed3ed7c13d76ddb5a9",
+        "width": 60
+      }
+    ],
+    "name": "Equilibrio",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACjDIdvatJEmsQN019teYMLPH5vz8",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4ji1aZZbJCZhVRowiTU7cb/items",
+      "total": 9
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4ji1aZZbJCZhVRowiTU7cb"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/7j2y8D4OrzrTdZ2656JEuz"
+    },
+    "href": "https://api.spotify.com/v1/playlists/7j2y8D4OrzrTdZ2656JEuz",
+    "id": "7j2y8D4OrzrTdZ2656JEuz",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e02e95d233a9df33d6c9992b449",
+        "width": null
+      }
+    ],
+    "name": "Bboy",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAAx8ki7YQoEOlQeUmDftGsKH0EpGz",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/7j2y8D4OrzrTdZ2656JEuz/items",
+      "total": 2
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:7j2y8D4OrzrTdZ2656JEuz"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/7kzPh5YAfwCU9ru6uM6D9X"
+    },
+    "href": "https://api.spotify.com/v1/playlists/7kzPh5YAfwCU9ru6uM6D9X",
+    "id": "7kzPh5YAfwCU9ru6uM6D9X",
+    "images": null,
+    "name": "Mi lista n.\u00ba\u00a014",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAAaN5zfYkN8sR+vCJOqEQeQPENb2q",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/7kzPh5YAfwCU9ru6uM6D9X/items",
+      "total": 0
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:7kzPh5YAfwCU9ru6uM6D9X"
+  },
+  {
+    "collaborative": false,
+    "description": "ELECTRO INDUSTRIAL | ZYZZ | GOTH TECHNO | CYBERPUNK | INDUSTRIAL METAL | AGGROTECH |  DARK SYNTH | AGGRESIVE PHONK | ELECTRONIC METAL | HARD DUBSTEP | ELECTRONIC DANCE MUSIC | DARK ELECTRONIC MUSIC | DISTORTION SCREAMO  | ELECTRONIC BODY MUSIC [DAILY  UPDATED]",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4kuTrilQ7j9MdJNNg56s6h"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4kuTrilQ7j9MdJNNg56s6h",
+    "id": "4kuTrilQ7j9MdJNNg56s6h",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da841bd9365603eb6e86dadd42e7",
+        "width": null
+      }
+    ],
+    "name": "\u2623 CYBERGOTH \u2623",
+    "owner": {
+      "display_name": "Eradiel.exe",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/eradiel"
+      },
+      "href": "https://api.spotify.com/v1/users/eradiel",
+      "id": "eradiel",
+      "type": "user",
+      "uri": "spotify:user:eradiel"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAEjxYiCTMxjvV7cg6Ui6tMF4tuSYxd",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4kuTrilQ7j9MdJNNg56s6h/items",
+      "total": 84
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4kuTrilQ7j9MdJNNg56s6h"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/3sJfxKwCjKguLIWIzo1ubc"
+    },
+    "href": "https://api.spotify.com/v1/playlists/3sJfxKwCjKguLIWIzo1ubc",
+    "id": "3sJfxKwCjKguLIWIzo1ubc",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e021443bd487a471868735f050bab67616d00001e02254a8842a30492bf31dd9662ab67616d00001e02661f1377769612251d3f3feeab67616d00001e02b7390c7858d4ac1e9707da5f",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e021443bd487a471868735f050bab67616d00001e02254a8842a30492bf31dd9662ab67616d00001e02661f1377769612251d3f3feeab67616d00001e02b7390c7858d4ac1e9707da5f",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e021443bd487a471868735f050bab67616d00001e02254a8842a30492bf31dd9662ab67616d00001e02661f1377769612251d3f3feeab67616d00001e02b7390c7858d4ac1e9707da5f",
+        "width": 60
+      }
+    ],
+    "name": "For 'Ghost of syrinx'",
+    "owner": {
+      "display_name": "Cosmo Jones",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/alcito"
+      },
+      "href": "https://api.spotify.com/v1/users/alcito",
+      "id": "alcito",
+      "type": "user",
+      "uri": "spotify:user:alcito"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAARL1/6mVjB5ZT/aqmDQWiwCzYSNB1",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/3sJfxKwCjKguLIWIzo1ubc/items",
+      "total": 24
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:3sJfxKwCjKguLIWIzo1ubc"
+  },
+  {
+    "collaborative": false,
+    "description": "#byzantinemusic #orthodoxchants, medieval, religious chants, choral music, vocal, holy, #sacredmusic #christian music, eastern Europe, Greece, Romania, Serbia, Bulgaria and Georgia",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4fjRp56DqfJlmsmXifgF0C"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4fjRp56DqfJlmsmXifgF0C",
+    "id": "4fjRp56DqfJlmsmXifgF0C",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84449bff2b85db50b98221a2f1",
+        "width": null
+      }
+    ],
+    "name": "Byzantine music",
+    "owner": {
+      "display_name": "Grupul TRONOS",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/ufcleu0owgf0q9u7gez4u8o1f"
+      },
+      "href": "https://api.spotify.com/v1/users/ufcleu0owgf0q9u7gez4u8o1f",
+      "id": "ufcleu0owgf0q9u7gez4u8o1f",
+      "type": "user",
+      "uri": "spotify:user:ufcleu0owgf0q9u7gez4u8o1f"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAQ1rbj0oa7tfrAzTeUIv6DWHSv8wMZ",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4fjRp56DqfJlmsmXifgF0C/items",
+      "total": 2665
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4fjRp56DqfJlmsmXifgF0C"
+  },
+  {
+    "collaborative": false,
+    "description": "liminal spaces&#x2F;weirdcore&#x2F;backrooms vibes... listen in order!!",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/7km51NG5iFRwzW6EXUPROe"
+    },
+    "href": "https://api.spotify.com/v1/playlists/7km51NG5iFRwzW6EXUPROe",
+    "id": "7km51NG5iFRwzW6EXUPROe",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84e9efa9597129afc618a0b295",
+        "width": null
+      }
+    ],
+    "name": "backrooms/weirdcore",
+    "owner": {
+      "display_name": "ozzy",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/1g3ri5x9nxxfp6gv1v2itmsrb"
+      },
+      "href": "https://api.spotify.com/v1/users/1g3ri5x9nxxfp6gv1v2itmsrb",
+      "id": "1g3ri5x9nxxfp6gv1v2itmsrb",
+      "type": "user",
+      "uri": "spotify:user:1g3ri5x9nxxfp6gv1v2itmsrb"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAABBWhBBWqO4J7+YQ/F6VldkWNDAwvz",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/7km51NG5iFRwzW6EXUPROe/items",
+      "total": 112
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:7km51NG5iFRwzW6EXUPROe"
+  },
+  {
+    "collaborative": false,
+    "description": "For warehouse ravers only - curated by @fovosmusic [dm for submissions]",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6sG51BpNONALN7TE7OYuJW"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6sG51BpNONALN7TE7OYuJW",
+    "id": "6sG51BpNONALN7TE7OYuJW",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da846191c5e5ebb83146644c903a",
+        "width": null
+      }
+    ],
+    "name": "DARK HOUSE & TECHNO",
+    "owner": {
+      "display_name": "FOVOS",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/nwhfed4wo0dqozkwnthurqmn2"
+      },
+      "href": "https://api.spotify.com/v1/users/nwhfed4wo0dqozkwnthurqmn2",
+      "id": "nwhfed4wo0dqozkwnthurqmn2",
+      "type": "user",
+      "uri": "spotify:user:nwhfed4wo0dqozkwnthurqmn2"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAATnWsDoREBr2JdgIT0ePfD+fmheQ3Q",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6sG51BpNONALN7TE7OYuJW/items",
+      "total": 59
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6sG51BpNONALN7TE7OYuJW"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1WyXCQKh3C5YHHkRZycziF"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1WyXCQKh3C5YHHkRZycziF",
+    "id": "1WyXCQKh3C5YHHkRZycziF",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84059765d0761afcff2c82a851",
+        "width": null
+      }
+    ],
+    "name": "",
+    "owner": {
+      "display_name": "11100944290",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/11100944290"
+      },
+      "href": "https://api.spotify.com/v1/users/11100944290",
+      "id": "11100944290",
+      "type": "user",
+      "uri": "spotify:user:11100944290"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAk051lVgdHnsVRTkYo3yDa6Q8k0J8",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1WyXCQKh3C5YHHkRZycziF/items",
+      "total": 127
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1WyXCQKh3C5YHHkRZycziF"
+  },
+  {
+    "collaborative": false,
+    "description": "\u23e9\u23e9 Don&#x27;t forget to click follow! \u23e9\u23e9 Dark cyberpunk bass tracks for the world to burn to and&#x2F;or to worship your new robot overlords to.  With Rezz, Deathpact, Zabo, One True God, 13, Sierra, Swarm, ZSwine, and more. Updated weekly. Submissions: @zswineofficial",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/2kugfBykDsdXgropFufeo8"
+    },
+    "href": "https://api.spotify.com/v1/playlists/2kugfBykDsdXgropFufeo8",
+    "id": "2kugfBykDsdXgropFufeo8",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84070575cb037c4ac68e99284f",
+        "width": null
+      }
+    ],
+    "name": "Cyberpunk Bass Music - Dystopia \ud83e\udd16\u2620\ufe0f",
+    "owner": {
+      "display_name": "Zee's Wine",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/zacholas321"
+      },
+      "href": "https://api.spotify.com/v1/users/zacholas321",
+      "id": "zacholas321",
+      "type": "user",
+      "uri": "spotify:user:zacholas321"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAACKgVybvfOGq5bU8YAdx3IIEA97ClX",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/2kugfBykDsdXgropFufeo8/items",
+      "total": 103
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:2kugfBykDsdXgropFufeo8"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/5ZNaP5Ao9XpvAQmH6Y0qI8"
+    },
+    "href": "https://api.spotify.com/v1/playlists/5ZNaP5Ao9XpvAQmH6Y0qI8",
+    "id": "5ZNaP5Ao9XpvAQmH6Y0qI8",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0272794a02454878876b884db9ab67616d00001e02811ad026ea2061659268b964ab67616d00001e0299f5c2f4b5867f3e8de50d0cab67616d00001e02b8d3d4276b70208d647b7982",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0272794a02454878876b884db9ab67616d00001e02811ad026ea2061659268b964ab67616d00001e0299f5c2f4b5867f3e8de50d0cab67616d00001e02b8d3d4276b70208d647b7982",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0272794a02454878876b884db9ab67616d00001e02811ad026ea2061659268b964ab67616d00001e0299f5c2f4b5867f3e8de50d0cab67616d00001e02b8d3d4276b70208d647b7982",
+        "width": 60
+      }
+    ],
+    "name": "Arma III",
+    "owner": {
+      "display_name": "Beni",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21z6sqiuapqo46drhjnf2u7gq"
+      },
+      "href": "https://api.spotify.com/v1/users/21z6sqiuapqo46drhjnf2u7gq",
+      "id": "21z6sqiuapqo46drhjnf2u7gq",
+      "type": "user",
+      "uri": "spotify:user:21z6sqiuapqo46drhjnf2u7gq"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAFPVYypdEVreoyUyLHvHSQZXrLcER",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/5ZNaP5Ao9XpvAQmH6Y0qI8/items",
+      "total": 18
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:5ZNaP5Ao9XpvAQmH6Y0qI8"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1u80G0C2oaR6c4zTYdgaHe"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1u80G0C2oaR6c4zTYdgaHe",
+    "id": "1u80G0C2oaR6c4zTYdgaHe",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e02908b48f4d0d898567fdfd6e2ab67616d00001e0293cfc4b1445f260879f19892ab67616d00001e02b1ae21861d1302c0896e81a8ab67616d00001e02c40ff56a16cebb8f30af1f66",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e02908b48f4d0d898567fdfd6e2ab67616d00001e0293cfc4b1445f260879f19892ab67616d00001e02b1ae21861d1302c0896e81a8ab67616d00001e02c40ff56a16cebb8f30af1f66",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e02908b48f4d0d898567fdfd6e2ab67616d00001e0293cfc4b1445f260879f19892ab67616d00001e02b1ae21861d1302c0896e81a8ab67616d00001e02c40ff56a16cebb8f30af1f66",
+        "width": 60
+      }
+    ],
+    "name": "blues",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACla36g+dw3SWXsr9EZIXHr0PO9hv",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1u80G0C2oaR6c4zTYdgaHe/items",
+      "total": 8
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1u80G0C2oaR6c4zTYdgaHe"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/3eHNBfjZpwnXuqmHvbIDdx"
+    },
+    "href": "https://api.spotify.com/v1/playlists/3eHNBfjZpwnXuqmHvbIDdx",
+    "id": "3eHNBfjZpwnXuqmHvbIDdx",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e0276d43eeebe2dd2de5fe39b55",
+        "width": null
+      }
+    ],
+    "name": "especial",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABAmENpomeuC9R/L7pdcmHtRS4ujs",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/3eHNBfjZpwnXuqmHvbIDdx/items",
+      "total": 2
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:3eHNBfjZpwnXuqmHvbIDdx"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/2tjEXYt5usDKC5HaMyXClr"
+    },
+    "href": "https://api.spotify.com/v1/playlists/2tjEXYt5usDKC5HaMyXClr",
+    "id": "2tjEXYt5usDKC5HaMyXClr",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e0274e3823e9643fabc830851dd",
+        "width": null
+      }
+    ],
+    "name": "Rock clasico",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABApC+klu0oq9j18whu4avBMeQpO+",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/2tjEXYt5usDKC5HaMyXClr/items",
+      "total": 2
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:2tjEXYt5usDKC5HaMyXClr"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1ifKOxNxpDtyFSvGdC2EeT"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1ifKOxNxpDtyFSvGdC2EeT",
+    "id": "1ifKOxNxpDtyFSvGdC2EeT",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e0260bf5cb3fba9b172460dafed",
+        "width": null
+      }
+    ],
+    "name": "arg pop",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAA2Z9QPcyPflDwyQBO3facWFb2Lgn",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1ifKOxNxpDtyFSvGdC2EeT/items",
+      "total": 1
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1ifKOxNxpDtyFSvGdC2EeT"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/4y9eI4zXf56eLJ8AYJ0bqW"
+    },
+    "href": "https://api.spotify.com/v1/playlists/4y9eI4zXf56eLJ8AYJ0bqW",
+    "id": "4y9eI4zXf56eLJ8AYJ0bqW",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0210cec34f7b8ce60a0c48ec77ab67616d00001e026238b055ec362d2eea9beb26ab67616d00001e029dc62af4db4272fd76f19b32ab67616d00001e02fcda75d554e8506cbc68f730",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0210cec34f7b8ce60a0c48ec77ab67616d00001e026238b055ec362d2eea9beb26ab67616d00001e029dc62af4db4272fd76f19b32ab67616d00001e02fcda75d554e8506cbc68f730",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0210cec34f7b8ce60a0c48ec77ab67616d00001e026238b055ec362d2eea9beb26ab67616d00001e029dc62af4db4272fd76f19b32ab67616d00001e02fcda75d554e8506cbc68f730",
+        "width": 60
+      }
+    ],
+    "name": "sonrisa",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAPQbSdBaq8Td7DPnWIvU+5NQFZNLP",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/4y9eI4zXf56eLJ8AYJ0bqW/items",
+      "total": 57
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:4y9eI4zXf56eLJ8AYJ0bqW"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1FqQMUwl1000ZhkFglnD6H"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1FqQMUwl1000ZhkFglnD6H",
+    "id": "1FqQMUwl1000ZhkFglnD6H",
+    "images": [
+      {
+        "height": null,
+        "url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84f908596fc820700b219324ab",
+        "width": null
+      }
+    ],
+    "name": "Calipso Music",
+    "owner": {
+      "display_name": "Yassine Chenna",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/1113176697"
+      },
+      "href": "https://api.spotify.com/v1/users/1113176697",
+      "id": "1113176697",
+      "type": "user",
+      "uri": "spotify:user:1113176697"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAARs3hzuFO7ijwSYKUW4fEhN9YUilz",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1FqQMUwl1000ZhkFglnD6H/items",
+      "total": 57
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1FqQMUwl1000ZhkFglnD6H"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6B9BL3BAM8nmpcAqr4fSgF"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6B9BL3BAM8nmpcAqr4fSgF",
+    "id": "6B9BL3BAM8nmpcAqr4fSgF",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e022966260fd5893f1416ce4544ab67616d00001e0271fc70e19e434a9452d521d0ab67616d00001e02b2719353a2c131c734cff475ab67616d00001e02f508f0949710aa33a79cf6b2",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e022966260fd5893f1416ce4544ab67616d00001e0271fc70e19e434a9452d521d0ab67616d00001e02b2719353a2c131c734cff475ab67616d00001e02f508f0949710aa33a79cf6b2",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e022966260fd5893f1416ce4544ab67616d00001e0271fc70e19e434a9452d521d0ab67616d00001e02b2719353a2c131c734cff475ab67616d00001e02f508f0949710aa33a79cf6b2",
+        "width": 60
+      }
+    ],
+    "name": "edicion",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAFQq8BGm/c6RRAb5SMYWDHLnwRBkS",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6B9BL3BAM8nmpcAqr4fSgF/items",
+      "total": 19
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6B9BL3BAM8nmpcAqr4fSgF"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/6eewDvavC8ZCf0TBlO77VH"
+    },
+    "href": "https://api.spotify.com/v1/playlists/6eewDvavC8ZCf0TBlO77VH",
+    "id": "6eewDvavC8ZCf0TBlO77VH",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e02d7e38d0f798541a97aa2637c",
+        "width": null
+      }
+    ],
+    "name": "Deep Mindfulness \u2013 Tanpura Meditation",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAAjMVRwcaOqe0KYKNnFMcvLLTquPb",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/6eewDvavC8ZCf0TBlO77VH/items",
+      "total": 1
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:6eewDvavC8ZCf0TBlO77VH"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1qKRbeJb4SUTpODYL7VhSq"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1qKRbeJb4SUTpODYL7VhSq",
+    "id": "1qKRbeJb4SUTpODYL7VhSq",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0205841839d7d6bf0072e21175ab67616d00001e02431eaad785dd3a73a348fbc0ab67616d00001e0271fc70e19e434a9452d521d0ab67616d00001e029447c9c6d70be82cb31ce9f2",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0205841839d7d6bf0072e21175ab67616d00001e02431eaad785dd3a73a348fbc0ab67616d00001e0271fc70e19e434a9452d521d0ab67616d00001e029447c9c6d70be82cb31ce9f2",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0205841839d7d6bf0072e21175ab67616d00001e02431eaad785dd3a73a348fbc0ab67616d00001e0271fc70e19e434a9452d521d0ab67616d00001e029447c9c6d70be82cb31ce9f2",
+        "width": 60
+      }
+    ],
+    "name": "tanpura meditation",
+    "owner": {
+      "display_name": "juliejulies",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/juliejulies"
+      },
+      "href": "https://api.spotify.com/v1/users/juliejulies",
+      "id": "juliejulies",
+      "type": "user",
+      "uri": "spotify:user:juliejulies"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAJfDtrX8O0Yy7X6wbffGAxQgweOLz",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1qKRbeJb4SUTpODYL7VhSq/items",
+      "total": 22
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1qKRbeJb4SUTpODYL7VhSq"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/3U6rz1adz4jzKxCeJv4wYI"
+    },
+    "href": "https://api.spotify.com/v1/playlists/3U6rz1adz4jzKxCeJv4wYI",
+    "id": "3U6rz1adz4jzKxCeJv4wYI",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e02369ae4fe9411528c676d3e35ab67616d00001e025747c409c0e785325c3b81f9ab67616d00001e02deb6f806205a67f8e4e64ac3ab67616d00001e02fa77114f6fa3bc5c33798f96",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e02369ae4fe9411528c676d3e35ab67616d00001e025747c409c0e785325c3b81f9ab67616d00001e02deb6f806205a67f8e4e64ac3ab67616d00001e02fa77114f6fa3bc5c33798f96",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e02369ae4fe9411528c676d3e35ab67616d00001e025747c409c0e785325c3b81f9ab67616d00001e02deb6f806205a67f8e4e64ac3ab67616d00001e02fa77114f6fa3bc5c33798f96",
+        "width": 60
+      }
+    ],
+    "name": "elect",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABmHfOYFe1EbYv8pgn9VOqO2xirOc",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/3U6rz1adz4jzKxCeJv4wYI/items",
+      "total": 4
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:3U6rz1adz4jzKxCeJv4wYI"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/2ZvpTBWUUs9vdBU3eTSu2q"
+    },
+    "href": "https://api.spotify.com/v1/playlists/2ZvpTBWUUs9vdBU3eTSu2q",
+    "id": "2ZvpTBWUUs9vdBU3eTSu2q",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e0258c4e9c84ece7d31f51636f3ab67616d00001e0289ac804ee51f66fe370c4577ab67616d00001e02ca18456592c26c08f908550eab67616d00001e02ce69f6900fa18dd689d2d45b",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e0258c4e9c84ece7d31f51636f3ab67616d00001e0289ac804ee51f66fe370c4577ab67616d00001e02ca18456592c26c08f908550eab67616d00001e02ce69f6900fa18dd689d2d45b",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e0258c4e9c84ece7d31f51636f3ab67616d00001e0289ac804ee51f66fe370c4577ab67616d00001e02ca18456592c26c08f908550eab67616d00001e02ce69f6900fa18dd689d2d45b",
+        "width": 60
+      }
+    ],
+    "name": "epic",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAAEdvYw/FpO6aDoGOqs2Q5NBQhAuRi",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/2ZvpTBWUUs9vdBU3eTSu2q/items",
+      "total": 12
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:2ZvpTBWUUs9vdBU3eTSu2q"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/5LQyHxh0ZK9tdIB6muRPQi"
+    },
+    "href": "https://api.spotify.com/v1/playlists/5LQyHxh0ZK9tdIB6muRPQi",
+    "id": "5LQyHxh0ZK9tdIB6muRPQi",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e02e45dcb36f58a912127dc77b4",
+        "width": null
+      }
+    ],
+    "name": "R.t",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABN3iQwVlsPmDOq35tlO7XkS4IySn",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/5LQyHxh0ZK9tdIB6muRPQi/items",
+      "total": 2
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:5LQyHxh0ZK9tdIB6muRPQi"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/0DDDdG4HJX9o3jYDHuhdFL"
+    },
+    "href": "https://api.spotify.com/v1/playlists/0DDDdG4HJX9o3jYDHuhdFL",
+    "id": "0DDDdG4HJX9o3jYDHuhdFL",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://mosaic.scdn.co/640/ab67616d00001e023c73b2e0a6aa490736f19751ab67616d00001e02649fa6da25444974c752db30ab67616d00001e02a1c553575418ca43404cb48bab67616d00001e02fbf772eed6abce36ddf9233c",
+        "width": 640
+      },
+      {
+        "height": 300,
+        "url": "https://mosaic.scdn.co/300/ab67616d00001e023c73b2e0a6aa490736f19751ab67616d00001e02649fa6da25444974c752db30ab67616d00001e02a1c553575418ca43404cb48bab67616d00001e02fbf772eed6abce36ddf9233c",
+        "width": 300
+      },
+      {
+        "height": 60,
+        "url": "https://mosaic.scdn.co/60/ab67616d00001e023c73b2e0a6aa490736f19751ab67616d00001e02649fa6da25444974c752db30ab67616d00001e02a1c553575418ca43404cb48bab67616d00001e02fbf772eed6abce36ddf9233c",
+        "width": 60
+      }
+    ],
+    "name": "Rock",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAACzUyc/NRP7erxMckH+ifg/Oz2LAk",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/0DDDdG4HJX9o3jYDHuhdFL/items",
+      "total": 9
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:0DDDdG4HJX9o3jYDHuhdFL"
+  },
+  {
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/1yYDAIf2L7H2O6IOuFbgZv"
+    },
+    "href": "https://api.spotify.com/v1/playlists/1yYDAIf2L7H2O6IOuFbgZv",
+    "id": "1yYDAIf2L7H2O6IOuFbgZv",
+    "images": [
+      {
+        "height": null,
+        "url": "https://i.scdn.co/image/ab67616d00001e02d0972ed614dd04ce8123a16f",
+        "width": null
+      }
+    ],
+    "name": "Mediterraneo",
+    "owner": {
+      "display_name": "Diego Hachiman",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/21j5fn6krs27e5oqxdzlv7f3a"
+      },
+      "href": "https://api.spotify.com/v1/users/21j5fn6krs27e5oqxdzlv7f3a",
+      "id": "21j5fn6krs27e5oqxdzlv7f3a",
+      "type": "user",
+      "uri": "spotify:user:21j5fn6krs27e5oqxdzlv7f3a"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "AAAABT8ssuz2GMtCL7ig+t5xjRAJFcjf",
+    "items": {
+      "href": "https://api.spotify.com/v1/playlists/1yYDAIf2L7H2O6IOuFbgZv/items",
+      "total": 3
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:1yYDAIf2L7H2O6IOuFbgZv"
+  }
+]
