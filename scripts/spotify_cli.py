@@ -123,6 +123,16 @@ class SpotifyClient:
     def play(self, device_id=None):
         endpoint = '/me/player/play'
         if device_id:
+            import time
+            for _ in range(3):
+                res = self._api_request('GET', '/me/player/devices')
+                devs = res.get('devices', [])
+                if any(d['id'] == device_id and d['is_active'] for d in devs):
+                    break
+                time.sleep(2)
+            else:
+                print("Error: device no estabilizado todavía", file=sys.stderr)
+                sys.exit(1)
             endpoint += f"?device_id={device_id}"
         self._api_request('PUT', endpoint)
         print(f"Reproducción iniciada{f' en {device_id}' if device_id else ''}.")
@@ -149,6 +159,16 @@ class SpotifyClient:
     def play_uri(self, uri, device_id=None):
         endpoint = '/me/player/play'
         if device_id:
+            import time
+            for _ in range(3):
+                res = self._api_request('GET', '/me/player/devices')
+                devs = res.get('devices', [])
+                if any(d['id'] == device_id and d['is_active'] for d in devs):
+                    break
+                time.sleep(2)
+            else:
+                print("Error: device no estabilizado todavía", file=sys.stderr)
+                sys.exit(1)
             endpoint += f"?device_id={device_id}"
         self._api_request('PUT', endpoint, payload={"uris": [uri]})
         print(f"Reproduciendo URI: {uri}{f' en {device_id}' if device_id else ''}")
@@ -156,6 +176,8 @@ class SpotifyClient:
     def transfer(self, device_id, force_play=True):
         payload = {"device_ids": [device_id], "play": force_play}
         self._api_request('PUT', '/me/player', payload=payload)
+        import time
+        time.sleep(2)
         print(f"Reproducción transferida al dispositivo {device_id}.")
 
     def search(self, query, limit=5):
