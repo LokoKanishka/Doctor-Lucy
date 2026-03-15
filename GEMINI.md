@@ -34,7 +34,7 @@ When the user says "commit", "guardá", "hacé push", or signals end of session,
 2. Insert it into boveda_lucy.sqlite: INSERT INTO memoria_core (rol, contenido_memoria, metadatos) VALUES ('lucy_agent', '<summary>', '<metadata_json>');
 3. Confirm the commit to the user before proceeding with any git operations.
 
-### INVENTARIO DE SUPERPODERES (NIN-CORE)
+### INVENTARIO DE SUPERPODERES (NUCLEO DOCTORA LUCY)
 - **nin-github**: Control total de repositorio remoto, issues y PRs.
 - **nin-figma**: Inspección visual de diseño y extracción de assets UI.
 - **nin-slack**: Emisión de alertas y lectura de canales de coordinación.

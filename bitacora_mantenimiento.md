@@ -25,7 +25,7 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 ### 🐳 Docker (Contenedores Activos)
 *Total: 22 contenedores desde el 01/03/2026*
 
-**Stack Lucy/NIN:**
+**Stack Doctora Lucy:**
 - **Voz (TTS)**: `lucy_voice_alltalk` (AllTalk TTS) — ~4.8 GB RAM en uso
 - **Cerebro/IA**: `lucy_open_webui`, `n8n-lucy` ⚠️, `lucy_brain_n8n`, `lucy_brain_runners` (healthy)
 - **Memoria**: `lucy_memory_qdrant`, `lucy_memory_redis`

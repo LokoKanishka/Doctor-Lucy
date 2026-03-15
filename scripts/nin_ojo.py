@@ -74,7 +74,7 @@ class NinOjo:
             return f"Error en consulta de visión: {str(e)}"
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="NIN-OJO: El Demonio de Visión de la Doctora Lucy")
+    parser = argparse.ArgumentParser(description="OJO: El Demonio de Visión de la Doctora Lucy")
     parser.add_argument("--test-capture", action="store_true", help="Probar captura de pantalla")
     parser.add_argument("--test-vision", action="store_true", help="Probar análisis semántico con Ollama")
     args = parser.parse_args()

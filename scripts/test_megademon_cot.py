@@ -29,7 +29,7 @@ async def test_agentic_loop(user_text: str):
             })
 
             messages = [
-                {"role": "system", "content": "Sos NiN, el sistema de asistencia. Piensa paso a paso si es necesario."},
+                {"role": "system", "content": "Sos Doctora Lucy, el sistema de asistencia. Piensa paso a paso si es necesario."},
                 {"role": "user", "content": user_text}
             ]
 
@@ -49,7 +49,7 @@ async def test_agentic_loop(user_text: str):
                         msg = data.get("message", {})
                         
                         if not msg.get("tool_calls"):
-                            print(f"\n🤖 [NiN Respuesta Final]: {msg.get('content', '')}")
+                            print(f"\n🤖 [Doctora Lucy Respuesta Final]: {msg.get('content', '')}")
                             return
                             
                         messages.append(msg)
