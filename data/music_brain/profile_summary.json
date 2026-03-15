@@ -1,0 +1,139 @@
+{
+  "total_artists": 3876,
+  "class_counts": {
+    "core": 403,
+    "recurrent": 1440,
+    "satellite": 2033,
+    "incidental": 0
+  },
+  "top_25": [
+    {
+      "name": "Pink Floyd",
+      "score": 307,
+      "class": "core"
+    },
+    {
+      "name": "Dead Can Dance",
+      "score": 226,
+      "class": "core"
+    },
+    {
+      "name": "Morcheeba",
+      "score": 178,
+      "class": "core"
+    },
+    {
+      "name": "Portishead",
+      "score": 170,
+      "class": "core"
+    },
+    {
+      "name": "Massive Attack",
+      "score": 165,
+      "class": "core"
+    },
+    {
+      "name": "Ayub Ogada",
+      "score": 156,
+      "class": "core"
+    },
+    {
+      "name": "Rammstein",
+      "score": 156,
+      "class": "core"
+    },
+    {
+      "name": "The Doors",
+      "score": 151,
+      "class": "core"
+    },
+    {
+      "name": "Patricio Rey y sus Redonditos de Ricota",
+      "score": 151,
+      "class": "core"
+    },
+    {
+      "name": "JAZZY",
+      "score": 150,
+      "class": "core"
+    },
+    {
+      "name": "Enya",
+      "score": 149,
+      "class": "core"
+    },
+    {
+      "name": "Metallica",
+      "score": 142,
+      "class": "core"
+    },
+    {
+      "name": "ROSAL\u00cdA",
+      "score": 136,
+      "class": "core"
+    },
+    {
+      "name": "Chinese Man",
+      "score": 133,
+      "class": "core"
+    },
+    {
+      "name": "Divididos",
+      "score": 133,
+      "class": "core"
+    },
+    {
+      "name": "Churupaca",
+      "score": 132,
+      "class": "core"
+    },
+    {
+      "name": "Charlotte de Witte",
+      "score": 132,
+      "class": "core"
+    },
+    {
+      "name": "David Gilmour",
+      "score": 132,
+      "class": "core"
+    },
+    {
+      "name": "Joy Division",
+      "score": 131,
+      "class": "core"
+    },
+    {
+      "name": "Rebekah",
+      "score": 129,
+      "class": "core"
+    },
+    {
+      "name": "Sona Jobarteh",
+      "score": 127,
+      "class": "core"
+    },
+    {
+      "name": "Led Zeppelin",
+      "score": 127,
+      "class": "core"
+    },
+    {
+      "name": "The Cure",
+      "score": 125,
+      "class": "core"
+    },
+    {
+      "name": "Roger Waters",
+      "score": 125,
+      "class": "core"
+    },
+    {
+      "name": "Marina Fages",
+      "score": 123,
+      "class": "core"
+    }
+  ],
+  "observations": [
+    "El n\u00facleo musical fuerte (Core) representa el 10.4% de la biblioteca completa."
+  ]
+}
