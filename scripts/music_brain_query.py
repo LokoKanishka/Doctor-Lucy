@@ -6,14 +6,25 @@ from collections import defaultdict
 from pathlib import Path
 
 DATA_DIR = Path("data/music_brain")
-REPORT_JSON = DATA_DIR / "core_artists_enriched.json"
+REPORT_JSON = DATA_DIR / "core_profile_report.json"
+TAXONOMY_JSON = DATA_DIR / "core_taxonomy.json"
+
+def load_json(path):
+    if not path.exists():
+        print(f"Error: No se encontró la base en {path}")
+        sys.exit(1)
+    with open(path, "r") as f:
+        return json.load(f)
 
 def load_data():
-    if not REPORT_JSON.exists():
-        print(f"Error: No se encontró la base de perfil core en {REPORT_JSON}")
-        sys.exit(1)
-    with open(REPORT_JSON, "r") as f:
-        return json.load(f)
+    report = load_json(REPORT_JSON)
+    taxonomy_data = load_json(TAXONOMY_JSON)
+    # Ensure taxonomy is a list
+    if isinstance(taxonomy_data, dict):
+        taxonomy = list(taxonomy_data.values())
+    else:
+        taxonomy = taxonomy_data
+    return report, taxonomy
 
 def print_header(title):
     print(f"\n=== {title.upper()} ===")
@@ -21,123 +32,92 @@ def print_header(title):
 def print_kv(key, value):
     print(f"{key+':':<15} {value}")
 
-def cmd_summary(data):
-    total_artists = len(data)
-    total_score = sum(a.get('total_score', 0) for a in data)
+def cmd_summary(report, taxonomy):
+    total_artists = report.get('total_core_artists', len(taxonomy))
+    total_score = sum(a.get('total_score', 0) for a in taxonomy)
     
-    genres = set()
-    countries = set()
-    for a in data:
-        genres.update(a.get('canonical_genres', []))
-        if a.get('country'):
-            countries.add(a.get('country_name'))
-            
+    genres = report.get('top_genres', [])
+    countries = report.get('top_countries', [])
+    scenes = report.get('top_scenes', [])
+    
     print_header("Music Brain Core Summary")
     print_kv("Total Artists", total_artists)
     print_kv("Total Score", total_score)
     print_kv("Unique Genres", len(genres))
+    print_kv("Unique Scenes", len(scenes))
     print_kv("Unique Countries", len(countries))
-    print("\nObservaciones:")
-    print("-> Perfil base establecido con alta consolidación de entidades.")
-    print("-> Listo para consulta multidimensional local.")
+    print("\nObservaciones Core:")
+    for obs in report.get('observations', []):
+        print(f"-> {obs}")
 
-def get_top_elements(data, field, is_list=True):
-    counts = defaultdict(float)
-    for a in data:
-        score = a.get('total_score', 0)
-        items = a.get(field)
-        if items:
-            if is_list:
-                for item in items:
-                    counts[item] += score
-            else:
-                counts[items] += score
-    return sorted(counts.items(), key=lambda x: x[1], reverse=True)
+def print_top_list(title, items):
+    print_header(title)
+    if not items:
+        print("No data available.")
+        return
+    for i, item in enumerate(items[:20], 1):
+        name = item.get('name', str(item))
+        weight = item.get('weight', item.get('count', 0))
+        print(f"{i:2d}. {name:<25} (Weight: {weight:.0f})")
 
-def cmd_top_genres(data):
-    ranked = get_top_elements(data, 'tags', is_list=True)
-    print_header("Top Tags/Genres (by Artist Score)")
-    for i, (genre, score) in enumerate(ranked[:20], 1):
-        print(f"{i:2d}. {genre:<25} (Score: {score:.0f})")
+def cmd_top_genres(report):
+    print_top_list("Top Canonical Genres", report.get('top_genres', []))
 
-def cmd_top_subgenres(data):
-    # En la base enriquecida (core_artists_enriched.json), géneros y subgéneros
-    # están acoplados en la lista "tags" (o lastfm_tags). Se imprimirá una 
-    # variante de tags para no romper la interfaz solicitada.
-    ranked = get_top_elements(data, 'lastfm_tags', is_list=True)
-    print_header("Top Last.fm Tags (by Artist Score)")
-    if not ranked:
-        print("No Last.fm tags currently indexed.")
-    for i, (sub, score) in enumerate(ranked[:20], 1):
-        print(f"{i:2d}. {sub:<25} (Score: {score:.0f})")
+def cmd_top_subgenres(report):
+    print_top_list("Top Canonical Subgenres", report.get('top_subgenres', []))
 
-def cmd_top_scenes(data):
-    ranked = get_top_elements(data, 'scenes', is_list=True)
-    print_header("Top Local Scenes (by Artist Score)")
-    if not ranked:
-        print("No scenes currently indexed.")
-    for i, (scene, score) in enumerate(ranked[:20], 1):
-        print(f"{i:2d}. {scene:<35} (Score: {score:.0f})")
+def cmd_top_scenes(report):
+    print_top_list("Top Local Scenes", report.get('top_scenes', []))
 
-def cmd_top_countries(data):
-    ranked = get_top_elements(data, 'country_name', is_list=False)
-    print_header("Top Countries (by Artist Score)")
-    for i, (country, score) in enumerate(ranked[:15], 1):
-        if country and country != 'Desconocido':
-            print(f"{i:2d}. {country:<20} (Score: {score:.0f})")
+def cmd_top_countries(report):
+    print_top_list("Top Countries", report.get('top_countries', []))
 
-def cmd_top_decades(data):
-    ranked = get_top_elements(data, 'decades', is_list=True)
-    print_header("Top Decades of Activity (by Artist Score)")
-    for i, (decade, score) in enumerate(ranked, 1):
-        print(f"{i:2d}. {decade:<10} (Score: {score:.0f})")
+def cmd_top_decades(report):
+    print_top_list("Top Decades of Activity", report.get('top_decades', []))
 
-def cmd_top_artists(data):
-    ranked = sorted(data, key=lambda x: x.get('total_score', 0), reverse=True)
+def cmd_top_artists(taxonomy):
+    ranked = sorted(taxonomy, key=lambda x: x.get('total_score', 0), reverse=True)
     print_header("Top Core Artists")
     for i, a in enumerate(ranked[:20], 1):
         print(f"{i:2d}. {a['name']:<25} (Score: {a.get('total_score', 0)})")
 
 def fuzzy_match(query, target):
-    q = query.lower().replace(" ", "")
-    t = target.lower().replace(" ", "")
+    q = str(query).lower().replace(" ", "")
+    t = str(target).lower().replace(" ", "")
     return q in t
 
-def cmd_artist(data, query):
-    matches = [a for a in data if fuzzy_match(query, a['name'])]
+def cmd_artist(taxonomy, query):
+    matches = [a for a in taxonomy if fuzzy_match(query, a.get('name', ''))]
     if not matches:
-        print(f"Error: Artist '{query}' not found in core profile.")
+        print(f"Error: Artist '{query}' not found in core taxonomy.")
         sys.exit(1)
         
     a = matches[0]
-    print_header(f"Artist Profile: {a['name']}")
+    print_header(f"Artist Profile: {a.get('name', 'Unknown')}")
     print_kv("Score", a.get('total_score', 0))
     print_kv("Class", a.get('class_label', 'Unknown'))
     print_kv("Type", a.get('artist_type', 'Unknown'))
     print_kv("Country", a.get('country_name', 'Unknown'))
     
-    genres = ", ".join(a.get('tags', []))
-    print_kv("Primary Tags", genres if genres else "None")
+    genres = ", ".join(a.get('canonical_genres', []))
+    print_kv("Genres", genres if genres else "None")
     
-    subgenres = ", ".join(a.get('lastfm_tags', []))
-    print_kv("Last.fm Tags", subgenres if subgenres else "None")
+    subgenres = ", ".join(a.get('canonical_subgenres', []))
+    print_kv("Subgenres", subgenres if subgenres else "None")
     
     scenes = ", ".join(a.get('scenes', []))
     print_kv("Scenes", scenes if scenes else "None")
     
     decades = ", ".join(a.get('decades', []))
     print_kv("Decades", decades if decades else "None")
-    
-    sources = ", ".join(a.get('source_coverage', []))
-    print_kv("Sources", sources if sources else "None")
 
     if len(matches) > 1:
         print("\nNote: Multiple partial matches found. Showing best match.")
 
-def query_association(data, list_field, query, title):
+def query_association(taxonomy, list_field, query, title):
     print_header(f"Artists associated with {title}: {query}")
     matches = []
-    for a in data:
+    for a in taxonomy:
         items = a.get(list_field, [])
         if any(fuzzy_match(query, i) for i in items):
             matches.append(a)
@@ -148,20 +128,20 @@ def query_association(data, list_field, query, title):
         
     matches = sorted(matches, key=lambda x: x.get('total_score',0), reverse=True)
     for i, a in enumerate(matches[:20], 1):
-        print(f"{i:2d}. {a['name']:<25} (Score: {a.get('total_score', 0)})")
+        print(f"{i:2d}. {a.get('name', 'Unknown'):<25} (Score: {a.get('total_score', 0)})")
         
     if len(matches) > 20:
         print(f"... and {len(matches)-20} more.")
 
-def cmd_genre(data, query):
-    query_association(data, 'tags', query, "Genre/Tag")
+def cmd_genre(taxonomy, query):
+    query_association(taxonomy, 'canonical_genres', query, "Genre")
 
-def cmd_scene(data, query):
-    query_association(data, 'scenes', query, "Scene")
+def cmd_scene(taxonomy, query):
+    query_association(taxonomy, 'scenes', query, "Scene")
     
-def cmd_country(data, query):
+def cmd_country(taxonomy, query):
     print_header(f"Artists from Country: {query}")
-    matches = [a for a in data if a.get('country_name') and fuzzy_match(query, a['country_name'])]
+    matches = [a for a in taxonomy if a.get('country_name') and fuzzy_match(query, a.get('country_name'))]
     
     if not matches:
         print(f"No artists found for country: '{query}'")
@@ -169,23 +149,22 @@ def cmd_country(data, query):
         
     matches = sorted(matches, key=lambda x: x.get('total_score',0), reverse=True)
     for i, a in enumerate(matches[:20], 1):
-        print(f"{i:2d}. {a['name']:<25} (Score: {a.get('total_score', 0)})")
+        print(f"{i:2d}. {a.get('name', 'Unknown'):<25} (Score: {a.get('total_score', 0)})")
         
     if len(matches) > 20:
         print(f"... and {len(matches)-20} more.")
 
-def cmd_decade(data, query):
-    query_association(data, 'decades', query, "Decade")
+def cmd_decade(taxonomy, query):
+    query_association(taxonomy, 'decades', query, "Decade")
 
-def cmd_compare(data, e1, e2):
+def cmd_compare(taxonomy, e1, e2):
     print_header(f"Comparison: {e1} vs {e2}")
     
     def score_term(term):
         score = 0
         match_count = 0
         term_norm = term.lower()
-        for a in data:
-            # Check generically across all string fields and list fields
+        for a in taxonomy:
             matched = False
             for v in a.values():
                 if isinstance(v, str) and term_norm in v.lower():
@@ -217,7 +196,7 @@ def cmd_compare(data, e1, e2):
         print(f"\nResult: Roughly equal weighting.")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Music Brain Local Query Layer")
+    parser = argparse.ArgumentParser(description="Music Brain Local Query Layer - Core Taxonomy")
     subparsers = parser.add_subparsers(dest="command", required=True)
     
     subparsers.add_parser("summary", help="Resumen global del perfil")
@@ -248,31 +227,31 @@ if __name__ == "__main__":
     compare_p.add_argument("axis2", help="Término 2")
     
     args = parser.parse_args()
-    data = load_data()
+    report, taxonomy = load_data()
     
     if args.command == "summary":
-        cmd_summary(data)
+        cmd_summary(report, taxonomy)
     elif args.command == "top-genres":
-        cmd_top_genres(data)
+        cmd_top_genres(report)
     elif args.command == "top-subgenres":
-        cmd_top_subgenres(data)
+        cmd_top_subgenres(report)
     elif args.command == "top-scenes":
-        cmd_top_scenes(data)
+        cmd_top_scenes(report)
     elif args.command == "top-countries":
-        cmd_top_countries(data)
+        cmd_top_countries(report)
     elif args.command == "top-decades":
-        cmd_top_decades(data)
+        cmd_top_decades(report)
     elif args.command == "top-artists":
-        cmd_top_artists(data)
+        cmd_top_artists(taxonomy)
     elif args.command == "artist":
-        cmd_artist(data, args.name)
+        cmd_artist(taxonomy, args.name)
     elif args.command == "genre":
-        cmd_genre(data, args.name)
+        cmd_genre(taxonomy, args.name)
     elif args.command == "scene":
-        cmd_scene(data, args.name)
+        cmd_scene(taxonomy, args.name)
     elif args.command == "country":
-        cmd_country(data, args.name)
+        cmd_country(taxonomy, args.name)
     elif args.command == "decade":
-        cmd_decade(data, args.name)
+        cmd_decade(taxonomy, args.name)
     elif args.command == "compare":
-        cmd_compare(data, args.axis1, args.axis2)
+        cmd_compare(taxonomy, args.axis1, args.axis2)
