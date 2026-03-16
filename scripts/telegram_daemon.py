@@ -75,12 +75,12 @@ def handle_command(text, chat_id):
         query = text.lower().replace("poné", "").replace("reproducí", "").replace("pone", "").replace("reproduci", "").replace("play", "").strip()
         if query:
             send_reply(chat_id, f"🔍 Buscando '{query}' en la colmena musical...")
-            res = os.popen(f"python3 '/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/nin_dj.py' play '{query}'").read()
+            res = os.popen(f"python3 '/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/music_brain_dj.py' play '{query}'").read()
             send_reply(chat_id, res)
         else:
             send_reply(chat_id, "❓ ¿Qué canción querés que ponga?")
     elif any(x in cmd for x in ["pará", "detener", "stop", "para"]):
-        res = os.popen(f"python3 '/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/nin_dj.py' stop").read()
+        res = os.popen(f"python3 '/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/music_brain_dj.py' stop").read()
         send_reply(chat_id, res)
     else:
         send_reply(chat_id, f"🧬 *Doctora Lucy:* Recibido, Diego. Me pediste: '{text}'. (IA Local en progreso).")
