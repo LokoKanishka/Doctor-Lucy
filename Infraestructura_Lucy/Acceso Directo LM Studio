@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=LM Studio
+Exec="/home/lucy-ubuntu/Escritorio/doctor de lucy/LM-Studio-0.4.6-1-x64.AppImage" --no-sandbox
+Icon=utilities-terminal
+Type=Application
+Terminal=false
+Categories=Development;
+Comment=Run LM Studio without sandbox
