@@ -16,3 +16,4 @@ agente_memoria.db
 # Búnker de memoria (trackear el JSONL para backup en la nube)
 data/*
 !data/lucy_bunker_log.jsonl
+data/music_brain/*.sqlite
