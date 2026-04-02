@@ -1,47 +1,64 @@
-# Auditoría de Sistema - Doctor Lucy
-**Fecha y Hora:** 2026-03-05 03:36:00
-**Estado General:** ÓPTIMO
+# 🩺 Auditoría Completa del Sistema - Doctora Lucy
 
-## 1. Sistema Operativo y Uptime
-- **OS:** Ubuntu 24.04.2 LTS (Noble Numbat)
-- **Kernel:** 6.13.0-1017-oem
-- **Uptime:** 18:34
-- **Hostname:** lucy-ubuntu
-
-## 2. Hardware Principal
-- **CPU:** AMD Ryzen 9 7950X3D (32 hilos, hasta 5.7GHz)
-- **RAM:** 64GB DDR5 (62.7Gi total, ~12Gi usada, ~47Gi libre+cache)
-- **GPU:** NVIDIA GeForce RTX 5090 (32GB VRAM)
-  - **Driver:** 570.211.01
-  - **Temp:** 34°C
-  - **Utilización:** 0% (Idle)
-
-## 3. Almacenamiento (Discos)
-- **nvme0n1p2 (Root):** 1.8T total, 1.2T libre (33% usado)
-- **sda1 (Lucy Data):** 2.0T total, 1.1T libre (45% usado)
-
-## 4. Servicios y Red
-- **n8n:** Activo en puerto 6969
-- **Ollama:** Activo en puerto 11434
-- **Docker:** Activo con contenedores (SearXNG, Keycloak, AllTalk TTS, etc.)
-- **Puertos clave operativos:** 22 (SSH), 80/443 (HTTP/S), 6969 (n8n), 11434 (Ollama).
-
-## 5. Modelos AI (Ollama)
-- llama3.3:latest (70b)
-- deepseek-r1:32b
-- mistral-nemo:latest
-- dolphin-mistral:latest
-
-## 6. Software Crítico
-- VS Code: 1.109.5
-- Docker: 29.2.1
-- Node.js: 22.22.0
-- Python: 3.12.3 & 3.10.20
-
-## 7. Observaciones y Pendientes
-- [OK] Estabilidad térmica y de memoria.
-- [PENDIENTE] Activar workflows de boot/commit en n8n (puerto 6969).
-- [PENDIENTE] Dashboard de salud visual.
+**Fecha y Hora:** 01 de Abril 2026, 23:03 hs (Hora Local)
+**Estado General:** 🟩 **OPERATIVO**
 
 ---
-*Auditoría generada automáticamente por Doctora Lucy.*
+
+## 💻 1. Hardware y Sistema Operativo
+
+### OS Info
+- **Distribución:** Ubuntu 24.04.4 LTS (Noble Numbat)
+- **Kernel:** 6.17.0-19-generic
+- **Uptime:** 2:39 hs
+
+### Procesamiento y Memoria
+- **CPU:** 32 Cores disponibles. Frecuencia de uso actual ~76%. (Load Average: 3.85, 2.92, 2.44)
+- **RAM:** 14 GiB Usados / 86 GiB Libres (Total: 124 GiB)
+- **Swap:** 0 B Usados / 8.0 GiB Libres
+
+### GPU (Gráficos y Tensor Core)
+- **Modelo:** NVIDIA GeForce RTX 5090
+- **VRAM Total:** 32607 MiB
+- **Uso actual:** 10%
+- **Temperatura:** 54°C
+- **Driver:** 570.211.01
+
+### Almacenamiento Principal
+- **Disco Raíz (`/`):** 1.9T de capacidad, 539G usados (30%), 1.3T disponibles. SSD NVMe en perfecto estado.
+
+---
+
+## ⚙️ 2. Servicios e Infraestructura
+
+### Contenedores y Nodos
+El ecosistema Docker está levantado y saludable:
+- `lucy_open_webui`: En puerto 3001
+- `N8N-NiN-uso-exclusivo-del-proyecto-nin`: Servidor n8n activo (5678)
+- `qdrant-lucy` & `lucy_memory_qdrant`: Motores vectoriales (6333/6334)
+- `searxng-lucy`: Motor de búsqueda (8080)
+
+### Motores de Inferencia (Ollama)
+Disponemos de un arsenal robusto pre-descargado (15+ modelos), destacando:
+- **Qwen3 Coder** (30B y 14B)
+- **Gemma 3 Stable** (29GB)
+- **GLM 4.7 Flash**
+- **LLaMA 3.1 & 3.2 Vision**
+
+### Consumo de Recursos (Top Profiling)
+Actualmente los procesos que más memoria demandan son:
+1. `steam` (Descargando/Actualizando - recién instalado)
+2. `chrome` (Múltiples renderers y procesos)
+3. `code` (VS Code + Language Servers)
+4. `antigravity` (Servicios AI)
+5. `open_webui` (Python backend)
+
+---
+
+## 🔒 3. Seguridad y Anomalías
+- **Seguridad:** Puertos estándar locales operativos (`127.0.0.1`). Ningún proceso externo sospechoso consumiendo recursos CPU/GPU.
+- **Servicios:** Systemd reporta `35 loaded units` saludables. Daemon de Nvidia, persistencia, Docker y Ollama operando normalmente.
+- **Anomalías:** No se detectan bloqueos (locks de apt liberados). El procesador refleja carga moderada por los contenedores, lo cual es normal.
+
+---
+*Reporte generado automáticamente por Protocolo "Revisión de Lucy".*
