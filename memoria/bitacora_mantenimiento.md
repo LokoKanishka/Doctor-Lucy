@@ -168,3 +168,9 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **API n8n**: Se creo desde cero una API key valida para `doctor_lucy_n8n` y se verifico con `GET /api/v1/workflows` (200 OK). La clave completa quedo en la carpeta local de contraseñas, no en Git.
 - **Procesos externos**: No hay `send_cvs.py`, `nin_demon.py` ni stack `lucy_fusion` corriendo.
 - **Persistencia final**: Estado guardado en bóveda SQLite, búnker JSONL, Knowledge Graph local, bitácoras Markdown y Git. La API key completa queda solo en la carpeta local de contraseñas; en Git solo se registra la ruta y el estado validado.
+
+## Prueba contenedores n8n 2026-04-15 18:17 -03
+- **doctor_lucy_n8n**: Probado OK. Contenedor arriba en `127.0.0.1:6969`; `/healthz` responde `{"status":"ok"}`; editor responde HTTP 200; API key local validada con `GET /api/v1/workflows` (`200 OK`, sin workflows cargados).
+- **N8N-NiN-uso-exclusivo-del-proyecto-nin**: Probado OK como servicio. Contenedor arriba en `127.0.0.1:5688`; `/healthz` responde `{"status":"ok"}`; editor responde HTTP 200. Base NIN contiene 67 workflows, todos inactivos, 0 credenciales y 0 webhooks.
+- **doctor_lucy_n8n_openbind_backup_20260415_000948**: Respondia internamente, pero usaba el mismo volumen `n8n_data` que `doctor_lucy_n8n`. Se apago de forma reversible para evitar dos procesos n8n escribiendo sobre la misma SQLite.
+- **Advertencias observadas**: Los contenedores n8n no traen Python 3 para task runner interno. NIN allowlista `request` y `mcp-sdk`, pero esos modulos no estan instalados. No se ejecutaron workflows para evitar acciones externas no deseadas.

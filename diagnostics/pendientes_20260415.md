@@ -50,3 +50,10 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 - `systemctl status ollama --no-pager`
 - `curl http://127.0.0.1:11434/api/tags`
 - `curl http://127.0.0.1:6969/api/v1/workflows` con `X-N8N-API-KEY`
+
+## Prueba Contenedores n8n 2026-04-15 18:17 -03
+
+- `doctor_lucy_n8n`: OK. `GET /healthz` en `127.0.0.1:6969` devuelve `{"status":"ok"}`; editor HTTP 200; API `GET /api/v1/workflows` con la API key local devuelve 200 y lista vacia.
+- `N8N-NiN-uso-exclusivo-del-proyecto-nin`: OK como servicio. `GET /healthz` en `127.0.0.1:5688` devuelve `{"status":"ok"}`; editor HTTP 200. Base con 67 workflows, 0 activos, 0 credenciales, 0 webhooks.
+- `doctor_lucy_n8n_openbind_backup_20260415_000948`: Respondia OK internamente, pero compartia `/home/node/.n8n` con `doctor_lucy_n8n`. Se detuvo de forma reversible para evitar dos procesos n8n sobre la misma SQLite.
+- No se ejecutaron workflows: NIN incluye flujos con efectos externos potenciales y no tiene credenciales cargadas; la prueba fue de infraestructura, API y consistencia de base.

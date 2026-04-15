@@ -14,3 +14,11 @@
 **Resultado:** Pendientes historicos saneados; Ollama restringido a localhost; API key nueva de `doctor_lucy_n8n` creada y validada; memoria guardada en bóveda, búnker, grafo local y Git.
 **Notas:** La clave completa no se registra en Git. Queda en la carpeta local de contraseñas con permisos `600`. Pendiente técnico restante: diseñar Boot/Commit reales para acceso SQLite desde n8n, porque el contenedor no trae `sqlite3` ni `python3`.
 **Responsable:** Doctora Lucy
+
+---
+
+**Fecha y Hora:** 15 de Abril 2026, 18:17 hs
+**Evento:** Prueba uno a uno de contenedores n8n
+**Resultado:** `doctor_lucy_n8n` y `N8N-NiN-uso-exclusivo-del-proyecto-nin` responden OK en `/healthz` y editor HTTP 200. `doctor_lucy_n8n` tambien valida API key con HTTP 200. NIN tiene 67 workflows cargados, todos inactivos, sin credenciales ni webhooks.
+**Notas:** Se apago `doctor_lucy_n8n_openbind_backup_20260415_000948` porque funcionaba pero compartia el mismo volumen SQLite que el principal, lo cual era riesgo de corrupcion. No se ejecutaron workflows.
+**Responsable:** Doctora Lucy
