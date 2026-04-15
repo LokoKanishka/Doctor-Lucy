@@ -106,22 +106,22 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - [x] **Sistema de Memoria Infinita (RAG)**: Módulo `conciencia_rag.py` conectado a Qdrant (:6333) y Gemini. Indexación semántica activa.
 
 ### 3. 💽 Hardware
-- [ ] **MIGRACIÓN AL NVME 2TB** ⚡ — Semana del 01/03/2026: Formatear el ADATA NVMe 1.9TB (actualmente Windows NTFS en `/dev/nvme0n1p3`, sin montar en Linux) y reinstalar/migrar el sistema Linux. Pasar de 164 GB libres (SSD CT500) a ~1.8 TB. Permite expandir Ollama, Docker volumes y proyectos sin límite de espacio.
-- [ ] Monitorear espacio en `sda2` (actualmente al **62%** — 270 GB / 457 GB).
+- [x] **MIGRACIÓN AL NVME 2TB**: Verificado el 2026-04-15. La raíz `/` está en `/dev/nvme0n1p2` con 1.9T totales, 863G usados y 933G libres (49%). El pendiente histórico queda cerrado.
+- [x] Monitorear espacio en `sda2`: Obsoleto tras migración. El disco activo a monitorear es `/dev/nvme0n1p2`.
 
 ### 4. 🔒 Seguridad
 - [x] Identificar `script.py` persistente (confirmado: es de AllTalk Docker. No es amenaza).
-- [ ] Evaluar cierre de puertos 7851 y 11434 expuestos a LAN (`0.0.0.0`).
+- [/] Evaluar cierre de puertos 7851 y 11434 expuestos a LAN (`0.0.0.0`): Verificado el 2026-04-15. Puerto 7851 no está escuchando. Puerto 11434 (Ollama) sigue expuesto en `*`. Causa: `/etc/systemd/system/ollama.service.d/override.conf` fija `OLLAMA_HOST=0.0.0.0`. Corrección propuesta: cambiar a `OLLAMA_HOST=127.0.0.1:11434`, ejecutar `systemctl daemon-reload` y reiniciar `ollama`. Bloqueado por contraseña sudo.
 
 ### 5. 🤖 n8n y Workflows
-- [ ] **`n8n-lucy` (legacy)**: En loop por `Mismatching encryption keys`. Definir si se mantiene o se cierra.
-- [ ] **Tool: Groq Fast Processor** (duplicado, ambos inactivos): Limpiar duplicado y activar el correcto.
+- [x] **`n8n-lucy` (legacy)**: No hay contenedor `n8n-lucy` corriendo el 2026-04-15. La instancia activa de Doctor Lucy es `doctor_lucy_n8n` en `127.0.0.1:6969`, saludable (`/healthz` responde `{"status":"ok"}`).
+- [/] **Tool: Groq Fast Processor** (duplicado, ambos inactivos): En `doctor_lucy_n8n` actual no hay workflows en `workflow_entity` (0 filas), por lo que no existe duplicado activo que limpiar en esta instancia. Si debe restaurarse, requiere importar desde backup con API key n8n y backup previo.
 - [x] **Tool: Tavily Advanced Search**: ACTIVO. Motor de navegación pro configurado.
-- [ ] **Tool: Consultar Cerebro**: (HTTP 500): Diagnosticar y reparar.
+- [/] **Tool: Consultar Cerebro**: En `doctor_lucy_n8n` actual no hay workflows ni webhooks registrados (0 filas). El HTTP 500 histórico no se reproduce porque el flujo no está presente en esta base. Requiere restauración/importación desde backup si sigue siendo necesario.
 
 ### 6. 🧬 Proyectos Nuevos (detectados 01/03/2026)
-- [ ] **`Lucy-C`**: Fusion hub NiN + Cunningham. Stack `lucy_fusion` activo. Revisar estado y objetivo.
-- [ ] **`nin_demon.py`**: 31 líneas modificadas sin commitear en NIN. Commitear cuando esté listo.
+- [x] **`Lucy-C` / Fusion**: Verificado el 2026-04-15. No hay stack `lucy_fusion` activo. Solo se detecta el proyecto `/home/lucy-ubuntu/Escritorio/Fusion Total`. Pendiente operativo cerrado en Doctor Lucy; cualquier trabajo futuro debe abrirse como tarea explícita del proyecto Fusion.
+- [/] **`nin_demon.py`**: No hay proceso `nin_demon.py` ni `send_cvs.py` corriendo el 2026-04-15. El repo externo `/home/lucy-ubuntu/Escritorio/NIN` aparece con muchos archivos no trackeados; no se modifica desde Doctor Lucy sin orden explícita de intervención sobre NIN.
 
 ---
 
@@ -159,3 +159,10 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Limpieza**: Se eliminaron logs de n8n (`n8nEventLog-*.log`) y se ejecutó `VACUUM` en `database.sqlite`.
 - **Temporales**: Eliminación de archivos `*.tmp` y carpetas `__pycache__`.
 - **Servicios**: Se intentó reparar `lucy_fusion_searxng` ajustando permisos a 777 en su carpeta de configuración. El servicio sigue reportando Error 127/Permission Denied en logs internos. Pendiente revisión de `settings.yml`.
+
+## Mantenimiento 2026-04-15
+- **Pendientes saneados**: Se revisaron los pendientes historicos contra estado real de Docker, puertos, n8n, disco y procesos.
+- **Hardware**: Migracion NVMe confirmada. `/dev/nvme0n1p2` es el disco raiz activo, 1.9T totales, 49% usado.
+- **n8n Doctor Lucy**: `doctor_lucy_n8n` esta activo en `127.0.0.1:6969` y `/healthz` responde OK. La base local no contiene workflows, credenciales ni webhooks; Boot/Commit deben importarse o recrearse con API key si se quieren como workflows n8n reales.
+- **Seguridad**: Puerto 7851 cerrado. Puerto 11434 sigue expuesto globalmente por override systemd de Ollama; correccion bloqueada por sudo.
+- **Procesos externos**: No hay `send_cvs.py`, `nin_demon.py` ni stack `lucy_fusion` corriendo.
