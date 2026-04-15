@@ -1,0 +1,56 @@
+{
+  "id": "39Z9puqMgG73q9cE",
+  "name": "Tool: Administrador de APIs",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tool-admin-api",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-api",
+      "name": "Webhook",
+      "webhookId": "tool-admin-api"
+    },
+    {
+      "parameters": {
+        "jsCode": "const http = require('http');\nconst https = require('https');\nconst body = $json.body || $json;\nconst method = (body.method || 'GET').toUpperCase();\nconst url = body.url || '';\nconst headers = body.headers || {};\nconst reqBody = body.body || null;\n\nif (!url) return [{ json: { output: '\u274c Falta el par\u00e1metro url' } }];\n\nreturn new Promise((resolve) => {\n  const lib = url.startsWith('https') ? https : http;\n  const opts = { method, headers: { ...headers, 'User-Agent': 'NIN-Agent/1.0' } };\n  const req = lib.request(url, opts, (res) => {\n    let data = '';\n    res.on('data', (chunk) => data += chunk);\n    res.on('end', () => {\n      resolve([{ json: { output: `HTTP ${res.statusCode}\\n\\n${data.substring(0, 8000)}` } }]);\n    });\n  });\n  req.on('error', (e) => resolve([{ json: { output: '\u274c Error: ' + e.message } }]));\n  if (reqBody) req.write(typeof reqBody === 'string' ? reqBody : JSON.stringify(reqBody));\n  req.end();\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "exec-api",
+      "name": "Ejecutar API"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Ejecutar API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

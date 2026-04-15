@@ -1,0 +1,56 @@
+{
+  "id": "cybAFwjPia5CZIqo",
+  "name": "Tool: Memory Feedback",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "memory-feedback",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-mf",
+      "name": "Webhook",
+      "webhookId": "memory-feedback"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst key = ($json.body && $json.body.key) || ($json.key) || '';\nconst feedback = ($json.body && $json.body.feedback) || ($json.feedback) || 'positive';\nconst dbPath = '/home/lucy-ubuntu/Escritorio/NIN/memoria/agente_memoria.db'.replace('agente_memoria.db', 'memory_store.json');\ntry {\n  let store = {};\n  if (fs.existsSync(dbPath)) store = JSON.parse(fs.readFileSync(dbPath, 'utf8'));\n  if (store[key]) {\n    const delta = feedback === 'positive' ? 0.5 : -0.3;\n    store[key].score = Math.max(0, (store[key].score || 1) + delta);\n    store[key].last_feedback = new Date().toISOString();\n    fs.writeFileSync(dbPath, JSON.stringify(store, null, 2));\n    return [{ json: { output: '\u2705 Feedback registrado para: ' + key + ' (score: ' + store[key].score + ')' } }];\n  }\n  return [{ json: { output: '\ud83d\udd0d No se encontr\u00f3: ' + key } }];\n} catch(e) {\n  return [{ json: { output: '\u274c Error: ' + e.message } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "feedback-mem",
+      "name": "Feedback"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Feedback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

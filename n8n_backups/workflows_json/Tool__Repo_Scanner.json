@@ -1,0 +1,56 @@
+{
+  "id": "ua0t8LIeyN5WxWPi",
+  "name": "Tool: Repo Scanner",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-escanear",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-scan",
+      "name": "Webhook",
+      "webhookId": "agente-escanear"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require('child_process');\nconst ruta = $json.body.ruta || '/home/lucy-ubuntu/Escritorio/NIN';\nconst cmd = `find \"${ruta}\" -maxdepth 2 -not -path '*/.git/*' -printf '%y %p\\\\n' 2>/dev/null | head -80`;\nconst output = cp.execSync(cmd).toString();\nreturn { output };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        50,
+        0
+      ],
+      "id": "code-scan",
+      "name": "Scanner via Code"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Scanner via Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

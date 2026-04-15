@@ -1,0 +1,57 @@
+{
+  "id": "6lGltUES6c6WuNoZ",
+  "name": "NIN | notenin-DIAGNOSTIC",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notenin-diag"
+      },
+      "id": "trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"api_key\": \"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\", \"query\": \"test\"}"
+      },
+      "id": "tavily",
+      "name": "Tavily Test",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        200,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Tavily Test",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

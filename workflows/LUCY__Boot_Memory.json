@@ -1,0 +1,57 @@
+{
+  "name": "LUCY - Boot Memory",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "lucy/boot",
+        "responseMode": "lastNode",
+        "responseCode": 200,
+        "options": {}
+      },
+      "id": "lucy-boot-webhook",
+      "name": "Boot Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "webhookId": "lucy-boot-memory",
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://172.17.0.1:6970/boot",
+        "sendBody": false,
+        "options": {}
+      },
+      "id": "lucy-boot-memory-gateway",
+      "name": "Read Memory Gateway",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        520,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Boot Webhook": {
+      "main": [
+        [
+          {
+            "node": "Read Memory Gateway",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

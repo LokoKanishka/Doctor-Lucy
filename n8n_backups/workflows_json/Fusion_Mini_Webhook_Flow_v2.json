@@ -1,0 +1,63 @@
+{
+  "id": "bDmvZcG27LvD03Gc",
+  "name": "Fusion Mini Webhook Flow v2",
+  "active": true,
+  "nodes": [
+    {
+      "id": "wb_fusion_mini_v2",
+      "name": "Fusion Mini Webhook v2",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "fusion-mini-check-v2-20260305",
+        "responseMode": "responseNode",
+        "responseCode": 200,
+        "options": {}
+      },
+      "webhookId": "fusion-mini-check-v2-20260305"
+    },
+    {
+      "id": "resp_fusion_mini_v2",
+      "name": "Fusion Mini Response v2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ],
+      "parameters": {
+        "responseCode": 200,
+        "responseData": "={{ {\"ok\": true, \"source\": \"gpt-5.1-mini\", \"flow\": \"created-by-model\"} }}",
+        "respondWith": "json",
+        "responseBody": {
+          "ok": true,
+          "source": "gpt-5.1-mini",
+          "workflow_id": "bDmvZcG27LvD03Gc"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Fusion Mini Webhook v2": {
+      "main": [
+        [
+          {
+            "node": "Fusion Mini Response v2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "fusion_total"
+}

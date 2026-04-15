@@ -1,0 +1,56 @@
+{
+  "id": "lW8Pg8Mo40V9zySd",
+  "name": "Tool: Escribir en B\u00fanker",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "escribir-bunker",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-bunker",
+      "name": "Webhook",
+      "webhookId": "escribir-bunker"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require(\"fs\");\nconst path = \"/mnt/Cerebro/\" + ($json.body.filename || \"nota_\" + Date.now()) + \".md\";\ntry {\n  fs.writeFileSync(path, $json.body.content || \"Nota vac\u00eda\");\n  return [{ json: { output: \"\u2705 Archivo guardado con \u00e9xito en \" + path } }];\n} catch (e) {\n  return [{ json: { output: \"\u274c Error guardando archivo: \" + e.message } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "write-bunker",
+      "name": "Escribir"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Escribir",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

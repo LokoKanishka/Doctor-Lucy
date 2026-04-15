@@ -1,0 +1,64 @@
+{
+  "id": "PMP3I4RIqgRt3Qfl",
+  "name": "Fusion mini check",
+  "active": true,
+  "nodes": [
+    {
+      "id": "wb_fusion_mini_v1",
+      "name": "Fusion webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        300,
+        200
+      ],
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "fusion-mini-check-20260305",
+        "responseMode": "responseNode",
+        "responseData": "lastNode",
+        "responseCode": 200,
+        "options": {}
+      },
+      "webhookId": "fusion-mini-check-20260305"
+    },
+    {
+      "id": "resp_fusion_mini_v1",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        520,
+        200
+      ],
+      "parameters": {
+        "responseCode": 200,
+        "responseData": "={{ {\"ok\": true, \"source\": \"gpt-5.1-mini\"} }}",
+        "respondWith": "json",
+        "responseBody": {
+          "ok": true,
+          "source": "gpt-5.1-mini",
+          "workflow_id": "PMP3I4RIqgRt3Qfl"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Fusion webhook": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "fusion_total"
+}

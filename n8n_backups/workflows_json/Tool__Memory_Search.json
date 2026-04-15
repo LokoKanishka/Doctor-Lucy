@@ -1,0 +1,56 @@
+{
+  "id": "4ZJp4rtlEtGABrVR",
+  "name": "Tool: Memory Search",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "memory-search",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-ms",
+      "name": "Webhook",
+      "webhookId": "memory-search"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst query = ($json.body && $json.body.query) || ($json.query) || '';\nconst dbPath = '/home/lucy-ubuntu/Escritorio/NIN/memoria/agente_memoria.db'.replace('agente_memoria.db', 'memory_store.json');\ntry {\n  let store = {};\n  if (fs.existsSync(dbPath)) store = JSON.parse(fs.readFileSync(dbPath, 'utf8'));\n  const results = Object.entries(store)\n    .filter(([k, v]) => k.includes(query) || (v.value && v.value.includes(query)))\n    .sort((a, b) => (b[1].score || 1) - (a[1].score || 1))\n    .slice(0, 5);\n  if (results.length === 0) return [{ json: { output: '\ud83d\udd0d No se encontr\u00f3 memoria previa para: ' + query, found: false } }];\n  const formatted = results.map(([k, v]) => `\u2022 ${k}: ${v.value} (score: ${v.score || 1})`).join('\\n');\n  return [{ json: { output: '\ud83e\udde0 Memorias encontradas:\\n' + formatted, found: true } }];\n} catch(e) {\n  return [{ json: { output: '\u274c Error: ' + e.message, found: false } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "search-mem",
+      "name": "Buscar"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Buscar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

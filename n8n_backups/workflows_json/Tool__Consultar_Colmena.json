@@ -1,0 +1,67 @@
+{
+  "id": "VFzrIjk5iJW0yueV",
+  "name": "Tool: Consultar Colmena",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "consultar-colmena",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        0
+      ],
+      "id": "wh-consult",
+      "name": "Webhook",
+      "webhookId": "consultar-colmena"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyAPbfPtq-q35ixuc3xu1U_7txnEeRO1Jhs",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "contents",
+              "value": "={{[{ 'parts': [{ 'text': ($json.body && $json.body.query) ? $json.body.query : 'Por favor responde SOLO con la palabra PING.' }] }]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "http-gemini",
+      "name": "Google Gemini (Raw API)"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Gemini (Raw API)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

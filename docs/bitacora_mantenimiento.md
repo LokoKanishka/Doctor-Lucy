@@ -22,3 +22,11 @@
 **Resultado:** `doctor_lucy_n8n` y `N8N-NiN-uso-exclusivo-del-proyecto-nin` responden OK en `/healthz` y editor HTTP 200. `doctor_lucy_n8n` tambien valida API key con HTTP 200. NIN tiene 67 workflows cargados, todos inactivos, sin credenciales ni webhooks.
 **Notas:** Se apago `doctor_lucy_n8n_openbind_backup_20260415_000948` porque funcionaba pero compartia el mismo volumen SQLite que el principal, lo cual era riesgo de corrupcion. No se ejecutaron workflows.
 **Responsable:** Doctora Lucy
+
+---
+
+**Fecha y Hora:** 15 de Abril 2026, 18:58 hs
+**Evento:** Incidente de cuelgue y cierre Boot/Commit de memoria
+**Resultado:** Se reviso el reinicio de la maquina, se reparo `watcher-daemon.service` con guard wrapper para evitar loop `203/EXEC`, se neutralizo el contenedor backup de n8n que compartia SQLite y se creo un clon n8n aislado en `127.0.0.1:6979`. Tambien se implemento Boot/Commit mediante `lucy-memory-gateway.service` + workflows n8n activos.
+**Validacion:** `GET /webhook/lucy/boot` y `POST /webhook/lucy/commit` respondieron HTTP 200; Commit inserto smoke test id 20 en `memoria_core`.
+**Responsable:** Doctora Lucy

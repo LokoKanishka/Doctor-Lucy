@@ -1,0 +1,56 @@
+{
+  "id": "LUOLloOSxJ1J19he",
+  "name": "Tool: Analizar Repositorios Github",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "github-analyze",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-gh",
+      "name": "Webhook",
+      "webhookId": "github-analyze"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require(\"child_process\");\nconst url = $json.body.url;\nif (!url || !url.includes(\"github.com\")) return [{ json: { output: \"\u274c URL de GitHub inv\u00e1lida\" } }];\n\nconst dir = \"/tmp/repo_\" + Date.now();\ntry {\n  cp.execSync(`git clone --depth 1 ${url} ${dir}`);\n  const mds = cp.execSync(`find ${dir} -maxdepth 3 -name \"*.md\" -exec cat {} + | head -c 20000`).toString();\n  const packageJson = cp.execSync(`cat ${dir}/package.json 2>/dev/null || echo \"\"`).toString();\n  const reqTxt = cp.execSync(`cat ${dir}/requirements.txt 2>/dev/null || echo \"\"`).toString();\n  cp.execSync(`rm -rf ${dir}`);\n  return [{ json: { output: `\u2705 Repo analizado:\\n\\n=== Dependencias JS ===\\n${packageJson.substring(0, 500)}\\n\\n=== Dependencias Python ===\\n${reqTxt.substring(0, 500)}\\n\\n=== Archivos Markdown (Extracto) ===\\n${mds}` } }];\n} catch(e) {\n  try { cp.execSync(`rm -rf ${dir}`); } catch(err){}\n  return [{ json: { output: `\u274c Error analizando repo: ` + e.message } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "exec-gh",
+      "name": "Clonar y Extraer"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Clonar y Extraer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

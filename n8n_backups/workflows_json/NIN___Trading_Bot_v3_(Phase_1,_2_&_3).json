@@ -1,0 +1,390 @@
+{
+  "id": "a2hZUkG3tmV7MQlu",
+  "name": "NIN | Trading Bot v3 (Phase 1, 2 & 3)",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-id",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "interval": 15
+            }
+          ]
+        }
+      },
+      "id": "schedule-id",
+      "name": "Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_vol=true&include_24hr_change=true",
+        "options": {}
+      },
+      "id": "coingecko-id",
+      "name": "CoinGecko API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.alternative.me/fng/?limit=1",
+        "options": {}
+      },
+      "id": "alternative-id",
+      "name": "Fear & Greed API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://cryptopanic.com/api/v1/posts/?auth_token=AUTH_TOKEN_PLACEHOLDER&regions=en",
+        "options": {}
+      },
+      "id": "cryptopanic-id",
+      "name": "CryptoPanic API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        400,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "wait",
+        "join": {
+          "mode": "wait"
+        }
+      },
+      "id": "merge-id",
+      "name": "Merge Data",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        650,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const coingecko = $items('CoinGecko API')[0].json;\nconst fng = $items('Fear & Greed API')[0].json;\nconst news = $items('CryptoPanic API')[0].json;\n\nconst btcData = coingecko.bitcoin;\nconst current_price = btcData.usd;\nconst volume_24h = btcData.usd_24h_vol;\nconst change_24h = btcData.usd_24h_change;\n\nconst fearValue = fng.data[0].value;\nconst fearClass = fng.data[0].value_classification;\n\nconst headlines = news.results ? news.results.slice(0, 5).map(r => r.title).join(' | ') : 'No news extracted';\n\nreturn {\n  json: {\n    precio_actual: current_price,\n    variacion_24h: change_24h,\n    volumen_24h: volume_24h,\n    fng_valor: fearValue,\n    fng_clase: fearClass,\n    noticias_recientes: headlines\n  }\n};"
+      },
+      "id": "code-id",
+      "name": "Data Consolidation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        850,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:11434/api/chat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"llama3.3:70b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"Act\u00faa como un trader cuantitativo institucional especializado en criptoactivos. Tu objetivo es predecir la acci\u00f3n del precio a corto plazo y generar una orden. El resultado DEBE ser un JSON con las llaves 'accion' (COMPRAR, VENDER o ESPERAR), 'razonamiento', 'confianza' (0 a 100) y 'riesgo'. NO ESCRIBAS TEXTO FUERA DEL JSON.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Analiza BTC: Precio actual: ${{$node['Data Consolidation'].json.precio_actual}}. Variaci\u00f3n 24H: ${{$node['Data Consolidation'].json.variacion_24h}}%. Volumen 24H: ${{$node['Data Consolidation'].json.volumen_24h}}. Sentiment Index: ${{$node['Data Consolidation'].json.fng_valor}} (${{$node['Data Consolidation'].json.fng_clase}}). Noticias Recientes: ${{$node['Data Consolidation'].json.noticias_recientes}}.\"\n    }\n  ],\n  \"stream\": false,\n  \"format\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"accion\": { \"type\": \"string\", \"enum\": [\"COMPRAR\", \"VENDER\", \"ESPERAR\"] },\n      \"razonamiento\": { \"type\": \"string\" },\n      \"confianza\": { \"type\": \"integer\", \"minimum\": 0, \"maximum\": 100 },\n      \"riesgo\": { \"type\": \"integer\", \"minimum\": 1, \"maximum\": 100 }\n    },\n    \"required\": [\"accion\", \"razonamiento\", \"confianza\", \"riesgo\"]\n  }\n}",
+        "options": {}
+      },
+      "id": "ollama-id",
+      "name": "Ollama (RTX 5090)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $items('Ollama (RTX 5090)')[0].json.message.content;\ntry {\n  return { json: JSON.parse(response) };\n} catch (e) {\n  return { json: { accion: \"ESPERAR\", razonamiento: \"Error parseando JSON\", confianza: 0, riesgo: 0 } };\n}"
+      },
+      "id": "parse-id",
+      "name": "Parse Decision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1350,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.accion }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "COMPRAR",
+              "output": 0
+            },
+            {
+              "value2": "VENDER",
+              "output": 1
+            },
+            {
+              "value2": "ESPERAR",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 2
+      },
+      "id": "switch-id",
+      "name": "Action Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.confianza }}",
+              "operation": "largerEqual",
+              "value2": 80
+            }
+          ]
+        }
+      },
+      "id": "filter-buy-id",
+      "name": "Conviction Filter",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1850,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\nconst API_SECRET = 'TESTNET_API_SECRET_PLACEHOLDER'; // MUST BE INJECTED\nconst API_KEY = 'TESTNET_API_KEY_PLACEHOLDER';\n\nconst symbol = 'BTCUSDT';\nconst side = 'BUY';\nconst type = 'MARKET';\nconst quantity = '0.001'; // $65 aprox - Hardcoded test size\nconst timestamp = Date.now();\n\nconst queryString = `symbol=${symbol}&side=${side}&type=${type}&quantity=${quantity}&timestamp=${timestamp}`;\n\n// Generar firma HMAC SHA256\nconst signature = crypto.createHmac('sha256', API_SECRET).update(queryString).digest('hex');\n\nreturn {\n  json: {\n    api_key: API_KEY,\n    query_string: queryString,\n    signature: signature,\n    final_query: `${queryString}&signature=${signature}`\n  }\n};"
+      },
+      "id": "hmac-id",
+      "name": "Binance HMAC Signer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2100,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ 'https://testnet.binance.vision/api/v3/order?' + $json.final_query }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-MBX-APIKEY",
+              "value": "={{ $json.api_key }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "execute-id",
+      "name": "Binance Testnet Exec",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2350,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "CoinGecko API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fear & Greed API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "CryptoPanic API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule": {
+      "main": [
+        [
+          {
+            "node": "CoinGecko API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fear & Greed API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "CryptoPanic API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CoinGecko API": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fear & Greed API": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CryptoPanic API": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Data": {
+      "main": [
+        [
+          {
+            "node": "Data Consolidation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Consolidation": {
+      "main": [
+        [
+          {
+            "node": "Ollama (RTX 5090)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama (RTX 5090)": {
+      "main": [
+        [
+          {
+            "node": "Parse Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Decision": {
+      "main": [
+        [
+          {
+            "node": "Action Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Switch": {
+      "main": [
+        [
+          {
+            "node": "Conviction Filter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        []
+      ]
+    },
+    "Conviction Filter": {
+      "main": [
+        [
+          {
+            "node": "Binance HMAC Signer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Binance HMAC Signer": {
+      "main": [
+        [
+          {
+            "node": "Binance Testnet Exec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

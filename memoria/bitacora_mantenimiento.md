@@ -3,6 +3,18 @@
 
 ---
 
+## 2026-04-15 18:58 -03 — Incidente y Cierre Boot/Commit
+
+- Revisado cuelgue/reinicio: ultimo boot a las 18:35 -03, sin evidencia clara de OOM ni disco lleno.
+- Reparado `watcher-daemon.service` con guard wrapper: si falta Cunningham, sale limpio sin loop `203/EXEC`.
+- Detenido y neutralizado `doctor_lucy_n8n_openbind_backup_20260415_000948` para evitar doble escritura sobre SQLite.
+- Creado clon aislado `doctor_lucy_n8n_isolated_backup_20260415_1908` en `127.0.0.1:6979` con SQLite propia.
+- Creado `lucy-memory-gateway.service` en `172.17.0.1:6970`.
+- Importados y activados workflows `LUCY - Boot Memory` y `LUCY - Commit Memory`.
+- Validado Boot/Commit con HTTP 200 y smoke test en la bóveda.
+
+---
+
 ## 🚀 Perfil Actual del Sistema
 *Última auditoría completa: 2026-03-01 04:11hs*
 

@@ -1,0 +1,56 @@
+{
+  "id": "PIG1XG1R7N4TjG2L",
+  "name": "Tool: Lector Archivo",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lector-archivo",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-lf",
+      "name": "Webhook",
+      "webhookId": "lector-archivo"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst filePath = ($json.body && $json.body.path) || ($json.path) || '';\nif (!filePath) return [{ json: { output: '\u274c Falta el par\u00e1metro path' } }];\ntry {\n  const content = fs.readFileSync(filePath, 'utf8');\n  const truncated = content.substring(0, 10000);\n  const suffix = content.length > 10000 ? '\\n\\n[... truncado a 10000 chars ...]' : '';\n  return [{ json: { output: '\ud83d\udcc4 ' + filePath + ':\\n\\n' + truncated + suffix } }];\n} catch(e) {\n  return [{ json: { output: '\u274c Error leyendo archivo: ' + e.message } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "read-file",
+      "name": "Leer"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Leer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

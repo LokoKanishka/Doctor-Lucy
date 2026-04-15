@@ -5,7 +5,7 @@
 
 ## Estado General
 
-OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas eran estado viejo o pertenecian a proyectos externos. Tras recibir credencial sudo, el bloqueo de Ollama quedo resuelto; queda pendiente solo lo que requiere API key o decision explicita de restauracion/importacion.
+OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas eran estado viejo o pertenecian a proyectos externos. Tras recibir credencial sudo, el bloqueo de Ollama quedo resuelto. El pendiente Boot/Commit quedo implementado el 2026-04-15 18:58 -03 mediante gateway local + workflows n8n.
 
 ## Resuelto / Cerrado
 
@@ -22,8 +22,17 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 ## Pendientes Reales
 
 - **API key n8n**: Resuelto el 2026-04-15. Se creo una API key nueva para `doctor_lucy_n8n`, validada con `GET /api/v1/workflows` (`200 OK`). La clave completa quedo fuera del repo en `/home/lucy-ubuntu/Escritorio/Malorms Documentos/contraseñas/n8n_api_key_doctor_lucy_20260415.txt` con permisos `600`.
-- **Boot/Commit como workflows n8n**: La base `n8n_data/database.sqlite` tenia 0 workflows, 0 credenciales y 0 webhooks. La API ya esta desbloqueada por la key nueva, pero los flujos Boot/Commit reales requieren una decision tecnica adicional: el contenedor de n8n no trae `sqlite3` ni `python3`, por lo que un workflow nativo no puede leer/escribir `boveda_lucy.sqlite` sin agregar una dependencia, un microservicio local o cambiar el diseno a HTTP/script externo.
-  - Antes de modificar n8n productivo hay que hacer backup local de la base o export de workflows.
+- **Boot/Commit como workflows n8n**: Resuelto el 2026-04-15 18:58 -03.
+  - Backup previo: `n8n_backups/pre_boot_commit_20260415_1848/`.
+  - Gateway local: `lucy-memory-gateway.service`, escuchando en `http://172.17.0.1:6970`.
+  - Workflow activo: `LUCY - Boot Memory`, webhook `GET /webhook/lucy/boot`.
+  - Workflow activo: `LUCY - Commit Memory`, webhook `POST /webhook/lucy/commit`.
+  - Validacion: ambos webhooks devolvieron HTTP 200; Commit inserto registro smoke test id 20 en `memoria_core`.
+- **Incidente de cuelgue/reinicio 2026-04-15**: Revisado y mitigado. Ver `diagnostics/incidente_20260415_colgada.md`.
+  - `watcher-daemon.service` fue reparado con guard wrapper: no vuelve a fallar en loop si falta Cunningham.
+  - El proyecto `/home/lucy-ubuntu/Escritorio/cunningham-naranja` no existe actualmente, por lo que el watcher no puede cumplir trabajo real hasta restaurar ese proyecto.
+  - `doctor_lucy_n8n_openbind_backup_20260415_000948` quedo detenido y sin `restart=always` para evitar doble escritura SQLite.
+  - Se creo `doctor_lucy_n8n_isolated_backup_20260415_1908`, clon aislado en `127.0.0.1:6979`, con SQLite propia.
 - **Groq Fast Processor / Consultar Cerebro**: No existen en la instancia actual de `doctor_lucy_n8n`; no hay duplicado ni HTTP 500 reproducible. Si se necesitan, deben restaurarse desde `n8n_backups/workflows_json/`.
 - **Repo externo NIN**: `/home/lucy-ubuntu/Escritorio/NIN` tiene muchos archivos no trackeados. No se modifico por politica de jurisdiccion; requiere orden explicita sobre NIN.
 
@@ -33,8 +42,21 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 - Sincronizado al búnker JSONL: `data/lucy_bunker_log.jsonl`.
 - Guardado en Knowledge Graph local: `memoria/agente_memoria.db`.
 - Registrado en bitácoras: `memoria/bitacora_mantenimiento.md` y `docs/bitacora_mantenimiento.md`.
-- Guardado remoto: rama `memoria/bunker` en GitHub.
+- Guardado remoto historico: rama `memoria/bunker` en GitHub.
 - Política de secretos: la API key completa queda solo en la carpeta local de contraseñas, no en Git ni en reportes versionados.
+
+## Boot/Commit Memoria - 2026-04-15 18:58 -03
+
+- Servicio creado: `scripts/lucy_memory_gateway.py`.
+- Servicio systemd user: `systemd/lucy-memory-gateway.service`.
+- Rutas gateway:
+  - `GET http://172.17.0.1:6970/healthz`
+  - `GET http://172.17.0.1:6970/boot`
+  - `POST http://172.17.0.1:6970/commit`
+- Workflows fuente:
+  - `workflows/LUCY__Boot_Memory.json`
+  - `workflows/LUCY__Commit_Memory.json`
+- Nota n8n: se requirio `webhookId` explicito para que n8n registrara rutas limpias `lucy/boot` y `lucy/commit`.
 
 ## Comandos Ejecutados
 

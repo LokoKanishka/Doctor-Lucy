@@ -1,0 +1,56 @@
+{
+  "id": "7rPrOWBub9enS290",
+  "name": "Tool: Tavily Advanced Search",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tavily-search",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "wh-tavily",
+      "webhookId": "tavily-search",
+      "name": "Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const https = require('https');\nconst query = $json.body.query || $json.body.kwargs || 'n8n news';\nconst apiKey = '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';\nconst data = JSON.stringify({api_key: apiKey, query: query, search_depth: 'advanced', include_answer: true});\nconst options = {hostname: 'api.tavily.com', port: 443, path: '/search', method: 'POST', headers: {'Content-Type': 'application/json', 'Content-Length': data.length}};\nreturn new Promise((resolve) => {\n  const req = https.request(options, (res) => {\n    let body = '';\n    res.on('data', (d) => body += d);\n    res.on('end', () => { try { resolve([{ json: JSON.parse(body) }]); } catch (e) { resolve([{ json: { error: 'Parse Error', raw: body } }]); } });\n  });\n  req.on('error', (e) => resolve([{ json: { error: e.message } }]));\n  req.write(data);\n  req.end();\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        250,
+        0
+      ],
+      "id": "code-tavily",
+      "name": "Busqueda Tavily"
+    }
+  ],
+  "connections": {
+    "wh-tavily": {
+      "main": [
+        [
+          {
+            "node": "code-tavily",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true
+  },
+  "source": "vol_nin"
+}

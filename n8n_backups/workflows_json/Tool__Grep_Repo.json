@@ -1,0 +1,56 @@
+{
+  "id": "bwTZIyK3wDDCTR0S",
+  "name": "Tool: Grep Repo",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-grep",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-grep",
+      "name": "Webhook",
+      "webhookId": "agente-grep"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require('child_process');\nconst patron = $json.body.patron;\nconst dir = $json.body.directorio || '/home/lucy-ubuntu/Escritorio/NIN';\ntry {\n  const cmd = `grep -rn \"${patron}\" \"${dir}\" --include='*.py' --include='*.md' --include='*.json' 2>/dev/null | head -50`;\n  const output = cp.execSync(cmd).toString();\n  return { output };\n} catch (e) {\n  return { output: \"No se encontraron resultados o hubo un error.\" };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        50,
+        0
+      ],
+      "id": "code-grep",
+      "name": "Grep via Code"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Grep via Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

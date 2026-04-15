@@ -1,0 +1,85 @@
+{
+  "id": "mSjsiVaTv5sfb99E",
+  "name": "NIN | Doctor System (Consolidated)",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tool-doctor",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "id": "wh-dr",
+      "name": "Webhook",
+      "webhookId": "tool-doctor"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require('child_process');\ntry {\n  const dockerPs = cp.execSync(\"docker ps -a --format '{{.Names}} {{.Status}}'\").toString();\n  const down = dockerPs.split('\\n').filter(line => line.includes('Exited') || line.includes('Restarting'));\n  let report = \"\";\n  \n  if (down.length > 0) {\n    const results = down.map(line => {\n      const name = line.split(' ')[0];\n      try {\n        cp.execSync(`docker restart ${name}`);\n        return `\u2705 Reiniciado: ${name}`;\n      } catch (e) {\n        return `\u274c Fall\u00f3 reinicio: ${name} (${e.message})`;\n      }\n    });\n    report = `\ud83d\udea8 Problemas detectados:\\n${down.join('\\n')}\\n\\nACCIONES TOMADAS:\\n${results.join('\\n')}`;\n  } else {\n    report = \"\u2705 Todo en orden. Todos los contenedores est\u00e1n Up.\";\n  }\n  return { json: { output: report } };\n} catch (e) {\n  return { json: { output: \"Error ejecutando el doctor: \" + e.message } };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ],
+      "id": "check-and-fix",
+      "name": "Check & Fix"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5688/rest/webhooks/sirena-telegram",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"\ud83d\udea8 *LUCY Doctor* \ud83d\udea8\\n\\n{{ $json.output }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        650,
+        300
+      ],
+      "id": "notify-tele",
+      "name": "Notify Telegram"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check & Fix",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check & Fix": {
+      "main": [
+        [
+          {
+            "node": "Notify Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

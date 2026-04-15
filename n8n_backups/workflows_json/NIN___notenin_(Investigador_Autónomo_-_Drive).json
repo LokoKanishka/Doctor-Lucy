@@ -1,0 +1,216 @@
+{
+  "id": "6iwgu2R2WDXyUHYN",
+  "name": "NIN | notenin (Investigador Aut\u00f3nomo - Drive)",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notenin-mission",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook (API NiN)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "notenin-mission"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "query-id",
+              "name": "search_query",
+              "value": "={{ $json.body.query || 'Estrategias de trading cuantitativo para BTC' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-query",
+      "name": "Define Misi\u00f3n",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.search_query }}\",\n  \"search_depth\": \"advanced\",\n  \"include_answer\": true,\n  \"include_raw_content\": false,\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "id": "tavily-search",
+      "name": "Tavily Deep Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $items('Define Misi\u00f3n')[0].json.search_query;\nconst searchResults = $items('Tavily Deep Search')[0].json;\n\nconst payload = {\n  model: \"qwen2.5:14b\",\n  messages: [\n    {\n      role: \"system\",\n      content: \"Eres 'notenin', el Demonio Librero del proyecto NIN. Tu trabajo es leer resultados de b\u00fasquedas web y extraer/sintetizar SOLO la informaci\u00f3n t\u00e9cnica valiosa (c\u00f3digo, estrategias, matem\u00e1ticas) en formato Markdown estructurado.\"\n    },\n    {\n      role: \"user\",\n      content: `Misi\u00f3n: ${query}\\n\\nResumen Tavily: ${searchResults.answer}\\n\\nFuentes:\\n${JSON.stringify(searchResults.results)}`\n    }\n  ],\n  stream: false\n};\n\ntry {\n  const response = await $node[\"to-binary\"].axios.post('http://host.docker.internal:11434/api/chat', payload, { timeout: 120000 });\n  return { json: response.data };\n} catch (error) {\n  try {\n    const response = await $node[\"to-binary\"].axios.post('http://172.17.0.1:11434/api/chat', payload, { timeout: 120000 });\n    return { json: response.data };\n  } catch (e) {\n    try {\n       await $node[\"to-binary\"].axios.post('http://localhost:5688/rest/webhooks/sirena-telegram', {\n         message: `\ud83d\udc7f *Demonio 14B Offline* \ud83d\udc7f\\n\\nError: ${e.message}\\nAl intentar acceder a Ollama. El reporte de investigaci\u00f3n no se generar\u00e1.`\n       });\n    } catch (teleErr) {}\n    throw new Error(`Ollama Critical Error: ${e.message}`);\n  }\n}"
+      },
+      "id": "ollama-axios",
+      "name": "Ollama (RTX 5090) - Librero",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        850,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const timestamp = new Date().toISOString().replace(/[:.]/g, '-');\nconst filename = `notenin_research_${timestamp}.md`;\nconst content = $items('Ollama (RTX 5090) - Librero')[0].json.message.content;\n\nreturn {\n  json: {\n    filename: filename,\n    content: `# [notenin] Reporte de Investigaci\u00f3n\\n\\n${content}`\n  }\n};"
+      },
+      "id": "prepare-data",
+      "name": "Prepara Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "content",
+        "destinationKey": "data",
+        "options": {
+          "fileName": "={{ $json.filename }}",
+          "mimeType": "text/markdown"
+        }
+      },
+      "id": "to-binary",
+      "name": "Convertir a Markdown",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "upload",
+        "fileName": "={{ $node[\"Prepara Metadata\"].json[\"filename\"] }}",
+        "options": {}
+      },
+      "id": "upload-drive",
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1450,
+        300
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ZpjTlDInDqs6MZ8z",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Define Misi\u00f3n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Define Misi\u00f3n": {
+      "main": [
+        [
+          {
+            "node": "Tavily Deep Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tavily Deep Search": {
+      "main": [
+        [
+          {
+            "node": "Ollama (RTX 5090) - Librero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama (RTX 5090) - Librero": {
+      "main": [
+        [
+          {
+            "node": "Prepara Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepara Metadata": {
+      "main": [
+        [
+          {
+            "node": "Convertir a Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convertir a Markdown": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

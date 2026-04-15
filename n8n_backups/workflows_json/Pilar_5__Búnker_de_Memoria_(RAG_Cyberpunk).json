@@ -1,0 +1,194 @@
+{
+  "id": "BSgAk06gicLgm7zfPpd3_",
+  "name": "Pilar 5: B\u00fanker de Memoria (RAG Cyberpunk)",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst path = require('path');\nconst dir = '/mnt/Cerebro';\n\nif (!fs.existsSync(dir)) return [];\n\nconst files = fs.readdirSync(dir);\nreturn files.map(file => ({\n  json: {\n    fileName: file,\n    path: path.join(dir, file)\n  }\n}));"
+      },
+      "id": "list-files-code",
+      "name": "Manual List Files (FS)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst path = $json.path;\n\ntry {\n  const content = fs.readFileSync(path);\n  const extension = path.split('.').pop().toLowerCase();\n  \n  return [{\n    json: {\n      path,\n      fileName: $json.fileName,\n      mimeType: extension === 'pdf' ? 'application/pdf' : 'text/plain'\n    },\n    binary: {\n      data: {\n        data: content.toString('base64'),\n        fileName: $json.fileName,\n        fileExtension: extension\n      }\n    }\n  }];\n} catch (e) {\n  return [];\n}"
+      },
+      "id": "read-file-code",
+      "name": "Manual Read File (FS)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a8bdd776-ed2f-4b08-a63e-d04c93d08f9b",
+      "name": "Extract Content (PDF/Doc)",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        480,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "id": "bc256886-718f-4ce1-91c5-e5290a308f87",
+      "name": "Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "id": "fb78308c-3cbe-4195-9937-69d2dd104bfd",
+      "name": "Ollama Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        352,
+        400
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "QjvfuLtZqaWrXior",
+          "name": "Ollama account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": "conciencia_doctor_lucy",
+        "options": {}
+      },
+      "id": "cbba058b-0e7b-4406-880f-0367a4e294a4",
+      "name": "Qdrant Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        384,
+        176
+      ],
+      "credentials": {
+        "qdrantApi": {
+          "id": "JvOsiZzpaVy3x4JI",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Every 15m",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -300,
+        176
+      ]
+    }
+  ],
+  "connections": {
+    "schedule-trigger": {
+      "main": [
+        [
+          {
+            "node": "list-files-code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "list-files-code": {
+      "main": [
+        [
+          {
+            "node": "read-file-code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read-file-code": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Content (PDF/Doc)": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Extract Content (PDF/Doc)",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "source": "vol_nin"
+}

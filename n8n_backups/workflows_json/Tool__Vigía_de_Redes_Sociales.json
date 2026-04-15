@@ -1,0 +1,81 @@
+{
+  "id": "nA33fg30wmbOxyiP",
+  "name": "Tool: Vig\u00eda de Redes Sociales",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "vigia-social",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        0
+      ],
+      "id": "wh-social",
+      "name": "Webhook",
+      "webhookId": "vigia-social"
+    },
+    {
+      "parameters": {
+        "url": "https://www.reddit.com/r/n8n/new.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -100,
+        0
+      ],
+      "id": "req-reddit",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const posts = $input.first().json.data.children || [];\nlet found = posts.filter(p => p.data.title.toLowerCase().includes(\"bug\"));\nreturn [{ json: { output: `\ud83d\udd75\ufe0f Vig\u00eda Reporta: ${found.length} posts con la palabra \"bug\" en r/n8n.` } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        150,
+        0
+      ],
+      "id": "filter-social",
+      "name": "Filtrar"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Filtrar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

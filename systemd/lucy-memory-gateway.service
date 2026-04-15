@@ -1,0 +1,15 @@
+[Unit]
+Description=Doctora Lucy Memory Gateway
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/lucy-ubuntu/Escritorio/doctora-lucy
+ExecStart=/usr/bin/python3 /home/lucy-ubuntu/Escritorio/doctora-lucy/scripts/lucy_memory_gateway.py --host 172.17.0.1 --port 6970
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

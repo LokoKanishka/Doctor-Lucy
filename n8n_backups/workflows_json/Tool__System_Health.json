@@ -1,0 +1,56 @@
+{
+  "id": "sjxo2K1BPdF3LLtG",
+  "name": "Tool: System Health",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-sistema",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-sis",
+      "name": "Webhook",
+      "webhookId": "agente-sistema"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require('child_process');\nconst ram = cp.execSync('free -h | head -2').toString();\nconst cpu = cp.execSync(\"top -bn1 | grep -E 'Cpu'\").toString();\nconst disco = cp.execSync('df -h / | tail -1').toString();\nconst docker = cp.execSync(\"docker ps --format '{{.Names}} {{.Status}}' 2>/dev/null\").toString();\nreturn { output: `--- RAM ---\\n${ram}\\n--- CPU ---\\n${cpu}\\n--- DISCO ---\\n${disco}\\n--- DOCKER ---\\n${docker}` };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        50,
+        0
+      ],
+      "id": "code-sis",
+      "name": "Stats via Code"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Stats via Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

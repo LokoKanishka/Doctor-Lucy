@@ -1,0 +1,56 @@
+{
+  "id": "8rPMTJ51eUHHtl4V",
+  "name": "Tool: Memory Apply",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "memory-apply",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-ma",
+      "name": "Webhook",
+      "webhookId": "memory-apply"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\nconst key = ($json.body && $json.body.key) || ($json.key) || '';\nconst dbPath = '/home/lucy-ubuntu/Escritorio/NIN/memoria/agente_memoria.db'.replace('agente_memoria.db', 'memory_store.json');\ntry {\n  let store = {};\n  if (fs.existsSync(dbPath)) store = JSON.parse(fs.readFileSync(dbPath, 'utf8'));\n  if (store[key]) {\n    store[key].score = (store[key].score || 1) + 0.5;\n    store[key].last_applied = new Date().toISOString();\n    fs.writeFileSync(dbPath, JSON.stringify(store, null, 2));\n    return [{ json: { output: '\u2705 Memoria aplicada: ' + key + '\\n' + store[key].value } }];\n  }\n  return [{ json: { output: '\ud83d\udd0d No se encontr\u00f3: ' + key } }];\n} catch(e) {\n  return [{ json: { output: '\u274c Error: ' + e.message } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "apply-mem",
+      "name": "Aplicar"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Aplicar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

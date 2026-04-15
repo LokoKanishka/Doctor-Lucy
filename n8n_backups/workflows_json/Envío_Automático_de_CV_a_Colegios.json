@@ -1,0 +1,95 @@
+{
+  "id": "qiN136ZrDDS8Pg2L",
+  "name": "Env\u00edo Autom\u00e1tico de CV a Colegios",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-cv-api",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/lucy-ubuntu/Escritorio/NIN/gmail_cv/data/Mi_Curriculum.pdf",
+        "dataPropertyName": "adjunto_cv"
+      },
+      "id": "read-cv-1",
+      "name": "Cargar CV Local",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "chatjepetex4@gmail.com",
+        "toEmail": "={{ $('Webhook').first().json.body.to }}",
+        "subject": "Postulaci\u00f3n docente - Diego Leonardo Succi",
+        "options": {
+          "appendAttachements": false,
+          "attachments": "adjunto_cv"
+        },
+        "html": "={{ $('Webhook').first().json.body.html }}",
+        "text": "={{ $('Webhook').first().json.body.text }}",
+        "emailFormat": "html"
+      },
+      "id": "smtp-send-1",
+      "name": "Enviar Correo SMTP",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        400,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "Vjq1Vkk3HMWqCsCO",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Cargar CV Local",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cargar CV Local": {
+      "main": [
+        [
+          {
+            "node": "Enviar Correo SMTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

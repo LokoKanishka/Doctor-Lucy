@@ -1,0 +1,15 @@
+[Unit]
+Description=Cunningham Watcher Daemon (guarded)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/lucy-ubuntu/Escritorio/doctora-lucy/scripts/cunningham_watcher_guard.sh /home/lucy-ubuntu/Escritorio/cunningham-naranja
+Restart=on-failure
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=cunningham-watcher
+
+[Install]
+WantedBy=default.target

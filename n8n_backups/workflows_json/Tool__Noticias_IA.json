@@ -1,0 +1,83 @@
+{
+  "id": "96WD19sZRmEpiGiv",
+  "name": "Tool: Noticias IA",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noticias-ia",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        0
+      ],
+      "id": "wh-noticias",
+      "name": "Webhook",
+      "webhookId": "noticias-ia"
+    },
+    {
+      "parameters": {
+        "url": "=http://searxng-lucy:8080/search?q={{ encodeURIComponent($json.body.query || 'inteligencia artificial noticias hoy') }}&format=json&time_range=day&categories=news&language=es-AR",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -100,
+        0
+      ],
+      "id": "searxng-req",
+      "name": "SearXNG Search"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = ($input.first().json.results || []).slice(0, 10);\nconst today = new Date().toISOString().split('T')[0];\nconst formatted = results.map((r, i) =>\n  (i+1) + '. ' + r.title + '\\n   ' + (r.content || '') + '\\n   URL: ' + r.url\n).join('\\n\\n');\nreturn [{ json: { output: 'Noticias de IA \u2014 ' + today + '\\n\\n' + (formatted || 'No se encontraron resultados.') } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        0
+      ],
+      "id": "format-results",
+      "name": "Formatear"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "SearXNG Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SearXNG Search": {
+      "main": [
+        [
+          {
+            "node": "Formatear",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

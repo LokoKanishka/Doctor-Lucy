@@ -1,0 +1,90 @@
+{
+  "id": "VECcVTgV1quBT4Tr",
+  "name": "Tool: Lector de Bandeja (Email)",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lector-email",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        0
+      ],
+      "id": "wh-email",
+      "name": "Webhook",
+      "webhookId": "lector-email"
+    },
+    {
+      "parameters": {
+        "operation": "getMany",
+        "folder": "INBOX",
+        "dataProperty": "emails",
+        "downloadAttachments": false,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        -50,
+        0
+      ],
+      "id": "imap-read",
+      "name": "Email Read Imap",
+      "credentials": {
+        "imap": {
+          "id": "PENDING",
+          "name": "Imap account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { output: \"\ud83d\udce8 Bandeja Le\u00edda. Por favor activa tus credenciales IMAP en n8n.\" } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        200,
+        0
+      ],
+      "id": "format-email",
+      "name": "Formatear"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Email Read Imap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Read Imap": {
+      "main": [
+        [
+          {
+            "node": "Formatear",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

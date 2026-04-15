@@ -1,0 +1,56 @@
+{
+  "id": "vjdwCqRIL0f1ICfd",
+  "name": "Tool: Control Docker Avanzado",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tool-docker-control",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-docker",
+      "name": "Webhook",
+      "webhookId": "tool-docker-control"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require('child_process');\nconst body = $json.body || $json;\nconst action = body.action || 'ps';\nconst container = body.container || '';\nconst NIN_CONTAINERS = new Set(['n8n-lucy', 'qdrant-lucy', 'searxng-lucy']);\n\ntry {\n  if (action === 'ps' || action === 'status') {\n    const out = cp.execSync('docker ps -a --format \"{{.Names}}\\t{{.Status}}\"').toString();\n    return [{ json: { output: '\ud83d\udc33 Contenedores:\\n' + out } }];\n  }\n  if (['restart', 'stop', 'start', 'logs'].includes(action)) {\n    if (!container) return [{ json: { output: '\u274c Falta el par\u00e1metro container' } }];\n    if (!NIN_CONTAINERS.has(container)) return [{ json: { output: '\u26d4 Solo puedo operar contenedores NIN: ' + [...NIN_CONTAINERS].join(', ') } }];\n    if (action === 'logs') {\n      const out = cp.execSync(`docker logs --tail 50 ${container}`).toString();\n      return [{ json: { output: '\ud83d\udccb Logs de ' + container + ':\\n' + out } }];\n    }\n    cp.execSync(`docker ${action} ${container}`);\n    return [{ json: { output: '\u2705 ' + action + ' exitoso: ' + container } }];\n  }\n  return [{ json: { output: '\u274c Acci\u00f3n desconocida: ' + action + '. Usa: ps, restart, stop, start, logs' } }];\n} catch(e) {\n  return [{ json: { output: '\u274c Error: ' + e.message } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "docker-ctl",
+      "name": "Docker Control"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Docker Control",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}

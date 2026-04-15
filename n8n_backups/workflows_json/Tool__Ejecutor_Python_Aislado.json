@@ -1,0 +1,56 @@
+{
+  "id": "lKxnlPG9Y5L190fI",
+  "name": "Tool: Ejecutor Python Aislado",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "python-exec",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "wh-py",
+      "name": "Webhook",
+      "webhookId": "python-exec"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cp = require('child_process');\nconst fs = require('fs');\nconst code = ($json.body && $json.body.code) || '';\nif (!code) return [{json:{output:'Falta code'}}];\nconst tmpFile = '/home/lucy-ubuntu/Escritorio/NIN/data/tmp_script_' + Date.now() + '.py';\nfs.writeFileSync(tmpFile, code);\ntry {\n  const out = cp.execSync('docker run --rm -v ' + tmpFile + ':' + tmpFile + ' python:3.9-slim python ' + tmpFile, {timeout:30000}).toString();\n  try{fs.unlinkSync(tmpFile)}catch(e){}\n  return [{json:{output:'OK:\\n' + (out||'(sin output)')}}];\n} catch(e) {\n  try{fs.unlinkSync(tmpFile)}catch(err){}\n  return [{json:{output:'Error:\\n'+(e.stderr?e.stderr.toString():e.message)}}];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "exec-py",
+      "name": "Ejecutar Python"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Ejecutar Python",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "source": "vol_nin"
+}
