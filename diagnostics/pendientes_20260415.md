@@ -21,8 +21,8 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 
 ## Pendientes Reales
 
-- **Boot/Commit como workflows n8n**: La base `n8n_data/database.sqlite` tiene 0 workflows, 0 credenciales y 0 webhooks. La API responde `401` y exige `X-N8N-API-KEY`.
-  - Resolver requiere API key n8n o importacion manual desde la UI.
+- **API key n8n**: Resuelto el 2026-04-15. Se creo una API key nueva para `doctor_lucy_n8n`, validada con `GET /api/v1/workflows` (`200 OK`). La clave completa quedo fuera del repo en `/home/lucy-ubuntu/Escritorio/Malorms Documentos/contraseñas/n8n_api_key_doctor_lucy_20260415.txt` con permisos `600`.
+- **Boot/Commit como workflows n8n**: La base `n8n_data/database.sqlite` tenia 0 workflows, 0 credenciales y 0 webhooks. La API ya esta desbloqueada por la key nueva, pero los flujos Boot/Commit reales requieren una decision tecnica adicional: el contenedor de n8n no trae `sqlite3` ni `python3`, por lo que un workflow nativo no puede leer/escribir `boveda_lucy.sqlite` sin agregar una dependencia, un microservicio local o cambiar el diseno a HTTP/script externo.
   - Antes de modificar n8n productivo hay que hacer backup local de la base o export de workflows.
 - **Groq Fast Processor / Consultar Cerebro**: No existen en la instancia actual de `doctor_lucy_n8n`; no hay duplicado ni HTTP 500 reproducible. Si se necesitan, deben restaurarse desde `n8n_backups/workflows_json/`.
 - **Repo externo NIN**: `/home/lucy-ubuntu/Escritorio/NIN` tiene muchos archivos no trackeados. No se modifico por politica de jurisdiccion; requiere orden explicita sobre NIN.
@@ -40,3 +40,4 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 - `systemctl cat ollama`
 - `systemctl status ollama --no-pager`
 - `curl http://127.0.0.1:11434/api/tags`
+- `curl http://127.0.0.1:6969/api/v1/workflows` con `X-N8N-API-KEY`

@@ -165,4 +165,5 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Hardware**: Migracion NVMe confirmada. `/dev/nvme0n1p2` es el disco raiz activo, 1.9T totales, 49% usado.
 - **n8n Doctor Lucy**: `doctor_lucy_n8n` esta activo en `127.0.0.1:6969` y `/healthz` responde OK. La base local no contiene workflows, credenciales ni webhooks; Boot/Commit deben importarse o recrearse con API key si se quieren como workflows n8n reales.
 - **Seguridad**: Puerto 7851 cerrado. Puerto 11434 restringido a `127.0.0.1` por override systemd de Ollama. Servicio reiniciado y funcional.
+- **API n8n**: Se creo desde cero una API key valida para `doctor_lucy_n8n` y se verifico con `GET /api/v1/workflows` (200 OK). La clave completa quedo en la carpeta local de contraseñas, no en Git.
 - **Procesos externos**: No hay `send_cvs.py`, `nin_demon.py` ni stack `lucy_fusion` corriendo.
