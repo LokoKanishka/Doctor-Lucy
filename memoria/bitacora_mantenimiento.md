@@ -111,7 +111,7 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 ### 4. 🔒 Seguridad
 - [x] Identificar `script.py` persistente (confirmado: es de AllTalk Docker. No es amenaza).
-- [/] Evaluar cierre de puertos 7851 y 11434 expuestos a LAN (`0.0.0.0`): Verificado el 2026-04-15. Puerto 7851 no está escuchando. Puerto 11434 (Ollama) sigue expuesto en `*`. Causa: `/etc/systemd/system/ollama.service.d/override.conf` fija `OLLAMA_HOST=0.0.0.0`. Corrección propuesta: cambiar a `OLLAMA_HOST=127.0.0.1:11434`, ejecutar `systemctl daemon-reload` y reiniciar `ollama`. Bloqueado por contraseña sudo.
+- [x] Evaluar cierre de puertos 7851 y 11434 expuestos a LAN (`0.0.0.0`): Resuelto el 2026-04-15. Puerto 7851 no está escuchando. Ollama fue restringido de `0.0.0.0:11434` a `127.0.0.1:11434` mediante override systemd, con backup previo del override.
 
 ### 5. 🤖 n8n y Workflows
 - [x] **`n8n-lucy` (legacy)**: No hay contenedor `n8n-lucy` corriendo el 2026-04-15. La instancia activa de Doctor Lucy es `doctor_lucy_n8n` en `127.0.0.1:6969`, saludable (`/healthz` responde `{"status":"ok"}`).
@@ -164,5 +164,5 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Pendientes saneados**: Se revisaron los pendientes historicos contra estado real de Docker, puertos, n8n, disco y procesos.
 - **Hardware**: Migracion NVMe confirmada. `/dev/nvme0n1p2` es el disco raiz activo, 1.9T totales, 49% usado.
 - **n8n Doctor Lucy**: `doctor_lucy_n8n` esta activo en `127.0.0.1:6969` y `/healthz` responde OK. La base local no contiene workflows, credenciales ni webhooks; Boot/Commit deben importarse o recrearse con API key si se quieren como workflows n8n reales.
-- **Seguridad**: Puerto 7851 cerrado. Puerto 11434 sigue expuesto globalmente por override systemd de Ollama; correccion bloqueada por sudo.
+- **Seguridad**: Puerto 7851 cerrado. Puerto 11434 restringido a `127.0.0.1` por override systemd de Ollama. Servicio reiniciado y funcional.
 - **Procesos externos**: No hay `send_cvs.py`, `nin_demon.py` ni stack `lucy_fusion` corriendo.

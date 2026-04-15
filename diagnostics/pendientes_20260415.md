@@ -5,7 +5,7 @@
 
 ## Estado General
 
-OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas eran estado viejo o pertenecian a proyectos externos. Los bloqueos reales restantes requieren credenciales o sudo.
+OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas eran estado viejo o pertenecian a proyectos externos. Tras recibir credencial sudo, el bloqueo de Ollama quedo resuelto; queda pendiente solo lo que requiere API key o decision explicita de restauracion/importacion.
 
 ## Resuelto / Cerrado
 
@@ -14,22 +14,13 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 - **doctor_lucy_n8n**: Activo y saludable en `127.0.0.1:6969`; `/healthz` responde `{"status":"ok"}`.
 - **n8n-lucy legacy**: No esta corriendo como contenedor separado. No se observa loop activo por encryption key.
 - **Puerto 7851**: No esta escuchando.
+- **Ollama puerto 11434**: Resuelto. El override systemd ahora define `OLLAMA_HOST=127.0.0.1:11434`; `ss` confirma escucha solo en localhost y `GET /api/tags` responde 18 modelos.
 - **Lucy Fusion/lucy_fusion**: No hay stack activo.
 - **nin_demon/send_cvs**: No hay procesos activos.
 - **Subagente de prueba**: `_test_subagent/task.md` completo y `_test_subagent/LUCY_REPORT.md` presente.
 
 ## Pendientes Reales
 
-- **Ollama puerto 11434**: Sigue escuchando en `*`. Causa confirmada: `/etc/systemd/system/ollama.service.d/override.conf` define `OLLAMA_HOST=0.0.0.0`.
-  - Correccion recomendada:
-    ```bash
-    sudo cp /etc/systemd/system/ollama.service.d/override.conf /etc/systemd/system/ollama.service.d/override.conf.backup-$(date +%Y%m%d-%H%M%S)
-    printf '[Service]\nEnvironment="OLLAMA_HOST=127.0.0.1:11434"\n' | sudo tee /etc/systemd/system/ollama.service.d/override.conf
-    sudo systemctl daemon-reload
-    sudo systemctl restart ollama
-    ss -ltnp | grep 11434
-    ```
-  - Bloqueo: `sudo` requiere password.
 - **Boot/Commit como workflows n8n**: La base `n8n_data/database.sqlite` tiene 0 workflows, 0 credenciales y 0 webhooks. La API responde `401` y exige `X-N8N-API-KEY`.
   - Resolver requiere API key n8n o importacion manual desde la UI.
   - Antes de modificar n8n productivo hay que hacer backup local de la base o export de workflows.
@@ -46,4 +37,6 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 - `sqlite3 n8n_data/database.sqlite ...`
 - `ps -ef | rg 'send_cvs|nin_demon|lucy_fusion|searxng|ollama serve|n8n'`
 - `git status --short --branch`
-
+- `systemctl cat ollama`
+- `systemctl status ollama --no-pager`
+- `curl http://127.0.0.1:11434/api/tags`
