@@ -167,3 +167,4 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Seguridad**: Puerto 7851 cerrado. Puerto 11434 restringido a `127.0.0.1` por override systemd de Ollama. Servicio reiniciado y funcional.
 - **API n8n**: Se creo desde cero una API key valida para `doctor_lucy_n8n` y se verifico con `GET /api/v1/workflows` (200 OK). La clave completa quedo en la carpeta local de contraseñas, no en Git.
 - **Procesos externos**: No hay `send_cvs.py`, `nin_demon.py` ni stack `lucy_fusion` corriendo.
+- **Persistencia final**: Estado guardado en bóveda SQLite, búnker JSONL, Knowledge Graph local, bitácoras Markdown y Git. La API key completa queda solo en la carpeta local de contraseñas; en Git solo se registra la ruta y el estado validado.

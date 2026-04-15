@@ -27,6 +27,15 @@ OPERATIVO con pendientes historicos depurados. La mayoria de las tareas antiguas
 - **Groq Fast Processor / Consultar Cerebro**: No existen en la instancia actual de `doctor_lucy_n8n`; no hay duplicado ni HTTP 500 reproducible. Si se necesitan, deben restaurarse desde `n8n_backups/workflows_json/`.
 - **Repo externo NIN**: `/home/lucy-ubuntu/Escritorio/NIN` tiene muchos archivos no trackeados. No se modifico por politica de jurisdiccion; requiere orden explicita sobre NIN.
 
+## Persistencia Final
+
+- Guardado en bóveda SQLite: `n8n_data/boveda_lucy.sqlite`.
+- Sincronizado al búnker JSONL: `data/lucy_bunker_log.jsonl`.
+- Guardado en Knowledge Graph local: `memoria/agente_memoria.db`.
+- Registrado en bitácoras: `memoria/bitacora_mantenimiento.md` y `docs/bitacora_mantenimiento.md`.
+- Guardado remoto: rama `memoria/bunker` en GitHub.
+- Política de secretos: la API key completa queda solo en la carpeta local de contraseñas, no en Git ni en reportes versionados.
+
 ## Comandos Ejecutados
 
 - `docker ps --format ...`
