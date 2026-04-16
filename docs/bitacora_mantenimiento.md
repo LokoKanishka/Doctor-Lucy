@@ -30,3 +30,10 @@
 **Resultado:** Se reviso el reinicio de la maquina, se reparo `watcher-daemon.service` con guard wrapper para evitar loop `203/EXEC`, se neutralizo el contenedor backup de n8n que compartia SQLite y se creo un clon n8n aislado en `127.0.0.1:6979`. Tambien se implemento Boot/Commit mediante `lucy-memory-gateway.service` + workflows n8n activos.
 **Validacion:** `GET /webhook/lucy/boot` y `POST /webhook/lucy/commit` respondieron HTTP 200; Commit inserto smoke test id 20 en `memoria_core`.
 **Responsable:** Doctora Lucy
+
+---
+
+**Fecha y Hora:** 16 de Abril 2026, 00:30 hs
+**Evento:** Auditoría Profunda del Sistema (Post Crasheo de GUI)
+**Resultado:** Hardware extremadamente sobrado y sano (RTX 5090, 128GB RAM). El síntoma reportado (aplicaciones Snap como Spotify y Firefox cerrándose de golpe, Dash negro, congelado) apunta fuertemente a una falla crítica repentina o desmonte del daemon de Snap (`snapd`) en caliente o un colapso del shell gráfico de GNOME, que no dejó OOMs en registros. Auditoría generada en `/diagnostics/auditoria_sistema.md`.
+**Responsable:** Doctora Lucy

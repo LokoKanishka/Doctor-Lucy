@@ -1,64 +1,50 @@
-# 🩺 Auditoría Completa del Sistema - Doctora Lucy
+# Auditoría Completa del Sistema
+**Fecha de ejecución:** 2026-04-16T00:30:00-03:00
 
-**Fecha y Hora:** 01 de Abril 2026, 23:03 hs (Hora Local)
-**Estado General:** 🟩 **OPERATIVO**
+## 1. Estado del Sistema
+- **OS:** Ubuntu 24.04.4 LTS (Noble Numbat)
+- **Kernel:** 6.17.0-20-generic
+- **Uptime:** 00:31:03 up 7 min (Sistema reiniciado recientemente)
+- **Hostname:** lucy-ubuntu-System-Product-Name
 
----
+## 2. Hardware
+- **CPU:** 32 Cores/Threads, Max 5883 MHz, 1 Socket
+- **RAM:** 128 GB (124 GiB total, 12 GiB en uso, 97 GiB libre)
+- **Swap:** 8.0 GiB (0 B en uso)
+- **GPU:** NVIDIA GeForce RTX 5090 (32 GB VRAM), Driver v570.211.01
 
-## 💻 1. Hardware y Sistema Operativo
+## 3. Almacenamiento
+- **Disco Principal (nvme0n1):** 2.0 TB NVMe (nvme0n1p2: 1.9 TB, 49% en uso, montado en `/`)
+- **Partición EFI:** 1.1 GB (nvme0n1p1, montado en `/boot/efi`)
+- **Loops (Snaps):** Múltiples aplicaciones Snap montadas activamente en loop.
 
-### OS Info
-- **Distribución:** Ubuntu 24.04.4 LTS (Noble Numbat)
-- **Kernel:** 6.17.0-19-generic
-- **Uptime:** 2:39 hs
+## 4. Servicios Activos (Destacados)
+- **Docker:** Activo y corriendo con normalidad
+- **N8N:** Procesos de `node /usr/local/bin/n8n` detectados (PID 3038, 3137)
+- **Antigravity (VS Code/Agents):** Procesos detectados en ejecución de lenguaje natural y extensiones.
 
-### Procesamiento y Memoria
-- **CPU:** 32 Cores disponibles. Frecuencia de uso actual ~76%. (Load Average: 3.85, 2.92, 2.44)
-- **RAM:** 14 GiB Usados / 86 GiB Libres (Total: 124 GiB)
-- **Swap:** 0 B Usados / 8.0 GiB Libres
+## 5. Aplicaciones por Memoria (Top RAM Hogs)
+1. `/snap/spotify/93/` (Renderer de Spotify) (3.7% RAM)
+2. `chrome` (7.4% RAM - principal proceso web)
+3. `antigravity` (Language server y VS Code backend) (2.4% - 4.5% RAM)
 
-### GPU (Gráficos y Tensor Core)
-- **Modelo:** NVIDIA GeForce RTX 5090
-- **VRAM Total:** 32607 MiB
-- **Uso actual:** 10%
-- **Temperatura:** 54°C
-- **Driver:** 570.211.01
+## 6. Inteligencia Artificial local (Ollama)
+- **Modelos Instalados:** (Total ~263 GB, 18 modelos)
+  - qwen3-coder-next:latest (51 GB)
+  - qwen3-coder:30b-a3b-q8_0 (32 GB)
+  - gemma-3-stable:latest (29 GB)
+  - glm-4.7-flash:latest (19 GB)
+  - devstral-small-2:latest (15 GB)
+  - ...y otros modelos avanzados de LLM y Vision.
 
-### Almacenamiento Principal
-- **Disco Raíz (`/`):** 1.9T de capacidad, 539G usados (30%), 1.3T disponibles. SSD NVMe en perfecto estado.
+## 7. Contenedores Docker (activos)
+- `doctor_lucy_n8n` (N8N) - 127.0.0.1:6969
+- `searxng-lucy` (SearxNG) - 127.0.0.1:8080
+- `qdrant-lucy` (Qdrant Database) - 6333/6334
+- `N8N-NiN-uso-exclusivo-del-proyecto-nin` - 127.0.0.1:5688
+- `lucy_open_webui` (Open WebUI CUDA) - 0.0.0.0:3001
+- `lucy_memory_qdrant` - 6333
 
----
-
-## ⚙️ 2. Servicios e Infraestructura
-
-### Contenedores y Nodos
-El ecosistema Docker está levantado y saludable:
-- `lucy_open_webui`: En puerto 3001
-- `N8N-NiN-uso-exclusivo-del-proyecto-nin`: Servidor n8n activo (5678)
-- `qdrant-lucy` & `lucy_memory_qdrant`: Motores vectoriales (6333/6334)
-- `searxng-lucy`: Motor de búsqueda (8080)
-
-### Motores de Inferencia (Ollama)
-Disponemos de un arsenal robusto pre-descargado (15+ modelos), destacando:
-- **Qwen3 Coder** (30B y 14B)
-- **Gemma 3 Stable** (29GB)
-- **GLM 4.7 Flash**
-- **LLaMA 3.1 & 3.2 Vision**
-
-### Consumo de Recursos (Top Profiling)
-Actualmente los procesos que más memoria demandan son:
-1. `steam` (Descargando/Actualizando - recién instalado)
-2. `chrome` (Múltiples renderers y procesos)
-3. `code` (VS Code + Language Servers)
-4. `antigravity` (Servicios AI)
-5. `open_webui` (Python backend)
-
----
-
-## 🔒 3. Seguridad y Anomalías
-- **Seguridad:** Puertos estándar locales operativos (`127.0.0.1`). Ningún proceso externo sospechoso consumiendo recursos CPU/GPU.
-- **Servicios:** Systemd reporta `35 loaded units` saludables. Daemon de Nvidia, persistencia, Docker y Ollama operando normalmente.
-- **Anomalías:** No se detectan bloqueos (locks de apt liberados). El procesador refleja carga moderada por los contenedores, lo cual es normal.
-
----
-*Reporte generado automáticamente por Protocolo "Revisión de Lucy".*
+## 8. Observaciones / Acciones Pendientes
+- **Crasheo previo del entorno gráfico/snap:** Se reportó por la usuaria el congelamiento de ventanas (barra negra, aplicaciones con tildes rojas, Spotify y Firefox cerrándose instantáneamente). Si bien el hardware es extremadamente robusto (RTX 5090, 128GB RAM), los síntomas concuerdan con un crasheo del entorno Wayland/GNOME Shell, o del deamon de Snap (`snapd`) en la sesión anterior, el cual desmontó los File Systems en caliente y produjo que toda interacción causara un error de entrada/salida (cerrando las apps).
+- **Fallback Activo:** El sistema volvió con un nuevo boot tras un hard reset. El hardware se encuentra en excelente estado (temperatura GPU 45°C en reposo, 22% VRAM ocupada) y el almacenamiento tiene más de 900 GB libres. No hay indicios de cuellos de botella de capa física.
