@@ -37,3 +37,10 @@
 **Evento:** Auditoría Profunda del Sistema (Post Crasheo de GUI)
 **Resultado:** Hardware extremadamente sobrado y sano (RTX 5090, 128GB RAM). El síntoma reportado (aplicaciones Snap como Spotify y Firefox cerrándose de golpe, Dash negro, congelado) apunta fuertemente a una falla crítica repentina o desmonte del daemon de Snap (`snapd`) en caliente o un colapso del shell gráfico de GNOME, que no dejó OOMs en registros. Auditoría generada en `/diagnostics/auditoria_sistema.md`.
 **Responsable:** Doctora Lucy
+
+---
+
+**Fecha y Hora:** 16 de Abril 2026, 01:10 hs
+**Evento:** Integración de Jira MCP y Persistencia de Memoria
+**Resultado:** Servidor `@aashari/mcp-server-atlassian-jira` instalado y configurado en `mcporter.json`. Smoke test exitoso (v3.3.0). Manual generado en `docs/JIRA_MCP_INTEGRATION.md`. Hito persistido en Bóveda SQLite (Core Memory). Pendiente: Carga de credenciales por el usuario.
+**Responsable:** Doctora Lucy
