@@ -39,8 +39,9 @@
 **Responsable:** Doctora Lucy
 
 ---
-
-**Fecha y Hora:** 16 de Abril 2026, 01:10 hs
-**Evento:** Integración de Jira MCP y Persistencia de Memoria
-**Resultado:** Servidor `@aashari/mcp-server-atlassian-jira` instalado y configurado en `mcporter.json`. Smoke test exitoso (v3.3.0). Manual generado en `docs/JIRA_MCP_INTEGRATION.md`. Hito persistido en Bóveda SQLite (Core Memory). Pendiente: Carga de credenciales por el usuario.
-**Responsable:** Doctora Lucy
+42: 
+43: **Fecha y Hora:** 16 de Abril 2026, 22:30 hs
+44: **Evento:** Carga de Token y Activación de Jira MCP
+45: **Resultado:** Se recibió el API Token de Atlassian del usuario e integró en `mcporter.json`. La integración está técnicamente completa y el servidor Jira MCP está listo para operaciones autónomas.
+46: **Responsable:** Doctora Lucy
+47: 

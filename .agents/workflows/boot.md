@@ -8,6 +8,16 @@ description: Protocolo de arranque obligatorio - carga contexto desde bóveda SQ
 
 ## Al inicio de CADA conversación nueva, ejecutá estos pasos EN ORDEN:
 
+### Paso 0: Verificar y Activar Voz (SIEMPRE PRIMERO)
+```bash
+ss -tunlp | grep 7851 || (cd /home/lucy-ubuntu/Archivo_proyectos/Taverna/Taverna-legacy/alltalk_tts && ./launch.sh > alltalk.log 2>&1 & sleep 30)
+```
+- Si el puerto 7851 no responde, lanzar AllTalk en background y esperar 30 segundos.
+- Una vez activo, disparar **saludo de voz obligatorio** al finalizar el boot:
+```bash
+bash "/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/lucy_announcer.sh" "Lucy en línea. Sistema de voz activo. Memoria cargada y lista para operar."
+```
+
 ### Paso 1: Leer la Bóveda (fuente primaria)
 ```bash
 sqlite3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/boveda_lucy.sqlite" "SELECT contenido_memoria, metadatos FROM memoria_core ORDER BY id DESC LIMIT 1;"

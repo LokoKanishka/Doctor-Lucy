@@ -19,7 +19,7 @@ El servidor requiere las siguientes variables de entorno en el objeto `env` de l
 | :--- | :--- | :--- |
 | `ATLASSIAN_SITE_NAME` | Subdominio de Jira (ej: `empresa` en `empresa.atlassian.net`) | `chat-jepete` |
 | `ATLASSIAN_USER_EMAIL` | Email de la cuenta de Atlassian | `chatjepetex4@gmail.com` |
-| `ATLASSIAN_API_TOKEN` | Token generado en id.atlassian.com | *Pendiente* |
+| `ATLASSIAN_API_TOKEN` | Token generado en id.atlassian.com | *Configurado* |
 
 ## Cómo usar desde Agentes
 Una vez configuradas las credenciales, el agente Lucy podrá gestionar tickets de Jira automáticamente pidiendo permiso para buscar o leer estados de proyectos.

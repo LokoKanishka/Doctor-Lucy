@@ -1,0 +1,1 @@
+Resumen de Auditoría: CPU Ryzen 9 7900X, GPU RTX 5090 (38C), RAM 64GB. Sistema estable.
