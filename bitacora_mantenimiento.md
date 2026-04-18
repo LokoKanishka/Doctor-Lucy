@@ -58,6 +58,8 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 | Fecha | Hora | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- | :--- |
+| 2026-04-17 | 16:21 | **Sincronización Puerto Voz** | ✅ Éxito | Motor AllTalk sincronizado al puerto `7852`. Corregido desajuste en `scripts/lucy_alltalk.py`. |
+| 2026-04-17 | 16:18 | **Voz Neural Sophie Anderson** | ✅ Éxito | Estabilizada voz Sophie Anderson (Lucy_Cunningham.wav). Fix de timeouts y división de mensajes. |
 | 2026-03-02 | 17:40 | **Aislamiento Óptico (Frontera Segura)** | ✅ Éxito | Refactorizados `auditoria.sh` y `sys_check.sh`. Alcance "Project-Only" por defecto. Escaneos globales (Docker/Red) convertidos en comandos 100% Opt-in. Riesgo de intromisión eliminado. |
 | 2026-03-02 | 17:05 | **Purga de Privacidad (BFG)** | ✅ Éxito | API Key filtrada de Gemini obliterada del historial de Git en los 37 commits históricos usando BFG Repo-Cleaner. `.env` saneado y agregado a `.gitignore`. |
 | 2026-03-02 | 16:50 | **Migración Inmortal RAG (Ollama L)** | ✅ Éxito | RAG desacoplado de Internet y Gemini. Embebidos apuntando a `nomic-embed-text` (Ollama 127.0.0.1:11434). Fail-Fast strict timeout=5 implementado. Qdrant reconstruido a 768 dims. |
@@ -155,7 +157,7 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 *Este documento es dinámico. Consultar [auditoria_sistema.md](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/auditoria_sistema.md) para detalles técnicos profundos.*
 2026-03-05 03:36:00 - Auditoría completa realizada. Estado ÓPTIMO.
 
-## Mantenimiento 2026-03-06
-- **Limpieza**: Se eliminaron logs de n8n (`n8nEventLog-*.log`) y se ejecutó `VACUUM` en `database.sqlite`.
-- **Temporales**: Eliminación de archivos `*.tmp` y carpetas `__pycache__`.
-- **Servicios**: Se intentó reparar `lucy_fusion_searxng` ajustando permisos a 777 en su carpeta de configuración. El servicio sigue reportando Error 127/Permission Denied en logs internos. Pendiente revisión de `settings.yml`.
+## Mantenimiento 2026-04-17
+- **Limpieza**: Eliminación de archivos temporales `lucy_temp_*.wav` y purga de carpetas `__pycache__` en el directorio de scripts.
+- **Voz**: Migración total confirmada a voz neural en puerto 7852.
+- **Memoria**: Sincronización con la Bóveda SQLite (memoria_core) completada.

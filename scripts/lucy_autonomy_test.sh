@@ -15,6 +15,6 @@ echo "---------------------------------------"
 # Generar y reproducir audio en un solo paso
 # Forzamos volumen al 100% en el sink
 pactl set-sink-volume "$SINK" 100%
-python3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/lucy_alltalk.py" "$TEXT" "Sophie_Anderson CC3.wav" es
+python3 "/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/lucy_alltalk.py" "$TEXT" "Lucy_Cunningham.wav" es
 
 echo "Misión de auditoría completada."

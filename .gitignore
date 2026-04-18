@@ -17,3 +17,5 @@ agente_memoria.db
 data/*
 !data/lucy_bunker_log.jsonl
 data/music_brain/*.sqlite
+.voice_env/
+miniconda.sh

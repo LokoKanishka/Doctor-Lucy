@@ -10,10 +10,11 @@ import subprocess
 import uuid
 
 # Configuración
-ALLTALK_URL = "http://127.0.0.1:7851/api/generate"
+LUCY_ALLTALK_URL = os.getenv("LUCY_ALLTALK_URL", "http://127.0.0.1:7854/api/generate")
+""
 OUTPUT_DIR = "/home/lucy-ubuntu/Archivo_proyectos/Taverna/Taverna-legacy/alltalk_tts"
 
-def speak(text, voice="Sophie_Anderson CC3.wav", language="es"):
+def speak(text, voice="Lucy_Cunningham.wav", language="es"):
     audio_filename = f"lucy_temp_{uuid.uuid4().hex}.wav"
     
     # Schema validado contra la API real de AllTalk TTS
@@ -27,7 +28,7 @@ def speak(text, voice="Sophie_Anderson CC3.wav", language="es"):
     }
 
     try:
-        response = requests.post(ALLTALK_URL, json=payload, timeout=60)
+        response = requests.post(LUCY_ALLTALK_URL, json=payload, timeout=120)
         result = response.json()
         
         if result.get("status") == "generate-success":
@@ -60,7 +61,7 @@ if __name__ == "__main__":
         sys.exit(1)
     
     input_text = sys.argv[1]
-    input_voice = sys.argv[2] if len(sys.argv) > 2 else "Sophie_Anderson CC3.wav"
+    input_voice = sys.argv[2] if len(sys.argv) > 2 else "Lucy_Cunningham.wav"
     input_lang = sys.argv[3] if len(sys.argv) > 3 else "es"
     
     speak(input_text, input_voice, input_lang)

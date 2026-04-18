@@ -4,7 +4,7 @@
 
 MESSAGE=$1
 # Voz Sophie Anderson para máxima elegancia y profundidad
-VOICE="Sophie_Anderson CC3.wav"
+VOICE="Lucy_Cunningham.wav"
 LANGUAGE="es"
 
 # Reproductor robusto: ffplay maneja mejor los cambios de sample rate y buffer.
