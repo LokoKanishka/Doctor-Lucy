@@ -1,29 +1,35 @@
-# Informe de Auditoría de Sistemas - Doctora Lucy 🩺💻
+# Auditoría Completa del Sistema
+**Fecha de Auditoría:** 2026-04-21 20:17 (Local)
 
-**Fecha:** 2026-04-17 01:15
-**Responsable:** Lucy (Agente IA)
+## Estado del Sistema
+- **OS:** Ubuntu 24.04.4 LTS
+- **Kernel:** 6.17.0-20-generic
+- **Uptime:** up 48 minutes
+- **Hostname:** lucy-ubuntu-System-Product-Name
 
-## 1. Signos Vitales (Hardware)
-- **Cerebro (CPU):** AMD Ryzen 9 7900X de 12 núcleos (hasta 5.6GHz). Funcionamiento óptimo.
-- **Memoria (RAM):** 64GB DDR5. Uso actual: ~12GB (muy ligero).
-- **Visión (GPU):** NVIDIA GeForce **RTX 5090** (32GB VRAM). Temperatura: 38°C (Estable).
-- **Esqueleto (Discos):** 
-  - Almacenamiento Principal: 1.8TB (55% libre).
-  - Almacenamiento Externo: Mecapara/Storage_lucy detectado.
+## Hardware Clave
+- **CPU:** 32 cores, 1 Socket, escalando entre 425 MHz y 5883 MHz.
+- **Memoria RAM:** 124Gi Total / 19Gi Usado / 77Gi Libre.
+- **GPU:** NVIDIA GeForce RTX 5090 (32607 MiB), Driver 570.211.01. Temp: 45C. Utilización: 2%.
 
-## 2. Sistema Operativo y Conectividad
-- **SO:** Ubuntu 24.04.1 LTS (Noble Numbat).
-- **Kernel:** 6.8.0-45-generic.
-- **Uptime:** 4 horas, 28 minutos.
-- **Red:** Puertos 6969 (n8n), 11434 (ollama) y 8080 (interface) activos.
+## Almacenamiento
+- **Raíz (nvme0n1p2):** 1.9T Total / 946G Usado (53%)
 
-## 3. Entorno de Aplicaciones (Docker)
-- **n8n:** Contenedor `doctor_lucy_n8n` activo en puerto 6969.
-- **Web Interface:** `lucy_open_webui` operativa.
-- **Ollama:** Disponible con modelos Llama 3.2, Qwen y Gemma 3.
+## Contenedores Docker Activos
+- doctor_lucy_n8n
+- searxng-lucy
+- qdrant-lucy
+- N8N-NiN-uso-exclusivo-del-proyecto-nin
+- lucy_open_webui
+- lucy_memory_qdrant
 
-## 4. Diagnóstico Final
-El sistema se encuentra en un estado **EXCELENTE**. No hay cuellos de botella en CPU ni RAM. La RTX 5090 está lista para cargas pesadas de inferencia. La integración de voz y autonomía está operando sin errores de ruteo.
+## Procesos de Inteligencia (Servicios & IA)
+- **Ollama:** Inactivo temporalmente o sin modelos cargados en memoria RAM.
+- **AllTalk TTS (Lucy):** Activo (PID 12478) usando 3.0% RAM y 124% CPU (Picos al hablar).
+- **AllTalk (Fusion Reader):** Activo (PID 13269, 13265) usando ~2.7% RAM conjunta.
 
----
-*Fin del reporte de Auditoría.*
+## Observaciones de Salud
+- La GPU 5090 está prácticamente en reposo absoluto (2%).
+- RAM sobra por completo (77 GB libres).
+- Discos con 53% de uso, hay espacio de sobra.
+- Todo corre a la perfección.
