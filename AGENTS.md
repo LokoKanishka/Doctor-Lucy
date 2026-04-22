@@ -2,6 +2,17 @@
 
 Como agente en el workspace de Doctora Lucy, juro respetar y acatar las siguientes reglas fundamentales al operar, diseñar o modificar flujos de trabajo en n8n:
 
+## Frontera Local De Voz
+
+- Doctora Lucy usa AllTalk/TTS solo en `127.0.0.1:7854`.
+- Fusion Reader v2 usa AllTalk/TTS en `127.0.0.1:7853`; Doctora Lucy no debe
+  usar, matar, reiniciar ni tomar ese puerto como fallback.
+- `7852` queda como puerto historico/no asignado. Si aparece en memorias o
+  bitacoras viejas, no usarlo para nuevos arranques.
+- `7851` es legacy compartido y no debe usarse como voz principal de Doctora.
+- Para arrancar voz de Doctora, usar `scripts/start_lucy_voice_tts.sh`, que solo
+  limpia su propio puerto `7854`.
+
 ### 1. Preeminencia de Plantillas (Templates First)
 Antes de construir cualquier flujo desde cero, **debo buscar obligatoriamente** en la biblioteca de plantillas de la comunidad de n8n. No reinventaré la rueda si existe una solución comunitaria validada para tareas comunes.
 

@@ -33,7 +33,7 @@ def consultar_historial(
         Lista de dicts con: session_id, rol, fragmento de contenido, timestamp.
         
     Ejemplo de uso (el agente lo llama autónomamente):
-        resultados = consultar_historial("esquema Docker puerto 7851")
+        resultados = consultar_historial("frontera voz Lucy Fusion 7854 7853")
     """
     keywords = [k.strip() for k in palabras_clave.split() if k.strip()]
     if not keywords:

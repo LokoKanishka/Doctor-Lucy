@@ -29,7 +29,7 @@ def speak(text, voice="female_03.wav", language="es"):
 
     try:
         print(f"[Lucy TTS] Enviando solicitud a {LUCY_ALLTALK_URL}...")
-        response = requests.post(LUCY_ALLTALK_URL, json=payload, timeout=120)
+        response = requests.post(LUCY_ALLTALK_URL, json=payload, timeout=600)
         result = response.json()
         
         if result.get("status") == "generate-success":
@@ -43,7 +43,7 @@ def speak(text, voice="female_03.wav", language="es"):
                 try:
                     ret = subprocess.run(
                         ["ffplay", "-autoexit", "-nodisp", "-loglevel", "error", audio_path],
-                        check=False, timeout=60
+                        check=False, timeout=300
                     )
                     played = (ret.returncode == 0)
                     if not played:
@@ -51,7 +51,7 @@ def speak(text, voice="female_03.wav", language="es"):
                 except FileNotFoundError:
                     print("[Lucy TTS] ffplay no encontrado.")
                 except subprocess.TimeoutExpired:
-                    print("[Lucy TTS] ffplay timeout (60s).")
+                    print("[Lucy TTS] ffplay timeout (300s).")
 
                 # Fallback: paplay con sink explícito
                 if not played:

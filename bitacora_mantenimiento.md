@@ -40,6 +40,10 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Puertos activos**: 5678 (n8n), 5688 (n8n-lucy), 8080/8081 (searxng), 7851 (TTS), 6333 (qdrant)
 - **Túneles**: `cloudflared` instalado (Túnel Cloudflare activo).
 
+> Nota 2026-04-19: la lista anterior es historica. La frontera actual de voz es
+> Doctora Lucy `7854`, Fusion Reader v2 `7853`, `7852` historico/no asignado y
+> `7851` solo legacy compartido.
+
 ### 🤖 Modelos Ollama
 | Modelo | Tamaño | Cuantización | Estado |
 | :--- | :--- | :--- | :--- |
@@ -58,7 +62,8 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 | Fecha | Hora | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- | :--- |
-| 2026-04-17 | 16:21 | **Sincronización Puerto Voz** | ✅ Éxito | Motor AllTalk sincronizado al puerto `7852`. Corregido desajuste en `scripts/lucy_alltalk.py`. |
+| 2026-04-19 | 14:20 | **Frontera de voz Lucy/Fusion** | ✅ Éxito | Regla actual: Doctora Lucy usa `7854`; Fusion Reader v2 usa `7853`; `7852` queda histórico/no asignado. Los scripts de Doctora solo deben limpiar `7854`. |
+| 2026-04-17 | 16:21 | **Sincronización Puerto Voz** | ✅ Histórico | Registro obsoleto: en esa fecha se usó `7852`, pero desde 2026-04-19 Doctora usa `7854` y Fusion `7853`. |
 | 2026-04-17 | 16:18 | **Voz Neural Sophie Anderson** | ✅ Éxito | Estabilizada voz Sophie Anderson (Lucy_Cunningham.wav). Fix de timeouts y división de mensajes. |
 | 2026-03-02 | 17:40 | **Aislamiento Óptico (Frontera Segura)** | ✅ Éxito | Refactorizados `auditoria.sh` y `sys_check.sh`. Alcance "Project-Only" por defecto. Escaneos globales (Docker/Red) convertidos en comandos 100% Opt-in. Riesgo de intromisión eliminado. |
 | 2026-03-02 | 17:05 | **Purga de Privacidad (BFG)** | ✅ Éxito | API Key filtrada de Gemini obliterada del historial de Git en los 37 commits históricos usando BFG Repo-Cleaner. `.env` saneado y agregado a `.gitignore`. |
@@ -159,5 +164,5 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 ## Mantenimiento 2026-04-17
 - **Limpieza**: Eliminación de archivos temporales `lucy_temp_*.wav` y purga de carpetas `__pycache__` en el directorio de scripts.
-- **Voz**: Migración total confirmada a voz neural en puerto 7852.
+- **Voz**: Registro historico obsoleto: se habia confirmado voz neural en puerto 7852. Desde 2026-04-19 Doctora usa 7854 y Fusion Reader v2 usa 7853.
 - **Memoria**: Sincronización con la Bóveda SQLite (memoria_core) completada.

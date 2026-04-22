@@ -15,6 +15,16 @@
 
 ---
 
+## 2026-04-19 14:38 -03 — Frontera De Voz Lucy/Fusion
+
+- Doctora Lucy usa AllTalk/TTS exclusivamente en `127.0.0.1:7854`.
+- Fusion Reader v2 usa AllTalk GPU exclusivamente en `127.0.0.1:7853`.
+- Fusion exige `runtime/fusion_reader_v2/tts_owner.json` con `owner=fusion_reader_v2`.
+- `7852` queda historico/no asignado; `7851` queda solo como legacy compartido.
+- Cualquier entrada anterior que diga Lucy `7851` o Fusion `7852` queda obsoleta.
+
+---
+
 ## 🚀 Perfil Actual del Sistema
 *Última auditoría completa: 2026-03-01 04:11hs*
 
@@ -52,6 +62,9 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **Puertos activos**: 5678 (n8n), 5688 (n8n-lucy), 8080/8081 (searxng), 7851 (TTS), 6333 (qdrant)
 - **Túneles**: `cloudflared` instalado (Túnel Cloudflare activo).
 
+> Nota 2026-04-19: la lista anterior es historica. Para voz local usar la
+> frontera actual: Lucy `7854`, Fusion `7853`, `7852` historico/no asignado.
+
 ### 🤖 Modelos Ollama
 | Modelo | Tamaño | Cuantización | Estado |
 | :--- | :--- | :--- | :--- |
@@ -70,6 +83,7 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 
 | Fecha | Hora | Acción | Resultado | Notas |
 | :--- | :--- | :--- | :--- | :--- |
+| 2026-04-19 | 14:38 | **Frontera de voz Lucy/Fusion** | ✅ Éxito | Doctora Lucy usa `7854`; Fusion Reader v2 usa `7853`; `7852` queda histórico/no asignado; `7851` solo legacy. |
 | 2026-03-02 | 17:40 | **Aislamiento Óptico (Frontera Segura)** | ✅ Éxito | Refactorizados `auditoria.sh` y `sys_check.sh`. Alcance "Project-Only" por defecto. Escaneos globales (Docker/Red) convertidos en comandos 100% Opt-in. Riesgo de intromisión eliminado. |
 | 2026-03-02 | 17:05 | **Purga de Privacidad (BFG)** | ✅ Éxito | API Key filtrada de Gemini obliterada del historial de Git en los 37 commits históricos usando BFG Repo-Cleaner. `.env` saneado y agregado a `.gitignore`. |
 | 2026-03-02 | 16:50 | **Migración Inmortal RAG (Ollama L)** | ✅ Éxito | RAG desacoplado de Internet y Gemini. Embebidos apuntando a `nomic-embed-text` (Ollama 127.0.0.1:11434). Fail-Fast strict timeout=5 implementado. Qdrant reconstruido a 768 dims. |
@@ -180,6 +194,10 @@ Estado de los motores que mueven los proyectos (Cunningham-Espejo, NIN, Doctor L
 - **API n8n**: Se creo desde cero una API key valida para `doctor_lucy_n8n` y se verifico con `GET /api/v1/workflows` (200 OK). La clave completa quedo en la carpeta local de contraseñas, no en Git.
 - **Procesos externos**: No hay `send_cvs.py`, `nin_demon.py` ni stack `lucy_fusion` corriendo.
 - **Persistencia final**: Estado guardado en bóveda SQLite, búnker JSONL, Knowledge Graph local, bitácoras Markdown y Git. La API key completa queda solo en la carpeta local de contraseñas; en Git solo se registra la ruta y el estado validado.
+
+## Mantenimiento 2026-04-19
+- **Voz**: Frontera actual escrita en memoria secundaria: Doctora Lucy `7854`, Fusion Reader v2 `7853`, `7852` historico/no asignado, `7851` legacy compartido.
+- **Obsolescencia**: Entradas previas que mencionan Lucy `7851` o Fusion `7852` no deben usarse para nuevos arranques.
 
 ## Prueba contenedores n8n 2026-04-15 18:17 -03
 - **doctor_lucy_n8n**: Probado OK. Contenedor arriba en `127.0.0.1:6969`; `/healthz` responde `{"status":"ok"}`; editor responde HTTP 200; API key local validada con `GET /api/v1/workflows` (`200 OK`, sin workflows cargados).

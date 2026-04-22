@@ -63,6 +63,26 @@
                 "-y",
                 "@mrsknetwork/ytmcp"
             ]
+        },
+        "anthropic-fetch": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-fetch"]
+        },
+        "anthropic-git": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-git"]
+        },
+        "anthropic-sequentialthinking": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-sequentialthinking"]
+        },
+        "anthropic-time": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-time"]
+        },
+        "anthropic-filesystem": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/lucy-ubuntu/Escritorio"]
         }
     }
 }

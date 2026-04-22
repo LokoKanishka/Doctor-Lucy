@@ -26,15 +26,15 @@ def test_guardar_mensajes(session_id):
     print(f"\n{SEP}")
     print("TEST 2: Guardar mensajes (auto_save_back)")
     eventos = [
-        {"rol": "user", "contenido": "Hola, necesito configurar el puerto 7851 para AllTalk TTS."},
-        {"rol": "assistant", "contenido": "El puerto 7851 está disponible. El contenedor lucy_voice_alltalk está activo."},
-        {"rol": "tool", "contenido": "docker ps | grep alltalk → lucy_voice_alltalk running"},
+        {"rol": "user", "contenido": "Hola, necesito verificar la frontera de voz Lucy/Fusion."},
+        {"rol": "assistant", "contenido": "Doctora Lucy usa 7854; Fusion Reader v2 usa 7853 con owner=fusion_reader_v2; 7852 es historico y 7851 legacy."},
+        {"rol": "tool", "contenido": "scripts/verify_voice_port_isolation.sh → frontera de voz OK"},
         {"rol": "user", "contenido": "También necesito revisar el esquema de la base de datos SQLite."},
         {"rol": "assistant", "contenido": "El esquema tiene tablas: sesiones, mensajes, metadatos, cache_global."},
     ]
     tokens = auto_save_back(session_id, eventos, metadatos={
         "proyecto": "Doctor Lucy",
-        "servicio_activo": "AllTalk TTS puerto 7851",
+        "servicio_activo": "AllTalk TTS Lucy puerto 7854",
         "ultima_accion": "Demo de memoria SQLite",
     })
     print(f"  ✅ {len(eventos)} mensajes guardados. Tokens estimados: {tokens}")
@@ -51,9 +51,9 @@ def test_recuperar_sesion(session_id):
 def test_busqueda_keywords(session_id):
     print(f"\n{SEP}")
     print("TEST 4: consultar_historial (búsqueda por keywords)")
-    resultados = consultar_historial("AllTalk puerto", session_id=session_id)
+    resultados = consultar_historial("AllTalk frontera", session_id=session_id)
     assert len(resultados) > 0
-    print(f"  ✅ Encontrados {len(resultados)} fragmentos para 'AllTalk puerto'")
+    print(f"  ✅ Encontrados {len(resultados)} fragmentos para 'AllTalk frontera'")
     for r in resultados:
         print(f"    [{r['rol']}] {r['fragmento'][:80]}... (match: '{r['keyword_match']}')")
 
