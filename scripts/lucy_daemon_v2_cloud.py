@@ -12,8 +12,10 @@ import time
 import asyncio
 import aiohttp
 import subprocess
-import urllib.request
 import urllib.parse
+import sys
+sys.path.append("/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts")
+from lucy_openclaw_bridge import delegate_mission
 
 def load_env(filepath):
     if not os.path.exists(filepath): return
@@ -96,7 +98,8 @@ async def agent_loop(user_input, chat_id):
     temp_hist.append({"role": "user", "content": user_input})
 
     try:
-        final_text = await get_gemini_response(system_prompt, temp_hist)
+        log(f"Delegando a OpenClaw: {user_input}")
+        final_text = delegate_mission(user_input)
         
         conversation_history.append({"role": "user", "content": user_input})
         conversation_history.append({"role": "assistant", "content": final_text})
@@ -106,8 +109,8 @@ async def agent_loop(user_input, chat_id):
         telegram_send(chat_id, final_text)
 
     except Exception as e:
-        log(f"Error en Agent Loop (Cloud): {e}")
-        telegram_send(chat_id, f"🩺 Diego, tuve un error en mi conexión a la nube: {e}")
+        log(f"Error en Agent Loop (OpenClaw): {e}")
+        telegram_send(chat_id, f"🩺 Diego, tuve un error delegando a mi motor OpenClaw: {e}")
 
 async def run_heartbeat():
     """Ejecuta las tareas definidas en HEARTBEAT.md"""
