@@ -30,6 +30,12 @@
                 "TAVILY_API_KEY": "REEMPLAZAR_CON_ENV_VAR"
             }
         },
+        "lucy-master-search": {
+            "command": "python3",
+            "args": [
+                "/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/master_search.py"
+            ]
+        },
         "nin-n8n-v3": {
             "command": "npx",
             "args": [

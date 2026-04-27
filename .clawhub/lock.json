@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "skills": {
+    "clawhub-local": {
+      "version": "1.0.0",
+      "installedAt": 1777242774652
+    },
+    "discord": {
+      "version": "1.0.1",
+      "installedAt": 1777242781577
+    },
+    "slack": {
+      "version": "1.0.0",
+      "installedAt": 1777242783548
+    },
+    "trello": {
+      "version": "1.0.0",
+      "installedAt": 1777242785461
+    },
+    "notion": {
+      "version": "1.0.0",
+      "installedAt": 1777242786878
+    },
+    "spotify-player": {
+      "version": "1.0.0",
+      "installedAt": 1777242788757
+    },
+    "summarize-pro": {
+      "version": "1.0.0",
+      "installedAt": 1777242790729
+    },
+    "voice-call": {
+      "version": "0.1.0",
+      "installedAt": 1777242799517
+    },
+    "session-logs": {
+      "version": "1.0.0",
+      "installedAt": 1777242800843
+    },
+    "camsnap": {
+      "version": "1.0.0",
+      "installedAt": 1777242802222
+    },
+    "model-usage-linux": {
+      "version": "1.0.0",
+      "installedAt": 1777242804127
+    },
+    "oracle": {
+      "version": "1.0.1",
+      "installedAt": 1777242806023
+    },
+    "mcporter": {
+      "version": "1.0.0",
+      "installedAt": 1777242807920
+    },
+    "twitter-x-api": {
+      "version": "1.0.0",
+      "installedAt": 1777242816399
+    },
+    "sag": {
+      "version": "1.0.0",
+      "installedAt": 1777242818345
+    },
+    "goplaces": {
+      "version": "1.0.0",
+      "installedAt": 1777242830250
+    },
+    "1password": {
+      "version": "1.0.1",
+      "installedAt": 1777242832251
+    },
+    "apple-notes": {
+      "version": "1.0.0",
+      "installedAt": 1777242880782
+    },
+    "apple-reminders": {
+      "version": "1.0.0",
+      "installedAt": 1777242882692
+    },
+    "bear-notes": {
+      "version": "1.0.0",
+      "installedAt": 1777242884903
+    },
+    "things-mac": {
+      "version": "1.0.0",
+      "installedAt": 1777242886401
+    },
+    "imsg": {
+      "version": "1.0.0",
+      "installedAt": 1777242888388
+    },
+    "bluebubbles": {
+      "version": "1.0.0",
+      "installedAt": 1777242889787
+    },
+    "peekaboo": {
+      "version": "1.0.0",
+      "installedAt": 1777242891609
+    }
+  }
+}

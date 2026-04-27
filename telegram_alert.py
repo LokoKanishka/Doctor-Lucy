@@ -12,7 +12,7 @@ load_dotenv()
 
 # Credenciales desde el entorno
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHAT_ID = os.getenv("TELEGRAM_DIEGO_ID")
+CHAT_ID = os.getenv("TELEGRAM_DIEGO_ID") or os.getenv("DIEGO_TELEGRAM_ID")
 
 def send_telegram_message(message, dry_run=False):
     try:

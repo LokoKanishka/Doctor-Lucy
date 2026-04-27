@@ -1,0 +1,243 @@
+│
+◇  Doctor warnings ────────────────────────────────────────────╮
+│                                                              │
+│  - State dir migration skipped: target already exists        │
+│    (/home/lucy-ubuntu/.openclaw). Remove or merge manually.  │
+│                                                              │
+├──────────────────────────────────────────────────────────────╯
+│
+◇  Doctor warnings ────────────────────────────────────────────────────────╮
+│                                                                          │
+│  - channels.whatsapp.groupPolicy is "allowlist" but groupAllowFrom (and  │
+│    allowFrom) is empty — all group messages will be silently dropped.    │
+│    Add sender IDs to channels.whatsapp.groupAllowFrom or                 │
+│    channels.whatsapp.allowFrom, or set groupPolicy to "open".            │
+│  - channels.telegram.groupPolicy is "allowlist" but groupAllowFrom (and  │
+│    allowFrom) is empty — all group messages will be silently dropped.    │
+│    Add sender IDs to channels.telegram.groupAllowFrom or                 │
+│    channels.telegram.allowFrom, or set groupPolicy to "open".            │
+│                                                                          │
+├──────────────────────────────────────────────────────────────────────────╯
+Skills (31/56 ready)
+┌───────────┬──────────────────┬─────────────────────────────────────────────────────────────┬────────────────────────┐
+│ Status    │ Skill            │ Description                                                 │ Source                 │
+├───────────┼──────────────────┼─────────────────────────────────────────────────────────────┼────────────────────────┤
+│ ✗ missing │ 🔐 1password      │ Set up and use 1Password CLI (op). Use when installing the  │ openclaw-bundled       │
+│           │                  │ CLI, enabling desktop app integration, signing in (single   │                        │
+│           │                  │ or multi-account), or reading/injecting/running secrets     │                        │
+│           │                  │ via op.                                                     │                        │
+│ ✗ missing │ 📝 apple-notes    │ Manage Apple Notes via the `memo` CLI on macOS (create,     │ openclaw-bundled       │
+│           │                  │ view, edit, delete, search, move, and export notes). Use    │                        │
+│           │                  │ when a user asks OpenClaw to add a note, list notes,        │                        │
+│           │                  │ search notes, or manage note folders.                       │                        │
+│ ✗ missing │ ⏰ apple-         │ Manage Apple Reminders via remindctl CLI (list, add, edit,  │ openclaw-bundled       │
+│           │ reminders        │ complete, delete). Supports lists, date filters, and JSON/  │                        │
+│           │                  │ plain output.                                               │                        │
+│ ✗ missing │ 🐻 bear-notes     │ Create, search, and manage Bear notes via grizzly CLI.      │ openclaw-bundled       │
+│ ✓ ready   │ 📰 blogwatcher    │ Monitor blogs and RSS/Atom feeds for updates using the      │ openclaw-bundled       │
+│           │                  │ blogwatcher CLI.                                            │                        │
+│ ✓ ready   │ 🫐 blucli         │ BluOS CLI (blu) for discovery, playback, grouping, and      │ openclaw-bundled       │
+│           │                  │ volume.                                                     │                        │
+│ ✗ missing │ 🫧 bluebubbles    │ Use when you need to send or manage iMessages via           │ openclaw-bundled       │
+│           │                  │ BlueBubbles (recommended iMessage integration). Calls go    │                        │
+│           │                  │ through the generic message tool with                       │                        │
+│           │                  │ channel="bluebubbles".                                      │                        │
+│ ✗ missing │ 📸 camsnap        │ Capture frames or clips from RTSP/ONVIF cameras.            │ openclaw-bundled       │
+│ ✗ missing │ 📦 clawhub        │ Use the ClawHub CLI to search, install, update, and         │ openclaw-bundled       │
+│           │                  │ publish agent skills from clawhub.com. Use when you need    │                        │
+│           │                  │ to fetch new skills on the fly, sync installed skills to    │                        │
+│           │                  │ latest or a specific version, or publish new/updated skill  │                        │
+│           │                  │ folders with the npm-installed clawhub CLI.                 │                        │
+│ ✓ ready   │ 🧩 coding-agent   │ Delegate coding tasks to Codex, Claude Code, or Pi agents   │ openclaw-bundled       │
+│           │                  │ via background process. Use when: (1) building/creating     │                        │
+│           │                  │ new features or apps, (2) reviewing PRs (spawn in temp      │                        │
+│           │                  │ dir), (3) refactoring large codebases, (4) iterative        │                        │
+│           │                  │ coding that needs file exploration. NOT for: simple one-    │                        │
+│           │                  │ liner fixes (just edit), reading code (use read tool),      │                        │
+│           │                  │ thread-bound ACP harness requests in chat (for example      │                        │
+│           │                  │ spawn/run Codex or Claude Code in a Discord thread; use     │                        │
+│           │                  │ sessions_spawn with runtime:"acp"), or any work in ~/clawd  │                        │
+│           │                  │ workspace (never spawn agents here). Claude Code: use --    │                        │
+│           │                  │ print --permission-mode bypassPermissions (no PTY). Codex/  │                        │
+│           │                  │ Pi/OpenCode: pty:true required.                             │                        │
+│ ✗ missing │ 🎮 discord        │ Discord ops via the message tool (channel=discord).         │ openclaw-bundled       │
+│ ✓ ready   │ 🎛️ eightctl      │ Control Eight Sleep pods (status, temperature, alarms,      │ openclaw-bundled       │
+│           │                  │ schedules).                                                 │                        │
+│ ✓ ready   │ ♊️ gemini        │ Gemini CLI for one-shot Q&A, summaries, and generation.     │ openclaw-bundled       │
+│ ✓ ready   │ 📦 gh-issues      │ Fetch GitHub issues, spawn sub-agents to implement fixes    │ openclaw-bundled       │
+│           │                  │ and open PRs, then monitor and address PR review comments.  │                        │
+│           │                  │ Usage: /gh-issues [owner/repo] [--label bug] [--limit 5] [- │                        │
+│           │                  │ -milestone v1.0] [--assignee @me] [--fork user/repo] [--    │                        │
+│           │                  │ watch] [--interval 5] [--reviews-only] [--cron] [--dry-     │                        │
+│           │                  │ run] [--model glm-5] [--notify-channel -1002381931352]      │                        │
+│ ✓ ready   │ 🧲 gifgrep        │ Search GIF providers with CLI/TUI, download results, and    │ openclaw-bundled       │
+│           │                  │ extract stills/sheets.                                      │                        │
+│ ✓ ready   │ 🐙 github         │ GitHub operations via `gh` CLI: issues, PRs, CI runs, code  │ openclaw-bundled       │
+│           │                  │ review, API queries. Use when: (1) checking PR status or    │                        │
+│           │                  │ CI, (2) creating/commenting on issues, (3) listing/         │                        │
+│           │                  │ filtering PRs or issues, (4) viewing run logs. NOT for:     │                        │
+│           │                  │ complex web UI interactions requiring manual browser flows  │                        │
+│           │                  │ (use browser tooling when available), bulk operations       │                        │
+│           │                  │ across many repos (script with gh api), or when gh auth is  │                        │
+│           │                  │ not configured.                                             │                        │
+│ ✓ ready   │ 🎮 gog            │ Google Workspace CLI for Gmail, Calendar, Drive, Contacts,  │ openclaw-bundled       │
+│           │                  │ Sheets, and Docs.                                           │                        │
+│ ✗ missing │ 📍 goplaces       │ Query Google Places API (New) via the goplaces CLI for      │ openclaw-bundled       │
+│           │                  │ text search, place details, resolve, and reviews. Use for   │                        │
+│           │                  │ human-friendly place lookup or JSON output for scripts.     │                        │
+│ ✓ ready   │ 📦 healthcheck    │ Host security hardening and risk-tolerance configuration    │ openclaw-bundled       │
+│           │                  │ for OpenClaw deployments. Use when a user asks for          │                        │
+│           │                  │ security audits, firewall/SSH/update hardening, risk        │                        │
+│           │                  │ posture, exposure review, OpenClaw cron scheduling for      │                        │
+│           │                  │ periodic checks, or version status checks on a machine      │                        │
+│           │                  │ running OpenClaw (laptop, workstation, Pi, VPS).            │                        │
+│ ✓ ready   │ 📧 himalaya       │ CLI to manage emails via IMAP/SMTP. Use `himalaya` to       │ openclaw-bundled       │
+│           │                  │ list, read, write, reply, forward, search, and organize     │                        │
+│           │                  │ emails from the terminal. Supports multiple accounts and    │                        │
+│           │                  │ message composition with MML (MIME Meta Language).          │                        │
+│ ✗ missing │ 📨 imsg           │ iMessage/SMS CLI for listing chats, history, and sending    │ openclaw-bundled       │
+│           │                  │ messages via Messages.app.                                  │                        │
+│ ✗ missing │ 📦 mcporter       │ Use the mcporter CLI to list, configure, auth, and call     │ openclaw-bundled       │
+│           │                  │ MCP servers/tools directly (HTTP or stdio), including ad-   │                        │
+│           │                  │ hoc servers, config edits, and CLI/type generation.         │                        │
+│ ✗ missing │ 📊 model-usage    │ Use CodexBar CLI local cost usage to summarize per-model    │ openclaw-bundled       │
+│           │                  │ usage for Codex or Claude, including the current (most      │                        │
+│           │                  │ recent) model or a full model breakdown. Trigger when       │                        │
+│           │                  │ asked for model-level usage/cost data from codexbar, or     │                        │
+│           │                  │ when you need a scriptable per-model summary from codexbar  │                        │
+│           │                  │ cost JSON.                                                  │                        │
+│ ✓ ready   │ 🍌 nano-banana-   │ Generate or edit images via Gemini 3 Pro Image (Nano        │ openclaw-bundled       │
+│           │ pro              │ Banana Pro).                                                │                        │
+│ ✓ ready   │ 📄 nano-pdf       │ Edit PDFs with natural-language instructions using the      │ openclaw-bundled       │
+│           │                  │ nano-pdf CLI.                                               │                        │
+│ ✗ missing │ 📝 notion         │ Notion API for creating and managing pages, databases, and  │ openclaw-bundled       │
+│           │                  │ blocks.                                                     │                        │
+│ ✓ ready   │ 💎 obsidian       │ Work with Obsidian vaults (plain Markdown notes) and        │ openclaw-bundled       │
+│           │                  │ automate via obsidian-cli.                                  │                        │
+│ ✓ ready   │ 🖼️ openai-image- │ Batch-generate images via OpenAI Images API. Random prompt  │ openclaw-bundled       │
+│           │ gen              │ sampler + `index.html` gallery.                             │                        │
+│ ✓ ready   │ 🎙️ openai-       │ Local speech-to-text with the Whisper CLI (no API key).     │ openclaw-bundled       │
+│           │ whisper          │                                                             │                        │
+│ ✓ ready   │ ☁️ openai-       │ Transcribe audio via OpenAI Audio Transcriptions API        │ openclaw-bundled       │
+│           │ whisper-api      │ (Whisper).                                                  │                        │
+│ ✓ ready   │ 💡 openhue        │ Control Philips Hue lights and scenes via the OpenHue CLI.  │ openclaw-bundled       │
+│ ✗ missing │ 🧿 oracle         │ Best practices for using the oracle CLI (prompt + file      │ openclaw-bundled       │
+│           │                  │ bundling, engines, sessions, and file attachment patterns). │                        │
+│ ✓ ready   │ 🛵 ordercli       │ Foodora-only CLI for checking past orders and active order  │ openclaw-bundled       │
+│           │                  │ status (Deliveroo WIP).                                     │                        │
+│ ✗ missing │ 👀 peekaboo       │ Capture and automate macOS UI with the Peekaboo CLI.        │ openclaw-bundled       │
+│ ✗ missing │ 🗣️ sag           │ ElevenLabs text-to-speech with mac-style say UX.            │ openclaw-bundled       │
+│ ✗ missing │ 📜 session-logs   │ Search and analyze your own session logs (older/parent      │ openclaw-bundled       │
+│           │                  │ conversations) using jq.                                    │                        │
+│ ✗ missing │ 🗣️ sherpa-onnx-  │ Local text-to-speech via sherpa-onnx (offline, no cloud)    │ openclaw-bundled       │
+│           │ tts              │                                                             │                        │
+│ ✓ ready   │ 📦 skill-creator  │ Create, edit, improve, or audit AgentSkills. Use when       │ openclaw-bundled       │
+│           │                  │ creating a new skill from scratch or when asked to          │                        │
+│           │                  │ improve, review, audit, tidy up, or clean up an existing    │                        │
+│           │                  │ skill or SKILL.md file. Also use when editing or            │                        │
+│           │                  │ restructuring a skill directory (moving files to            │                        │
+│           │                  │ references/ or scripts/, removing stale content,            │                        │
+│           │                  │ validating against the AgentSkills spec). Triggers on       │                        │
+│           │                  │ phrases like "create a skill", "author a skill", "tidy up   │                        │
+│           │                  │ a skill", "improve this skill", "review the skill", "clean  │                        │
+│           │                  │ up the skill", "audit the skill".                           │                        │
+│ ✗ missing │ 💬 slack          │ Use when you need to control Slack from OpenClaw via the    │ openclaw-bundled       │
+│           │                  │ slack tool, including reacting to messages or pinning/      │                        │
+│           │                  │ unpinning items in Slack channels or DMs.                   │                        │
+│ ✓ ready   │ 🌊 songsee        │ Generate spectrograms and feature-panel visualizations      │ openclaw-bundled       │
+│           │                  │ from audio with the songsee CLI.                            │                        │
+│ ✓ ready   │ 🔊 sonoscli       │ Control Sonos speakers (discover/status/play/volume/group). │ openclaw-bundled       │
+│ ✗ missing │ 🎵 spotify-player │ Terminal Spotify playback/search via spogo (preferred) or   │ openclaw-bundled       │
+│           │                  │ spotify_player.                                             │                        │
+│ ✗ missing │ 🧾 summarize      │ Summarize or extract text/transcripts from URLs, podcasts,  │ openclaw-bundled       │
+│           │                  │ and local files (great fallback for “transcribe this        │                        │
+│           │                  │ YouTube/video”).                                            │                        │
+│ ✗ missing │ ✅ things-mac     │ Manage Things 3 via the `things` CLI on macOS (add/update   │ openclaw-bundled       │
+│           │                  │ projects+todos via URL scheme; read/search/list from the    │                        │
+│           │                  │ local Things database). Use when a user asks OpenClaw to    │                        │
+│           │                  │ add a task to Things, list inbox/today/upcoming, search     │                        │
+│           │                  │ tasks, or inspect projects/areas/tags.                      │                        │
+│ ✓ ready   │ 🧵 tmux           │ Remote-control tmux sessions for interactive CLIs by        │ openclaw-bundled       │
+│           │                  │ sending keystrokes and scraping pane output.                │                        │
+│ ✗ missing │ 📋 trello         │ Manage Trello boards, lists, and cards via the Trello REST  │ openclaw-bundled       │
+│           │                  │ API.                                                        │                        │
+│ ✓ ready   │ 🎞️ video-frames  │ Extract frames or short clips from videos using ffmpeg.     │ openclaw-bundled       │
+│ ✗ missing │ 📞 voice-call     │ Start voice calls via the OpenClaw voice-call plugin.       │ openclaw-bundled       │
+│ ✓ ready   │ 📱 wacli          │ Send WhatsApp messages to other people or search/sync       │ openclaw-bundled       │
+│           │                  │ WhatsApp history via the wacli CLI (not for normal user     │                        │
+│           │                  │ chats).                                                     │                        │
+│ ✓ ready   │ 🌤️ weather       │ Get current weather and forecasts via wttr.in or Open-      │ openclaw-bundled       │
+│           │                  │ Meteo. Use when: user asks about weather, temperature, or   │                        │
+│           │                  │ forecasts for any location. NOT for: historical weather     │                        │
+│           │                  │ data, severe weather alerts, or detailed meteorological     │                        │
+│           │                  │ analysis. No API key needed.                                │                        │
+│ ✗ missing │ 𝕏 xurl           │ A CLI tool for making authenticated requests to the X       │ openclaw-bundled       │
+│           │                  │ (Twitter) API. Use this skill when you need to post         │                        │
+│           │                  │ tweets, reply, quote, search, read posts, manage            │                        │
+│           │                  │ followers, send DMs, upload media, or interact with any X   │                        │
+│           │                  │ API v2 endpoint.                                            │                        │
+│ ✓ ready   │ 📦 microsoft-     │ Deploy, evaluate, and manage Foundry agents end-to-end:     │ agents-skills-personal │
+│           │ foundry          │ Docker build, ACR push, hosted/prompt agent create,         │                        │
+│           │                  │ container start, batch eval, prompt optimization, prompt    │                        │
+│           │                  │ optimizer workflows, agent.yaml, dataset curation from      │                        │
+│           │                  │ traces. USE FOR: deploy agent to Foundry, hosted agent,     │                        │
+│           │                  │ create agent, invoke agent, evaluate agent, run batch       │                        │
+│           │                  │ eval, optimize prompt, improve prompt, prompt               │                        │
+│           │                  │ optimization, prompt optimizer, improve agent               │                        │
+│           │                  │ instructions, optimize agent instructions, optimize system  │                        │
+│           │                  │ prompt, deploy model, Foundry project, RBAC, role           │                        │
+│           │                  │ assignment, permissions, quota, capacity, region,           │                        │
+│           │                  │ troubleshoot agent, deployment failure, create dataset      │                        │
+│           │                  │ from traces, dataset versioning, eval trending, create AI   │                        │
+│           │                  │ Services, Cognitive Services, create Foundry resource,      │                        │
+│           │                  │ provision resource, knowledge index, agent monitoring,      │                        │
+│           │                  │ customize deployment, onboard, availability. DO NOT USE     │                        │
+│           │                  │ FOR: Azure Functions, App Service, general Azure deploy     │                        │
+│           │                  │ (use azure-deploy), general Azure prep (use azure-prepare). │                        │
+│ ✓ ready   │ 📦 deploy-model   │ Unified Azure OpenAI model deployment skill with            │ agents-skills-personal │
+│           │                  │ intelligent intent-based routing. Handles quick preset      │                        │
+│           │                  │ deployments, fully customized deployments (version/SKU/     │                        │
+│           │                  │ capacity/RAI policy), and capacity discovery across         │                        │
+│           │                  │ regions and projects. USE FOR: deploy model, deploy gpt,    │                        │
+│           │                  │ create deployment, model deployment, deploy openai model,   │                        │
+│           │                  │ set up model, provision model, find capacity, check model   │                        │
+│           │                  │ availability, where can I deploy, best region for model,    │                        │
+│           │                  │ capacity analysis. DO NOT USE FOR: listing existing         │                        │
+│           │                  │ deployments (use foundry_models_deployments_list MCP        │                        │
+│           │                  │ tool), deleting deployments, agent creation (use agent/     │                        │
+│           │                  │ create), project creation (use project/create).             │                        │
+│ ✓ ready   │ 📦 capacity       │ Discovers available Azure OpenAI model capacity across      │ agents-skills-personal │
+│           │                  │ regions and projects. Analyzes quota limits, compares       │                        │
+│           │                  │ availability, and recommends optimal deployment locations   │                        │
+│           │                  │ based on capacity requirements. USE FOR: find capacity,     │                        │
+│           │                  │ check quota, where can I deploy, capacity discovery, best   │                        │
+│           │                  │ region for capacity, multi-project capacity search, quota   │                        │
+│           │                  │ analysis, model availability, region comparison, check TPM  │                        │
+│           │                  │ availability. DO NOT USE FOR: actual deployment (hand off   │                        │
+│           │                  │ to preset or customize after discovery), quota increase     │                        │
+│           │                  │ requests (direct user to Azure Portal), listing existing    │                        │
+│           │                  │ deployments.                                                │                        │
+│ ✓ ready   │ 📦 customize      │ Interactive guided deployment flow for Azure OpenAI models  │ agents-skills-personal │
+│           │                  │ with full customization control. Step-by-step selection of  │                        │
+│           │                  │ model version, SKU (GlobalStandard/Standard/                │                        │
+│           │                  │ ProvisionedManaged), capacity, RAI policy (content          │                        │
+│           │                  │ filter), and advanced options (dynamic quota, priority      │                        │
+│           │                  │ processing, spillover). USE FOR: custom deployment,         │                        │
+│           │                  │ customize model deployment, choose version, select SKU,     │                        │
+│           │                  │ set capacity, configure content filter, RAI policy,         │                        │
+│           │                  │ deployment options, detailed deployment, advanced           │                        │
+│           │                  │ deployment, PTU deployment, provisioned throughput. DO NOT  │                        │
+│           │                  │ USE FOR: quick deployment to optimal region (use preset).   │                        │
+│ ✓ ready   │ 📦 preset         │ Intelligently deploys Azure OpenAI models to optimal        │ agents-skills-personal │
+│           │                  │ regions by analyzing capacity across all available regions. │                        │
+│           │                  │  Automatically checks current region first and shows        │                        │
+│           │                  │ alternatives if needed. USE FOR: quick deployment, optimal  │                        │
+│           │                  │ region, best region, automatic region selection, fast       │                        │
+│           │                  │ setup, multi-region capacity check, high availability       │                        │
+│           │                  │ deployment, deploy to best location. DO NOT USE FOR:        │                        │
+│           │                  │ custom SKU selection (use customize), specific version      │                        │
+│           │                  │ selection (use customize), custom capacity configuration    │                        │
+│           │                  │ (use customize), PTU deployments (use customize).           │                        │
+└───────────┴──────────────────┴─────────────────────────────────────────────────────────────┴────────────────────────┘
+
+Tip: use `npx clawhub` to search, install, and sync skills.
