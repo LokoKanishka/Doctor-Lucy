@@ -13,12 +13,25 @@ import subprocess
 import os
 import sys
 
-BOT_TOKEN = "8591918754:AAHlxsxP4olX3De2uWGH0NUUXEiHX3iUhLk"
-DIEGO_ID = 5154360597
+WORKSPACE = os.environ.get("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
+
+def load_env(filepath):
+    if not os.path.exists(filepath): return
+    with open(filepath) as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):
+                try:
+                    key, val = line.strip().split('=', 1)
+                    os.environ[key] = val
+                except: pass
+
+load_env(f"{WORKSPACE}/.env")
+
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+DIEGO_ID = int(os.environ.get("DIEGO_TELEGRAM_ID", 5154360597))
 API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
-OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
-MODEL = "qwen3:14b"
-WORKSPACE = "/home/lucy-ubuntu/Escritorio/doctor de lucy"
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/chat")
+MODEL = os.environ.get("OLLAMA_MODEL", "qwen3:14b")
 OFFSET_FILE = f"{WORKSPACE}/n8n_data/telegram_offset.txt"
 LOG_FILE = f"{WORKSPACE}/n8n_data/telegram_listener.log"
 

@@ -94,7 +94,8 @@ def _call_openclaw_cli(prompt, agent=DEFAULT_AGENT):
 
 
 def _call_openclaw_http(prompt, agent=DEFAULT_AGENT, stream=False):
-    soul_path = "/home/lucy-ubuntu/Escritorio/doctor de lucy/SOUL.md"
+    workspace = os.getenv("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
+    soul_path = f"{workspace}/SOUL.md"
     if os.path.exists(soul_path):
         with open(soul_path, "r") as f:
             soul = f.read()

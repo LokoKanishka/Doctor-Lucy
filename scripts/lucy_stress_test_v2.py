@@ -4,7 +4,7 @@ import time
 import os
 import json
 
-sys.path.append("/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts")
+sys.path.append(f"{os.getenv('WORKSPACE_ROOT', '/home/lucy-ubuntu/Escritorio/doctor de lucy')}/scripts")
 import lucy_daemon_v2_cloud
 
 async def run_stress_test():
@@ -58,11 +58,12 @@ async def run_stress_test():
 
     lucy_daemon_v2_cloud.log("✅ Suite de Estrés v2 finalizada.")
     
+    workspace = os.getenv("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
     # Reporte final por voz
     voice_msg = f"Diego, finalicé la prueba de estrés. Procesé {len(tests)} tareas. Mirá el archivo STRESS_TEST_REPORT.md para ver el detalle de cada motor."
-    with open("/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/voice_payload.txt", "w") as f:
+    with open(f"{workspace}/n8n_data/voice_payload.txt", "w") as f:
         f.write(voice_msg)
-    os.system("bash /home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/lucy_announcer.sh")
+    os.system(f"bash {workspace}/scripts/lucy_announcer.sh")
 
 if __name__ == "__main__":
     asyncio.run(run_stress_test())

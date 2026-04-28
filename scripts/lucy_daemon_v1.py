@@ -17,11 +17,24 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
 # Configuración Core
-BOT_TOKEN = "8591918754:AAHlxsxP4olX3De2uWGH0NUUXEiHX3iUhLk"
-DIEGO_ID = 5154360597
-OLLAMA_MODEL = "qwen3:14b"
-OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
-WORKSPACE = "/home/lucy-ubuntu/Escritorio/doctor de lucy"
+WORKSPACE = os.environ.get("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
+
+def load_env(filepath):
+    if not os.path.exists(filepath): return
+    with open(filepath) as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):
+                try:
+                    key, val = line.strip().split('=', 1)
+                    os.environ[key] = val
+                except: pass
+
+load_env(f"{WORKSPACE}/.env")
+
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+DIEGO_ID = int(os.environ.get("DIEGO_TELEGRAM_ID", 5154360597))
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen3:14b")
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434/api/chat")
 SOUL_FILE = f"{WORKSPACE}/SOUL.md"
 HEARTBEAT_FILE = f"{WORKSPACE}/HEARTBEAT.md"
 LOG_FILE = f"{WORKSPACE}/n8n_data/lucy_daemon.log"

@@ -19,8 +19,10 @@ import base64
 import re
 import requests
 
+WORKSPACE = os.environ.get("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
+
 # IMPORTACIÓN: Puente con OpenClaw
-sys.path.append("/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts")
+sys.path.append(f"{WORKSPACE}/scripts")
 try:
     from lucy_openclaw_bridge import delegate_mission
 except ImportError:
@@ -36,13 +38,12 @@ def load_env(filepath):
                     os.environ[key] = val
                 except: pass
 
-load_env("/home/lucy-ubuntu/Escritorio/doctor de lucy/.env")
+load_env(f"{WORKSPACE}/.env")
 
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 DIEGO_ID = int(os.environ.get("DIEGO_TELEGRAM_ID", 5154360597))
 GEMINI_KEY = os.environ.get("GEMINI_API_KEY") # Una sola llave para transcripción
 
-WORKSPACE = "/home/lucy-ubuntu/Escritorio/doctor de lucy"
 LOG_FILE = f"{WORKSPACE}/n8n_data/lucy_daemon_v2.log"
 OFFSET_FILE = f"{WORKSPACE}/n8n_data/telegram_offset.txt"
 PID_FILE = f"{WORKSPACE}/n8n_data/daemon.pid"

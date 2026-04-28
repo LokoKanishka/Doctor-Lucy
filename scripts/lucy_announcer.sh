@@ -2,7 +2,7 @@
 # Lucy Announcer Script - Tono Elegante
 # Uso: ./scripts/lucy_announcer.sh "Mensaje"
 
-PAYLOAD_FILE="/home/lucy-ubuntu/Escritorio/doctor de lucy/n8n_data/voice_payload.txt"
+PAYLOAD_FILE="${WORKSPACE_ROOT:-/home/lucy-ubuntu/Escritorio/doctor de lucy}/n8n_data/voice_payload.txt"
 VOICE="female_03.wav"
 LANGUAGE="es"
 
