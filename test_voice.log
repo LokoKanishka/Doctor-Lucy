@@ -1,2 +1,0 @@
-aplay: main:834: error al abrir audio: Dispositivo o recurso ocupado
-Error connecting to AllTalk: Command '['aplay', '-D', 'plughw:1,0', '/home/lucy-ubuntu/Archivo_proyectos/Taverna/Taverna-legacy/alltalk_tts/lucy_temp_681ad06864fd4a97a914875b4c586781.wav']' returned non-zero exit status 1.

@@ -1,21 +1,64 @@
-memoria/agente_memoria.db
-.env
-.venv/
-__pycache__/
-*.pyc
+# === Doctor Lucy — .gitignore normalizado (Tramo 4A) ===
 
-# Ignorar archivos pesados o de base de datos
-*.AppImage
-Memoria_Principal_Lucy/
-n8n_data/
+# ─── Python cache ───
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ─── Local env / secrets ───
+.env
+.env.*
+!.env.example
+
+# ─── Virtual environments ───
 .venv/
-n8n_db_copy.sqlite
-bfg.jar
+.voice_env/
+
+# ─── Runtime logs ───
+*.log
+n8n_data/*.log
+test_voice.log
+
+# ─── Runtime payloads / pid / offset ───
+n8n_data/voice_payload.txt
+n8n_data/daemon.pid
+n8n_data/telegram_offset.txt
+
+# ─── Scratch / exec temp ───
+scripts/.scratch/
+
+# ─── SQLite runtime sidecars ───
+*.sqlite-wal
+*.sqlite-shm
+*.db-wal
+*.db-shm
+
+# ─── n8n runtime data (tracked pre-rule: boveda needs explicit untrack) ───
+n8n_data/
+
+# ─── Memoria runtime DB ───
+memoria/agente_memoria.db
 agente_memoria.db
 
-# Búnker de memoria (trackear el JSONL para backup en la nube)
+# ─── Heavy installers / local binaries ───
+miniconda.sh
+*.AppImage
+bfg.jar
+n8n_db_copy.sqlite
+
+# ─── Scratch / generated artifacts ───
+output.json
+scratch_workflow*.json
+test.md
+test.pdf
+_test_subagent/
+
+# ─── Legacy data dirs ───
+Memoria_Principal_Lucy/
 data/*
 !data/lucy_bunker_log.jsonl
 data/music_brain/*.sqlite
-.voice_env/
-miniconda.sh
+
+# ─── Node modules in embedded repos ───
+.agents/mcps/servers/node_modules/
+.agents/mcps/servers/.git/
