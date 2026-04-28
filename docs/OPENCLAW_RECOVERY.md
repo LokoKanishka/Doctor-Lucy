@@ -1,5 +1,8 @@
 # Recuperación de OpenClaw/Clawbot
 
+> [!NOTE]
+> **Nota terminológica:** LucyClaw es el nombre funcional de la personalidad/agente Lucy dentro de OpenClaw. El problema de token/scopes es un bloqueo técnico dentro de una arquitectura mayor: LucyClaw debe ser dual-host y API-first, no local-model-first. Ver [LUCYCLAW_ARCHITECTURE.md](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/docs/LUCYCLAW_ARCHITECTURE.md) para más detalles.
+
 ## Causa encontrada
 El puente de Lucy a OpenClaw falló de forma combinada por dos problemas independientes:
 1. **Fallo de PATH:** El binario CLI `openclaw` no está en el `$PATH` del entorno de ejecución (se encuentra en `~/.npm-global/bin/openclaw`), por lo que el fallback CLI fallaba con `FileNotFoundError`.

@@ -161,6 +161,8 @@ La arquitectura creció orgánicamente por capas, y este documento refleja el es
 
 ### 3.7 OpenCloud / OpenClaw
 
+**Nota:** Ver [LUCYCLAW_ARCHITECTURE.md](file:///home/lucy-ubuntu/Escritorio/doctor%20de%20lucy/docs/LUCYCLAW_ARCHITECTURE.md) para el objetivo dual-host/API-first y la distinción Doctora Lucy / LucyClaw.
+
 | Archivo | Función | Estado |
 |---|---|---|
 | `scripts/lucy_openclaw_bridge.py` | Bridge HTTP/CLI hacia OpenClaw gateway | ✅ Activo |
