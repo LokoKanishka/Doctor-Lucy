@@ -2,9 +2,13 @@ import sys
 import json
 import urllib.request
 import urllib.parse
+import os
+
+if not os.getenv("DOCTOR_LUCY_ALLOW_LEGACY_TELEGRAM_BRIDGE"):
+    print("LEGACY BLOCKED: telegram_bridge.py fue reemplazado por lucy_telegram_listener.py / lucy_telegram_send.sh.")
+    sys.exit(2)
 
 # Credenciales oficiales de @DocLucyBot
-import os
 from dotenv import load_dotenv
 
 # Cargar variables de entorno

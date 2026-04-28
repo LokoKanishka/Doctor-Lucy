@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [ -z "${DOCTOR_LUCY_ALLOW_LEGACY_TELEGRAM_LISTENER_SH:-}" ]; then
+    echo "LEGACY BLOCKED: lucy_telegram_listener.sh duplica lucy_telegram_listener.py."
+    exit 2
+fi
+
 # Lucy Telegram Listener — Daemon de escucha automática
 # Polling cada 3 segundos para mensajes nuevos de Diego
 # Solo responde al ID autorizado: 5154360597

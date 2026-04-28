@@ -6,6 +6,10 @@ import time
 import os
 from datetime import datetime
 
+if not os.getenv("DOCTOR_LUCY_ALLOW_LEGACY_TELEGRAM_DAEMON"):
+    print("LEGACY BLOCKED: telegram_daemon.py usa rutas antiguas/NIN. Usar lucy_telegram_listener.py.")
+    sys.exit(2)
+
 # Credenciales oficiales de @DocLucyBot
 import os
 from dotenv import load_dotenv

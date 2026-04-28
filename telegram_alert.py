@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# LEGACY NOTICE:
+# This root-level Telegram alert helper is considered legacy.
+# Prefer scripts/lucy_telegram_send.sh or scripts/lucy_telegram_listener.py.
+
 import urllib.request
 import json
 import ssl

@@ -254,6 +254,8 @@ Memoria:
 
 ## 5. Componentes activos, legacy y en transición
 
+> **Nota de Política (Tramo 6):** La política formal de ejecución de daemons y listeners se encuentra en `docs/DAEMONS_TELEGRAM_POLICY.md`. Las piezas legacy peligrosas han sido bloqueadas por defecto; su ejecución requiere variables de entorno explícitas (ej. `DOCTOR_LUCY_ALLOW_LEGACY_NIN_DEMON=1`).
+
 | Componente | Archivo | Estado | Motivo | Tocar ahora |
 |---|---|---|---|---|
 | Daemon cloud | `lucy_daemon_v2_cloud.py` | ✅ Activo | Daemon canónico actual | No |
