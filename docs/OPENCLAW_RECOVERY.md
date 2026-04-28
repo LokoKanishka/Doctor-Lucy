@@ -27,3 +27,34 @@ OPENCLAW_BIN=~/.npm-global/bin/openclaw OPENCLAW_BRIDGE_MODE=http python3 script
 ## Qué NO Tocar
 - **No reinstalar OpenClaw** desde internet; el gateway está vivo y el binario existe. El problema es netamente de autorización.
 - **No tocar skills** ni el daemon v2 hasta resolver la autenticación del gateway.
+
+## Advertencia de seguridad — tokens expuestos en Tramo 9
+- En Tramo 9 hubo exposición accidental de tokens en logs.
+- Todo token impreso debe considerarse comprometido.
+- No pegar tokens en ChatGPT ni en tickets.
+- El Service Token debe ingresarse localmente mediante helper con entrada oculta.
+- Luego debe validarse con `/v1/models` y bridge HTTP.
+- Si Clawbot tiene UI de revocación, revocar tokens expuestos.
+
+## Instalación segura de Service Token
+Con comando:
+```bash
+python3 scripts/openclaw_install_lucy_token.py
+```
+Y validación:
+```bash
+systemctl --user restart openclaw-gateway.service
+
+python3 - <<'PY'
+import os, requests
+p=os.path.expanduser("~/.openclaw/lucy-bridge-token")
+t=open(p).read().strip()
+base="http://127.0.0.1:18789"
+for ep in ["/health","/v1/models"]:
+    headers={"Authorization":f"Bearer {t}"} if ep != "/health" else {}
+    r=requests.get(base+ep, headers=headers, timeout=8)
+    print(ep, r.status_code, r.text[:500].replace("\n"," "))
+PY
+
+OPENCLAW_BRIDGE_MODE=http python3 scripts/lucy_openclaw_bridge.py "ping diagnóstico seguro: respondé solo OK" --agent main
+```
