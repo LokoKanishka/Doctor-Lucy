@@ -25,7 +25,14 @@ OPENCLAW_BIN=~/.npm-global/bin/openclaw OPENCLAW_BRIDGE_MODE=http python3 script
 ```
 
 ## Próximos Pasos (Bloqueado)
-**Se necesita la intervención directa de Diego.** No se encontró un comando o ruta en la CLI local que otorgue exitosamente un Service Token con los permisos de lectura y escritura reales, o existe un mecanismo de autorización no documentado/GUI para esto.
+**Se requiere intervención de Diego mediante la UI (Dashboard).**
+Se intentó rotar tokens por CLI (`openclaw devices rotate`), pero la versión de OpenClaw (v2026.3.28) requiere el uso explícito de un token de dispositivo o de la UI para scopes completos cuando opera en `mode: token`. 
+
+**Pasos a seguir por Diego (Opción B):**
+1. Abrir la UI local de OpenClaw en `http://127.0.0.1:18789`
+2. Generar un Service Token / Device Token que incluya expresamente los scopes `operator.read` y `operator.write`.
+3. Ejecutar en terminal: `python3 scripts/openclaw_install_lucy_token.py`
+4. Pegar el token de forma segura (entrada oculta) cuando el script lo solicite.
 
 ## Qué NO Tocar
 - **No reinstalar OpenClaw** desde internet; el gateway está vivo y el binario existe. El problema es netamente de autorización.
