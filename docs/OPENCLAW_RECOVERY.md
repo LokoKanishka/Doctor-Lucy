@@ -68,3 +68,35 @@ PY
 
 OPENCLAW_BRIDGE_MODE=http python3 scripts/lucy_openclaw_bridge.py "ping diagnóstico seguro: respondé solo OK" --agent main
 ```
+
+## FORCE-GATE — reparación forzada agotada
+
+Fecha: 2026-04-29
+
+Se ejecutó una reparación forzada controlada:
+
+`openclaw doctor --fix --force --generate-gateway-token`
+
+Condiciones de seguridad:
+- backup total previo de `~/.openclaw`;
+- validación antes/después;
+- rollback automático al no resolverse el problema;
+- sin impresión de tokens.
+
+Resultado:
+- `/health` siguió en 200 OK.
+- `/v1/models` siguió en 403 `missing scope: operator.read`.
+- Gateway no quedó autorizado.
+- Codex OAuth no pudo validarse.
+- Se restauró el estado previo.
+
+Conclusión:
+La vía de reparación local quedó agotada. No seguir intentando:
+- `doctor --generate-gateway-token`;
+- `devices rotate`;
+- parches manuales de `openclaw.json`;
+- parches manuales de `device-auth.json` / `paired.json`;
+- Dashboard UI en sesión gráfica normal.
+
+Próxima vía recomendada:
+rebuild/reinstalación controlada de OpenClaw, conservando backups y migrando solo piezas necesarias.

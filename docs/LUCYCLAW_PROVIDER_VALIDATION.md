@@ -99,3 +99,9 @@ Fallback 2: ollama/qwen2.5-coder:14b        [LOCAL — solo PC grande]
 
 ### Recomendación del agente:
 **Opción B es más sólida.** Resolver el Service Token desbloquea tanto Codex como toda la funcionalidad del gateway (Telegram, bridge, exoesqueleto). Sin el token, la mitad de la arquitectura LucyClaw queda inoperante sin importar qué provider se elija como primary.
+
+## Nota posterior — Codex sigue bloqueado por gateway auth
+
+Aunque `openai-codex` sigue siendo el provider preferido para LucyClaw por decisión de Diego, no puede validarse mientras el gateway siga rechazando `/v1/models` con `missing scope: operator.read`.
+
+Gemini continúa validado como provider cloud funcional, pero queda como fallback, no como primary deseado.
