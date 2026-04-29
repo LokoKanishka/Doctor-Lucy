@@ -16,6 +16,7 @@ OPENCLAW_BIN = os.getenv("OPENCLAW_BIN", "openclaw")
 DEFAULT_AGENT = "main"
 REQUEST_TIMEOUT_S = int(os.getenv("OPENCLAW_BRIDGE_TIMEOUT_S", "180"))
 BRIDGE_MODE = os.getenv("OPENCLAW_BRIDGE_MODE", "auto").strip().lower()
+OPENCLAW_SCOPES = os.getenv("OPENCLAW_SCOPES", "operator.read,operator.write").strip()
 
 
 def _load_gateway_token():
@@ -112,6 +113,8 @@ def _call_openclaw_http(prompt, agent=DEFAULT_AGENT, stream=False):
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }
+    if OPENCLAW_SCOPES:
+        headers["X-OpenClaw-Scopes"] = OPENCLAW_SCOPES
     
     payload = {
         "model": _http_model_name(agent),
