@@ -38,6 +38,20 @@ Se intentó rotar tokens por CLI (`openclaw devices rotate`), pero la versión d
 - **No reinstalar OpenClaw** desde internet; el gateway está vivo y el binario existe. El problema es netamente de autorización.
 - **No tocar skills** ni el daemon v2 hasta resolver la autenticación del gateway.
 
+## Corrección posterior — el gateway no estaba corrupto
+
+Luego de FORCE-GATE y del rebuild paralelo se identificó la causa real del `403 missing scope`: el cliente HTTP no enviaba `X-OpenClaw-Scopes`.
+
+El fix real quedó en:
+`93fb55c fix(openclaw): send gateway scope headers from bridge`.
+
+Por lo tanto:
+- no continuar reparando tokens;
+- no continuar `doctor --force`;
+- no continuar parches de identity/device;
+- pausar rebuild paralelo como fallback;
+- si hay nuevos fallos, diagnosticar provider/modelo/sesión, no auth.
+
 ## Advertencia de seguridad — tokens expuestos en Tramo 9
 - En Tramo 9 hubo exposición accidental de tokens en logs.
 - Todo token impreso debe considerarse comprometido.

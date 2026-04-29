@@ -1,5 +1,7 @@
 # OpenClaw / LucyClaw — Plan de rebuild controlado
 
+> Estado actualizado: el rebuild paralelo queda pausado. El problema principal fue corregido en el bridge mediante `X-OpenClaw-Scopes`; este plan queda como fallback si reaparece corrupción real de gateway.
+
 ## 1. Motivo
 
 La recuperación del sistema de autorización del gateway de OpenClaw ha fallado de forma persistente tras agotar todas las vías de reparación disponibles (sincronización de tokens, parches manuales de identidad y reparación forzada `doctor --force`). El error `403 missing scope: operator.read` persiste a pesar de contar con tokens que declaran dichos scopes, indicando una corrupción estructural en el store interno de permisos que no es accesible mediante edición de JSONs ni herramientas oficiales de CLI.

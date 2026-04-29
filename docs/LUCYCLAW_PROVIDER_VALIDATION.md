@@ -5,6 +5,12 @@
 
 ---
 
+## Nota posterior — Auth gateway resuelto
+
+El bloqueo de Codex/OpenClaw por `/v1/models` no era corrupción definitiva del gateway, sino falta del header `X-OpenClaw-Scopes`.
+
+El gateway viejo ya lista modelos y el bridge HTTP responde OK con `openclaw/main`. Queda pendiente evaluar provider/fallback si reaparecen errores 500 o respuestas vacías.
+
 ## 1. Fecha y contexto
 
 - **Tramo:** 12 — Validación controlada
