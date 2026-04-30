@@ -1,0 +1,11 @@
+{
+  "id": "lucy-service-status-command",
+  "name": "Lucy Service Status Command",
+  "description": "Deterministic read-only service and bounded log status commands for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
