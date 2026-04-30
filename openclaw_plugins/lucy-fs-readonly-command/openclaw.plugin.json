@@ -1,0 +1,14 @@
+{
+  "id": "lucy-fs-readonly-command",
+  "name": "Lucy FS Readonly Command",
+  "description": "Deterministic read-only filesystem command for Doctor-Lucy repo.",
+  "main": "./index.js",
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
