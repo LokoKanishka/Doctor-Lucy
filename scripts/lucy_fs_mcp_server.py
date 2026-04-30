@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -10,6 +11,8 @@ SCRIPT_PATH = Path(__file__).resolve()
 HELPER_PATH = SCRIPT_PATH.parent / "lucy_fs_readonly.py"
 PROTOCOL_VERSION = "2024-11-05"
 SERVER_INFO = {"name": "lucy-fs-readonly", "version": "0.1.0"}
+DEBUG_ENABLED = os.environ.get("LUCY_FS_MCP_DEBUG") == "1"
+IO_MODE = None
 
 TOOLS = {
     "lucy_find_files": {
@@ -60,35 +63,69 @@ class McpError(Exception):
         self.message = message
 
 
+def debug_log(message):
+    if not DEBUG_ENABLED:
+        return
+    print(message, file=sys.stderr, flush=True)
+
+
 def compact_json(payload):
     return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
 
 def send_message(message):
-    body = json.dumps(message, ensure_ascii=False).encode("utf-8")
-    header = f"Content-Length: {len(body)}\r\n\r\n".encode("ascii")
-    sys.stdout.buffer.write(header)
-    sys.stdout.buffer.write(body)
+    body_text = json.dumps(message, ensure_ascii=False)
+    if IO_MODE == "ndjson":
+        sys.stdout.buffer.write((body_text + "\n").encode("utf-8"))
+    else:
+        body = body_text.encode("utf-8")
+        header = f"Content-Length: {len(body)}\r\n\r\n".encode("ascii")
+        sys.stdout.buffer.write(header)
+        sys.stdout.buffer.write(body)
     sys.stdout.buffer.flush()
 
 
 def read_message():
+    global IO_MODE
+    first_line = sys.stdin.buffer.readline()
+    if not first_line:
+        debug_log("stdin EOF")
+        return None
+    stripped = first_line.strip()
+    if IO_MODE is None:
+        if stripped.startswith(b"{"):
+            IO_MODE = "ndjson"
+            debug_log("detected io_mode=ndjson")
+        else:
+            IO_MODE = "framed"
+            debug_log("detected io_mode=framed")
+    if IO_MODE == "ndjson":
+        message = json.loads(first_line.decode("utf-8"))
+        debug_log(f"recv method={message.get('method')!r} id={message.get('id')!r}")
+        return message
+    return read_framed_message(first_line)
+
+
+def read_framed_message(first_line):
     headers = {}
     while True:
-        line = sys.stdin.buffer.readline()
+        line = first_line if not headers else sys.stdin.buffer.readline()
         if not line:
             return None
         if line in (b"\r\n", b"\n"):
             break
-        name, _, value = line.decode("utf-8").partition(":")
+        name, _, value = line.decode("utf-8", errors="replace").partition(":")
         headers[name.strip().lower()] = value.strip()
     length = int(headers.get("content-length", "0"))
     if length <= 0:
+        debug_log(f"ignored message with invalid content-length: {headers!r}")
         return None
     payload = sys.stdin.buffer.read(length)
     if not payload:
         return None
-    return json.loads(payload.decode("utf-8"))
+    message = json.loads(payload.decode("utf-8"))
+    debug_log(f"recv method={message.get('method')!r} id={message.get('id')!r}")
+    return message
 
 
 def make_response(request_id, result=None, error=None):
@@ -154,7 +191,11 @@ def call_helper(action, arguments):
 def handle_initialize(_params):
     return {
         "protocolVersion": PROTOCOL_VERSION,
-        "capabilities": {"tools": {"listChanged": False}},
+        "capabilities": {
+            "tools": {"listChanged": False},
+            "resources": {"listChanged": False, "subscribe": False},
+            "prompts": {"listChanged": False},
+        },
         "serverInfo": SERVER_INFO,
     }
 
@@ -186,21 +227,42 @@ def handle_tools_call(params):
     }
 
 
+def handle_ping(_params):
+    return {}
+
+
+def handle_empty_list(result_key):
+    return {result_key: []}
+
+
 def handle_request(message):
     method = message.get("method")
     request_id = message.get("id")
+    params = message.get("params")
     if method == "initialize":
-        return make_response(request_id, handle_initialize(message.get("params")))
+        return make_response(request_id, handle_initialize(params))
+    if method == "ping":
+        return make_response(request_id, handle_ping(params))
     if method == "tools/list":
         return make_response(request_id, handle_tools_list())
     if method == "tools/call":
-        return make_response(request_id, handle_tools_call(message.get("params")))
+        return make_response(request_id, handle_tools_call(params))
+    if method == "resources/list":
+        return make_response(request_id, handle_empty_list("resources"))
+    if method == "prompts/list":
+        return make_response(request_id, handle_empty_list("prompts"))
+    if request_id is None:
+        debug_log(f"ignored notification method={method!r}")
+        return None
+    if method in ("notifications/initialized", "initialized", "shutdown"):
+        return make_response(request_id, {})
     if request_id is None:
         return None
     raise McpError(-32601, f"method not found: {method}")
 
 
 def serve():
+    debug_log("server starting")
     while True:
         message = read_message()
         if message is None:
@@ -218,6 +280,7 @@ def serve():
             else:
                 response = None
         if response is not None:
+            debug_log(f"send response id={response.get('id')!r}")
             send_message(response)
 
 
