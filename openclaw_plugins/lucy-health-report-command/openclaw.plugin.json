@@ -1,0 +1,11 @@
+{
+  "id": "lucy-health-report-command",
+  "name": "Lucy Health Report Command",
+  "description": "Deterministic read-only aggregate health report for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
