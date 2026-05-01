@@ -5,9 +5,9 @@ Date: 2026-05-01
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `2c773a2` `test(lucyclaw): add security policy verifier`
+- Last known healthy commit: `e98120e` `chore(lucyclaw): clean local hygiene leftovers`
 - Current operational status: green read-only layer is solid and repeatably verifiable
-- Immediate recommendation: prioritize `TPL1` before adding new functional powers, with `QA1` and `SEC1` now serving as explicit non-regression gates
+- Immediate recommendation: keep `QA1` and `SEC1` as explicit non-regression gates and use `TPL1` before adding new functional powers
 
 ## 2. Confirmed Healthy Base
 
@@ -195,6 +195,7 @@ Minimum sanity checklist:
 git status --short --branch
 git log -1 --oneline
 python3 scripts/verify_lucyclaw_green_commands.py
+python3 scripts/verify_lucyclaw_security_policy.py
 ```
 
 Useful runtime checks:
@@ -208,19 +209,19 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 
 Preferred order:
 
-1. `TPL1` — safe command scaffold/generator
-2. `R47` — next functional capability, likely `/fs_find` and `/fs_grep`
+1. `R47` — next functional capability, likely `/fs_find` and `/fs_grep`
+2. use `TPL1` as the default generator for future Lucy command tranches
 3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
 
 Alternative order if repo cleanliness becomes urgent:
 
-1. `TPL1`
-2. `R47`
+1. `R47`
+2. use `TPL1` as the default generator for future Lucy command tranches
 3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
 
 Guidance:
 
-- avoid adding new functional power before `TPL1` unless there is a strong operational reason
+- avoid adding new functional power without going through `TPL1` unless there is a strong operational reason
 - keep `SEC1` and `QA1` as mandatory non-regression checks for future Lucy tranches
 
 ## 10. Non-Regression Rules
