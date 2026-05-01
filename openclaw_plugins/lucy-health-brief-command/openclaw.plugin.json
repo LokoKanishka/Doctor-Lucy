@@ -1,0 +1,11 @@
+{
+  "id": "lucy-health-brief-command",
+  "name": "Lucy Health Brief Command",
+  "description": "Deterministic compact read-only health brief for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
