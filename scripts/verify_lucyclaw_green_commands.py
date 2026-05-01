@@ -229,7 +229,9 @@ def verify_next_step(results: list[dict]) -> None:
     assert_true(payload.get("decision") in ("READY", "WARN", "BLOCK"), "lucy_next_step returned invalid decision")
     assert_true("basis" in payload, "lucy_next_step missing basis")
     assert_true("recommendation" in payload, "lucy_next_step missing recommendation")
-    assert_true("n8n workflows" not in json.dumps(payload, ensure_ascii=False).lower(), "lucy_next_step leaked workflow detail")
+    raw = json.dumps(payload, ensure_ascii=False).lower()
+    for blocked in ("/workflows", "database.sqlite", "\"credentials\"", "n8n_data/", "n8n_backups/"):
+        assert_true(blocked not in raw, f"lucy_next_step leaked blocked detail {blocked}")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_next_step", "status": "ok", "decision": payload.get("decision")})
 
