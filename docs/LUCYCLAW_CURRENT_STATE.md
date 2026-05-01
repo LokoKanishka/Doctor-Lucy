@@ -5,9 +5,9 @@ Date: 2026-05-01
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `dde7fba` `test(lucyclaw): add unified green command verifier`
+- Last known healthy commit: `2c773a2` `test(lucyclaw): add security policy verifier`
 - Current operational status: green read-only layer is solid and repeatably verifiable
-- Immediate recommendation: prioritize `HYG2` and `TPL1` before adding new functional powers, with `SEC1` now serving as an explicit code-policy gate
+- Immediate recommendation: prioritize `TPL1` before adding new functional powers, with `QA1` and `SEC1` now serving as explicit non-regression gates
 
 ## 2. Confirmed Healthy Base
 
@@ -175,19 +175,17 @@ SEC1 verifies:
 
 QA1 plus SEC1 are the current minimum gates for the green layer.
 
-## 7. Known Local Pending Items
+## 7. Local Hygiene State
 
-Known local pending items, intentionally outside current Lucy tranches:
+`HYG2` resolved the previously known local pending items in a controlled way:
 
-- `M .gitignore`
-- `?? .agents/archive_openclaw_scope_fix_20260429_153235/`
-- `?? docs/OPENCLAW_REBUILD_1A_PROFILE.md`
+- `.gitignore` now keeps the local archive and `n8n_backups/` out of version control without duplicating older rules
+- `docs/OPENCLAW_REBUILD_1A_PROFILE.md` is preserved as a short historical rebuild note
+- `.agents/archive_openclaw_scope_fix_20260429_153235/` remains local-only and intentionally ignored
 
-Important notes:
+Current expectation:
 
-- these did not block `R45`, `R46`, or `QA1`
-- they must not be mixed into new capability tranches
-- `HYG2` should resolve them explicitly
+- a healthy LucyClaw working tree should not show these older hygiene leftovers as pending changes
 
 ## 8. How To Validate Healthy State
 
@@ -210,21 +208,19 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 
 Preferred order:
 
-1. `HYG2` — definitive local hygiene cleanup
-2. `TPL1` — safe command scaffold/generator
-3. `R47` — next functional capability, likely `/fs_find` and `/fs_grep`
-4. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
+1. `TPL1` — safe command scaffold/generator
+2. `R47` — next functional capability, likely `/fs_find` and `/fs_grep`
+3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
 
 Alternative order if repo cleanliness becomes urgent:
 
-1. `HYG2`
-2. `TPL1`
-3. `R47`
-4. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
+1. `TPL1`
+2. `R47`
+3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
 
 Guidance:
 
-- avoid adding new functional power before `HYG2` and `TPL1` unless there is a strong operational reason
+- avoid adding new functional power before `TPL1` unless there is a strong operational reason
 - keep `SEC1` and `QA1` as mandatory non-regression checks for future Lucy tranches
 
 ## 10. Non-Regression Rules

@@ -62,3 +62,7 @@ data/music_brain/*.sqlite
 # ─── Node modules in embedded repos ───
 .agents/mcps/servers/node_modules/
 .agents/mcps/servers/.git/
+
+# ─── Local archives / backups ───
+.agents/archive_openclaw_scope_fix_*/
+n8n_backups/
