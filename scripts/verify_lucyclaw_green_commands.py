@@ -1,0 +1,211 @@
+#!/usr/bin/env python3
+"""Unified smoke verifier for LucyClaw green commands."""
+
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+PYTHON = "python3"
+TIMEOUT = 30
+MAX_HEALTH_REPORT_LOG_LINES = 20
+MAX_LOG_TAIL_LINES = 80
+
+SENSITIVE_VALUE_RE = re.compile(
+    r"(?i)\b(?:token|secret|api[_-]?key|apikey|authorization|access[_-]?token|refresh[_-]?token|password)\b"
+    r"[^\n:=]{0,20}[:= ][^\s,\]}]{4,}"
+)
+OPENAI_KEY_RE = re.compile(r"sk-[A-Za-z0-9_-]{10,}")
+ENV_PATH_RE = re.compile(r"(^|[\\/])\.env($|[./])", re.IGNORECASE)
+N8N_WORKFLOW_RE = re.compile(r"workflow", re.IGNORECASE)
+LEGACY_PATH_RE = re.compile(r"/home/lucy-ubuntu/Escritorio/doctor de lucy")
+
+
+def run_json(args: list[str]) -> tuple[dict, str]:
+    proc = subprocess.run(
+        args,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    raw = proc.stdout.strip()
+    if not raw:
+        raise RuntimeError(f"{' '.join(args)} returned no stdout")
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"{' '.join(args)} returned invalid JSON") from exc
+    if proc.returncode != 0:
+        raise RuntimeError(f"{' '.join(args)} exited {proc.returncode}: {raw[:400]}")
+    return payload, raw
+
+
+def flatten_strings(value):
+    if isinstance(value, dict):
+        for key, item in value.items():
+            yield str(key)
+            yield from flatten_strings(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from flatten_strings(item)
+    elif isinstance(value, str):
+        yield value
+
+
+def assert_true(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def assert_no_sensitive_strings(payload: dict, *, forbid_env=True, forbid_legacy_path=True) -> None:
+    for text in flatten_strings(payload):
+        assert_true(not SENSITIVE_VALUE_RE.search(text), f"sensitive-looking assignment found: {text[:120]}")
+        assert_true(not OPENAI_KEY_RE.search(text), f"OpenAI-like key found: {text[:120]}")
+        if forbid_env:
+            assert_true(not ENV_PATH_RE.search(text), f".env reference found: {text[:120]}")
+        if forbid_legacy_path:
+            assert_true(not LEGACY_PATH_RE.search(text), f"legacy hardcoded path found: {text[:120]}")
+
+
+def verify_fs_read(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_fs_read_command.py", "scripts/lucy_openclaw_bridge.py", "138", "138"])
+    assert_true(payload.get("ok") is True, "fs_read did not return ok=true")
+    assert_true(payload.get("path") == "scripts/lucy_openclaw_bridge.py", "fs_read returned unexpected path")
+    lines = payload.get("lines", [])
+    assert_true(isinstance(lines, list) and len(lines) == 1, "fs_read returned unexpected lines payload")
+    assert_true(lines[0].get("line") == 138, "fs_read returned unexpected line number")
+    assert_true("delegate_mission" in lines[0].get("text", ""), "fs_read did not return expected content")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "fs_read", "status": "ok"})
+
+
+def verify_machine(command: str, key: str, results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_machine_status_command.py", command])
+    assert_true(payload.get("ok") is True, f"{command} did not return ok=true")
+    assert_true(payload.get("command") == command, f"{command} returned wrong command field")
+    data = payload.get("data")
+    assert_true(isinstance(data, dict), f"{command} did not return object data")
+    assert_true(key in data, f"{command} missing expected key {key}")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": command, "status": "ok"})
+
+
+def verify_service(command: str, required_keys: list[str], results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_service_status_command.py", command])
+    assert_true(payload.get("ok") is True, f"{command} did not return ok=true")
+    assert_true(payload.get("command") == command, f"{command} returned wrong command field")
+    if "status" in payload:
+        assert_true(payload["status"] in ("ok", "warn", "error"), f"{command} returned invalid status")
+    data = payload.get("data")
+    assert_true(isinstance(data, dict), f"{command} did not return object data")
+    for key in required_keys:
+        assert_true(key in data, f"{command} missing expected key {key}")
+    assert_no_sensitive_strings(payload)
+
+    if command == "n8n_health":
+        assert_true("workflows" not in json.dumps(payload, ensure_ascii=False).lower(), "n8n_health leaked workflow details")
+    if command == "log_tail":
+        lines = data.get("lines", [])
+        assert_true(isinstance(lines, list), "log_tail lines is not a list")
+        assert_true(len(lines) <= MAX_LOG_TAIL_LINES, "log_tail exceeded line limit")
+
+    results.append({"command": command, "status": "ok"})
+
+
+def verify_health_report(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_health_report_command.py"])
+    assert_true(payload.get("ok") is True, "health_report did not return ok=true")
+    assert_true(payload.get("command") == "health_report", "health_report returned wrong command field")
+    assert_true(payload.get("overall") in ("ok", "warn", "error"), "health_report missing valid overall")
+    for key in ("summary", "highlights", "warnings", "recommendations", "data"):
+        assert_true(key in payload, f"health_report missing {key}")
+    log_lines = payload.get("data", {}).get("log_tail", {}).get("data", {}).get("lines", [])
+    assert_true(isinstance(log_lines, list), "health_report log lines is not a list")
+    assert_true(len(log_lines) <= MAX_HEALTH_REPORT_LOG_LINES, "health_report exceeded capped log lines")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "health_report", "status": "ok", "overall": payload.get("overall")})
+
+
+def verify_health_brief(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_health_brief_command.py"])
+    assert_true(payload.get("ok") is True, "health_brief did not return ok=true")
+    assert_true(payload.get("command") == "health_brief", "health_brief returned wrong command field")
+    assert_true(payload.get("overall") in ("ok", "warn", "error"), "health_brief missing valid overall")
+    for key in ("brief", "warnings", "next"):
+        assert_true(key in payload, f"health_brief missing {key}")
+    assert_true("data" not in payload, "health_brief should not expose data payload")
+    raw = json.dumps(payload, ensure_ascii=False)
+    assert_true('"lines"' not in raw, "health_brief should not expose full log lines")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "health_brief", "status": "ok", "overall": payload.get("overall")})
+
+
+def verify_capabilities(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_capabilities_command.py"])
+    assert_true(payload.get("ok") is True, "lucy_capabilities did not return ok=true")
+    assert_true(payload.get("command") == "lucy_capabilities", "lucy_capabilities returned wrong command field")
+    for key in ("green", "yellow", "red", "next"):
+        assert_true(key in payload, f"lucy_capabilities missing {key}")
+    assert_true("/lucy_capabilities" in payload.get("green", {}).get("commands", []), "lucy_capabilities self-map missing")
+    assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
+    assert_no_sensitive_strings(payload, forbid_env=False)
+    results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def main() -> int:
+    results: list[dict] = []
+    try:
+        verify_fs_read(results)
+        verify_machine("sys_status", "hostname", results)
+        verify_machine("gpu_status", "gpus", results)
+        verify_machine("disk_status", "path", results)
+        verify_machine("process_status", "top_processes", results)
+        verify_service("openclaw_health", ["gateway_health", "systemd_user", "model"], results)
+        verify_service("docker_status", ["cli_available", "daemon_responds", "containers"], results)
+        verify_service("ollama_status", ["port_11434_responds", "api_tags_responds", "models"], results)
+        verify_service("n8n_health", ["visible_container_or_service", "containers", "local_ports"], results)
+        verify_service("service_status", ["services"], results)
+        verify_service("log_tail", ["unit", "line_limit", "lines"], results)
+        verify_health_report(results)
+        verify_health_brief(results)
+        verify_capabilities(results)
+    except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "command": "verify_lucyclaw_green_commands",
+                    "error": str(exc),
+                    "verified": results,
+                },
+                ensure_ascii=False,
+                separators=(",", ":"),
+            )
+        )
+        return 2
+
+    print(
+        json.dumps(
+            {
+                "ok": True,
+                "command": "verify_lucyclaw_green_commands",
+                "verified": results,
+            },
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
