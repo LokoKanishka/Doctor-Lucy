@@ -44,6 +44,10 @@ NO_REPAIR_RE = re.compile(
     r"\.unlink\(|shutil\.rmtree\b|os\.remove\b|os\.unlink\b|Path\([^)]*\)\.unlink\()"
 )
 ACCEPTS_ARGS_TRUE_RE = re.compile(r"\bacceptsArgs\s*:\s*true\b")
+ALLOWED_ACCEPTS_ARGS_TRUE = {
+    "openclaw_plugins/lucy-fs-readonly-command/index.js",
+    "openclaw_plugins/lucy-fs-search-command/index.js",
+}
 
 
 def classify(path: Path) -> str:
@@ -106,8 +110,8 @@ def is_negated_context(line: str) -> bool:
     )
 
 
-def is_guardrail_context(path: Path, line: str) -> bool:
-    lowered = line.lower()
+def is_guardrail_context(path: Path, *context_lines: str) -> bool:
+    lowered = "\n".join(context_lines).lower()
     name = path.name
     return any(
         token in lowered
@@ -116,7 +120,9 @@ def is_guardrail_context(path: Path, line: str) -> bool:
             "sanitize",
             "sanitiz",
             "redact",
+            "forbidden_result_segments",
             "secret_re",
+            "sensitive_query_re",
             "sensitive_word_re",
             "env_path_re",
             "legacy_path_re",
@@ -155,7 +161,15 @@ def add_warning(warnings: list[dict], path: str, rule: str, text: str, line_no: 
     warnings.append(warning)
 
 
-def scan_line(path: Path, kind: str, line_no: int, line: str, violations: list[dict], warnings: list[dict]) -> None:
+def scan_line(
+    path: Path,
+    kind: str,
+    line_no: int,
+    line: str,
+    context_lines: tuple[str, ...],
+    violations: list[dict],
+    warnings: list[dict],
+) -> None:
     stripped = line.strip()
     if not stripped:
         return
@@ -170,17 +184,17 @@ def scan_line(path: Path, kind: str, line_no: int, line: str, violations: list[d
         add_violation(violations, path, line_no, "no_child_process_exec", line)
 
     if kind in {"lucy_py", "verify_py", "plugin_js", "plugin_meta"} and NO_SUDO_RE.search(line):
-        if not is_negated_context(line) and not is_guardrail_context(path, line):
+        if not is_negated_context(line) and not is_guardrail_context(path, *context_lines):
             add_violation(violations, path, line_no, "no_sudo", line)
 
     if kind in {"lucy_py", "verify_py", "plugin_js", "plugin_meta"} and NO_ENV_ACCESS_RE.search(line):
-        if not is_negated_context(line) and not is_guardrail_context(path, line):
+        if not is_negated_context(line) and not is_guardrail_context(path, *context_lines):
             add_violation(violations, path, line_no, "no_env_access", line)
 
     if kind in {"lucy_py", "verify_py", "plugin_js", "plugin_meta"} and NO_SECRET_LEAK_RE.search(line):
-        if not is_guardrail_context(path, line) and "***" not in line:
+        if not is_guardrail_context(path, *context_lines) and "***" not in line:
             add_violation(violations, path, line_no, "no_secret_leak_patterns", line)
-        elif is_guardrail_context(path, line):
+        elif is_guardrail_context(path, *context_lines):
             add_warning(warnings, rel(path), "sanitizer_secret_pattern", line, line_no)
 
     if LEGACY_TREE in line:
@@ -191,15 +205,15 @@ def scan_line(path: Path, kind: str, line_no: int, line: str, violations: list[d
             add_warning(warnings, rel(path), "legacy_tree_reference", line, line_no)
 
     if kind in {"lucy_py", "plugin_js"} and NO_N8N_ACCESS_RE.search(line):
-        if not is_negated_context(line) and not is_guardrail_context(path, line):
+        if not is_negated_context(line) and not is_guardrail_context(path, *context_lines):
             add_violation(violations, path, line_no, "no_n8n_workflow_access", line)
 
     if kind in {"lucy_py", "plugin_js"} and NO_REPAIR_RE.search(line):
-        if not is_negated_context(line) and not is_guardrail_context(path, line):
+        if not is_negated_context(line) and not is_guardrail_context(path, *context_lines):
             add_violation(violations, path, line_no, "no_auto_repair_green", line)
 
     if kind == "plugin_js" and ACCEPTS_ARGS_TRUE_RE.search(line):
-        if "lucy-fs-readonly-command/index.js" not in rel(path):
+        if rel(path) not in ALLOWED_ACCEPTS_ARGS_TRUE:
             add_violation(violations, path, line_no, "no_accepts_args_true_by_default", line)
 
     if kind == "plugin_js":
@@ -215,8 +229,10 @@ def scan_files(paths: list[Path]) -> tuple[list[dict], list[dict]]:
 
     for path in paths:
         kind = classify(path)
-        for line_no, line in enumerate(read_lines(path), start=1):
-            scan_line(path, kind, line_no, line, violations, warnings)
+        lines = read_lines(path)
+        for index, line in enumerate(lines):
+            context_lines = tuple(lines[max(0, index - 3) : index + 1])
+            scan_line(path, kind, index + 1, line, context_lines, violations, warnings)
 
     try:
         proc = subprocess.run(

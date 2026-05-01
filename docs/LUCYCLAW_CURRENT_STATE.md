@@ -5,9 +5,9 @@ Date: 2026-05-01
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `e98120e` `chore(lucyclaw): clean local hygiene leftovers`
+- Last known healthy commit: `b3a98c8` `chore(lucyclaw): add safe command scaffold`
 - Current operational status: green read-only layer is solid and repeatably verifiable
-- Immediate recommendation: keep `QA1` and `SEC1` as explicit non-regression gates and use `TPL1` before adding new functional powers
+- Immediate recommendation: keep `QA1` and `SEC1` as explicit non-regression gates and use `TPL1` as the default path for the next bounded capability
 
 ## 2. Confirmed Healthy Base
 
@@ -28,10 +28,14 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 ### Safe Bounded Read
 
 - `/fs_read`
+- `/fs_find`
+- `/fs_grep`
 
 Usage:
 
 - exact line-range reading from allowed repo files only
+- bounded file-name search inside the allowed repo tree
+- bounded text search inside allowed repo files
 
 ### Machine Status
 
@@ -123,6 +127,7 @@ Prohibited except for exceptional explicit authorization:
 Currently active Lucy plugin family:
 
 - `lucy-fs-readonly-command`
+- `lucy-fs-search-command`
 - `lucy-machine-status-command`
 - `lucy-service-status-command`
 - `lucy-health-report-command`
@@ -209,14 +214,14 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 
 Preferred order:
 
-1. `R47` — next functional capability, likely `/fs_find` and `/fs_grep`
-2. use `TPL1` as the default generator for future Lucy command tranches
+1. use `TPL1` as the default generator for future Lucy command tranches
+2. build future bounded capabilities on top of `/fs_read`, `/fs_find`, and `/fs_grep`
 3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
 
 Alternative order if repo cleanliness becomes urgent:
 
-1. `R47`
-2. use `TPL1` as the default generator for future Lucy command tranches
+1. use `TPL1` as the default generator for future Lucy command tranches
+2. build future bounded capabilities on top of `/fs_read`, `/fs_find`, and `/fs_grep`
 3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
 
 Guidance:

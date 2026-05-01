@@ -1,0 +1,11 @@
+{
+  "id": "lucy-fs-search-command",
+  "name": "Lucy FS Search Command",
+  "description": "Deterministic read-only filesystem search commands for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

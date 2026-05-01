@@ -15,6 +15,8 @@ PAYLOAD = {
         "description": "Acciones read-only permitidas sin autorización previa.",
         "commands": [
             "/fs_read",
+            "/fs_find",
+            "/fs_grep",
             "/sys_status",
             "/gpu_status",
             "/disk_status",

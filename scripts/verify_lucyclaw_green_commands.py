@@ -88,6 +88,41 @@ def verify_fs_read(results: list[dict]) -> None:
     results.append({"command": "fs_read", "status": "ok"})
 
 
+def verify_fs_find(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_fs_search_command.py", "find", "health"])
+    assert_true(payload.get("ok") is True, "fs_find did not return ok=true")
+    assert_true(payload.get("command") == "fs_find", "fs_find returned wrong command field")
+    assert_true(payload.get("query") == "health", "fs_find returned wrong query")
+    matches = payload.get("results", [])
+    assert_true(isinstance(matches, list), "fs_find results is not a list")
+    assert_true(payload.get("count") == len(matches), "fs_find count does not match results")
+    assert_true(any("health" in item.lower() for item in matches), "fs_find did not return expected health match")
+    assert_true(not any(part in item for item in matches for part in (".agents/", ".git/", "n8n_data/", "n8n_backups/")), "fs_find exposed blocked paths")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "fs_find", "status": "ok"})
+
+
+def verify_fs_grep(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_fs_search_command.py", "grep", "delegate_mission", "scripts"])
+    assert_true(payload.get("ok") is True, "fs_grep did not return ok=true")
+    assert_true(payload.get("command") == "fs_grep", "fs_grep returned wrong command field")
+    assert_true(payload.get("query") == "delegate_mission", "fs_grep returned wrong query")
+    assert_true(payload.get("scope") == "scripts", "fs_grep returned wrong scope")
+    matches = payload.get("results", [])
+    assert_true(isinstance(matches, list), "fs_grep results is not a list")
+    assert_true(payload.get("count") == len(matches), "fs_grep count does not match results")
+    assert_true(len(matches) >= 1, "fs_grep returned no matches for delegate_mission")
+    first = matches[0]
+    assert_true(isinstance(first, dict), "fs_grep match is not an object")
+    assert_true("path" in first and "line" in first and "text" in first, "fs_grep match missing expected keys")
+    assert_true(all("delegate_mission" in item.get("text", "") or "delegate_mission" in item.get("path", "") for item in matches), "fs_grep did not return expected match text")
+    raw = json.dumps(payload, ensure_ascii=False)
+    for blocked in (".agents/", ".git/", "n8n_data/", "n8n_backups/"):
+        assert_true(blocked not in raw, f"fs_grep exposed blocked path {blocked}")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "fs_grep", "status": "ok"})
+
+
 def verify_machine(command: str, key: str, results: list[dict]) -> None:
     payload, _ = run_json([PYTHON, "scripts/lucy_machine_status_command.py", command])
     assert_true(payload.get("ok") is True, f"{command} did not return ok=true")
@@ -156,6 +191,8 @@ def verify_capabilities(results: list[dict]) -> None:
     for key in ("green", "yellow", "red", "next"):
         assert_true(key in payload, f"lucy_capabilities missing {key}")
     assert_true("/lucy_capabilities" in payload.get("green", {}).get("commands", []), "lucy_capabilities self-map missing")
+    assert_true("/fs_find" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_find")
+    assert_true("/fs_grep" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_grep")
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
@@ -165,6 +202,8 @@ def main() -> int:
     results: list[dict] = []
     try:
         verify_fs_read(results)
+        verify_fs_find(results)
+        verify_fs_grep(results)
         verify_machine("sys_status", "hostname", results)
         verify_machine("gpu_status", "gpus", results)
         verify_machine("disk_status", "path", results)
