@@ -1,0 +1,11 @@
+{
+  "id": "lucy-capabilities-command",
+  "name": "Lucy Capabilities Command",
+  "description": "Deterministic read-only capabilities map for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
