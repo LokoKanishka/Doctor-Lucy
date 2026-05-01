@@ -87,6 +87,42 @@ def run_command(args: list[str], timeout: int = SUBPROCESS_TIMEOUT) -> subproces
     )
 
 
+def safe_model_snapshot() -> dict | None:
+    if shutil.which("openclaw") is None:
+        return None
+
+    proc = run_command(["openclaw", "models", "status", "--json"])
+    if proc.returncode != 0:
+        return {
+            "available": False,
+            "error": sanitize_text(proc.stderr.strip() or "openclaw models status failed"),
+        }
+
+    try:
+        model_body = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return {"available": False, "error": "openclaw models status returned invalid JSON"}
+
+    default_model = model_body.get("default") or model_body.get("defaultModel")
+    resolved_default = model_body.get("resolvedDefault")
+    current_model = model_body.get("current") or model_body.get("model")
+
+    safe = {
+        "available": True,
+        "current": current_model,
+        "default": default_model,
+        "resolved_default": resolved_default,
+        "current_available": current_model is not None,
+        "default_available": (default_model is not None or resolved_default is not None),
+    }
+    model_name = current_model or resolved_default or default_model
+    if isinstance(model_name, str) and "/" in model_name:
+        provider, model = model_name.split("/", 1)
+        safe["provider"] = provider
+        safe["model"] = model
+    return safe
+
+
 def http_json(url: str) -> dict:
     try:
         request = urllib.request.Request(url, headers={"Accept": "application/json"})
@@ -175,18 +211,7 @@ def docker_daemon_responds() -> bool:
 def build_openclaw_health() -> dict:
     health = http_json("http://127.0.0.1:18789/health")
     service = systemctl_status("openclaw-gateway.service", "user")
-    model = None
-    if shutil.which("openclaw") is not None:
-        proc = run_command(["openclaw", "models", "status", "--json"])
-        if proc.returncode == 0:
-            try:
-                model_body = json.loads(proc.stdout)
-            except json.JSONDecodeError:
-                model_body = {}
-            model = {
-                "current": model_body.get("current") or model_body.get("model"),
-                "default": model_body.get("default") or model_body.get("defaultModel"),
-            }
+    model = safe_model_snapshot()
     status = "ok" if health.get("responds") and health.get("status_code") == 200 else "warn"
     if service.get("is_active") not in ("active", "unknown"):
         status = "warn"

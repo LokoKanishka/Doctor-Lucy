@@ -1,6 +1,9 @@
 import { spawn } from "node:child_process";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const COMMAND = "/home/lucy-ubuntu/Escritorio/doctor de lucy/scripts/lucy_service_status_command.py";
+const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
+const COMMAND = resolve(PLUGIN_DIR, "../../scripts/lucy_service_status_command.py");
 const TIMEOUT_MS = 20000;
 const COMMANDS = [
   {

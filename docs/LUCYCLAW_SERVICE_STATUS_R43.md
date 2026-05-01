@@ -57,8 +57,18 @@ Returns:
 
 - gateway health from `http://127.0.0.1:18789/health`
 - `systemctl --user` status for `openclaw-gateway.service` when available
-- model status from `openclaw models status --json` when available without secrets
+- sanitized model summary only when it can be derived safely from `openclaw models status --json`
 - general status: `ok`, `warn`, or `error`
+
+Safe model fields only:
+
+- `current`
+- `default`
+- `resolved_default`
+- provider/model split when derivable
+- availability booleans
+
+Do not paste raw `openclaw models status --json` into reports because it may include credential metadata even when partially masked.
 
 ### `/docker_status`
 
@@ -134,6 +144,12 @@ It does not expose:
 - arbitrary service/log arguments
 
 Each command calls the Python wrapper with a fixed subcommand and no arbitrary shell arguments.
+
+Path policy after R-AUD1B:
+
+- plugin entrypoints must resolve Python wrappers relative to the installed plugin path
+- the loaded plugin must execute scripts from the same `doctora-lucy` tree being audited
+- runtime behavior must not depend on the legacy sibling tree `doctor de lucy`
 
 ## Backup
 

@@ -32,6 +32,12 @@ R43 added bounded service and log status commands:
 
 R44 aggregates those existing wrappers into one report. It does not add new host powers.
 
+R-AUD1B clarification:
+
+- `health_report` inherits only the sanitized model view returned by `openclaw_health`
+- raw `openclaw models status --json` output must not be copied into the aggregate report
+- plugin command entrypoints should resolve inside the active `doctora-lucy` tree so runtime and audited repo stay aligned
+
 ## Command Implemented
 
 Created:
@@ -118,6 +124,11 @@ Preserved:
 - no arbitrary arguments
 
 The wrapper sanitizes sensitive-looking strings defensively and truncates long strings.
+
+This includes model-state reporting:
+
+- only safe summary fields may be emitted
+- credential metadata from OpenClaw CLI model/auth inspection must stay out of report bodies
 
 ## Backup
 
