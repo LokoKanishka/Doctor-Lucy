@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -27,6 +28,7 @@ LEGACY_PATH_RE = re.compile(r"/home/lucy-ubuntu/Escritorio/doctor de lucy")
 
 
 def run_json(args: list[str]) -> tuple[dict, str]:
+    env = os.environ.copy()
     proc = subprocess.run(
         args,
         check=False,
@@ -36,6 +38,7 @@ def run_json(args: list[str]) -> tuple[dict, str]:
         timeout=TIMEOUT,
         shell=False,
         cwd=ROOT,
+        env=env,
     )
     raw = proc.stdout.strip()
     if not raw:
@@ -193,9 +196,42 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("/lucy_capabilities" in payload.get("green", {}).get("commands", []), "lucy_capabilities self-map missing")
     assert_true("/fs_find" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_find")
     assert_true("/fs_grep" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_grep")
+    assert_true("/lucy_next_step" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /lucy_next_step")
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def verify_next_step(results: list[dict]) -> None:
+    env = os.environ.copy()
+    env["LUCY_SKIP_NEXT_STEP"] = "1"
+    proc = subprocess.run(
+        [PYTHON, "scripts/lucy_next_step_command.py"],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+        env=env,
+    )
+    raw = proc.stdout.strip()
+    if not raw:
+        raise RuntimeError("lucy_next_step returned no stdout")
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("lucy_next_step returned invalid JSON") from exc
+    assert_true(proc.returncode == 0, f"lucy_next_step exited {proc.returncode}")
+    assert_true(payload.get("ok") is True, "lucy_next_step did not return ok=true")
+    assert_true(payload.get("command") == "lucy_next_step", "lucy_next_step returned wrong command field")
+    assert_true(payload.get("decision") in ("READY", "WARN", "BLOCK"), "lucy_next_step returned invalid decision")
+    assert_true("basis" in payload, "lucy_next_step missing basis")
+    assert_true("recommendation" in payload, "lucy_next_step missing recommendation")
+    assert_true("n8n workflows" not in json.dumps(payload, ensure_ascii=False).lower(), "lucy_next_step leaked workflow detail")
+    assert_no_sensitive_strings(payload, forbid_env=False)
+    results.append({"command": "lucy_next_step", "status": "ok", "decision": payload.get("decision")})
 
 
 def main() -> int:
@@ -217,6 +253,8 @@ def main() -> int:
         verify_health_report(results)
         verify_health_brief(results)
         verify_capabilities(results)
+        if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
+            verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
         print(
             json.dumps(

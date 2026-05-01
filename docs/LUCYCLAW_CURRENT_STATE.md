@@ -5,9 +5,9 @@ Date: 2026-05-01
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `b3a98c8` `chore(lucyclaw): add safe command scaffold`
+- Last known healthy commit: `a1fa375` `feat(lucyclaw): add readonly fs search commands`
 - Current operational status: green read-only layer is solid and repeatably verifiable
-- Immediate recommendation: keep `QA1` and `SEC1` as explicit non-regression gates and use `TPL1` as the default path for the next bounded capability
+- Immediate recommendation: use `/lucy_next_step` as the safe advance gate before preparing the next bounded capability
 
 ## 2. Confirmed Healthy Base
 
@@ -65,11 +65,13 @@ Usage:
 
 - `/health_report`
 - `/health_brief`
+- `/lucy_next_step`
 
 Usage:
 
 - aggregate diagnostic report
 - compact Telegram-friendly summary
+- safe READY / WARN / BLOCK gate before advancing
 
 ### Capability / Policy Map
 
@@ -133,6 +135,7 @@ Currently active Lucy plugin family:
 - `lucy-health-report-command`
 - `lucy-health-brief-command`
 - `lucy-capabilities-command`
+- `lucy-next-step-command`
 
 Expected implementation pattern:
 
@@ -207,6 +210,7 @@ Useful runtime checks:
 
 - `/health_brief`
 - `/lucy_capabilities`
+- `/lucy_next_step`
 
 If those are healthy and QA1 passes, the green layer is currently in good standing.
 
@@ -214,15 +218,15 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 
 Preferred order:
 
-1. use `TPL1` as the default generator for future Lucy command tranches
-2. build future bounded capabilities on top of `/fs_read`, `/fs_find`, and `/fs_grep`
-3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
+1. `R49` — likely `/repo_map`
+2. use `TPL1` as the default generator for future Lucy command tranches
+3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Alternative order if repo cleanliness becomes urgent:
 
-1. use `TPL1` as the default generator for future Lucy command tranches
-2. build future bounded capabilities on top of `/fs_read`, `/fs_find`, and `/fs_grep`
-3. keep `SEC1` and `QA1` mandatory before each Lucy command/plugin commit
+1. `R49`
+2. use `TPL1` as the default generator for future Lucy command tranches
+3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Guidance:
 

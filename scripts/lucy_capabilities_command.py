@@ -17,6 +17,7 @@ PAYLOAD = {
             "/fs_read",
             "/fs_find",
             "/fs_grep",
+            "/lucy_next_step",
             "/sys_status",
             "/gpu_status",
             "/disk_status",

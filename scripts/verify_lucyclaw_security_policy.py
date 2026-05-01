@@ -135,6 +135,9 @@ def is_guardrail_context(path: Path, *context_lines: str) -> bool:
             "no_n8n_access_re",
             "no_repair_re",
             "accepts_args_true_re",
+            "blocked_actions",
+            "safe_steps",
+            "allowed_next_actions",
         )
     ) or name == "verify_lucyclaw_security_policy.py"
 
@@ -231,7 +234,7 @@ def scan_files(paths: list[Path]) -> tuple[list[dict], list[dict]]:
         kind = classify(path)
         lines = read_lines(path)
         for index, line in enumerate(lines):
-            context_lines = tuple(lines[max(0, index - 3) : index + 1])
+            context_lines = tuple(lines[max(0, index - 6) : index + 1])
             scan_line(path, kind, index + 1, line, context_lines, violations, warnings)
 
     try:

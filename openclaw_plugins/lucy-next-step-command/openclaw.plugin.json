@@ -1,0 +1,11 @@
+{
+  "id": "lucy-next-step-command",
+  "name": "Lucy Next Step Command",
+  "description": "Deterministic safe advance gate for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
