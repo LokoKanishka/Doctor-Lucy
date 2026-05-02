@@ -47,6 +47,7 @@ ACCEPTS_ARGS_TRUE_RE = re.compile(r"\bacceptsArgs\s*:\s*true\b")
 ALLOWED_ACCEPTS_ARGS_TRUE = {
     "openclaw_plugins/lucy-fs-readonly-command/index.js",
     "openclaw_plugins/lucy-fs-search-command/index.js",
+    "openclaw_plugins/lucy-doc-brief-command/index.js",
 }
 
 

@@ -5,9 +5,9 @@ Date: 2026-05-02
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `b9f7e26` `test(lucyclaw): relax next-step workflow false positive`
-- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation
-- Immediate recommendation: use `/repo_map` for safe orientation and `/lucy_next_step` as the bounded advance gate
+- Last known healthy commit: `32f5ef3` `feat(lucyclaw): add readonly repo map command`
+- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation plus deterministic file briefing
+- Immediate recommendation: use `/repo_map` and `/doc_brief` for safe orientation, then `/lucy_next_step` before advancing capability scope
 
 ## 2. Confirmed Healthy Base
 
@@ -20,6 +20,7 @@ The current stable baseline is:
 - `/health_brief` active
 - `/lucy_capabilities` active
 - `/repo_map` active in tranche R49
+- `/doc_brief` active in tranche R50A
 - QA1 verifier available
 
 This means Lucy currently has a real bounded green zone, not just a documented one.
@@ -31,12 +32,14 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/fs_read`
 - `/fs_find`
 - `/fs_grep`
+- `/doc_brief`
 
 Usage:
 
 - exact line-range reading from allowed repo files only
 - bounded file-name search inside the allowed repo tree
 - bounded text search inside allowed repo files
+- deterministic conceptual briefing for allowed docs and Lucy command files
 
 ### Machine Status
 
@@ -68,6 +71,7 @@ Usage:
 - `/health_brief`
 - `/lucy_next_step`
 - `/repo_map`
+- `/doc_brief`
 
 Usage:
 
@@ -75,6 +79,7 @@ Usage:
 - compact Telegram-friendly summary
 - safe READY / WARN / BLOCK gate before advancing
 - compact repo orientation without entering sensitive zones
+- deterministic local summary of safe repo docs and command files
 
 ### Capability / Policy Map
 
@@ -141,6 +146,7 @@ Currently active Lucy plugin family:
 - `lucy-capabilities-command`
 - `lucy-next-step-command`
 - `lucy-repo-map-command`
+- `lucy-doc-brief-command`
 
 Expected implementation pattern:
 
@@ -168,6 +174,7 @@ QA1 verifies:
 - expected `command` fields
 - expected top-level keys
 - `/repo_map` shape and sensitive exclusion checks
+- `/doc_brief` safe summary and rejection checks
 - bounded log counts
 - no heavy `data` block in `health_brief`
 - no full log lines in `health_brief`
@@ -216,6 +223,8 @@ Useful runtime checks:
 
 - `/health_brief`
 - `/lucy_capabilities`
+- `/repo_map`
+- `/doc_brief docs/LUCYCLAW_CURRENT_STATE.md`
 - `/lucy_next_step`
 
 If those are healthy and QA1 passes, the green layer is currently in good standing.
@@ -224,14 +233,14 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 
 Preferred order:
 
-1. `R49` — `/repo_map` compact safe repo navigation
-2. decide between a conceptual read-only reading aid or a read-only planning command
+1. `R50A` — `/doc_brief` deterministic conceptual read-only briefing
+2. decide between a read-only planning command or Telegram ergonomics improvements
 3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Alternative order if repo cleanliness becomes urgent:
 
-1. `R49`
-2. decide between conceptual read-only guidance or bounded planning
+1. `R50A`
+2. decide between bounded planning or Telegram ergonomics
 3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Guidance:

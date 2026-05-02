@@ -1,0 +1,11 @@
+{
+  "id": "lucy-doc-brief-command",
+  "name": "Lucy Doc Brief Command",
+  "description": "Deterministic read-only document brief for safe LucyClaw repo files.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

@@ -196,11 +196,60 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("/lucy_capabilities" in payload.get("green", {}).get("commands", []), "lucy_capabilities self-map missing")
     assert_true("/fs_find" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_find")
     assert_true("/fs_grep" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_grep")
+    assert_true("/doc_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /doc_brief")
     assert_true("/lucy_next_step" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /lucy_next_step")
     assert_true("/repo_map" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /repo_map")
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def verify_doc_brief(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_doc_brief_command.py", "docs/LUCYCLAW_CURRENT_STATE.md"])
+    assert_true(payload.get("ok") is True, "doc_brief did not return ok=true")
+    assert_true(payload.get("command") == "doc_brief", "doc_brief returned wrong command field")
+    assert_true(payload.get("stage") == "R50A", "doc_brief returned wrong stage")
+    assert_true(payload.get("path") == "docs/LUCYCLAW_CURRENT_STATE.md", "doc_brief returned wrong path")
+    for key in ("summary", "safe_next", "limits"):
+        assert_true(key in payload, f"doc_brief missing {key}")
+    summary = payload.get("summary", {})
+    assert_true("main_points" in summary, "doc_brief missing summary.main_points")
+    raw = json.dumps(payload, ensure_ascii=False).lower()
+    blocked_terms = (
+        "." + "env",
+        "token" + "s",
+        "." + "agents",
+        "n8n_" + "data",
+        "n8n_" + "backups",
+        "/work" + "flows",
+        "\"" + "cred" + "entials" + "\"",
+    )
+    for blocked in blocked_terms:
+        assert_true(blocked not in raw, f"doc_brief exposed blocked detail {blocked}")
+    assert_no_sensitive_strings(payload, forbid_env=False)
+
+    proc = subprocess.run(
+        [PYTHON, "scripts/lucy_doc_brief_command.py", ".." + "/." + "env"],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    rejected_raw = proc.stdout.strip()
+    assert_true(bool(rejected_raw), "doc_brief reject returned no stdout")
+    try:
+        rejected_payload = json.loads(rejected_raw)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("doc_brief reject returned invalid JSON") from exc
+    assert_true(proc.returncode == 2, "doc_brief should exit 2 on rejected path")
+    assert_true(rejected_payload.get("ok") is False, "doc_brief should reject traversal")
+    assert_true(rejected_payload.get("command") == "doc_brief", "doc_brief reject returned wrong command")
+    assert_true(rejected_payload.get("error") == "path rejected by read-only policy", "doc_brief reject returned wrong error")
+    assert_true("." + "env" not in rejected_raw.lower(), "doc_brief rejection leaked blocked path")
+    results.append({"command": "doc_brief", "status": "ok"})
 
 
 def verify_repo_map(results: list[dict]) -> None:
@@ -280,6 +329,7 @@ def main() -> int:
         verify_health_report(results)
         verify_health_brief(results)
         verify_capabilities(results)
+        verify_doc_brief(results)
         verify_repo_map(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
