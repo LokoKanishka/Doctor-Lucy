@@ -197,9 +197,34 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("/fs_find" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_find")
     assert_true("/fs_grep" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_grep")
     assert_true("/lucy_next_step" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /lucy_next_step")
+    assert_true("/repo_map" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /repo_map")
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def verify_repo_map(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_repo_map_command.py"])
+    assert_true(payload.get("ok") is True, "repo_map did not return ok=true")
+    assert_true(payload.get("command") == "repo_map", "repo_map returned wrong command field")
+    assert_true(payload.get("stage") == "R49", "repo_map returned wrong stage")
+    for key in ("top_level", "lucy_commands", "key_files", "safe_navigation", "excluded"):
+        assert_true(key in payload, f"repo_map missing {key}")
+    raw = json.dumps(payload, ensure_ascii=False).lower()
+    blocked_terms = (
+        "." + "env",
+        "token" + "s",
+        "." + "agents",
+        "n8n_" + "data",
+        "n8n_" + "backups",
+        "/work" + "flows",
+        "\"" + "cred" + "entials" + "\"",
+        "database" + ".sqlite",
+    )
+    for blocked in blocked_terms:
+        assert_true(blocked not in raw, f"repo_map exposed blocked detail {blocked}")
+    assert_no_sensitive_strings(payload, forbid_env=False)
+    results.append({"command": "repo_map", "status": "ok"})
 
 
 def verify_next_step(results: list[dict]) -> None:
@@ -255,6 +280,7 @@ def main() -> int:
         verify_health_report(results)
         verify_health_brief(results)
         verify_capabilities(results)
+        verify_repo_map(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:

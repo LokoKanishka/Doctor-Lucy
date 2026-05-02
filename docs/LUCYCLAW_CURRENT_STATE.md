@@ -1,13 +1,13 @@
 # LucyClaw Current State
 
-Date: 2026-05-01
+Date: 2026-05-02
 
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `a1fa375` `feat(lucyclaw): add readonly fs search commands`
-- Current operational status: green read-only layer is solid and repeatably verifiable
-- Immediate recommendation: use `/lucy_next_step` as the safe advance gate before preparing the next bounded capability
+- Last known healthy commit: `b9f7e26` `test(lucyclaw): relax next-step workflow false positive`
+- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation
+- Immediate recommendation: use `/repo_map` for safe orientation and `/lucy_next_step` as the bounded advance gate
 
 ## 2. Confirmed Healthy Base
 
@@ -19,6 +19,7 @@ The current stable baseline is:
 - `/health_report` active
 - `/health_brief` active
 - `/lucy_capabilities` active
+- `/repo_map` active in tranche R49
 - QA1 verifier available
 
 This means Lucy currently has a real bounded green zone, not just a documented one.
@@ -66,12 +67,14 @@ Usage:
 - `/health_report`
 - `/health_brief`
 - `/lucy_next_step`
+- `/repo_map`
 
 Usage:
 
 - aggregate diagnostic report
 - compact Telegram-friendly summary
 - safe READY / WARN / BLOCK gate before advancing
+- compact repo orientation without entering sensitive zones
 
 ### Capability / Policy Map
 
@@ -80,6 +83,7 @@ Usage:
 Usage:
 
 - deterministic explanation of green, yellow, and red operational boundaries
+- deterministic compact repo map for safe navigation
 
 ## 4. Green / Yellow / Red Map
 
@@ -136,6 +140,7 @@ Currently active Lucy plugin family:
 - `lucy-health-brief-command`
 - `lucy-capabilities-command`
 - `lucy-next-step-command`
+- `lucy-repo-map-command`
 
 Expected implementation pattern:
 
@@ -162,6 +167,7 @@ QA1 verifies:
 - valid JSON
 - expected `command` fields
 - expected top-level keys
+- `/repo_map` shape and sensitive exclusion checks
 - bounded log counts
 - no heavy `data` block in `health_brief`
 - no full log lines in `health_brief`
@@ -218,14 +224,14 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 
 Preferred order:
 
-1. `R49` — likely `/repo_map`
-2. use `TPL1` as the default generator for future Lucy command tranches
+1. `R49` — `/repo_map` compact safe repo navigation
+2. decide between a conceptual read-only reading aid or a read-only planning command
 3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Alternative order if repo cleanliness becomes urgent:
 
 1. `R49`
-2. use `TPL1` as the default generator for future Lucy command tranches
+2. decide between conceptual read-only guidance or bounded planning
 3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Guidance:

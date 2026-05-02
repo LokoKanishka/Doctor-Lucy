@@ -1,0 +1,11 @@
+{
+  "id": "lucy-repo-map-command",
+  "name": "Lucy Repo Map Command",
+  "description": "Compact read-only repo map for LucyClaw/OpenClaw navigation.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

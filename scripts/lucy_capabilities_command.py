@@ -18,6 +18,7 @@ PAYLOAD = {
             "/fs_find",
             "/fs_grep",
             "/lucy_next_step",
+            "/repo_map",
             "/sys_status",
             "/gpu_status",
             "/disk_status",
@@ -59,7 +60,7 @@ PAYLOAD = {
             "no reparación automática",
         ],
     },
-    "next": "Usar /health_brief para estado rápido o /health_report para detalle.",
+    "next": "Usar /repo_map para orientación segura o /health_brief para estado rápido.",
 }
 
 
