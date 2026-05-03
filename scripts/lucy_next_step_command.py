@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = "python3"
 TIMEOUT = 40
-SUGGESTED_NEXT = "R49 /repo_map"
+SUGGESTED_NEXT = "R54 /change_plan"
 
 
 def emit(payload: dict, code: int = 0) -> int:
@@ -146,8 +146,9 @@ def build_payload(argv: list[str]) -> tuple[dict, int]:
         "allowed_next_actions": [
             "preparar ticket",
             "leer repo con /fs_find, /fs_grep y /fs_read",
-            "generar plan read-only",
-            "crear scaffold con TPL1 en tramo futuro",
+            "generar plan read-only con /plan_brief",
+            "clasificar riesgo con /risk_check",
+            "preparar autorización con /permission_brief",
         ],
         "blocked_actions": [
             "reparar sin autorización",
@@ -157,7 +158,7 @@ def build_payload(argv: list[str]) -> tuple[dict, int]:
             "usar sudo",
             "commitear cambios no revisados",
         ],
-        "next": "Si Diego autoriza, preparar R49.",
+        "next": "Si Diego autoriza, preparar R54 con la base de planificación ya validada.",
     }, 0
 
 

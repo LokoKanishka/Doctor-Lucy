@@ -1,0 +1,11 @@
+{
+  "id": "lucy-risk-check-command",
+  "name": "Lucy Risk Check Command",
+  "description": "Deterministic read-only risk classifier for LucyClaw requests.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

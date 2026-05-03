@@ -1,0 +1,11 @@
+{
+  "id": "lucy-plan-brief-command",
+  "name": "Lucy Plan Brief Command",
+  "description": "Deterministic read-only planning brief for LucyClaw requests.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

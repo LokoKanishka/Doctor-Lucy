@@ -1,0 +1,11 @@
+{
+  "id": "lucy-permission-brief-command",
+  "name": "Lucy Permission Brief Command",
+  "description": "Deterministic read-only permission brief for LucyClaw requests.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

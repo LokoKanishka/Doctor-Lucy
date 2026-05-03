@@ -48,6 +48,9 @@ ALLOWED_ACCEPTS_ARGS_TRUE = {
     "openclaw_plugins/lucy-fs-readonly-command/index.js",
     "openclaw_plugins/lucy-fs-search-command/index.js",
     "openclaw_plugins/lucy-doc-brief-command/index.js",
+    "openclaw_plugins/lucy-plan-brief-command/index.js",
+    "openclaw_plugins/lucy-risk-check-command/index.js",
+    "openclaw_plugins/lucy-permission-brief-command/index.js",
 }
 
 

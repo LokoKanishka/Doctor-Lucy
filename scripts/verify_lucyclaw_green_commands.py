@@ -21,7 +21,7 @@ SENSITIVE_VALUE_RE = re.compile(
     r"(?i)\b(?:token|secret|api[_-]?key|apikey|authorization|access[_-]?token|refresh[_-]?token|password)\b"
     r"[^\n:=]{0,20}[:= ][^\s,\]}]{4,}"
 )
-OPENAI_KEY_RE = re.compile(r"sk-[A-Za-z0-9_-]{10,}")
+OPENAI_KEY_RE = re.compile(r"(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{10,}")
 ENV_PATH_RE = re.compile(r"(^|[\\/])\.env($|[./])", re.IGNORECASE)
 N8N_WORKFLOW_RE = re.compile(r"workflow", re.IGNORECASE)
 LEGACY_PATH_RE = re.compile(r"/home/lucy-ubuntu/Escritorio/doctor de lucy")
@@ -236,11 +236,60 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("/fs_find" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_find")
     assert_true("/fs_grep" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_grep")
     assert_true("/doc_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /doc_brief")
+    assert_true("/plan_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /plan_brief")
+    assert_true("/risk_check" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /risk_check")
+    assert_true("/permission_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /permission_brief")
     assert_true("/lucy_next_step" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /lucy_next_step")
     assert_true("/repo_map" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /repo_map")
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def verify_plan_brief(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_plan_brief_command.py", "agregar comando para ver ultimas docs Lucy"])
+    assert_true(payload.get("ok") is True, "plan_brief did not return ok=true")
+    assert_true(payload.get("command") == "plan_brief", "plan_brief returned wrong command field")
+    assert_true(payload.get("stage") == "R51", "plan_brief returned wrong stage")
+    assert_true(payload.get("decision") == "PLAN_ONLY", "plan_brief returned wrong decision")
+    assert_true(payload.get("scope") == "read-only", "plan_brief returned wrong scope")
+    assert_true(payload.get("target_risk") == "YELLOW", "plan_brief should classify command creation as yellow target")
+    for key in ("files_to_review", "risks", "permissions_needed", "checks", "tests", "acceptance_criteria"):
+        assert_true(key in payload, f"plan_brief missing {key}")
+    assert_true(isinstance(payload.get("files_to_review"), list) and payload["files_to_review"], "plan_brief files_to_review should be non-empty")
+    assert_true(isinstance(payload.get("permissions_needed"), dict), "plan_brief permissions_needed should be an object")
+    assert_true(payload.get("permissions_needed", {}).get("edit_files") is True, "plan_brief should request edit_files for command creation")
+    assert_true(payload.get("approval", {}).get("mode") == "required", "plan_brief approval mode should be required")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "plan_brief", "status": "ok"})
+
+
+def verify_risk_check(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_risk_check_command.py", "reiniciar openclaw gateway"])
+    assert_true(payload.get("ok") is True, "risk_check did not return ok=true")
+    assert_true(payload.get("command") == "risk_check", "risk_check returned wrong command field")
+    assert_true(payload.get("stage") == "R52", "risk_check returned wrong stage")
+    assert_true(payload.get("risk") == "YELLOW", "risk_check should classify gateway restart as yellow")
+    assert_true(payload.get("approval") == "required", "risk_check should require approval for restart")
+    for key in ("summary", "reasons", "checks_previos", "rollback", "safe_alternatives"):
+        assert_true(key in payload, f"risk_check missing {key}")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "risk_check", "status": "ok"})
+
+
+def verify_permission_brief(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_permission_brief_command.py", "agregar comando para ver ultimas docs Lucy"])
+    assert_true(payload.get("ok") is True, "permission_brief did not return ok=true")
+    assert_true(payload.get("command") == "permission_brief", "permission_brief returned wrong command field")
+    assert_true(payload.get("stage") == "R53", "permission_brief returned wrong stage")
+    assert_true(payload.get("target_risk") == "YELLOW", "permission_brief should classify command creation as yellow")
+    assert_true(payload.get("approval_mode") == "required", "permission_brief should require approval")
+    assert_true(isinstance(payload.get("permissions_needed"), dict), "permission_brief permissions_needed should be an object")
+    assert_true(payload.get("permissions_needed", {}).get("install_plugin") is True, "permission_brief should request install_plugin")
+    for key in ("grouped_approval_recommended", "checks_before_execution", "blocked_zones", "safe_alternatives"):
+        assert_true(key in payload, f"permission_brief missing {key}")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "permission_brief", "status": "ok"})
 
 
 def verify_doc_brief(results: list[dict]) -> None:
@@ -368,6 +417,9 @@ def main() -> int:
         verify_health_report(results)
         verify_health_brief(results)
         verify_capabilities(results)
+        verify_plan_brief(results)
+        verify_risk_check(results)
+        verify_permission_brief(results)
         verify_doc_brief(results)
         verify_repo_map(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
