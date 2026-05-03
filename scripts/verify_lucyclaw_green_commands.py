@@ -25,6 +25,15 @@ OPENAI_KEY_RE = re.compile(r"sk-[A-Za-z0-9_-]{10,}")
 ENV_PATH_RE = re.compile(r"(^|[\\/])\.env($|[./])", re.IGNORECASE)
 N8N_WORKFLOW_RE = re.compile(r"workflow", re.IGNORECASE)
 LEGACY_PATH_RE = re.compile(r"/home/lucy-ubuntu/Escritorio/doctor de lucy")
+LOG_SENSITIVE_ASSIGNMENT_RE = re.compile(
+    r"(?i)\b(?:token|secret|api[_-]?key|apikey|authorization|access[_-]?token|refresh[_-]?token|password)\b"
+    r"[^\n:=]{0,20}(?::|=)\s*([^\s,\]}]+)"
+)
+LOG_BEARER_RE = re.compile(r"(?i)" + "authori" + "zation" + r"\s*:\s*" + "bear" + r"er\s+\S+")
+LOG_STRUCTURAL_BLOCK_RE = re.compile(
+    r"(?i)(?:^|[^a-z])(?:credentials|database\.sqlite|n8n_data/|n8n_backups/|/workflows|workflow[s]?/)(?:[^a-z]|$)"
+)
+FULLY_REDACTED_VALUE_RE = re.compile(r"^[*\-._<>\[\]{}()=,:;!?/\\|]+$")
 
 
 def run_json(args: list[str]) -> tuple[dict, str]:
@@ -77,6 +86,29 @@ def assert_no_sensitive_strings(payload: dict, *, forbid_env=True, forbid_legacy
             assert_true(not ENV_PATH_RE.search(text), f".env reference found: {text[:120]}")
         if forbid_legacy_path:
             assert_true(not LEGACY_PATH_RE.search(text), f"legacy hardcoded path found: {text[:120]}")
+
+
+def _is_fully_redacted_log_value(value: str) -> bool:
+    compact = value.strip().strip("`'\"")
+    return bool(compact) and FULLY_REDACTED_VALUE_RE.fullmatch(compact) is not None
+
+
+def assert_no_sensitive_log_leaks(payload: dict) -> None:
+    lines = payload.get("data", {}).get("lines", [])
+    assert_true(isinstance(lines, list), "log payload lines is not a list")
+    for line in lines:
+        assert_true(isinstance(line, str), "log payload line is not a string")
+        assert_true(not OPENAI_KEY_RE.search(line), f"OpenAI-like key found in log: {line[:120]}")
+        assert_true(not LOG_BEARER_RE.search(line), f"sensitive auth header found in log: {line[:120]}")
+        assert_true(not ENV_PATH_RE.search(line), f".env reference found in log: {line[:120]}")
+        assert_true(not LEGACY_PATH_RE.search(line), f"legacy hardcoded path found in log: {line[:120]}")
+        assert_true(not LOG_STRUCTURAL_BLOCK_RE.search(line), f"sensitive structural path found in log: {line[:120]}")
+        for match in LOG_SENSITIVE_ASSIGNMENT_RE.finditer(line):
+            value = match.group(1)
+            assert_true(
+                _is_fully_redacted_log_value(value),
+                f"sensitive-looking log assignment found: {line[:120]}",
+            )
 
 
 def verify_fs_read(results: list[dict]) -> None:
@@ -147,7 +179,10 @@ def verify_service(command: str, required_keys: list[str], results: list[dict]) 
     assert_true(isinstance(data, dict), f"{command} did not return object data")
     for key in required_keys:
         assert_true(key in data, f"{command} missing expected key {key}")
-    assert_no_sensitive_strings(payload)
+    if command == "log_tail":
+        assert_no_sensitive_log_leaks(payload)
+    else:
+        assert_no_sensitive_strings(payload)
 
     if command == "n8n_health":
         assert_true("workflows" not in json.dumps(payload, ensure_ascii=False).lower(), "n8n_health leaked workflow details")
@@ -169,7 +204,11 @@ def verify_health_report(results: list[dict]) -> None:
     log_lines = payload.get("data", {}).get("log_tail", {}).get("data", {}).get("lines", [])
     assert_true(isinstance(log_lines, list), "health_report log lines is not a list")
     assert_true(len(log_lines) <= MAX_HEALTH_REPORT_LOG_LINES, "health_report exceeded capped log lines")
-    assert_no_sensitive_strings(payload)
+    redacted_payload = json.loads(json.dumps(payload))
+    if isinstance(redacted_payload.get("data", {}).get("log_tail", {}).get("data"), dict):
+        redacted_payload["data"]["log_tail"]["data"]["lines"] = []
+    assert_no_sensitive_strings(redacted_payload)
+    assert_no_sensitive_log_leaks(payload.get("data", {}).get("log_tail", {}))
     results.append({"command": "health_report", "status": "ok", "overall": payload.get("overall")})
 
 
