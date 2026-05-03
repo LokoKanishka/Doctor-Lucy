@@ -236,6 +236,7 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("/fs_find" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_find")
     assert_true("/fs_grep" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /fs_grep")
     assert_true("/doc_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /doc_brief")
+    assert_true("/change_plan" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /change_plan")
     assert_true("/plan_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /plan_brief")
     assert_true("/risk_check" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /risk_check")
     assert_true("/permission_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /permission_brief")
@@ -244,6 +245,33 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def verify_change_plan(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_change_plan_command.py", "agregar comando read-only para listar docs Lucy"])
+    assert_true(payload.get("ok") is True, "change_plan did not return ok=true")
+    assert_true(payload.get("command") == "change_plan", "change_plan returned wrong command field")
+    assert_true(payload.get("stage") == "R54", "change_plan returned wrong stage")
+    assert_true(payload.get("decision") == "PLAN_ONLY", "change_plan returned wrong decision")
+    assert_true(payload.get("risk") == "YELLOW", "change_plan should classify command creation as yellow")
+    for key in (
+        "change_type",
+        "files_to_review",
+        "files_to_create",
+        "files_to_modify",
+        "permissions_needed",
+        "tests",
+        "acceptance_criteria",
+        "rollback",
+        "blocked_actions",
+        "safe_next",
+    ):
+        assert_true(key in payload, f"change_plan missing {key}")
+    assert_true(payload.get("change_type") == "new_command", "change_plan should classify command creation as new_command")
+    assert_true(isinstance(payload.get("files_to_create"), list) and payload["files_to_create"], "change_plan files_to_create should be non-empty")
+    assert_true(payload.get("permissions_needed", {}).get("install_plugin") is True, "change_plan should request install_plugin")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "change_plan", "status": "ok"})
 
 
 def verify_plan_brief(results: list[dict]) -> None:
@@ -417,6 +445,7 @@ def main() -> int:
         verify_health_report(results)
         verify_health_brief(results)
         verify_capabilities(results)
+        verify_change_plan(results)
         verify_plan_brief(results)
         verify_risk_check(results)
         verify_permission_brief(results)

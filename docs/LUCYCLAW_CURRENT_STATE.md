@@ -1,12 +1,12 @@
 # LucyClaw Current State
 
-Date: 2026-05-02
+Date: 2026-05-03
 
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `32f5ef3` `feat(lucyclaw): add readonly repo map command`
-- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation plus deterministic file briefing
+- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation, deterministic file briefing, and read-only planning contracts
 - Immediate recommendation: use `/repo_map` and `/doc_brief` for safe orientation, then `/lucy_next_step` before advancing capability scope
 
 ## 2. Confirmed Healthy Base
@@ -21,6 +21,9 @@ The current stable baseline is:
 - `/lucy_capabilities` active
 - `/repo_map` active in tranche R49
 - `/doc_brief` active in tranche R50A
+- `/plan_brief` active in tranche R51
+- `/risk_check` active in tranche R52
+- `/permission_brief` active in tranche R53
 - QA1 verifier available
 
 This means Lucy currently has a real bounded green zone, not just a documented one.
@@ -33,6 +36,10 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/fs_find`
 - `/fs_grep`
 - `/doc_brief`
+- `/plan_brief`
+- `/risk_check`
+- `/permission_brief`
+- `/change_plan`
 
 Usage:
 
@@ -40,6 +47,8 @@ Usage:
 - bounded file-name search inside the allowed repo tree
 - bounded text search inside allowed repo files
 - deterministic conceptual briefing for allowed docs and Lucy command files
+- deterministic planning, risk and permission briefing for future work
+- deterministic technical change contracts without execution
 
 ### Machine Status
 
@@ -72,6 +81,10 @@ Usage:
 - `/lucy_next_step`
 - `/repo_map`
 - `/doc_brief`
+- `/plan_brief`
+- `/risk_check`
+- `/permission_brief`
+- `/change_plan`
 
 Usage:
 
@@ -80,6 +93,7 @@ Usage:
 - safe READY / WARN / BLOCK gate before advancing
 - compact repo orientation without entering sensitive zones
 - deterministic local summary of safe repo docs and command files
+- deterministic planning and technical change contracts while staying read-only
 
 ### Capability / Policy Map
 
@@ -147,6 +161,10 @@ Currently active Lucy plugin family:
 - `lucy-next-step-command`
 - `lucy-repo-map-command`
 - `lucy-doc-brief-command`
+- `lucy-plan-brief-command`
+- `lucy-risk-check-command`
+- `lucy-permission-brief-command`
+- `lucy-change-plan-command`
 
 Expected implementation pattern:
 
@@ -234,13 +252,13 @@ If those are healthy and QA1 passes, the green layer is currently in good standi
 Preferred order:
 
 1. `R50A` — `/doc_brief` deterministic conceptual read-only briefing
-2. decide between a read-only planning command or Telegram ergonomics improvements
-3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
+2. `R51-R54` — read-only planning layer: `/plan_brief`, `/risk_check`, `/permission_brief`, `/change_plan`
+3. decide between `R55 /scaffold_plan` or the first minimal supervised yellow action
 
 Alternative order if repo cleanliness becomes urgent:
 
 1. `R50A`
-2. decide between bounded planning or Telegram ergonomics
+2. `R51-R54`
 3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
 
 Guidance:

@@ -1,0 +1,11 @@
+{
+  "id": "lucy-change-plan-command",
+  "name": "Lucy Change Plan Command",
+  "description": "Deterministic read-only technical change plan for LucyClaw requests.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

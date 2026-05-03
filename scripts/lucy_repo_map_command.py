@@ -33,6 +33,7 @@ KEY_FILE_CANDIDATES = {
     ],
     "commands": [
         "scripts/lucy_capabilities_command.py",
+        "scripts/lucy_change_plan_command.py",
         "scripts/lucy_next_step_command.py",
         "scripts/lucy_plan_brief_command.py",
         "scripts/lucy_risk_check_command.py",
@@ -44,6 +45,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-fs-readonly-command/",
         "openclaw_plugins/lucy-fs-search-command/",
         "openclaw_plugins/lucy-next-step-command/",
+        "openclaw_plugins/lucy-change-plan-command/",
         "openclaw_plugins/lucy-plan-brief-command/",
         "openclaw_plugins/lucy-risk-check-command/",
         "openclaw_plugins/lucy-permission-brief-command/",
@@ -52,6 +54,7 @@ KEY_FILE_CANDIDATES = {
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
         "docs/LUCYCLAW_NEXT_STEP_R48.md",
+        "docs/LUCYCLAW_CHANGE_PLAN_R54.md",
         "docs/LUCYCLAW_PLAN_BRIEF_R51.md",
         "docs/LUCYCLAW_RISK_CHECK_R52.md",
         "docs/LUCYCLAW_PERMISSION_BRIEF_R53.md",
@@ -136,7 +139,7 @@ def build_payload(argv: list[str]) -> tuple[dict, int]:
             "health": ["/health_brief", "/health_report", "/openclaw_health"],
             "machine": ["/sys_status", "/gpu_status", "/disk_status", "/process_status"],
             "services": ["/docker_status", "/ollama_status", "/n8n_health", "/service_status", "/log_tail"],
-            "planning": ["/plan_brief", "/risk_check", "/permission_brief"],
+            "planning": ["/plan_brief", "/risk_check", "/permission_brief", "/change_plan"],
             "policy": ["/lucy_capabilities", "/lucy_next_step", "/repo_map"],
         },
         "key_files": key_files,

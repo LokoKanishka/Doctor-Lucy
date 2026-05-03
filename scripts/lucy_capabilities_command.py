@@ -21,6 +21,7 @@ PAYLOAD = {
             "/plan_brief",
             "/risk_check",
             "/permission_brief",
+            "/change_plan",
             "/lucy_next_step",
             "/repo_map",
             "/sys_status",
@@ -64,7 +65,7 @@ PAYLOAD = {
             "no reparación automática",
         ],
     },
-    "next": "Usar /repo_map y /doc_brief para orientación; luego /plan_brief, /risk_check y /permission_brief antes de cualquier tramo amarillo.",
+    "next": "Usar /repo_map y /doc_brief para orientación; luego /plan_brief, /risk_check, /permission_brief y /change_plan antes de cualquier tramo amarillo.",
 }
 
 

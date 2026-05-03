@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_REQUEST_TEXT = 280
 MAX_ITEMS = 8
 MAX_REASONS = 5
+MAX_BLOCKED_ACTIONS = 6
 
 RED_ZONE_RE = re.compile(
     r"(?i)(?:\.env|token(?:s)?|secret(?:s)?|api[_-]?keys?|password|access[_-]?token|refresh[_-]?token|"
@@ -27,6 +28,10 @@ YELLOW_ACTION_RE = re.compile(
 GREEN_ACTION_RE = re.compile(
     r"(?i)(?:leer|ver|buscar|inspeccionar|mapear|mapa|resumir|brief|plan|diagn[oó]stic|status|health|"
     r"documentar|orientar|review|scan)"
+)
+NEGATED_YELLOW_RE = re.compile(
+    r"(?i)(?:sin\s+(?:agregar|crear|editar|modificar|cambiar|actualizar|instalar|registrar|reiniciar|aplicar)|"
+    r"no\s+(?:agregar|crear|editar|modificar|cambiar|actualizar|instalar|registrar|reiniciar|aplicar))"
 )
 
 FILE_RULES = (
@@ -75,6 +80,54 @@ BASE_REVIEW_FILES = [
     "scripts/lucy_next_step_command.py",
 ]
 
+CHANGE_PLAN_RULES = (
+    (
+        re.compile(r"(?i)(?:command|comando|plugin|slash)"),
+        {
+            "create": [
+                "scripts/lucy_<name>_command.py",
+                "openclaw_plugins/lucy-<name>-command/package.json",
+                "openclaw_plugins/lucy-<name>-command/openclaw.plugin.json",
+                "openclaw_plugins/lucy-<name>-command/index.js",
+                "docs/LUCYCLAW_<NAME>_RXX.md",
+            ],
+            "modify": [
+                "scripts/lucy_planning_readonly.py",
+                "scripts/lucy_capabilities_command.py",
+                "scripts/lucy_repo_map_command.py",
+                "scripts/verify_lucyclaw_green_commands.py",
+                "scripts/verify_lucyclaw_security_policy.py",
+                "docs/LUCYCLAW_CURRENT_STATE.md",
+            ],
+        },
+    ),
+    (
+        re.compile(r"(?i)(?:doc|docs|document)"),
+        {
+            "create": [
+                "docs/LUCYCLAW_<TOPIC>_RXX.md",
+            ],
+            "modify": [
+                "docs/LUCYCLAW_CURRENT_STATE.md",
+                "scripts/lucy_doc_brief_command.py",
+                "scripts/lucy_repo_map_command.py",
+            ],
+        },
+    ),
+    (
+        re.compile(r"(?i)(?:health|status|gateway|telegram|service|log)"),
+        {
+            "create": [],
+            "modify": [
+                "scripts/lucy_health_brief_command.py",
+                "scripts/lucy_health_report_command.py",
+                "scripts/lucy_service_status_command.py",
+                "scripts/verify_lucyclaw_green_commands.py",
+            ],
+        },
+    ),
+)
+
 
 def compact(text: str, limit: int = 160) -> str:
     collapsed = " ".join(text.strip().split())
@@ -107,6 +160,7 @@ def classify_risk(text: str) -> dict[str, object]:
     reasons: list[str] = []
     level = "GREEN"
     authorization = "not_required"
+    yellow_signal = YELLOW_ACTION_RE.search(text) and not NEGATED_YELLOW_RE.search(text)
     if RED_ZONE_RE.search(text) or RED_ACTION_RE.search(text):
         level = "RED"
         authorization = "blocked"
@@ -116,7 +170,7 @@ def classify_risk(text: str) -> dict[str, object]:
                 "Requiere intervención excepcional y política separada antes de cualquier ejecución.",
             ]
         )
-    elif YELLOW_ACTION_RE.search(text):
+    elif yellow_signal:
         level = "YELLOW"
         authorization = "required"
         reasons.extend(
@@ -140,8 +194,14 @@ def classify_risk(text: str) -> dict[str, object]:
 def summarize_permissions(text: str, risk_level: str) -> dict[str, object]:
     lowered = text.lower()
     edit_files = bool(re.search(r"\b(?:agregar|crear|editar|modificar|cambiar|actualizar|scaffold|command|comando)\b", lowered))
+    if NEGATED_YELLOW_RE.search(text):
+        edit_files = False
     install_plugin = "plugin" in lowered or "comando" in lowered or "command" in lowered
+    if NEGATED_YELLOW_RE.search(text):
+        install_plugin = False
     restart_gateway = "reiniciar" in lowered or "restart" in lowered or install_plugin
+    if NEGATED_YELLOW_RE.search(text):
+        restart_gateway = False
     commit_push = edit_files or "commit" in lowered or "push" in lowered
     return {
         "edit_files": edit_files,
@@ -290,3 +350,87 @@ def build_safe_alternatives(text: str, risk_level: str) -> list[str]:
     else:
         alternatives.append("/lucy_next_step para decidir si conviene avanzar")
     return alternatives[:MAX_ITEMS]
+
+
+def classify_change_type(text: str, risk_level: str) -> str:
+    lowered = text.lower()
+    if risk_level == "RED":
+        return "blocked_request"
+    if any(token in lowered for token in ("command", "comando", "plugin", "slash")):
+        return "new_command"
+    if any(token in lowered for token in ("doc", "docs", "document")):
+        return "documentation_update"
+    if any(token in lowered for token in ("health", "status", "gateway", "telegram", "service", "log")):
+        return "runtime_surface_change"
+    if risk_level == "GREEN":
+        return "analysis_only"
+    return "code_change"
+
+
+def _add_existing_path(results: list[str], path_text: str) -> None:
+    if path_text in results:
+        return
+    if (ROOT / path_text).exists():
+        results.append(path_text)
+
+
+def _add_placeholder(results: list[str], path_text: str) -> None:
+    if path_text not in results:
+        results.append(path_text)
+
+
+def collect_change_files(text: str, risk_level: str) -> dict[str, list[str]]:
+    review = collect_review_files(text)
+    create: list[str] = []
+    modify: list[str] = []
+
+    for pattern, mapping in CHANGE_PLAN_RULES:
+        if pattern.search(text):
+            for path_text in mapping["create"]:
+                _add_placeholder(create, path_text)
+            for path_text in mapping["modify"]:
+                _add_existing_path(modify, path_text)
+
+    if not modify:
+        fallback = [
+            "scripts/lucy_planning_readonly.py",
+            "scripts/verify_lucyclaw_green_commands.py",
+            "scripts/verify_lucyclaw_security_policy.py",
+        ]
+        for path_text in fallback:
+            _add_existing_path(modify, path_text)
+
+    if risk_level == "RED":
+        create = []
+        modify = []
+
+    return {
+        "review": review[:MAX_ITEMS],
+        "create": create[:MAX_ITEMS],
+        "modify": modify[:MAX_ITEMS],
+    }
+
+
+def build_blocked_actions(risk_level: str) -> list[str]:
+    actions = [
+        "no ejecutar",
+        "no instalar",
+        "no reiniciar",
+        "no commitear",
+        "no tocar .env/n8n/memoria",
+        "no sudo ni shell libre",
+    ]
+    if risk_level == "RED":
+        actions.insert(1, "no pedir bypass de zonas rojas dentro de LucyClaw verde")
+    return actions[:MAX_BLOCKED_ACTIONS]
+
+
+def build_safe_next(text: str, risk_level: str) -> list[str]:
+    next_steps = ["/plan_brief", "/risk_check", "/permission_brief"]
+    if risk_level == "GREEN":
+        next_steps.extend(["/repo_map", "/lucy_next_step"])
+    elif risk_level == "YELLOW":
+        next_steps.extend(["documentar tramo R54", "esperar autorización explícita antes de ejecutar"])
+    else:
+        next_steps.extend(["reformular la solicitud fuera de zonas rojas", "bloquear ejecución y rediseñar alcance"])
+    return next_steps[:MAX_ITEMS]
