@@ -109,3 +109,10 @@ al usuario. Para ELIMINARLO de forma permanente, se aplican las siguientes leyes
 - **nin-postgres / sqlite / bigquery**: Querying de datos locales y masivos.
 - **nin-slack / nin-sentry / nin-notion**: Comunicación y monitoreo operativo.
 
+Rule 7 — GEMINI CLI OPERATOR POLICY (GCLI-POL1):
+This repo is operated under bounded tickets with a canonical root at `/home/lucy-ubuntu/Escritorio/doctora-lucy`.
+1. **Grouped Permission Rule**: If a ticket explicitly includes "PERMISO AGRUPADO AUTORIZADO", Gemini CLI may execute the listed scope (read, edit listed files, run tests, install authorized plugin, restart gateway once, commit/push) without further confirmation.
+2. **Hard Stop**: MUST stop and ask if: path/branch/remote is wrong, unexpected files appear, QA1/SEC1 fails, secrets/tokens are involved, sudo is needed, or the scope exceeds the ticket.
+3. **Restricted Zones**: NEVER touch `.env`, tokens, memory, n8n internals, vault, personality, or legacy `Doctor-Lucy` copies. No sudo, no voice/TTS scripts, no writes outside the repo.
+4. **Mandatory Gates**: Every tranches requires successful `verify_lucyclaw_green_commands.py` (QA1) and `verify_lucyclaw_security_policy.py` (SEC1).
+

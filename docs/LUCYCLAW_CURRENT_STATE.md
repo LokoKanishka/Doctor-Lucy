@@ -250,26 +250,21 @@ Useful runtime checks:
 
 If those are healthy and QA1 passes, the green layer is currently in good standing.
 
-## 9. Recommended Next Tranche Order
+## 11. Gemini CLI Operator Policy (GCLI-POL1)
+
+Gemini CLI está autorizado como ejecutor controlado bajo las reglas de `GEMINI.md` y `docs/GEMINI_CLI_OPERATOR_POLICY_GCLI_POL1.md`.
+- Permite "Permisos Agrupados" en tickets autorizados.
+- No puede tocar zonas rojas (`.env`, n8n, memoria, etc.).
+- Requiere QA1 y SEC1 exitosos en cada tramo.
+
+## 12. Recommended Next Tranche Order
 
 Preferred order:
 
-1. `R50A` — `/doc_brief` deterministic conceptual read-only briefing
-2. `R51-R54` — read-only planning layer: `/plan_brief`, `/risk_check`, `/permission_brief`, `/change_plan`
-3. decide between `R55 /scaffold_plan` or the first minimal supervised yellow action
+1. `GCLI-POL1` — Gemini CLI Operator Policy (Current)
+2. Decidir entre primer tramo amarillo mínimo supervisado o mejorar ergonomía de Telegram.
 
-Alternative order if repo cleanliness becomes urgent:
-
-1. `R50A`
-2. `R51-R54`
-3. keep `SEC1`, `QA1`, and `/lucy_next_step` as the advance gate before each Lucy capability tranche
-
-Guidance:
-
-- avoid adding new functional power without going through `TPL1` unless there is a strong operational reason
-- keep `SEC1` and `QA1` as mandatory non-regression checks for future Lucy tranches
-
-## 10. Non-Regression Rules
+## 13. Non-Regression Rules
 
 Do not regress the current baseline:
 
