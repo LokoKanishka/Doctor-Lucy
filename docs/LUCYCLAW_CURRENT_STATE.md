@@ -5,9 +5,9 @@ Date: 2026-05-03
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `5f2e2fb` `docs(lucyclaw): define Gemini CLI operator policy`
-- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation, deterministic file briefing, read-only planning contracts, and a quick help guide.
-- Immediate recommendation: use `/lucy_help` for a quick overview of available commands.
+- Last known healthy commit: `6d5d8e3` `feat(lucyclaw): add compact help command`
+- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation, deterministic file briefing, read-only planning contracts, a quick help guide, and a categorical command index.
+- Immediate recommendation: use `/commands_brief` for a categorical overview of all LucyClaw commands.
 
 ## 2. Confirmed Healthy Base
 
@@ -171,6 +171,7 @@ Currently active Lucy plugin family:
 - `lucy-change-plan-command`
 - `lucy-scaffold-plan-command`
 - `lucy-help-command`
+- `lucy-commands-brief-command`
 
 Expected implementation pattern:
 
@@ -247,6 +248,7 @@ Useful runtime checks:
 
 - `/health_brief`
 - `/lucy_help`
+- `/commands_brief`
 - `/lucy_capabilities`
 - `/repo_map`
 - `/doc_brief docs/LUCYCLAW_CURRENT_STATE.md`
@@ -265,7 +267,7 @@ Gemini CLI está autorizado como ejecutor controlado bajo las reglas de `GEMINI.
 
 Preferred order:
 
-1. `R56` — `/lucy_help` compact Telegram-friendly guide (Current)
+1. `R57` — `/commands_brief` categorical command index (Current)
 2. Decidir entre primer tramo amarillo mínimo supervisado o mejorar ergonomía de Telegram.
 
 ## 13. Non-Regression Rules

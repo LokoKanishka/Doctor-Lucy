@@ -38,6 +38,7 @@ PAYLOAD = {
             "/health_report",
             "/health_brief",
             "/lucy_help",
+            "/commands_brief",
             "/lucy_capabilities",
         ],
     },

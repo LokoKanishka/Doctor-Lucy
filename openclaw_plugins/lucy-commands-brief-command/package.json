@@ -1,0 +1,13 @@
+{
+  "name": "lucy-commands-brief-command",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Compact read-only commands index for LucyClaw",
+  "main": "index.js",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": [
+      "index.js"
+    ]
+  }
+}

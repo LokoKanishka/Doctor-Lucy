@@ -1,0 +1,11 @@
+{
+  "id": "lucy-commands-brief-command",
+  "name": "Lucy Commands Brief Command",
+  "description": "Compact read-only commands index for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

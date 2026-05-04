@@ -36,6 +36,7 @@ KEY_FILE_CANDIDATES = {
         "scripts/lucy_change_plan_command.py",
         "scripts/lucy_scaffold_plan_command.py",
         "scripts/lucy_help_command.py",
+        "scripts/lucy_commands_brief_command.py",
         "scripts/lucy_next_step_command.py",
 
         "scripts/lucy_plan_brief_command.py",
@@ -55,6 +56,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-repo-map-command/",
         "openclaw_plugins/lucy-scaffold-plan-command/",
         "openclaw_plugins/lucy-help-command/",
+        "openclaw_plugins/lucy-commands-brief-command/",
     ],
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
@@ -62,6 +64,7 @@ KEY_FILE_CANDIDATES = {
         "docs/LUCYCLAW_CHANGE_PLAN_R54.md",
         "docs/LUCYCLAW_SCAFFOLD_PLAN_R55.md",
         "docs/LUCYCLAW_HELP_R56.md",
+        "docs/LUCYCLAW_COMMANDS_BRIEF_R57.md",
         "docs/LUCYCLAW_PLAN_BRIEF_R51.md",
         "docs/LUCYCLAW_RISK_CHECK_R52.md",
         "docs/LUCYCLAW_PERMISSION_BRIEF_R53.md",

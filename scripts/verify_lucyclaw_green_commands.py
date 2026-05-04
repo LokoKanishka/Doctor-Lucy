@@ -260,6 +260,20 @@ def verify_lucy_help(results: list[dict]) -> None:
     results.append({"command": "lucy_help", "status": "ok"})
 
 
+def verify_commands_brief(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_commands_brief_command.py"])
+    assert_true(payload.get("ok") is True, "commands_brief did not return ok=true")
+    assert_true(payload.get("command") == "commands_brief", "commands_brief returned wrong command field")
+    assert_true(payload.get("stage") == "R57", "commands_brief returned wrong stage")
+    for key in ("title", "groups", "recommended_flow", "blocked", "next"):
+        assert_true(key in payload, f"commands_brief missing {key}")
+    groups = payload.get("groups", {})
+    for g in ("estado", "lectura", "planificacion", "seguridad", "maquina_servicios"):
+        assert_true(g in groups, f"commands_brief missing group {g}")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "commands_brief", "status": "ok"})
+
+
 def verify_change_plan(results: list[dict]) -> None:
     payload, _ = run_json([PYTHON, "scripts/lucy_change_plan_command.py", "agregar comando read-only para listar docs Lucy"])
     assert_true(payload.get("ok") is True, "change_plan did not return ok=true")
@@ -483,6 +497,7 @@ def main() -> int:
         verify_health_brief(results)
         verify_capabilities(results)
         verify_lucy_help(results)
+        verify_commands_brief(results)
         verify_change_plan(results)
         verify_scaffold_plan(results)
         verify_plan_brief(results)
