@@ -1,0 +1,11 @@
+{
+  "id": "lucy-help-command",
+  "name": "Lucy Help Command",
+  "description": "Compact read-only help guide for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

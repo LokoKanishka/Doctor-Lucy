@@ -242,9 +242,22 @@ def verify_capabilities(results: list[dict]) -> None:
     assert_true("/permission_brief" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /permission_brief")
     assert_true("/lucy_next_step" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /lucy_next_step")
     assert_true("/repo_map" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /repo_map")
+    assert_true("/lucy_help" in payload.get("green", {}).get("commands", []), "lucy_capabilities missing /lucy_help")
     assert_true("no .env" in payload.get("red", {}).get("limits", []), "lucy_capabilities missing red policy")
     assert_no_sensitive_strings(payload, forbid_env=False)
     results.append({"command": "lucy_capabilities", "status": "ok"})
+
+
+def verify_lucy_help(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_help_command.py"])
+    assert_true(payload.get("ok") is True, "lucy_help did not return ok=true")
+    assert_true(payload.get("command") == "lucy_help", "lucy_help returned wrong command field")
+    assert_true(payload.get("stage") == "R56", "lucy_help returned wrong stage")
+    for key in ("title", "quick_start", "safe_flow", "blocked", "next"):
+        assert_true(key in payload, f"lucy_help missing {key}")
+    assert_true(isinstance(payload.get("quick_start"), list) and len(payload["quick_start"]) >= 5, "lucy_help quick_start is too short")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "lucy_help", "status": "ok"})
 
 
 def verify_change_plan(results: list[dict]) -> None:
@@ -469,6 +482,7 @@ def main() -> int:
         verify_health_report(results)
         verify_health_brief(results)
         verify_capabilities(results)
+        verify_lucy_help(results)
         verify_change_plan(results)
         verify_scaffold_plan(results)
         verify_plan_brief(results)

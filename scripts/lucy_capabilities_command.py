@@ -37,6 +37,7 @@ PAYLOAD = {
             "/log_tail",
             "/health_report",
             "/health_brief",
+            "/lucy_help",
             "/lucy_capabilities",
         ],
     },

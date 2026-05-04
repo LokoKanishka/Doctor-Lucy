@@ -1,0 +1,13 @@
+{
+  "name": "lucy-help-command",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Compact read-only help guide for LucyClaw",
+  "main": "index.js",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": [
+      "index.js"
+    ]
+  }
+}

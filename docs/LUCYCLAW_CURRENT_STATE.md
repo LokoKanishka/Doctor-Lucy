@@ -5,9 +5,9 @@ Date: 2026-05-03
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `32f5ef3` `feat(lucyclaw): add readonly repo map command`
-- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation, deterministic file briefing, and read-only planning contracts
-- Immediate recommendation: use `/repo_map` and `/doc_brief` for safe orientation, then `/lucy_next_step` before advancing capability scope
+- Last known healthy commit: `5f2e2fb` `docs(lucyclaw): define Gemini CLI operator policy`
+- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation, deterministic file briefing, read-only planning contracts, and a quick help guide.
+- Immediate recommendation: use `/lucy_help` for a quick overview of available commands.
 
 ## 2. Confirmed Healthy Base
 
@@ -41,6 +41,7 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/permission_brief`
 - `/change_plan`
 - `/scaffold_plan`
+- `/lucy_help`
 
 Usage:
 
@@ -87,6 +88,7 @@ Usage:
 - `/permission_brief`
 - `/change_plan`
 - `/scaffold_plan`
+- `/lucy_help`
 
 Usage:
 
@@ -168,6 +170,7 @@ Currently active Lucy plugin family:
 - `lucy-permission-brief-command`
 - `lucy-change-plan-command`
 - `lucy-scaffold-plan-command`
+- `lucy-help-command`
 
 Expected implementation pattern:
 
@@ -243,6 +246,7 @@ python3 scripts/verify_lucyclaw_security_policy.py
 Useful runtime checks:
 
 - `/health_brief`
+- `/lucy_help`
 - `/lucy_capabilities`
 - `/repo_map`
 - `/doc_brief docs/LUCYCLAW_CURRENT_STATE.md`
@@ -261,7 +265,7 @@ Gemini CLI está autorizado como ejecutor controlado bajo las reglas de `GEMINI.
 
 Preferred order:
 
-1. `GCLI-POL1` — Gemini CLI Operator Policy (Current)
+1. `R56` — `/lucy_help` compact Telegram-friendly guide (Current)
 2. Decidir entre primer tramo amarillo mínimo supervisado o mejorar ergonomía de Telegram.
 
 ## 13. Non-Regression Rules
