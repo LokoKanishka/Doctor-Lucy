@@ -40,6 +40,7 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/risk_check`
 - `/permission_brief`
 - `/change_plan`
+- `/scaffold_plan`
 
 Usage:
 
@@ -85,6 +86,7 @@ Usage:
 - `/risk_check`
 - `/permission_brief`
 - `/change_plan`
+- `/scaffold_plan`
 
 Usage:
 
@@ -165,6 +167,7 @@ Currently active Lucy plugin family:
 - `lucy-risk-check-command`
 - `lucy-permission-brief-command`
 - `lucy-change-plan-command`
+- `lucy-scaffold-plan-command`
 
 Expected implementation pattern:
 

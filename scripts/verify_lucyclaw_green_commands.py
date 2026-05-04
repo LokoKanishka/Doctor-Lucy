@@ -274,6 +274,30 @@ def verify_change_plan(results: list[dict]) -> None:
     results.append({"command": "change_plan", "status": "ok"})
 
 
+def verify_scaffold_plan(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_scaffold_plan_command.py", "comando para auditar logs"])
+    assert_true(payload.get("ok") is True, "scaffold_plan did not return ok=true")
+    assert_true(payload.get("command") == "scaffold_plan", "scaffold_plan returned wrong command field")
+    assert_true(payload.get("stage") == "R55", "scaffold_plan returned wrong stage")
+    assert_true(payload.get("decision") == "PLAN_ONLY", "scaffold_plan returned wrong decision")
+    assert_true(payload.get("suggested_command") == "/auditar_logs", "scaffold_plan returned wrong slug")
+    for key in (
+        "request_summary",
+        "risk",
+        "scaffold",
+        "files_to_create",
+        "files_to_modify",
+        "permissions_needed",
+        "tests",
+        "acceptance_criteria",
+        "rollback",
+        "blocked_actions",
+    ):
+        assert_true(key in payload, f"scaffold_plan missing {key}")
+    assert_no_sensitive_strings(payload)
+    results.append({"command": "scaffold_plan", "status": "ok"})
+
+
 def verify_plan_brief(results: list[dict]) -> None:
     payload, _ = run_json([PYTHON, "scripts/lucy_plan_brief_command.py", "agregar comando para ver ultimas docs Lucy"])
     assert_true(payload.get("ok") is True, "plan_brief did not return ok=true")
@@ -446,6 +470,7 @@ def main() -> int:
         verify_health_brief(results)
         verify_capabilities(results)
         verify_change_plan(results)
+        verify_scaffold_plan(results)
         verify_plan_brief(results)
         verify_risk_check(results)
         verify_permission_brief(results)

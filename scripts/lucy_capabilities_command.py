@@ -25,6 +25,7 @@ PAYLOAD = {
             "/lucy_next_step",
             "/repo_map",
             "/sys_status",
+            "/scaffold_plan",
             "/gpu_status",
             "/disk_status",
             "/process_status",

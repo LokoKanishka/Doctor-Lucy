@@ -28,6 +28,13 @@ The script validates the current green commands:
 - `/health_report`
 - `/health_brief`
 - `/lucy_capabilities`
+- `/lucy_next_step`
+- `/repo_map`
+- `/plan_brief`
+- `/risk_check`
+- `/permission_brief`
+- `/change_plan`
+- `/scaffold_plan`
 
 ## What QA1 Checks
 

@@ -1,0 +1,13 @@
+{
+  "name": "lucy-scaffold-plan-command",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Read-only scaffold plan for LucyClaw",
+  "main": "index.js",
+  "license": "MIT",
+  "openclaw": {
+    "extensions": [
+      "index.js"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "lucy-scaffold-plan-command",
+  "name": "Lucy Scaffold Plan Command",
+  "description": "Generate a read-only technical plan for a new command scaffold",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
