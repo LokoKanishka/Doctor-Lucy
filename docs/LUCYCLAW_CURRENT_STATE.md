@@ -6,9 +6,10 @@ Date: 2026-05-05
 
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
-- Current operational status: green layer solid. R64 (rollback_plan) implemented.
-- Immediate recommendation: R65 (Plan Validator) or AG-Y4 (Yellow tranche using rollback_plan).
+- Current operational status: green layer solid. R65 (verify_rollback_plan) implemented.
+- Immediate recommendation: AG-Y4 (Yellow tranche using rollback_plan + verify_rollback_plan).
 - AG-Y3/R64 registered /run_registry and /rollback_plan as real plugins.
+- R65 provides local validation for rollback plans.
 - R63 defined the formal Rollback Runbook.
 
 ## 2. Confirmed Healthy Base
