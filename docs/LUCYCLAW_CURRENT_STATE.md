@@ -6,8 +6,8 @@ Date: 2026-05-05
 
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
-- Current operational status: green read-only layer is solid, repeatably verifiable, and has been successfully used by Antigravity to perform a controlled yellow restart (AG-Y1) with voice suspension.
-- Immediate recommendation: proceed with documented yellow code-change tranches or architecture v3 planning.
+- Current operational status: green read-only layer is solid. R59 Daemon v3 Architecture designed.
+- Immediate recommendation: proceed with R60 (Yellow actions protocol) or R61 (Evidence envelope). No automatic repair yet.
 
 ## 2. Confirmed Healthy Base
 
@@ -268,9 +268,11 @@ Gemini CLI está autorizado como ejecutor controlado bajo las reglas de `GEMINI.
 Preferred order:
 
 1. `AG-Y1` — Operator Validation (Validated)
-2. `AG-R58` — Docs SSOT Alignment (Current)
-3. `AG-Y2` — First controlled yellow code-change tranche.
-4. `R59` — Architecture V3 Design.
+2. `AG-R58` — Docs SSOT Alignment (Validated)
+3. `R59` — Architecture V3 Design (Completed)
+4. `R60` — Formal Protocol for Yellow Actions.
+5. `R61` — Evidence Envelope / Run Registry.
+6. `AG-Y2` — First controlled yellow code-change tranche (after R60/R61).
 
 ## 13. Non-Regression Rules
 
