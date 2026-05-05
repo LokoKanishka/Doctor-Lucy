@@ -7,8 +7,9 @@ Date: 2026-05-05
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
 - Current operational status: green read-only layer is solid. R59 (Architecture), R60 (Yellow Protocol), R61 (Evidence Envelope), and R62 (Run Registry) designed and implemented.
-- Immediate recommendation: proceed with AG-Y3 (first controlled yellow code-change tranche with plugin and mandatory evidence envelope/registry). No automatic repair yet.
+- Immediate recommendation: proceed with R64 (rollback_plan command) or AG-Y4 (advanced plugin with rollback plan). No automatic repair yet.
 - AG-Y3 has registered `/run_registry` as the first real plugin under the new R60/R61/R62 protocol.
+- R63 has defined the formal Rollback Runbook using the Last Healthy Run logic.
 
 ## 2. Confirmed Healthy Base
 
@@ -276,6 +277,7 @@ Preferred order:
 6. `AG-Y2` — First controlled yellow code-change tranche (Completed).
 7. `R62` — Run Registry JSONL implementation (Completed).
 8. `AG-Y3` — Run Registry Command Plugin (Completed). First controlled yellow code-change tranche with plugin.
+9. `R63` — Rollback Runbook (Completed). Standardized procedure using Last Healthy Run.
 
 ## 13. Non-Regression Rules
 
