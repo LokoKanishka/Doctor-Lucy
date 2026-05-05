@@ -57,6 +57,10 @@ _test_subagent/
 Memoria_Principal_Lucy/
 data/*
 !data/lucy_bunker_log.jsonl
+!data/run_registry/
+!data/run_registry/*
+!data/run_registry/examples/
+!data/run_registry/examples/*
 data/music_brain/*.sqlite
 
 # ─── Node modules in embedded repos ───

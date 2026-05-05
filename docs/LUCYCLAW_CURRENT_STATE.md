@@ -6,8 +6,8 @@ Date: 2026-05-05
 
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
-- Current operational status: green read-only layer is solid. R59 (Architecture), R60 (Yellow Protocol), and R61 (Evidence Envelope) designed.
-- Immediate recommendation: proceed with AG-Y2 (first controlled yellow code-change tranche with mandatory evidence envelope). No automatic repair yet.
+- Current operational status: green read-only layer is solid. R59 (Architecture), R60 (Yellow Protocol), R61 (Evidence Envelope), and R62 (Run Registry) designed and implemented.
+- Immediate recommendation: proceed with AG-Y3 (first controlled yellow code-change tranche with plugin and mandatory evidence envelope/registry). No automatic repair yet.
 
 ## 2. Confirmed Healthy Base
 
@@ -272,7 +272,9 @@ Preferred order:
 3. `R59` — Architecture V3 Design (Completed)
 4. `R60` — Formal Protocol for Yellow Actions (Completed).
 5. `R61` — Evidence Envelope / Run Registry (Completed).
-6. `AG-Y2` — First controlled yellow code-change tranche (with mandatory envelope).
+6. `AG-Y2` — First controlled yellow code-change tranche (Completed).
+7. `R62` — Run Registry JSONL implementation (Completed).
+8. `AG-Y3` — First controlled yellow code-change tranche with plugin.
 
 ## 13. Non-Regression Rules
 
