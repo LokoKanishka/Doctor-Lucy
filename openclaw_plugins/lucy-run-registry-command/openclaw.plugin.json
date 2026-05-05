@@ -1,0 +1,13 @@
+{
+  "id": "lucy-run-registry-command",
+  "name": "Lucy Run Registry Command",
+  "command": "run_registry",
+  "description": "Devuelve un resumen del Run Registry.",
+  "acceptsArgs": false,
+  "entry": "index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

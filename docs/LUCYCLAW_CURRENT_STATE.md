@@ -8,6 +8,7 @@ Date: 2026-05-05
 - Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
 - Current operational status: green read-only layer is solid. R59 (Architecture), R60 (Yellow Protocol), R61 (Evidence Envelope), and R62 (Run Registry) designed and implemented.
 - Immediate recommendation: proceed with AG-Y3 (first controlled yellow code-change tranche with plugin and mandatory evidence envelope/registry). No automatic repair yet.
+- AG-Y3 has registered `/run_registry` as the first real plugin under the new R60/R61/R62 protocol.
 
 ## 2. Confirmed Healthy Base
 
@@ -274,7 +275,7 @@ Preferred order:
 5. `R61` — Evidence Envelope / Run Registry (Completed).
 6. `AG-Y2` — First controlled yellow code-change tranche (Completed).
 7. `R62` — Run Registry JSONL implementation (Completed).
-8. `AG-Y3` — First controlled yellow code-change tranche with plugin.
+8. `AG-Y3` — Run Registry Command Plugin (Completed). First controlled yellow code-change tranche with plugin.
 
 ## 13. Non-Regression Rules
 

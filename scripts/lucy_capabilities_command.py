@@ -40,6 +40,7 @@ PAYLOAD = {
             "/lucy_help",
             "/commands_brief",
             "/lucy_capabilities",
+            "/run_registry",
         ],
     },
     "yellow": {

@@ -44,6 +44,7 @@ KEY_FILE_CANDIDATES = {
         "scripts/lucy_permission_brief_command.py",
         "scripts/lucy_fs_search_command.py",
         "scripts/lucy_repo_map_command.py",
+        "scripts/lucy_run_registry_command.py",
     ],
     "plugins": [
         "openclaw_plugins/lucy-fs-readonly-command/",
@@ -57,6 +58,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-scaffold-plan-command/",
         "openclaw_plugins/lucy-help-command/",
         "openclaw_plugins/lucy-commands-brief-command/",
+        "openclaw_plugins/lucy-run-registry-command/",
     ],
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
@@ -150,7 +152,7 @@ def build_payload(argv: list[str]) -> tuple[dict, int]:
             "machine": ["/sys_status", "/gpu_status", "/disk_status", "/process_status"],
             "services": ["/docker_status", "/ollama_status", "/n8n_health", "/service_status", "/log_tail"],
             "planning": ["/plan_brief", "/risk_check", "/permission_brief", "/change_plan"],
-            "policy": ["/lucy_capabilities", "/lucy_next_step", "/repo_map"],
+            "policy": ["/lucy_capabilities", "/lucy_next_step", "/repo_map", "/run_registry"],
         },
         "key_files": key_files,
         "safe_navigation": [

@@ -477,6 +477,18 @@ def verify_next_step(results: list[dict]) -> None:
     results.append({"command": "lucy_next_step", "status": "ok", "decision": payload.get("decision")})
 
 
+def verify_run_registry(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_run_registry_command.py"])
+    assert_true(payload.get("ok") is True, "run_registry did not return ok=true")
+    assert_true(payload.get("command") == "run_registry", "run_registry returned wrong command field")
+    assert_true(payload.get("stage") == "AG-Y3", "run_registry returned wrong stage")
+    for key in ("registry", "status", "next"):
+        assert_true(key in payload, f"run_registry missing {key}")
+    assert_true(payload.get("registry", {}).get("path") == "data/run_registry/lucyclaw_runs.jsonl", "run_registry missing correct registry path")
+    assert_no_sensitive_strings(payload, forbid_env=False)
+    results.append({"command": "run_registry", "status": "ok"})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -505,6 +517,7 @@ def main() -> int:
         verify_permission_brief(results)
         verify_doc_brief(results)
         verify_repo_map(results)
+        verify_run_registry(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
