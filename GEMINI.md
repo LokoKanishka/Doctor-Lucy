@@ -72,6 +72,15 @@ Al detectar la presencia de `.agents/TRUST_MODE` o bajo orden explícita de Lucy
     - Este protocolo es PRIORITARIO. Ningún turno operativo debe finalizar sin este reporte hablado.
 Este modo prioriza la velocidad y la eficiencia eliminando el cuello de botella de las confirmaciones manuales constantes.
 
+VOICE REPORT PRECEDENCE:
+El reporte de voz está permitido porque Diego lo solicitó y lo considera útil, pero solo cuando no contradice el ticket actual. Si el ticket activo prohíbe TTS, voz, scripts de voz, escritura de archivos, tocar n8n_data o cualquier mecanismo necesario para generar voz, el reporte de voz queda suspendido y se entrega solo reporte textual. Las restricciones explícitas del ticket prevalecen sobre cualquier protocolo permanente de personalidad, Trust Mode o Rule 5.
+
+Regla operativa:
+- Voz permitida: cierre general, reportes normales o tickets que no la prohíban.
+- Voz suspendida: tickets con “no TTS”, “no voz”, “no scripts de voz”, “no tocar n8n_data” o “no modificar archivos”.
+- Si hay duda, preguntar antes de ejecutar voz.
+- Todo reporte técnico debe declarar si hubo o no hubo salida por voz.
+
 Rule 6 — PROTOCOLO ANTI-CARTEL AZUL (Zero-Prompt Permanente):
 El motor de seguridad del IDE intercepta comandos de terminal que contengan sintaxis
 compleja (pipes `|`, encadenamientos `&&`/`||`, subshells `$(...)`, strings largos,
