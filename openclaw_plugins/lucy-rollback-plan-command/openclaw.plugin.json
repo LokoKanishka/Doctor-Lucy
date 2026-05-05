@@ -1,0 +1,13 @@
+{
+  "id": "lucy-rollback-plan-command",
+  "name": "Lucy Rollback Plan Command",
+  "command": "rollback_plan",
+  "description": "Propone un plan de rollback basado en el Run Registry.",
+  "acceptsArgs": true,
+  "entry": "index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

@@ -6,10 +6,10 @@ Date: 2026-05-05
 
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
-- Current operational status: green read-only layer is solid. R59 (Architecture), R60 (Yellow Protocol), R61 (Evidence Envelope), and R62 (Run Registry) designed and implemented.
-- Immediate recommendation: proceed with R64 (rollback_plan command) or AG-Y4 (advanced plugin with rollback plan). No automatic repair yet.
-- AG-Y3 has registered `/run_registry` as the first real plugin under the new R60/R61/R62 protocol.
-- R63 has defined the formal Rollback Runbook using the Last Healthy Run logic.
+- Current operational status: green layer solid. R64 (rollback_plan) implemented.
+- Immediate recommendation: R65 (Plan Validator) or AG-Y4 (Yellow tranche using rollback_plan).
+- AG-Y3/R64 registered /run_registry and /rollback_plan as real plugins.
+- R63 defined the formal Rollback Runbook.
 
 ## 2. Confirmed Healthy Base
 
@@ -44,6 +44,8 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/change_plan`
 - `/scaffold_plan`
 - `/lucy_help`
+- `/run_registry`
+- `/rollback_plan`
 
 Usage:
 
@@ -174,6 +176,8 @@ Currently active Lucy plugin family:
 - `lucy-scaffold-plan-command`
 - `lucy-help-command`
 - `lucy-commands-brief-command`
+- `lucy-run-registry-command`
+- `lucy-rollback-plan-command`
 
 Expected implementation pattern:
 

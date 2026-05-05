@@ -1,0 +1,10 @@
+{
+  "name": "lucy-rollback-plan-command",
+  "version": "1.0.0",
+  "description": "Propone un plan de rollback basado en el Run Registry.",
+  "main": "index.js",
+  "type": "module",
+  "openclaw": {
+    "extensions": ["./index.js"]
+  }
+}

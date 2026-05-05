@@ -45,6 +45,7 @@ KEY_FILE_CANDIDATES = {
         "scripts/lucy_fs_search_command.py",
         "scripts/lucy_repo_map_command.py",
         "scripts/lucy_run_registry_command.py",
+        "scripts/lucy_rollback_plan_command.py",
     ],
     "plugins": [
         "openclaw_plugins/lucy-fs-readonly-command/",
@@ -59,6 +60,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-help-command/",
         "openclaw_plugins/lucy-commands-brief-command/",
         "openclaw_plugins/lucy-run-registry-command/",
+        "openclaw_plugins/lucy-rollback-plan-command/",
     ],
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
@@ -71,6 +73,8 @@ KEY_FILE_CANDIDATES = {
         "docs/LUCYCLAW_RISK_CHECK_R52.md",
         "docs/LUCYCLAW_PERMISSION_BRIEF_R53.md",
         "docs/LUCYCLAW_FS_SEARCH_R47.md",
+        "docs/LUCYCLAW_ROLLBACK_RUNBOOK_R63.md",
+        "docs/LUCYCLAW_ROLLBACK_PLAN_COMMAND_R64.md",
     ],
 }
 SENSITIVE_SEGMENTS = tuple(

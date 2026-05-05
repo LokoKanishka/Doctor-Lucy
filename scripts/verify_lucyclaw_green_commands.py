@@ -489,6 +489,28 @@ def verify_run_registry(results: list[dict]) -> None:
     results.append({"command": "run_registry", "status": "ok"})
 
 
+def verify_rollback_plan(results: list[dict]) -> None:
+    # 1. No args
+    payload, _ = run_json([PYTHON, "scripts/lucy_rollback_plan_command.py"])
+    assert_true(payload.get("ok") is True, "rollback_plan did not return ok=true")
+    assert_true(payload.get("command") == "rollback_plan", "rollback_plan returned wrong command field")
+    assert_true(payload.get("plan", {}).get("decision") == "PLAN_ONLY", "rollback_plan should be PLAN_ONLY")
+    assert_no_sensitive_strings(payload, forbid_env=False)
+    results.append({"command": "rollback_plan", "status": "ok"})
+
+    # 2. Matched (AG-Y3)
+    payload_match, _ = run_json([PYTHON, "scripts/lucy_rollback_plan_command.py", "AG-Y3"])
+    assert_true(payload_match.get("ok") is True, "rollback_plan AG-Y3 did not return ok=true")
+    assert_true(payload_match.get("target") == "AG-Y3", "rollback_plan failed to match target AG-Y3")
+    results.append({"command": "rollback_plan_matched", "status": "ok"})
+
+    # 3. Missing
+    payload_miss, _ = run_json([PYTHON, "scripts/lucy_rollback_plan_command.py", "MISSING_TRANCHE"])
+    assert_true(payload_miss.get("ok") is False, "rollback_plan should fail on missing target")
+    assert_true(payload_miss.get("decision") == "NEEDS_REVIEW", "rollback_plan miss should be NEEDS_REVIEW")
+    results.append({"command": "rollback_plan_missing", "status": "ok"})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -518,6 +540,7 @@ def main() -> int:
         verify_doc_brief(results)
         verify_repo_map(results)
         verify_run_registry(results)
+        verify_rollback_plan(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
