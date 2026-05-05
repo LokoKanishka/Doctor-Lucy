@@ -1,13 +1,13 @@
 # LucyClaw Current State
 
-Date: 2026-05-03
+Date: 2026-05-05
 
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `6d5d8e3` `feat(lucyclaw): add compact help command`
-- Current operational status: green read-only layer is solid, repeatably verifiable, and now includes compact repo orientation, deterministic file briefing, read-only planning contracts, a quick help guide, and a categorical command index.
-- Immediate recommendation: use `/commands_brief` for a categorical overview of all LucyClaw commands.
+- Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
+- Current operational status: green read-only layer is solid, repeatably verifiable, and has been successfully used by Antigravity to perform a controlled yellow restart (AG-Y1) with voice suspension.
+- Immediate recommendation: proceed with documented yellow code-change tranches or architecture v3 planning.
 
 ## 2. Confirmed Healthy Base
 
@@ -267,8 +267,10 @@ Gemini CLI está autorizado como ejecutor controlado bajo las reglas de `GEMINI.
 
 Preferred order:
 
-1. `R57` — `/commands_brief` categorical command index (Current)
-2. Decidir entre primer tramo amarillo mínimo supervisado o mejorar ergonomía de Telegram.
+1. `AG-Y1` — Operator Validation (Validated)
+2. `AG-R58` — Docs SSOT Alignment (Current)
+3. `AG-Y2` — First controlled yellow code-change tranche.
+4. `R59` — Architecture V3 Design.
 
 ## 13. Non-Regression Rules
 

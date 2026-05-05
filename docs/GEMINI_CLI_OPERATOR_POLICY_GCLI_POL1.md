@@ -49,5 +49,8 @@ Gemini CLI **DEBE** detenerse y solicitar intervención manual si:
 Esta política complementa las capacidades de planificación:
 - `/plan_brief`, `/risk_check`, `/permission_brief`, `/change_plan` y `/scaffold_plan` siguen siendo la fuente de verdad para el diseño técnica antes de la ejecución.
 
-## 9. Rollback Conceptual
-En caso de error durante un tramo de permiso agrupado, Gemini CLI debe intentar revertir el último cambio (vía Git o desinstalación de plugin) antes de entregar el reporte de falla al usuario.
+## 10. Protocolo de Voz (VOICE REPORT PRECEDENCE)
+De acuerdo con `GEMINI.md` y la Rule 5, el reporte de voz está permitido siempre que no contradiga las restricciones del ticket.
+- Si el ticket prohíbe TTS, voz o tocar `n8n_data`, el reporte de voz queda suspendido.
+- Las restricciones del ticket tienen prioridad absoluta sobre el protocolo de personalidad.
+- Esta regla aplica a cualquier operador (Gemini CLI o Antigravity).
