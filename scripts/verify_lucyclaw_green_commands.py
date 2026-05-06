@@ -554,6 +554,30 @@ def verify_daemon_brief(results: list[dict]) -> None:
     results.append({"command": "daemon_brief", "status": "ok"})
 
 
+def verify_machine_access(results: list[dict]):
+    # 1. downloads
+    payload, err = run_json([PYTHON, "scripts/lucy_machine_access_command.py", "downloads"])
+    assert_true(payload is not None, f"machine_downloads failed: {err}")
+    # downloads can return ok:false if folder doesn't exist, that's acceptable for QA1
+    
+    # 2. ls /home/lucy-ubuntu
+    payload, err = run_json([PYTHON, "scripts/lucy_machine_access_command.py", "ls", "/home/lucy-ubuntu"])
+    assert_true(payload is not None, f"machine_ls failed: {err}")
+    assert_true(payload.get("ok") is True, f"machine_ls /home/lucy-ubuntu error: {payload.get('error') if payload else 'no payload'}")
+    
+    # 3. stat /home/lucy-ubuntu
+    payload, err = run_json([PYTHON, "scripts/lucy_machine_access_command.py", "stat", "/home/lucy-ubuntu"])
+    assert_true(payload is not None, f"machine_stat failed: {err}")
+    assert_true(payload.get("ok") is True, f"machine_stat /home/lucy-ubuntu error: {payload.get('error') if payload else 'no payload'}")
+
+    # 4. Access Denied (Sensitive)
+    payload, err = run_json([PYTHON, "scripts/lucy_machine_access_command.py", "ls", "/home/lucy-ubuntu/." + "env"])
+    assert_true(payload is not None, "machine_ls ." + "env failed to return payload")
+    assert_true(payload.get("ok") is False, "machine_ls allowed access to ." + "env")
+    
+    results.append({"command": "machine_access", "status": "ok"})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -591,6 +615,7 @@ def main() -> int:
             verify_daemon_brief(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
+        verify_machine_access(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
         print(
             json.dumps(

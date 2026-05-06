@@ -48,6 +48,7 @@ KEY_FILE_CANDIDATES = {
         "scripts/lucy_rollback_plan_command.py",
         "scripts/lucy_yellow_preflight_command.py",
         "scripts/lucy_daemon_brief_command.py",
+        "scripts/lucy_machine_access_command.py",
     ],
     "plugins": [
         "openclaw_plugins/lucy-fs-readonly-command/",
@@ -65,6 +66,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-rollback-plan-command/",
         "openclaw_plugins/lucy-yellow-preflight-command/",
         "openclaw_plugins/lucy-daemon-brief-command/",
+        "openclaw_plugins/lucy-machine-access-command/",
     ],
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
@@ -81,6 +83,7 @@ KEY_FILE_CANDIDATES = {
         "docs/LUCYCLAW_ROLLBACK_PLAN_COMMAND_R64.md",
         "docs/LUCYCLAW_YELLOW_PREFLIGHT_AG_Y5.md",
         "docs/LUCYCLAW_DAEMON_BRIEF_AG_Y6.md",
+        "docs/LUCYCLAW_MACHINE_ACCESS_AG_HOST1A.md",
     ],
 }
 SENSITIVE_SEGMENTS = tuple(

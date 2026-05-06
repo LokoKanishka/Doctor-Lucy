@@ -1,0 +1,8 @@
+{
+  "id": "lucy-machine-access-command",
+  "type": "command",
+  "configSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}

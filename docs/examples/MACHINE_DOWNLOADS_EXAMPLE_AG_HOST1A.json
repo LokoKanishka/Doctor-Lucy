@@ -1,0 +1,150 @@
+{
+  "ok": true,
+  "command": "machine_downloads",
+  "mode": "read-only",
+  "path": "/home/lucy-ubuntu/Descargas",
+  "count": 20,
+  "items": [
+    {
+      "name": "Markdown.md pegado",
+      "type": "file",
+      "size_bytes": 6183,
+      "modified": "2026-05-05T01:10:52.462994",
+      "path": "/home/lucy-ubuntu/Descargas/Markdown.md pegado"
+    },
+    {
+      "name": "Antigravity_ Diagn\u00f3stico de Fallo Mudo.docx",
+      "type": "file",
+      "size_bytes": 3046619,
+      "modified": "2026-05-05T00:03:32.702918",
+      "path": "/home/lucy-ubuntu/Descargas/Antigravity_ Diagn\u00f3stico de Fallo Mudo.docx"
+    },
+    {
+      "name": "Antigravity_ Diagn\u00f3stico de Fallo Silencioso.docx",
+      "type": "file",
+      "size_bytes": 3043910,
+      "modified": "2026-05-05T00:03:10.501781",
+      "path": "/home/lucy-ubuntu/Descargas/Antigravity_ Diagn\u00f3stico de Fallo Silencioso.docx"
+    },
+    {
+      "name": "answer.pptx",
+      "type": "file",
+      "size_bytes": 267287,
+      "modified": "2026-05-05T00:02:47.529632",
+      "path": "/home/lucy-ubuntu/Descargas/answer.pptx"
+    },
+    {
+      "name": "cursor_3.2.21_amd64 (1).deb",
+      "type": "file",
+      "size_bytes": 174622668,
+      "modified": "2026-05-03T21:47:35.746719",
+      "path": "/home/lucy-ubuntu/Descargas/cursor_3.2.21_amd64 (1).deb"
+    },
+    {
+      "name": "cursor.appimage",
+      "type": "file",
+      "size_bytes": 0,
+      "modified": "2026-05-03T21:42:51.156139",
+      "path": "/home/lucy-ubuntu/Descargas/cursor.appimage"
+    },
+    {
+      "name": "cursor_3.2.21_amd64.deb",
+      "type": "file",
+      "size_bytes": 174622668,
+      "modified": "2026-05-03T21:40:05.480961",
+      "path": "/home/lucy-ubuntu/Descargas/cursor_3.2.21_amd64.deb"
+    },
+    {
+      "name": "Platon El banquete.pdf",
+      "type": "file",
+      "size_bytes": 352949,
+      "modified": "2026-05-01T00:56:10.854367",
+      "path": "/home/lucy-ubuntu/Descargas/Platon El banquete.pdf"
+    },
+    {
+      "name": "plantilla de moustruos.png",
+      "type": "file",
+      "size_bytes": 8983748,
+      "modified": "2026-04-29T13:29:10.638407",
+      "path": "/home/lucy-ubuntu/Descargas/plantilla de moustruos.png"
+    },
+    {
+      "name": "mapa rol 1.jpg",
+      "type": "file",
+      "size_bytes": 1933450,
+      "modified": "2026-04-28T13:46:37.895269",
+      "path": "/home/lucy-ubuntu/Descargas/mapa rol 1.jpg"
+    },
+    {
+      "name": "Dios Bug Falla (8).mp3",
+      "type": "file",
+      "size_bytes": 4686150,
+      "modified": "2026-04-28T01:06:13.750998",
+      "path": "/home/lucy-ubuntu/Descargas/Dios Bug Falla (8).mp3"
+    },
+    {
+      "name": "Corona vomitada.mp3",
+      "type": "file",
+      "size_bytes": 2529794,
+      "modified": "2026-04-28T00:28:46.789770",
+      "path": "/home/lucy-ubuntu/Descargas/Corona vomitada.mp3"
+    },
+    {
+      "name": "Blues del Oro Pesado.mp3",
+      "type": "file",
+      "size_bytes": 11293100,
+      "modified": "2026-04-28T00:22:01.171125",
+      "path": "/home/lucy-ubuntu/Descargas/Blues del Oro Pesado.mp3"
+    },
+    {
+      "name": "yo sea o no .mp3",
+      "type": "file",
+      "size_bytes": 5499661,
+      "modified": "2026-04-27T23:35:06.488628",
+      "path": "/home/lucy-ubuntu/Descargas/yo sea o no .mp3"
+    },
+    {
+      "name": "BackUp_marti.rar",
+      "type": "file",
+      "size_bytes": 32457546,
+      "modified": "2026-04-26T18:58:45.663804",
+      "path": "/home/lucy-ubuntu/Descargas/BackUp_marti.rar"
+    },
+    {
+      "name": "Dios Bug Falla (7).mp3",
+      "type": "file",
+      "size_bytes": 4686150,
+      "modified": "2026-04-24T03:08:23.100637",
+      "path": "/home/lucy-ubuntu/Descargas/Dios Bug Falla (7).mp3"
+    },
+    {
+      "name": "Dios Bug Falla (6).mp3",
+      "type": "file",
+      "size_bytes": 6249920,
+      "modified": "2026-04-24T03:06:44.961295",
+      "path": "/home/lucy-ubuntu/Descargas/Dios Bug Falla (6).mp3"
+    },
+    {
+      "name": "Dios Bug Falla (5).mp3",
+      "type": "file",
+      "size_bytes": 8463651,
+      "modified": "2026-04-24T03:02:29.370866",
+      "path": "/home/lucy-ubuntu/Descargas/Dios Bug Falla (5).mp3"
+    },
+    {
+      "name": "Dios Bug Falla (4).mp3",
+      "type": "file",
+      "size_bytes": 5443465,
+      "modified": "2026-04-24T03:02:22.106468",
+      "path": "/home/lucy-ubuntu/Descargas/Dios Bug Falla (4).mp3"
+    },
+    {
+      "name": "Dios Bug Falla (3).mp3",
+      "type": "file",
+      "size_bytes": 7410154,
+      "modified": "2026-04-24T01:22:06.789969",
+      "path": "/home/lucy-ubuntu/Descargas/Dios Bug Falla (3).mp3"
+    }
+  ],
+  "sensitive_paths_excluded": true
+}

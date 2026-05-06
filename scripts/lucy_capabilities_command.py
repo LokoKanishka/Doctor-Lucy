@@ -44,6 +44,9 @@ PAYLOAD = {
             "/rollback_plan",
             "/yellow_preflight",
             "/daemon_brief",
+            "/machine_downloads",
+            "/machine_ls",
+            "/machine_stat",
         ],
     },
     "yellow": {

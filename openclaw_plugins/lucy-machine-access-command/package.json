@@ -1,0 +1,14 @@
+{
+  "name": "lucy-machine-access-command",
+  "version": "1.0.0",
+  "description": "Read-only host machine access for LucyClaw",
+  "type": "module",
+  "private": true,
+  "openclaw": {
+    "extensions": [
+      "./downloads.js",
+      "./ls.js",
+      "./stat.js"
+    ]
+  }
+}

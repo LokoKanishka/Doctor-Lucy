@@ -6,9 +6,9 @@ Date: 2026-05-06
 
 - Expected branch: `memoria/bunker`
 - Last known healthy commit: `0eb9959` `feat(lucyclaw): add daemon brief command`
-- Current operational status: AG-Y6 cerrado, /daemon_brief activo. No está activo Daemon v3 ni la reparación automática. Se congela la expansión de capas de seguridad salvo falla real.
-- Immediate recommendation: AG-HOST1 machine access read-only.
-- Prioridad operativa: acceso real read-only a máquina desde LucyClaw.
+- Current operational status: Host Observation Layer en desarrollo. AG-HOST1A (/machine_downloads, /machine_ls, /machine_stat) integrado para ver/listar máquina. No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
+- Immediate recommendation: AG-HOST1B read documents safely.
+- Prioridad operativa: Host Observation Layer. Primero ver/listar máquina, luego leer documentos, luego estado de sistema.
 - AG-Y6 created /daemon_brief read-only Daemon v3 readiness summary.
 - AG-Y5 created /yellow_preflight read-only command.
 - AG-Y4 integrated verify_rollback_plan.py into QA1.
