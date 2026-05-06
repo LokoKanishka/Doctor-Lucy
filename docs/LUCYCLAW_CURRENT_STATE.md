@@ -5,9 +5,10 @@ Date: 2026-05-06
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `7b2e752` `feat(lucyclaw): add yellow preflight command`
-- Current operational status: green layer solid. AG-Y6 (/daemon_brief) integrated.
-- Immediate recommendation: R66 daemon loop conceptual or AG-Y7 controlled yellow tranche.
+- Last known healthy commit: `0eb9959` `feat(lucyclaw): add daemon brief command`
+- Current operational status: AG-Y6 cerrado, /daemon_brief activo. No está activo Daemon v3 ni la reparación automática. Se congela la expansión de capas de seguridad salvo falla real.
+- Immediate recommendation: AG-HOST1 machine access read-only.
+- Prioridad operativa: acceso real read-only a máquina desde LucyClaw.
 - AG-Y6 created /daemon_brief read-only Daemon v3 readiness summary.
 - AG-Y5 created /yellow_preflight read-only command.
 - AG-Y4 integrated verify_rollback_plan.py into QA1.

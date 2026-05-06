@@ -21,7 +21,7 @@
   },
   "last_healthy_run": {
     "run_id": "AG-Y6",
-    "target_commit": "PENDING_COMMIT_HASH",
+    "target_commit": "0eb9959",
     "risk_level": "YELLOW_CODE_CHANGE"
   },
   "readiness": {

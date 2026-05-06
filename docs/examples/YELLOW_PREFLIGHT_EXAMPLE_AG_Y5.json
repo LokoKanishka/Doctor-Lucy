@@ -13,7 +13,7 @@
     "sec1": "ok",
     "qa1": "ok",
     "lucy_next_step": "BLOCK",
-    "health": "error"
+    "health": "warn"
   },
   "yellow_ready": false,
   "rollback_allowed_now": false,
@@ -32,7 +32,6 @@
   "next": "Diagnosticar antes de iniciar tramo amarillo.",
   "failed_checks": [
     "git_clean",
-    "lucy_next_step",
-    "health"
+    "lucy_next_step"
   ]
 }

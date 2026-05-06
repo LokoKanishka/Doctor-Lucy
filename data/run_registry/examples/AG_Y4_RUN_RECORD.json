@@ -8,7 +8,7 @@
   "risk_level": "YELLOW_CODE_CHANGE",
   "final_decision": "CLOSED",
   "base_commit": "5e8ca74",
-  "target_commit": "PENDING_COMMIT_HASH",
+  "target_commit": "efb58bc",
   "branch": "memoria/bunker",
   "repo_path": "/home/lucy-ubuntu/Escritorio/doctora-lucy",
   "evidence_path": "docs/examples/EVIDENCE_ENVELOPE_EXAMPLE_AG_Y4_QA_ROLLBACK_PLAN.md",

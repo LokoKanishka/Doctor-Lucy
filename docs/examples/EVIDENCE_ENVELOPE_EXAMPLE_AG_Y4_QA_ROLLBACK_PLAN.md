@@ -8,7 +8,7 @@
 - **operator**: Antigravity
 - **supervisor**: ChatGPT / Diego
 - **base_commit**: 5e8ca74
-- **target_commit**: PENDING_COMMIT_HASH
+- **target_commit**: efb58bc
 - **branch**: memoria/bunker
 - **repo_path**: /home/lucy-ubuntu/Escritorio/doctora-lucy
 - **risk_level**: YELLOW_CODE_CHANGE
