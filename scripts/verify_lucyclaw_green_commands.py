@@ -511,6 +511,23 @@ def verify_rollback_plan(results: list[dict]) -> None:
     results.append({"command": "rollback_plan_missing", "status": "ok"})
 
 
+def verify_rollback_plan_validator(results: list[dict]) -> None:
+    validator_script = "scripts/verify_rollback_plan.py"
+    example_plan = "docs/examples/ROLLBACK_PLAN_EXAMPLE_AG_Y3_R65.json"
+
+    assert_true((ROOT / validator_script).exists(), f"{validator_script} missing")
+    assert_true((ROOT / example_plan).exists(), f"{example_plan} missing")
+
+    payload, _ = run_json([PYTHON, validator_script, example_plan])
+
+    assert_true(payload.get("ok") is True, "rollback_plan_validator did not return ok=true")
+    assert_true(payload.get("command") == "verify_rollback_plan", "rollback_plan_validator returned wrong command")
+    assert_true(payload.get("decision") == "VALID", "rollback_plan_validator decision is not VALID")
+    assert_true(payload.get("dangerous_hits") == [], "rollback_plan_validator detected dangerous hits in example")
+
+    results.append({"command": "rollback_plan_validator", "status": "ok"})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -541,6 +558,7 @@ def main() -> int:
         verify_repo_map(results)
         verify_run_registry(results)
         verify_rollback_plan(results)
+        verify_rollback_plan_validator(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:

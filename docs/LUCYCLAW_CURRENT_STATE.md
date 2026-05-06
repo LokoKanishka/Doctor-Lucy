@@ -1,13 +1,14 @@
 # LucyClaw Current State
 
-Date: 2026-05-05
+Date: 2026-05-06
 
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `55a184d` `docs(lucyclaw): define voice report precedence`
-- Current operational status: green layer solid. R65 (verify_rollback_plan) implemented.
-- Immediate recommendation: AG-Y4 (Yellow tranche using rollback_plan + verify_rollback_plan).
+- Last known healthy commit: `5e8ca74` `feat(lucyclaw): add rollback plan validator`
+- Current operational status: green layer solid. AG-Y4 (QA1 Rollback Plan Validator) integrated.
+- Immediate recommendation: AG-Y5 or R66 (/yellow_preflight read-only).
+- AG-Y4 integrated verify_rollback_plan.py into QA1.
 - AG-Y3/R64 registered /run_registry and /rollback_plan as real plugins.
 - R65 provides local validation for rollback plans.
 - R63 defined the formal Rollback Runbook.
@@ -214,6 +215,7 @@ QA1 verifies:
 - no obvious secret or token assignments
 - no legacy `doctor de lucy` path regression
 - no workflow detail leakage in `n8n_health`
+- `rollback_plan_validator` check for secure rollback plans
 
 SEC1 verifies:
 
@@ -283,6 +285,9 @@ Preferred order:
 7. `R62` — Run Registry JSONL implementation (Completed).
 8. `AG-Y3` — Run Registry Command Plugin (Completed). First controlled yellow code-change tranche with plugin.
 9. `R63` — Rollback Runbook (Completed). Standardized procedure using Last Healthy Run.
+10. `R64` — Rollback Plan Command (Completed).
+11. `R65` — Rollback Plan Validator Script (Completed).
+12. `AG-Y4` — QA1 Rollback Plan Validator Integration (Completed).
 
 ## 13. Non-Regression Rules
 
