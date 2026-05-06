@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "command": "daemon_brief",
+  "stage": "AG-Y6",
+  "mode": "read-only",
+  "daemon_v3": {
+    "architecture": "designed",
+    "active": false,
+    "executor_enabled": false,
+    "repair_enabled": false,
+    "n8n_memory_access_enabled": false
+  },
+  "safety_stack": {
+    "yellow_preflight": "available",
+    "run_registry": "available",
+    "evidence_envelope": "available",
+    "rollback_plan": "available",
+    "rollback_plan_validator": "available",
+    "qa1": "required",
+    "sec1": "required"
+  },
+  "last_healthy_run": {
+    "run_id": "AG-Y6",
+    "target_commit": "PENDING_COMMIT_HASH",
+    "risk_level": "YELLOW_CODE_CHANGE"
+  },
+  "readiness": {
+    "yellow_preflight": "BLOCK",
+    "lucy_next_step": "BLOCK",
+    "registry": "VALID",
+    "daemon_ready_for_design_loop": false,
+    "daemon_ready_for_autonomous_repair": false
+  },
+  "next_recommendation": "Resolve failed checks before proceeding.",
+  "forbidden_now": [
+    "autonomous repair",
+    "n8n workflow mutation",
+    "memory mutation",
+    "secrets access",
+    "sudo"
+  ]
+}

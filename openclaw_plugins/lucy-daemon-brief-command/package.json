@@ -1,0 +1,13 @@
+{
+  "name": "lucy-daemon-brief-command",
+  "version": "1.0.0",
+  "description": "Daemon Brief command for LucyClaw — read-only Daemon v3 readiness summary",
+  "main": "index.js",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,13 @@
+{
+  "id": "lucy-daemon-brief-command",
+  "name": "Daemon Brief",
+  "description": "Vista compacta read-only del estado de preparación de Daemon v3.",
+  "version": "1.0.0",
+  "author": "Antigravity",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

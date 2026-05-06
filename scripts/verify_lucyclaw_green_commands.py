@@ -541,6 +541,19 @@ def verify_yellow_preflight(results: list[dict]) -> None:
     results.append({"command": "yellow_preflight", "status": "ok", "decision": payload.get("decision")})
 
 
+def verify_daemon_brief(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_daemon_brief_command.py"])
+    assert_true(payload.get("ok") is True, "daemon_brief returned ok=false")
+    assert_true(payload.get("command") == "daemon_brief", "daemon_brief wrong command")
+    d3 = payload.get("daemon_v3", {})
+    assert_true(d3.get("active") is False, "daemon_brief says daemon is active")
+    assert_true(d3.get("repair_enabled") is False, "daemon_brief says repair is enabled")
+    assert_true(d3.get("executor_enabled") is False, "daemon_brief says executor is enabled")
+    readiness = payload.get("readiness", {})
+    assert_true(readiness.get("daemon_ready_for_autonomous_repair") is False, "daemon_brief says repair ready")
+    results.append({"command": "daemon_brief", "status": "ok"})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -574,6 +587,8 @@ def main() -> int:
         verify_rollback_plan_validator(results)
         if os.environ.get("LUCY_SKIP_PREFLIGHT_CHECK") != "1":
             verify_yellow_preflight(results)
+        if os.environ.get("LUCY_SKIP_DAEMON_CHECK") != "1":
+            verify_daemon_brief(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:

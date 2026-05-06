@@ -5,9 +5,10 @@ Date: 2026-05-06
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `efb58bc` `test(lucyclaw): include rollback plan validation in QA`
-- Current operational status: green layer solid. AG-Y5 (/yellow_preflight) integrated.
-- Immediate recommendation: AG-Y6 (First yellow tranche using /yellow_preflight).
+- Last known healthy commit: `7b2e752` `feat(lucyclaw): add yellow preflight command`
+- Current operational status: green layer solid. AG-Y6 (/daemon_brief) integrated.
+- Immediate recommendation: R66 daemon loop conceptual or AG-Y7 controlled yellow tranche.
+- AG-Y6 created /daemon_brief read-only Daemon v3 readiness summary.
 - AG-Y5 created /yellow_preflight read-only command.
 - AG-Y4 integrated verify_rollback_plan.py into QA1.
 - AG-Y3/R64 registered /run_registry and /rollback_plan as real plugins.
@@ -50,6 +51,7 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/run_registry`
 - `/rollback_plan`
 - `/yellow_preflight`
+- `/daemon_brief`
 
 Usage:
 
@@ -182,6 +184,8 @@ Currently active Lucy plugin family:
 - `lucy-commands-brief-command`
 - `lucy-run-registry-command`
 - `lucy-rollback-plan-command`
+- `lucy-yellow-preflight-command`
+- `lucy-daemon-brief-command`
 
 Expected implementation pattern:
 
@@ -291,6 +295,7 @@ Preferred order:
 11. `R65` — Rollback Plan Validator Script (Completed).
 12. `AG-Y4` — QA1 Rollback Plan Validator Integration (Completed).
 13. `AG-Y5` — Yellow Preflight Command (Completed).
+14. `AG-Y6` — Daemon Brief Command (Completed).
 
 ## 13. Non-Regression Rules
 

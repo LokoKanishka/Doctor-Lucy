@@ -43,6 +43,7 @@ PAYLOAD = {
             "/run_registry",
             "/rollback_plan",
             "/yellow_preflight",
+            "/daemon_brief",
         ],
     },
     "yellow": {
