@@ -1,15 +1,13 @@
 {
   "name": "lucy-machine-status-command",
   "version": "1.0.0",
+  "description": "Read-only host machine status for LucyClaw",
   "type": "module",
+  "main": "./index.js",
   "private": true,
   "openclaw": {
     "extensions": [
       "./index.js"
-    ],
-    "compat": {
-      "pluginApi": ">=2026.3.24-beta.2",
-      "minGatewayVersion": "2026.3.24-beta.2"
-    }
+    ]
   }
 }

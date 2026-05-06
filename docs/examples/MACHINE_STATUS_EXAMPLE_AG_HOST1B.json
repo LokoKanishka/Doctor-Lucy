@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "command": "machine_status",
+  "mode": "read-only",
+  "summary": {
+    "cpu": {
+      "model": "AMD Ryzen 9 7950X 16-Core Processor",
+      "cores": 32,
+      "load_average": "7,80, 8,45, 8,46"
+    },
+    "ram": {
+      "total_kb": 131025012,
+      "available_kb": 97004180,
+      "used_kb": 34020832,
+      "used_percent": 25.97
+    },
+    "disk": {
+      "path": "/",
+      "total_gb": 1875.69,
+      "used_gb": 1235.37,
+      "free_gb": 559.39,
+      "used_percent": 65.86
+    },
+    "gpu": {
+      "ok": true,
+      "name": "NVIDIA GeForce RTX 5090",
+      "utilization_percent": 35,
+      "memory_used_mib": 12516,
+      "memory_total_mib": 32607,
+      "temperature_c": 52
+    },
+    "processes": [
+      "lucy-ub+  715462  532  9.7 36545892 12797412 ?   Rsl  18:46 390:54 S:\\common\\Bellwright\\Bellwright\\Binaries\\Win64\\BellwrightGame-Win64-Shipping.exe Bellwright",
+      "lucy-ub+  616513 28.5  1.5 1460314252 1978736 ?  Sl   17:43  39:00 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=5248 --enable-crash-reporter=c5bc9822-342e-4368-913f-488a6c4d0806, --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=es --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=203 --time-ticks-at-unix-epoch=-1778088903754544 --launch-time-ticks=11314484536 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,5560963781826467815,6638219997885030787,2097152 --field-trial-handle=3,i,16229278408603150696,8911154463824973247,262144 --disable-features=EyeDropper --variations-seed-version=20260505-090052.962000-production --pseudonymization-salt-handle=7,i,7878322336831416640,4604512331290541642,4 --trace-process-track-uuid=3190709176531366841",
+      "lucy-ub+   21155 20.9  1.1 1468219612 1526620 ?  Sl   14:45  65:48 /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=5248 --enable-crash-reporter=c5bc9822-342e-4368-913f-488a6c4d0806, --origin-trial-disabled-features=CanvasTextNg|WebAssemblyCustomDescriptors --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=es --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=63 --time-ticks-at-unix-epoch=-1778088903754544 --launch-time-ticks=632304084 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,15260036004868094989,1429936980624235734,2097152 --field-trial-handle=3,i,16229278408603150696,8911154463824973247,262144 --disable-features=EyeDropper --variations-seed-version=20260505-090052.962000-production --pseudonymization-salt-handle=7,i,7878322336831416640,4604512331290541642,4 --trace-process-track-uuid=3190709045345507981",
+      "lucy-ub+  836968 20.0  0.0  20464 13300 ?        S    20:00   0:00 python3 scripts/lucy_machine_status_command.py status",
+      "lucy-ub+    2398  6.1  0.4 5496828 553804 ?      Ssl  14:35  19:55 /usr/bin/gnome-shell",
+      "lucy-ub+  707213  5.7  0.4 1461858276 556068 ?   Rl   18:40   4:31 /usr/share/antigravity/antigravity --type=zygote",
+      "lucy-ub+  649261  4.1  0.9 21464852 1197016 ?    Sl   17:57   5:04 /snap/firefox/8247/usr/lib/firefox/firefox",
+      "lucy-ub+  682178  3.7  0.5 3227408 657668 ?      Sl   18:18   3:48 /snap/firefox/8247/usr/lib/firefox/firefox -contentproc -isForBrowser -prefsHandle 0:46755 -prefMapHandle 1:286719 -jsInitHandle 2:156120 -parentBuildID 20260427221700 -sandboxReporter 3 -chrootClient 4 -ipcHandle 5 -initialChannelId {6f73b57a-8809-43ed-8619-4ab16d032ba4} -parentPid 649261 -crashReporter 6 -crashHelper 7 -greomni /snap/firefox/8247/usr/lib/firefox/omni.ja -appomni /snap/firefox/8247/usr/lib/firefox/browser/omni.ja -appDir /snap/firefox/8247/usr/lib/firefox/browser 23 tab",
+      "lucy-ub+  713430  3.1  0.2 1461837040 375236 ?   Sl   18:44   2:20 /usr/share/antigravity/antigravity --type=zygote",
+      "lucy-ub+  715362  3.0  0.0  48868 20552 ?        Rs   18:46   2:15 /home/lucy-ubuntu/.steam/debian-installation/steamapps/common/Proton - Experimental/files/lib/wine/../../bin/wineserver"
+    ]
+  },
+  "mutation_allowed": false,
+  "sudo_used": false,
+  "shell_used": false
+}

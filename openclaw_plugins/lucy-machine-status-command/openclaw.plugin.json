@@ -1,11 +1,9 @@
 {
   "id": "lucy-machine-status-command",
-  "name": "Lucy Machine Status Command",
-  "description": "Deterministic read-only machine status commands for LucyClaw.",
-  "main": "./index.js",
-  "configSchema": {
-    "type": "object",
-    "additionalProperties": false,
-    "properties": {}
-  }
+  "name": "Lucy Machine Status",
+  "description": "Read-only host system monitoring commands (CPU, RAM, Disk, GPU, Processes).",
+  "version": "1.0.0",
+  "author": "Antigravity",
+  "entryPoint": "./index.js",
+  "configSchema": {}
 }

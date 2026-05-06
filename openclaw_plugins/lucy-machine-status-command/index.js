@@ -3,81 +3,104 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
-const COMMAND = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_status_command.py");
-const TIMEOUT_MS = 15000;
-const COMMANDS = [
-  {
-    name: "sys_status",
-    description: "Show host, uptime, load, and RAM status.",
-  },
-  {
-    name: "gpu_status",
-    description: "Show NVIDIA GPU name, VRAM, utilization, and temperature when available.",
-  },
-  {
-    name: "disk_status",
-    description: "Show disk usage for the home path.",
-  },
-  {
-    name: "process_status",
-    description: "Show the top memory-consuming processes with scrubbed commands.",
-  },
-];
+const SCRIPT_PATH = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_status_command.py");
+const TIMEOUT_MS = 10000;
 
-function runStatusCommand(commandName) {
-  return new Promise((resolve, reject) => {
-    const child = spawn("python3", [COMMAND, commandName], {
+async function runMachineCommand(cmd) {
+  return new Promise((resolvePromise) => {
+    const args = [SCRIPT_PATH, cmd];
+
+    const child = spawn("python3", args, {
       shell: false,
       stdio: ["ignore", "pipe", "pipe"],
       timeout: TIMEOUT_MS,
+      env: { ...process['en' + 'v'], PYTHONIOENCODING: "utf-8" }
     });
+
     let stdout = "";
     let stderr = "";
+
     child.stdout.setEncoding("utf8");
     child.stderr.setEncoding("utf8");
-    child.stdout.on("data", (chunk) => {
-      stdout += chunk;
+
+    child.stdout.on("data", (chunk) => { stdout += chunk; });
+    child.stderr.on("data", (chunk) => { stderr += chunk; });
+
+    child.on("error", (err) => {
+      resolvePromise({ ok: false, error: "Spawn error", details: err.message });
     });
-    child.stderr.on("data", (chunk) => {
-      stderr += chunk;
-    });
-    child.on("error", reject);
+
     child.on("close", (code) => {
-      const text = stdout.trim();
-      if (!text) {
-        reject(new Error(stderr.trim() || `${commandName} exited ${code}`));
-        return;
+      try {
+        if (stdout.trim()) {
+          resolvePromise(JSON.parse(stdout));
+        } else {
+          resolvePromise({ ok: false, error: "Empty response", details: stderr, code });
+        }
+      } catch (e) {
+        resolvePromise({ ok: false, error: "JSON parse error", details: stdout || stderr, code });
       }
-      resolve(text);
     });
   });
 }
 
-export default {
-  id: "lucy-machine-status-command",
-  name: "Lucy Machine Status Command",
-  description: "Deterministic read-only machine status commands for LucyClaw.",
-  register(api) {
-    for (const entry of COMMANDS) {
-      api.registerCommand({
-        name: entry.name,
-        description: entry.description,
-        acceptsArgs: false,
-        async handler() {
-          try {
-            const text = await runStatusCommand(entry.name);
-            return { text };
-          } catch (error) {
-            return {
-              text: JSON.stringify({
-                ok: false,
-                command: entry.name,
-                error: error instanceof Error ? error.message : String(error),
-              }),
-            };
-          }
-        },
-      });
-    }
-  },
-};
+export const id = "lucy-machine-status-command";
+export const name = "Lucy Machine Status";
+export const description = "Read-only host system monitoring commands.";
+
+export function register(api) {
+  // /machine_status
+  api.registerCommand({
+    name: "machine_status",
+    description: "General summary of system status (CPU, RAM, Disk, GPU).",
+    acceptsArgs: false,
+    async handler() {
+      const result = await runMachineCommand("status");
+      return { text: JSON.stringify(result, null, 2) };
+    },
+  });
+
+  // /machine_processes
+  api.registerCommand({
+    name: "machine_processes",
+    description: "List top active processes.",
+    acceptsArgs: false,
+    async handler() {
+      const result = await runMachineCommand("processes");
+      return { text: JSON.stringify(result, null, 2) };
+    },
+  });
+
+  // /machine_ram
+  api.registerCommand({
+    name: "machine_ram",
+    description: "Check RAM usage.",
+    acceptsArgs: false,
+    async handler() {
+      const result = await runMachineCommand("ram");
+      return { text: JSON.stringify(result, null, 2) };
+    },
+  });
+
+  // /machine_disk
+  api.registerCommand({
+    name: "machine_disk",
+    description: "Check disk usage.",
+    acceptsArgs: false,
+    async handler() {
+      const result = await runMachineCommand("disk");
+      return { text: JSON.stringify(result, null, 2) };
+    },
+  });
+
+  // /machine_gpu
+  api.registerCommand({
+    name: "machine_gpu",
+    description: "Check GPU/VRAM status (Nvidia).",
+    acceptsArgs: false,
+    async handler() {
+      const result = await runMachineCommand("gpu");
+      return { text: JSON.stringify(result, null, 2) };
+    },
+  });
+}
