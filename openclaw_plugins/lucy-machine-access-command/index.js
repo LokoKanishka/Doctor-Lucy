@@ -27,19 +27,38 @@ async function runMachineCommand(cmd, pathArg = null) {
     child.stdout.on("data", (chunk) => { stdout += chunk; });
     child.stderr.on("data", (chunk) => { stderr += chunk; });
 
-    child.on("error", reject);
+    child.on("error", (err) => {
+      resolvePromise({ ok: false, error: "Spawn error", details: err.message });
+    });
     child.on("close", (code) => {
       try {
         if (stdout.trim()) {
           resolvePromise(JSON.parse(stdout));
         } else {
-          resolvePromise({ ok: false, error: "Empty response", details: stderr });
+          resolvePromise({ ok: false, error: "Empty response", details: stderr, code });
         }
       } catch (e) {
-        resolvePromise({ ok: false, error: "JSON parse error", details: stdout || stderr });
+        resolvePromise({ ok: false, error: "JSON parse error", details: stdout || stderr, code });
       }
     });
   });
+}
+
+function normalizeArgs(input) {
+  if (!input) return "";
+  if (typeof input === "string") return input.trim();
+  if (Array.isArray(input)) return input.join(" ").trim();
+  if (typeof input === "object") {
+    return (
+      input.text ||
+      input.args ||
+      input.argument ||
+      input.query ||
+      input.message ||
+      ""
+    ).toString().trim();
+  }
+  return String(input).trim();
 }
 
 export const id = "lucy-machine-access-command";
@@ -64,7 +83,8 @@ export function register(api) {
     description: "List files in a specified directory.",
     acceptsArgs: true,
     async handler(args) {
-      const pathArg = args ? args.trim() : null;
+      const normalized = normalizeArgs(args);
+      const pathArg = normalized || "/home/lucy-ubuntu";
       const result = await runMachineCommand("ls", pathArg);
       return { text: JSON.stringify(result, null, 2) };
     },
@@ -76,10 +96,11 @@ export function register(api) {
     description: "Get metadata for a specified file or directory.",
     acceptsArgs: true,
     async handler(args) {
-      if (!args || !args.trim()) {
+      const normalized = normalizeArgs(args);
+      if (!normalized) {
         return { text: JSON.stringify({ ok: false, error: "Missing path argument" }, null, 2) };
       }
-      const result = await runMachineCommand("stat", args.trim());
+      const result = await runMachineCommand("stat", normalized);
       return { text: JSON.stringify(result, null, 2) };
     },
   });
