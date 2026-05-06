@@ -1,0 +1,38 @@
+{
+  "ok": false,
+  "command": "yellow_preflight",
+  "stage": "AG-Y5",
+  "decision": "BLOCK",
+  "mode": "read-only",
+  "checks": {
+    "git_clean": "dirty",
+    "registry": "ok",
+    "run_registry_command": "ok",
+    "rollback_plan": "ok",
+    "rollback_plan_validator": "ok",
+    "sec1": "ok",
+    "qa1": "ok",
+    "lucy_next_step": "BLOCK",
+    "health": "error"
+  },
+  "yellow_ready": false,
+  "rollback_allowed_now": false,
+  "repair_allowed_now": false,
+  "requires_grouped_permission": true,
+  "forbidden": [
+    "rollback real",
+    "repair",
+    ".env",
+    "tokens",
+    "n8n_data",
+    "memoria",
+    "boveda",
+    "sudo"
+  ],
+  "next": "Diagnosticar antes de iniciar tramo amarillo.",
+  "failed_checks": [
+    "git_clean",
+    "lucy_next_step",
+    "health"
+  ]
+}

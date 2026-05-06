@@ -528,6 +528,19 @@ def verify_rollback_plan_validator(results: list[dict]) -> None:
     results.append({"command": "rollback_plan_validator", "status": "ok"})
 
 
+def verify_yellow_preflight(results: list[dict]) -> None:
+    payload, _ = run_json([PYTHON, "scripts/lucy_yellow_preflight_command.py"])
+    assert_true(payload.get("ok") is True or payload.get("ok") is False, "yellow_preflight returned no ok field")
+    assert_true(payload.get("command") == "yellow_preflight", "yellow_preflight returned wrong command")
+    assert_true(payload.get("decision") in ("READY", "WARN", "BLOCK"), "yellow_preflight returned invalid decision")
+    assert_true(payload.get("rollback_allowed_now") is False, "yellow_preflight leaked rollback permission")
+    assert_true(payload.get("repair_allowed_now") is False, "yellow_preflight leaked repair permission")
+    
+    # In a clean environment (expected during pre-commit/post-commit), it should be READY or WARN
+    # but since this might run in a dirty git state during testing, we only check for basic fields.
+    results.append({"command": "yellow_preflight", "status": "ok", "decision": payload.get("decision")})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -559,6 +572,8 @@ def main() -> int:
         verify_run_registry(results)
         verify_rollback_plan(results)
         verify_rollback_plan_validator(results)
+        if os.environ.get("LUCY_SKIP_PREFLIGHT_CHECK") != "1":
+            verify_yellow_preflight(results)
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:

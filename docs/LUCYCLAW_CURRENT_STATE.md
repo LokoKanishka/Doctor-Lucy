@@ -5,9 +5,10 @@ Date: 2026-05-06
 ## 1. Current Short State
 
 - Expected branch: `memoria/bunker`
-- Last known healthy commit: `5e8ca74` `feat(lucyclaw): add rollback plan validator`
-- Current operational status: green layer solid. AG-Y4 (QA1 Rollback Plan Validator) integrated.
-- Immediate recommendation: AG-Y5 or R66 (/yellow_preflight read-only).
+- Last known healthy commit: `efb58bc` `test(lucyclaw): include rollback plan validation in QA`
+- Current operational status: green layer solid. AG-Y5 (/yellow_preflight) integrated.
+- Immediate recommendation: AG-Y6 (First yellow tranche using /yellow_preflight).
+- AG-Y5 created /yellow_preflight read-only command.
 - AG-Y4 integrated verify_rollback_plan.py into QA1.
 - AG-Y3/R64 registered /run_registry and /rollback_plan as real plugins.
 - R65 provides local validation for rollback plans.
@@ -48,6 +49,7 @@ This means Lucy currently has a real bounded green zone, not just a documented o
 - `/lucy_help`
 - `/run_registry`
 - `/rollback_plan`
+- `/yellow_preflight`
 
 Usage:
 
@@ -288,6 +290,7 @@ Preferred order:
 10. `R64` — Rollback Plan Command (Completed).
 11. `R65` — Rollback Plan Validator Script (Completed).
 12. `AG-Y4` — QA1 Rollback Plan Validator Integration (Completed).
+13. `AG-Y5` — Yellow Preflight Command (Completed).
 
 ## 13. Non-Regression Rules
 

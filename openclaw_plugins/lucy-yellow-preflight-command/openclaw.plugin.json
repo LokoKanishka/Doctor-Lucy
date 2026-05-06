@@ -1,0 +1,13 @@
+{
+  "id": "lucy-yellow-preflight-command",
+  "name": "Yellow Preflight",
+  "description": "Evalúa la disponibilidad del sistema para tramos amarillos.",
+  "version": "1.0.0",
+  "author": "Antigravity",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

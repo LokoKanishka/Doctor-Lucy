@@ -1,0 +1,13 @@
+{
+  "name": "lucy-yellow-preflight-command",
+  "version": "1.0.0",
+  "description": "Yellow Preflight command for LucyClaw",
+  "main": "index.js",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "dependencies": {}
+}

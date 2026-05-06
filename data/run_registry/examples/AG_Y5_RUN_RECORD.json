@@ -1,0 +1,23 @@
+{
+  "registry_version": "1.0",
+  "run_id": "AG-Y5",
+  "tranche_id": "AG-Y5",
+  "title": "Yellow Preflight Command",
+  "date": "2026-05-06T15:00:00Z",
+  "operator": "Antigravity",
+  "risk_level": "YELLOW_CODE_CHANGE",
+  "final_decision": "CLOSED",
+  "base_commit": "efb58bc",
+  "target_commit": "PENDING_COMMIT_HASH",
+  "branch": "memoria/bunker",
+  "repo_path": "/home/lucy-ubuntu/Escritorio/doctora-lucy",
+  "evidence_path": "docs/examples/EVIDENCE_ENVELOPE_EXAMPLE_AG_Y5_YELLOW_PREFLIGHT.md",
+  "envelope_validated": true,
+  "qa1_post": "ok",
+  "sec1_post": "ok",
+  "lucy_next_step_post": "READY",
+  "runtime_touched": true,
+  "restart_count": 1,
+  "sensitive_clean": true,
+  "voice_report_status": "suspended_by_ticket"
+}

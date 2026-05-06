@@ -42,6 +42,7 @@ PAYLOAD = {
             "/lucy_capabilities",
             "/run_registry",
             "/rollback_plan",
+            "/yellow_preflight",
         ],
     },
     "yellow": {
