@@ -5,7 +5,10 @@ Los comandos de acceso a la máquina (`/machine_downloads`, `/machine_ls`, `/mac
 
 ## Corrección Aplicada
 1. **Unificación**: Se consolidaron los manejadores en un único archivo `index.js`.
-2. **Registro Explícito**: Se implementó la función `register(api)` que utiliza `api.registerCommand` para dar de alta los tres comandos:
+2. **Normalización de Argumentos**: Se implementó una lógica robusta en Node.js para manejar argumentos enviados como objetos o arrays desde Telegram, evitando fallos de tipo en el runtime.
+3. **Rutas por Defecto**: `/machine_ls` ahora asume `/home/lucy-ubuntu` si no se provee argumento.
+4. **Validación de Seguridad**: Se mantuvo el filtrado de rutas sensibles (`.env`, `tokens`, etc.) en el wrapper Python.
+5. **Registro Explícito**: Se implementó la función `register(api)` que utiliza `api.registerCommand` para dar de alta los tres comandos:
    - `machine_downloads` (sin argumentos)
    - `machine_ls` (acepta un argumento opcional de ruta)
    - `machine_stat` (requiere un argumento de ruta)
