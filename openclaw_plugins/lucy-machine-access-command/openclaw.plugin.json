@@ -1,6 +1,9 @@
 {
   "id": "lucy-machine-access-command",
+  "name": "Lucy Machine Access",
+  "description": "Read-only host file listing commands (downloads, ls, stat).",
   "type": "command",
+  "main": "./index.js",
   "configSchema": {
     "type": "object",
     "properties": {}
