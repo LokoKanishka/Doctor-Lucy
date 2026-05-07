@@ -5,7 +5,7 @@
 - **date**: 2026-05-06T23:59:00Z
 - **operator**: Codex
 - **base_commit**: 355ee12
-- **target_commit**: COMMIT_REPORTED_IN_CHAT
+- **target_commit**: 7b8bbb1
 - **branch**: memoria/bunker
 - **risk_level**: YELLOW_CODE_CHANGE
 - **qa1_pre**: pending
