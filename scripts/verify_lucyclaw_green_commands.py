@@ -13,7 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = "python3"
-TIMEOUT = 30
+# Yellow/daemon meta-checks invoke nested read-only validators and can take
+# longer than the earlier 30s budget without indicating a real failure.
+TIMEOUT = 90
 MAX_HEALTH_REPORT_LOG_LINES = 20
 MAX_LOG_TAIL_LINES = 80
 
@@ -578,6 +580,47 @@ def verify_machine_access(results: list[dict]):
     results.append({"command": "machine_access", "status": "ok"})
 
 
+def verify_machine_nl_router(results: list[dict]) -> None:
+    samples = [
+        ("qué carpetas hay en el escritorio", "machine_ls", "/home/lucy-ubuntu/Escritorio"),
+        ("qué hay en descargas", "machine_downloads", ""),
+        ("qué fue lo último que descargué", "machine_downloads", ""),
+        ("qué hay activo en la pc", "machine_status", ""),
+        ("cuánta ram estoy usando", "machine_ram", ""),
+        ("cómo está la gpu", "machine_gpu", ""),
+        ("cuánta vram estoy usando", "machine_gpu", ""),
+        ("qué procesos están corriendo", "machine_processes", ""),
+        ("cuánto disco tengo", "machine_disk", ""),
+    ]
+    for text, command, args in samples:
+        payload, _ = run_json([PYTHON, "scripts/lucy_machine_nl_router.py", text])
+        assert_true(payload.get("ok") is True, f"machine_nl_router failed for: {text}")
+        assert_true(payload.get("recognized") is True, f"machine_nl_router did not recognize: {text}")
+        assert_true(payload.get("command") == command, f"machine_nl_router mapped wrong command for: {text}")
+        assert_true(payload.get("args") == args, f"machine_nl_router mapped wrong args for: {text}")
+        assert_true(payload.get("mode") == "read-only", f"machine_nl_router wrong mode for: {text}")
+        assert_true(payload.get("requires_model") is False, f"machine_nl_router wrong requires_model for: {text}")
+
+    rejected, _ = run_json([PYTHON, "scripts/lucy_machine_nl_router.py", "hola cómo estás"])
+    assert_true(rejected.get("ok") is True, "machine_nl_router reject returned ok=false")
+    assert_true(rejected.get("recognized") is False, "machine_nl_router should not recognize generic greeting")
+    assert_true(rejected.get("requires_model") is True, "machine_nl_router should require model on generic greeting")
+
+    router_source = (ROOT / "scripts/lucy_machine_nl_router.py").read_text(encoding="utf-8")
+    blocked_markers = (
+        "sub" + "process",
+        "shell" + "=True",
+        "os." + "system",
+        "req" + "uests",
+        "." + "env",
+        "to" + "ken",
+    )
+    for marker in blocked_markers:
+        assert_true(marker not in router_source, f"machine_nl_router source contains blocked marker: {marker}")
+
+    results.append({"command": "machine_nl_router", "status": "ok"})
+
+
 def main() -> int:
     results: list[dict] = []
     try:
@@ -617,6 +660,7 @@ def main() -> int:
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
         verify_machine_access(results)
+        verify_machine_nl_router(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
         print(
             json.dumps(

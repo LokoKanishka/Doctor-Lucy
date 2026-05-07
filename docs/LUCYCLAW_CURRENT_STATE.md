@@ -10,9 +10,10 @@ Date: 2026-05-06
 ### Host Observation Layer
 - [x] **AG-HOST1A**: Listar archivos/carpetas desde Telegram (`/machine_downloads`, `/machine_ls`, `/machine_stat`).
 - [x] **AG-HOST1B**: Estado de máquina/procesos/RAM/disco/GPU (`/machine_status`, `/machine_processes`, `/machine_ram`, `/machine_disk`, `/machine_gpu`).
+- [~] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; no está integrado a Telegram y queda en `NEEDS_REVIEW` por ausencia de short-circuit limpio pre-modelo en los hooks auditados del gateway.
 - [ ] **AG-HOST1C**: Lectura segura de documentos permitidos.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
-- Immediate recommendation: AG-HOST1B read documents safely.
+- Immediate recommendation: Abrir `AG-HOST-NL3` para resolver un intercepto pre-modelo real o una alternativa de bridge controlada antes de retomar cierre funcional de AG-HOST-NL2.
 - Prioridad operativa: Host Observation Layer. Primero ver/listar máquina, luego leer documentos, luego estado de sistema.
 - AG-Y6 created /daemon_brief read-only Daemon v3 readiness summary.
 - AG-Y5 created /yellow_preflight read-only command.

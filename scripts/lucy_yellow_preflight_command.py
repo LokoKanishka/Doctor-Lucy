@@ -15,6 +15,7 @@ def run_cmd(args):
     env = os.environ.copy()
     env["LUCY_SKIP_PREFLIGHT_CHECK"] = "1"
     env["LUCY_SKIP_DAEMON_CHECK"] = "1"
+    env["LUCY_SKIP_NEXT_STEP"] = "1"
     try:
         proc = subprocess.run(
             args,

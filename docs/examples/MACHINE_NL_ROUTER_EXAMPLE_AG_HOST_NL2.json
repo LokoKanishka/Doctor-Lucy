@@ -1,0 +1,36 @@
+{
+  "examples": [
+    {
+      "input": "qué carpetas hay en el escritorio",
+      "output": {
+        "ok": true,
+        "recognized": true,
+        "intent": "desktop_listing",
+        "command": "machine_ls",
+        "args": "/home/lucy-ubuntu/Escritorio",
+        "mode": "read-only",
+        "requires_model": false
+      }
+    },
+    {
+      "input": "qué fue lo último que descargué",
+      "output": {
+        "ok": true,
+        "recognized": true,
+        "intent": "downloads_listing",
+        "command": "machine_downloads",
+        "args": "",
+        "mode": "read-only",
+        "requires_model": false
+      }
+    },
+    {
+      "input": "hola cómo estás",
+      "output": {
+        "ok": true,
+        "recognized": false,
+        "requires_model": true
+      }
+    }
+  ]
+}

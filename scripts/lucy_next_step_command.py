@@ -76,7 +76,11 @@ def build_payload(argv: list[str]) -> tuple[dict, int]:
     basis = {"git": git_state()}
     qa_payload, qa_code = run_json(
         [PYTHON, "scripts/verify_lucyclaw_green_commands.py"],
-        extra_env={"LUCY_SKIP_NEXT_STEP": "1"},
+        extra_env={
+            "LUCY_SKIP_PREFLIGHT_CHECK": "1",
+            "LUCY_SKIP_DAEMON_CHECK": "1",
+            "LUCY_SKIP_NEXT_STEP": "1",
+        },
     )
     sec_payload, sec_code = run_json([PYTHON, "scripts/verify_lucyclaw_security_policy.py"])
     health_payload, health_code = run_json([PYTHON, "scripts/lucy_health_brief_command.py"])
