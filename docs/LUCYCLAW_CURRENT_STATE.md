@@ -11,11 +11,12 @@ Date: 2026-05-06
 - [x] **AG-HOST1A**: Listar archivos/carpetas desde Telegram (`/machine_downloads`, `/machine_ls`, `/machine_stat`).
 - [x] **AG-HOST1B**: Estado de máquina/procesos/RAM/disco/GPU (`/machine_status`, `/machine_processes`, `/machine_ram`, `/machine_disk`, `/machine_gpu`).
 - [x] **AG-HOST1C**: Lectura segura de documentos permitidos (`/machine_read`, `/machine_doc_brief`).
-- [~] **AG-TOOLS1**: Capacidades de máquina expuestas como agent tools reales para lenguaje natural; validación Telegram pendiente.
+- [x] **AG-TOOLS1**: Capacidades de máquina expuestas como agent tools reales para lenguaje natural.
+- [~] **AG-TOOLS2**: Runtime del agente `main` corregido para exponer `lucy_machine_*` dentro del sandbox/tool policy; validación Telegram pendiente.
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
 - [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
-- Immediate recommendation: mantener desactivado el intercepto NL runtime hasta rediseñar el parche o reimplementar con una integración verificable.
+- Immediate recommendation: mantener desactivado el intercepto NL runtime; el camino soportado para lenguaje natural es agent tools reales con sandbox allowlist explícita.
 - Prioridad operativa: Host Observation Layer. Primero ver/listar máquina, luego leer documentos, luego estado de sistema.
 - AG-Y6 created /daemon_brief read-only Daemon v3 readiness summary.
 - AG-Y5 created /yellow_preflight read-only command.
@@ -92,6 +93,25 @@ Usage:
 
 - lectura literal acotada de `.txt`, `.md`, `.json`, `.csv`, `.log`, `.docx` y `.pdf`
 - rechazo de rutas sensibles y formatos no soportados
+
+### Agent Tools Runtime
+
+- `lucy_machine_downloads`
+- `lucy_machine_ls`
+- `lucy_machine_stat`
+- `lucy_machine_status`
+- `lucy_machine_processes`
+- `lucy_machine_ram`
+- `lucy_machine_gpu`
+- `lucy_machine_disk`
+- `lucy_machine_read`
+- `lucy_machine_doc_brief`
+
+Usage:
+
+- tool calling real desde el agente `main`
+- disponible para lenguaje natural cuando el modelo decide usar tools
+- expuesto al runtime sandboxed mediante `agents.main.tools.sandbox.tools.allow`
 
 ### Services and Logs
 

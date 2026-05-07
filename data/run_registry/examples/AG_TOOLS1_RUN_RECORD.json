@@ -8,7 +8,7 @@
   "risk_level": "YELLOW_CODE_CHANGE",
   "final_decision": "NEEDS_REVIEW",
   "base_commit": "ecd7dab",
-  "target_commit": "COMMIT_REAL_FINAL",
+  "target_commit": "84b3a55",
   "branch": "memoria/bunker",
   "repo_path": "/home/lucy-ubuntu/Escritorio/doctora-lucy",
   "evidence_path": "docs/examples/EVIDENCE_ENVELOPE_EXAMPLE_AG_TOOLS1_AGENT_TOOLS.md",
@@ -21,5 +21,5 @@
   "telegram_verified": false,
   "sensitive_clean": true,
   "voice_report_status": "suspended_by_ticket",
-  "notes": "Machine slash commands remain intact; equivalent capabilities are additionally registered as agent tools."
+  "notes": "Machine slash commands remain intact; equivalent capabilities are additionally registered as agent tools. AG-TOOLS2 later fixed sandbox exposure so those tools reach agent main runs."
 }

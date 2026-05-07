@@ -5,7 +5,7 @@
 - **date**: 2026-05-07T00:00:00Z
 - **operator**: Codex
 - **base_commit**: ecd7dab
-- **target_commit**: COMMIT_REAL_FINAL
+- **target_commit**: 84b3a55
 - **branch**: memoria/bunker
 - **risk_level**: YELLOW_CODE_CHANGE
 - **runtime_touched**: true
@@ -17,7 +17,7 @@
 - **sensitive_clean**: true
 
 ## Resumen
-Se registran capabilities `machine_*` como agent tools reales mediante `api.registerTool(...)`, manteniendo intactos los slash commands existentes.
+Se registran capabilities `machine_*` como agent tools reales mediante `api.registerTool(...)`, manteniendo intactos los slash commands existentes. La exposición efectiva al runtime sandboxed del agente `main` quedó corregida después en AG-TOOLS2.
 
 ## Controles
 - sin router por frases

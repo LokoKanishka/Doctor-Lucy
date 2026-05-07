@@ -71,7 +71,7 @@ PAYLOAD = {
             "no reparación automática",
         ],
     },
-    "next": "Usar /repo_map y /doc_brief para orientación; las capacidades machine_* también pueden exponerse como agent tools cuando el runtime/modelo lo soporta; luego /plan_brief, /risk_check, /permission_brief y /change_plan antes de cualquier tramo amarillo.",
+    "next": "Usar /repo_map y /doc_brief para orientación; las capacidades machine_* ya están registradas como agent tools y el agente main puede verlas cuando corre sandboxed; luego /plan_brief, /risk_check, /permission_brief y /change_plan antes de cualquier tramo amarillo.",
 }
 
 

@@ -3,6 +3,20 @@
   "name": "Lucy Machine Agent Tools",
   "description": "Read-only machine capabilities exposed as agent tools for LucyClaw.",
   "main": "./index.js",
+  "contracts": {
+    "tools": [
+      "lucy_machine_downloads",
+      "lucy_machine_ls",
+      "lucy_machine_stat",
+      "lucy_machine_status",
+      "lucy_machine_processes",
+      "lucy_machine_ram",
+      "lucy_machine_gpu",
+      "lucy_machine_disk",
+      "lucy_machine_read",
+      "lucy_machine_doc_brief"
+    ]
+  },
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

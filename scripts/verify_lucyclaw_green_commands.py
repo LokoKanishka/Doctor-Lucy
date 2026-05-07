@@ -707,10 +707,14 @@ def verify_machine_agent_tools(results: list[dict]) -> None:
     assert_true(plugin_check.returncode == 0, f"machine agent tools node --check failed: {plugin_check.stderr.strip()}")
 
     source = plugin_path.read_text(encoding="utf-8")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert_true("registerTool(" in source, "machine agent tools plugin does not use registerTool")
     assert_true("registerCommand(" not in source, "machine agent tools plugin should not rely on registerCommand")
     assert_true("execSync" not in source and "child_process.exec" not in source, "machine agent tools plugin uses exec")
     assert_true("shell: true" not in source and "shell:true" not in source, "machine agent tools plugin uses shell:true")
+
+    manifest_tools = manifest.get("contracts", {}).get("tools")
+    assert_true(isinstance(manifest_tools, list), "machine agent tools manifest missing contracts.tools list")
 
     for tool_name in (
         "lucy_machine_downloads",
@@ -725,6 +729,7 @@ def verify_machine_agent_tools(results: list[dict]) -> None:
         "lucy_machine_doc_brief",
     ):
         assert_true(tool_name in source, f"machine agent tools plugin missing tool {tool_name}")
+        assert_true(tool_name in manifest_tools, f"machine agent tools manifest missing tool {tool_name}")
 
     results.append({"command": "machine_agent_tools", "status": "ok"})
 
