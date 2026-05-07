@@ -21,7 +21,7 @@ MAX_LOG_TAIL_LINES = 80
 
 SENSITIVE_VALUE_RE = re.compile(
     r"(?i)\b(?:token|secret|api[_-]?key|apikey|authorization|access[_-]?token|refresh[_-]?token|password)\b"
-    r"[^\n:=]{0,20}[:= ][^\s,\]}]{4,}"
+    r"(?![_-]store)[^\n:=]{0,20}[:= ][^\s,\]}]{4,}"
 )
 OPENAI_KEY_RE = re.compile(r"(?<![A-Za-z0-9_-])sk-[A-Za-z0-9_-]{10,}")
 ENV_PATH_RE = re.compile(r"(^|[\\/])\.env($|[./])", re.IGNORECASE)
