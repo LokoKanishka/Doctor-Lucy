@@ -11,10 +11,10 @@ Date: 2026-05-06
 - [x] **AG-HOST1A**: Listar archivos/carpetas desde Telegram (`/machine_downloads`, `/machine_ls`, `/machine_stat`).
 - [x] **AG-HOST1B**: Estado de máquina/procesos/RAM/disco/GPU (`/machine_status`, `/machine_processes`, `/machine_ram`, `/machine_disk`, `/machine_gpu`).
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
-- [~] **AG-HOST-NL3**: Intercepto runtime real implementado en el gateway Telegram mediante promoción a slash interno `machine_*`; restart validado, pendiente prueba funcional por Telegram.
+- [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
 - [ ] **AG-HOST1C**: Lectura segura de documentos permitidos.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
-- Immediate recommendation: Pedir smoke real por Telegram de AG-HOST-NL3 antes de marcar cierre funcional.
+- Immediate recommendation: mantener desactivado el intercepto NL runtime hasta rediseñar el parche o reimplementar con una integración verificable.
 - Prioridad operativa: Host Observation Layer. Primero ver/listar máquina, luego leer documentos, luego estado de sistema.
 - AG-Y6 created /daemon_brief read-only Daemon v3 readiness summary.
 - AG-Y5 created /yellow_preflight read-only command.
