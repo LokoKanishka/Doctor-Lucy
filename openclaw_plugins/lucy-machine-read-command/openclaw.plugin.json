@@ -1,0 +1,11 @@
+{
+  "id": "lucy-machine-read-command",
+  "name": "Lucy Machine Read",
+  "description": "Read-only host document reading commands (machine_read, machine_doc_brief).",
+  "type": "command",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}

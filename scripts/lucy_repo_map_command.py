@@ -50,6 +50,7 @@ KEY_FILE_CANDIDATES = {
         "scripts/lucy_daemon_brief_command.py",
         "scripts/lucy_machine_access_command.py",
         "scripts/lucy_machine_status_command.py",
+        "scripts/lucy_machine_read_command.py",
     ],
     "plugins": [
         "openclaw_plugins/lucy-fs-readonly-command/",
@@ -69,6 +70,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-daemon-brief-command/",
         "openclaw_plugins/lucy-machine-access-command/",
         "openclaw_plugins/lucy-machine-status-command/",
+        "openclaw_plugins/lucy-machine-read-command/",
     ],
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
@@ -87,6 +89,7 @@ KEY_FILE_CANDIDATES = {
         "docs/LUCYCLAW_DAEMON_BRIEF_AG_Y6.md",
         "docs/LUCYCLAW_MACHINE_ACCESS_AG_HOST1A.md",
         "docs/LUCYCLAW_MACHINE_STATUS_AG_HOST1B.md",
+        "docs/LUCYCLAW_MACHINE_READ_AG_HOST1C.md",
     ],
 }
 SENSITIVE_SEGMENTS = tuple(
@@ -187,7 +190,9 @@ def build_payload(argv: list[str]) -> tuple[dict, int]:
             "/machine_processes",
             "/machine_ram",
             "/machine_disk",
-            "/machine_gpu"
+            "/machine_gpu",
+            "/machine_read",
+            "/machine_doc_brief"
         ],
         "key_files": key_files,
         "safe_navigation": [

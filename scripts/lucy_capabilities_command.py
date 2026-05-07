@@ -39,7 +39,9 @@ PAYLOAD = {
             "/machine_processes",
             "/machine_ram",
             "/machine_disk",
-            "/machine_gpu"
+            "/machine_gpu",
+            "/machine_read",
+            "/machine_doc_brief"
         ],
     },
     "yellow": {

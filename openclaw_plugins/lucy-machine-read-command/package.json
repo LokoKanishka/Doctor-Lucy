@@ -1,0 +1,13 @@
+{
+  "name": "lucy-machine-read-command",
+  "version": "1.0.0",
+  "description": "Read-only host document reading for LucyClaw",
+  "type": "module",
+  "main": "./index.js",
+  "private": true,
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

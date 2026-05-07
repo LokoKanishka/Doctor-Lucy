@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "command": "machine_doc_brief",
+  "mode": "read-only",
+  "path": "/home/lucy-ubuntu/Descargas/Markdown.md pegado",
+  "name": "Markdown.md pegado",
+  "extension": ".md",
+  "size_bytes": 6183,
+  "modified": "2026-05-05T01:10:00",
+  "chars_returned": 6000,
+  "truncated": true,
+  "controlled_failure": false,
+  "excerpt": "# Markdown\n\n[TOC]\n\n## Dar formato al texto\n\n**texto en negrita**\n\n*texto en cursiva*\n\n~~tachado~~\n\n...",
+  "summary_hint": "Extracto literal acotado; sin resumen semántico automático."
+}

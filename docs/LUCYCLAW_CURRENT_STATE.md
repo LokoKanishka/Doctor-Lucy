@@ -10,9 +10,9 @@ Date: 2026-05-06
 ### Host Observation Layer
 - [x] **AG-HOST1A**: Listar archivos/carpetas desde Telegram (`/machine_downloads`, `/machine_ls`, `/machine_stat`).
 - [x] **AG-HOST1B**: Estado de máquina/procesos/RAM/disco/GPU (`/machine_status`, `/machine_processes`, `/machine_ram`, `/machine_disk`, `/machine_gpu`).
+- [x] **AG-HOST1C**: Lectura segura de documentos permitidos (`/machine_read`, `/machine_doc_brief`).
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
 - [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
-- [ ] **AG-HOST1C**: Lectura segura de documentos permitidos.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
 - Immediate recommendation: mantener desactivado el intercepto NL runtime hasta rediseñar el parche o reimplementar con una integración verificable.
 - Prioridad operativa: Host Observation Layer. Primero ver/listar máquina, luego leer documentos, luego estado de sistema.
@@ -72,14 +72,25 @@ Usage:
 
 ### Machine Status
 
-- `/sys_status`
-- `/gpu_status`
-- `/disk_status`
-- `/process_status`
+- `/machine_status`
+- `/machine_processes`
+- `/machine_ram`
+- `/machine_disk`
+- `/machine_gpu`
 
 Usage:
 
 - host, GPU, disk, and bounded process inspection
+
+### Machine Document Read
+
+- `/machine_read`
+- `/machine_doc_brief`
+
+Usage:
+
+- lectura literal acotada de `.txt`, `.md`, `.json`, `.csv`, `.log`, `.docx` y `.pdf`
+- rechazo de rutas sensibles y formatos no soportados
 
 ### Services and Logs
 
@@ -175,7 +186,9 @@ Currently active Lucy plugin family:
 
 - `lucy-fs-readonly-command`
 - `lucy-fs-search-command`
+- `lucy-machine-access-command`
 - `lucy-machine-status-command`
+- `lucy-machine-read-command`
 - `lucy-service-status-command`
 - `lucy-health-report-command`
 - `lucy-health-brief-command`

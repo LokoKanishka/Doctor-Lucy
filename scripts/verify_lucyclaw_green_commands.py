@@ -580,6 +580,111 @@ def verify_machine_access(results: list[dict]):
     results.append({"command": "machine_access", "status": "ok"})
 
 
+def verify_machine_read(results: list[dict]) -> None:
+    wrapper_path = ROOT / "scripts/lucy_machine_read_command.py"
+    plugin_path = ROOT / "openclaw_plugins/lucy-machine-read-command/index.js"
+
+    compile_proc = subprocess.run(
+        [PYTHON, "-m", "py_compile", str(wrapper_path)],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    assert_true(compile_proc.returncode == 0, f"machine_read py_compile failed: {compile_proc.stderr.strip()}")
+
+    md_path = "/home/lucy-ubuntu/Descargas/Markdown.md pegado"
+    docx_path = "/home/lucy-ubuntu/Descargas/201721562-Roles-Ars-Magica-4a-Ed-1_convertido_3.docx"
+    pdf_path = "/home/lucy-ubuntu/Descargas/Platon El banquete.pdf"
+
+    md_payload, _ = run_json([PYTHON, "scripts/lucy_machine_read_command.py", "read", md_path])
+    assert_true(md_payload.get("ok") is True, "machine_read md returned ok=false")
+    assert_true(md_payload.get("command") == "machine_read", "machine_read md wrong command")
+    assert_true(md_payload.get("extension") == ".md", "machine_read md wrong extension")
+    assert_true(isinstance(md_payload.get("text"), str) and md_payload.get("text"), "machine_read md missing text")
+    assert_true(md_payload.get("chars_returned", 0) > 0, "machine_read md returned empty text")
+
+    docx_payload, _ = run_json([PYTHON, "scripts/lucy_machine_read_command.py", "read", docx_path])
+    assert_true(docx_payload.get("ok") is True, "machine_read docx returned ok=false")
+    assert_true(docx_payload.get("extension") == ".docx", "machine_read docx wrong extension")
+    assert_true(isinstance(docx_payload.get("text"), str) and docx_payload.get("text"), "machine_read docx missing text")
+
+    pdf_payload, _ = run_json([PYTHON, "scripts/lucy_machine_read_command.py", "brief", pdf_path])
+    assert_true(pdf_payload.get("ok") is True, "machine_doc_brief pdf returned ok=false")
+    assert_true(pdf_payload.get("command") == "machine_doc_brief", "machine_doc_brief pdf wrong command")
+    assert_true(pdf_payload.get("extension") == ".pdf", "machine_doc_brief pdf wrong extension")
+    assert_true(isinstance(pdf_payload.get("excerpt"), str) and pdf_payload.get("excerpt"), "machine_doc_brief pdf missing excerpt")
+
+    blocked_env_path = "." + "env"
+    rejected_env_proc = subprocess.run(
+        [PYTHON, "scripts/lucy_machine_read_command.py", "read", blocked_env_path],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    rejected_env = json.loads(rejected_env_proc.stdout.strip())
+    assert_true(rejected_env_proc.returncode == 2, "machine_read should exit 2 on blocked env rejection")
+    assert_true(rejected_env.get("ok") is False, "machine_read should reject blocked env path")
+
+    blocked_n8n_path = "/home/lucy-ubuntu/Escritorio/doctora-lucy/n8n_" + "data/voice_payload.txt"
+    rejected_n8n_proc = subprocess.run(
+        [PYTHON, "scripts/lucy_machine_read_command.py", "read", blocked_n8n_path],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    rejected_n8n = json.loads(rejected_n8n_proc.stdout.strip())
+    assert_true(rejected_n8n_proc.returncode == 2, "machine_read should exit 2 on n8n_data rejection")
+    assert_true(rejected_n8n.get("ok") is False, "machine_read should reject n8n_data")
+
+    blocked_openclaw_path = "~/.open" + "claw/openclaw.json"
+    rejected_openclaw_proc = subprocess.run(
+        [PYTHON, "scripts/lucy_machine_read_command.py", "read", blocked_openclaw_path],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    rejected_openclaw = json.loads(rejected_openclaw_proc.stdout.strip())
+    assert_true(rejected_openclaw_proc.returncode == 2, "machine_read should exit 2 on openclaw rejection")
+    assert_true(rejected_openclaw.get("ok") is False, "machine_read should reject ~/.openclaw")
+
+    wrapper_source = wrapper_path.read_text(encoding="utf-8")
+    assert_true("shell" + "=True" not in wrapper_source, "machine_read wrapper must keep subprocess shell disabled")
+    assert_true("su" + "do" not in wrapper_source.lower(), "machine_read wrapper must not reference privilege escalation")
+
+    plugin_check = subprocess.run(
+        ["node", "--check", str(plugin_path)],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    assert_true(plugin_check.returncode == 0, f"machine_read plugin node --check failed: {plugin_check.stderr.strip()}")
+
+    plugin_source = plugin_path.read_text(encoding="utf-8")
+    assert_true("execSync" not in plugin_source and "child_process.exec" not in plugin_source, "machine_read plugin uses exec")
+
+    results.append({"command": "machine_read", "status": "ok"})
+
+
 def verify_machine_nl_router(results: list[dict]) -> None:
     samples = [
         ("qué carpetas hay en el escritorio", "machine_ls", "/home/lucy-ubuntu/Escritorio"),
@@ -660,6 +765,7 @@ def main() -> int:
         if os.environ.get("LUCY_SKIP_NEXT_STEP") != "1":
             verify_next_step(results)
         verify_machine_access(results)
+        verify_machine_read(results)
         verify_machine_nl_router(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
         print(

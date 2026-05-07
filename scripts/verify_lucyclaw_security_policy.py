@@ -55,6 +55,7 @@ ALLOWED_ACCEPTS_ARGS_TRUE = {
     "openclaw_plugins/lucy-scaffold-plan-command/index.js",
     "openclaw_plugins/lucy-machine-access-command/index.js",
     "openclaw_plugins/lucy-machine-status-command/index.js",
+    "openclaw_plugins/lucy-machine-read-command/index.js",
 }
 
 
