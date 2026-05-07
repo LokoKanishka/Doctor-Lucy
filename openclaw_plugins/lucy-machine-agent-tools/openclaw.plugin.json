@@ -1,0 +1,11 @@
+{
+  "id": "lucy-machine-agent-tools",
+  "name": "Lucy Machine Agent Tools",
+  "description": "Read-only machine capabilities exposed as agent tools for LucyClaw.",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

@@ -685,6 +685,50 @@ def verify_machine_read(results: list[dict]) -> None:
     results.append({"command": "machine_read", "status": "ok"})
 
 
+def verify_machine_agent_tools(results: list[dict]) -> None:
+    plugin_path = ROOT / "openclaw_plugins/lucy-machine-agent-tools/index.js"
+    manifest_path = ROOT / "openclaw_plugins/lucy-machine-agent-tools/openclaw.plugin.json"
+    package_path = ROOT / "openclaw_plugins/lucy-machine-agent-tools/package.json"
+
+    assert_true(plugin_path.exists(), "machine agent tools plugin index.js missing")
+    assert_true(manifest_path.exists(), "machine agent tools manifest missing")
+    assert_true(package_path.exists(), "machine agent tools package missing")
+
+    plugin_check = subprocess.run(
+        ["node", "--check", str(plugin_path)],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=TIMEOUT,
+        shell=False,
+        cwd=ROOT,
+    )
+    assert_true(plugin_check.returncode == 0, f"machine agent tools node --check failed: {plugin_check.stderr.strip()}")
+
+    source = plugin_path.read_text(encoding="utf-8")
+    assert_true("registerTool(" in source, "machine agent tools plugin does not use registerTool")
+    assert_true("registerCommand(" not in source, "machine agent tools plugin should not rely on registerCommand")
+    assert_true("execSync" not in source and "child_process.exec" not in source, "machine agent tools plugin uses exec")
+    assert_true("shell: true" not in source and "shell:true" not in source, "machine agent tools plugin uses shell:true")
+
+    for tool_name in (
+        "lucy_machine_downloads",
+        "lucy_machine_ls",
+        "lucy_machine_stat",
+        "lucy_machine_status",
+        "lucy_machine_processes",
+        "lucy_machine_ram",
+        "lucy_machine_gpu",
+        "lucy_machine_disk",
+        "lucy_machine_read",
+        "lucy_machine_doc_brief",
+    ):
+        assert_true(tool_name in source, f"machine agent tools plugin missing tool {tool_name}")
+
+    results.append({"command": "machine_agent_tools", "status": "ok"})
+
+
 def verify_machine_nl_router(results: list[dict]) -> None:
     samples = [
         ("qué carpetas hay en el escritorio", "machine_ls", "/home/lucy-ubuntu/Escritorio"),
@@ -766,6 +810,7 @@ def main() -> int:
             verify_next_step(results)
         verify_machine_access(results)
         verify_machine_read(results)
+        verify_machine_agent_tools(results)
         verify_machine_nl_router(results)
     except (AssertionError, RuntimeError, subprocess.TimeoutExpired) as exc:
         print(

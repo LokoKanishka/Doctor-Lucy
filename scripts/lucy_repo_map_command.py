@@ -71,6 +71,7 @@ KEY_FILE_CANDIDATES = {
         "openclaw_plugins/lucy-machine-access-command/",
         "openclaw_plugins/lucy-machine-status-command/",
         "openclaw_plugins/lucy-machine-read-command/",
+        "openclaw_plugins/lucy-machine-agent-tools/",
     ],
     "docs": [
         "docs/LUCYCLAW_REPO_MAP_R49.md",
@@ -90,6 +91,7 @@ KEY_FILE_CANDIDATES = {
         "docs/LUCYCLAW_MACHINE_ACCESS_AG_HOST1A.md",
         "docs/LUCYCLAW_MACHINE_STATUS_AG_HOST1B.md",
         "docs/LUCYCLAW_MACHINE_READ_AG_HOST1C.md",
+        "docs/LUCYCLAW_AGENT_TOOLS_AG_TOOLS1.md",
     ],
 }
 SENSITIVE_SEGMENTS = tuple(

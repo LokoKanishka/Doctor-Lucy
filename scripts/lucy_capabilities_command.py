@@ -49,6 +49,7 @@ PAYLOAD = {
         "examples": [
             "instalar o registrar plugins",
             "reiniciar OpenClaw gateway",
+            "habilitar agent tools en OpenClaw",
             "editar configuración",
             "aplicar reparaciones",
             "commitear cambios",
@@ -70,7 +71,7 @@ PAYLOAD = {
             "no reparación automática",
         ],
     },
-    "next": "Usar /repo_map y /doc_brief para orientación; luego /plan_brief, /risk_check, /permission_brief y /change_plan antes de cualquier tramo amarillo.",
+    "next": "Usar /repo_map y /doc_brief para orientación; las capacidades machine_* también pueden exponerse como agent tools cuando el runtime/modelo lo soporta; luego /plan_brief, /risk_check, /permission_brief y /change_plan antes de cualquier tramo amarillo.",
 }
 
 

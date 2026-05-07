@@ -11,6 +11,7 @@ Date: 2026-05-06
 - [x] **AG-HOST1A**: Listar archivos/carpetas desde Telegram (`/machine_downloads`, `/machine_ls`, `/machine_stat`).
 - [x] **AG-HOST1B**: Estado de máquina/procesos/RAM/disco/GPU (`/machine_status`, `/machine_processes`, `/machine_ram`, `/machine_disk`, `/machine_gpu`).
 - [x] **AG-HOST1C**: Lectura segura de documentos permitidos (`/machine_read`, `/machine_doc_brief`).
+- [~] **AG-TOOLS1**: Capacidades de máquina expuestas como agent tools reales para lenguaje natural; validación Telegram pendiente.
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
 - [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
@@ -189,6 +190,7 @@ Currently active Lucy plugin family:
 - `lucy-machine-access-command`
 - `lucy-machine-status-command`
 - `lucy-machine-read-command`
+- `lucy-machine-agent-tools`
 - `lucy-service-status-command`
 - `lucy-health-report-command`
 - `lucy-health-brief-command`
