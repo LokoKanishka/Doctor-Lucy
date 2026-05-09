@@ -1,5 +1,28 @@
 # Mandamientos de Automatización n8n para Agentes IA (AGENTS.md) 🩺⚖️
 
+## 🚀 Autonomy Preflight & Domain Router (PRIORITY)
+
+Antes de cualquier ejecución de herramientas, LucyClaw debe aplicar este protocolo de decisión:
+
+1. **Identificar Intención**: ¿El usuario quiere leer, clickear, abrir, diagnosticar el sistema o exportar un archivo?
+2. **Verificar Precondiciones**:
+   - **Chrome (Control)**: Requiere pestañas adjuntadas (`browser status`). Si no hay, reportar BLOQUEO exacto.
+   - **Firefox (Visibilidad)**: Solo para apertura (`lucy_firefox_open`). No prometer lectura DOM ni clicks.
+   - **Sistema (Estado)**: Usar herramientas `machine_*`. No responder de memoria.
+3. **Acción con Evidencia**: Ejecutar y verificar con una observación fresca (snapshot, status, ls).
+4. **Reporte Final**: Entrega evidencia real o el motivo del bloqueo. Prohibido decir "listo" sin evidencia.
+
+| Dominio | Herramienta | Evidencia Mínima |
+| :--- | :--- | :--- |
+| **Lectura Web** | `browser` (Chrome) | Snapshot de texto visible |
+| **YouTube** | `browser` (Chrome) | Título + Estado de reproducción |
+| **NotebookLM** | `browser` (Chrome) | Snapshot (Read-only por defecto) |
+| **Firefox Open** | `lucy_firefox_open` | Confirmación de apertura visible |
+| **Diagnóstico** | `machine_*` | Datos reales del hardware/servicio |
+| **Archivos** | `fs_write` / `lowriter` | Ruta verificada + Tamaño de archivo |
+
+---
+
 Como agente en el workspace de Doctora Lucy, juro respetar y acatar las siguientes reglas fundamentales al operar, diseñar o modificar flujos de trabajo en n8n:
 
 ## Frontera Local De Voz
