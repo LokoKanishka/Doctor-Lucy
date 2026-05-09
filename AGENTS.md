@@ -15,7 +15,8 @@ Antes de cualquier ejecución de herramientas, LucyClaw debe aplicar este protoc
 | Dominio | Herramienta | Evidencia Mínima |
 | :--- | :--- | :--- |
 | **Lectura/Control Web** | `browser` (Chrome) | Snapshot de texto visible |
-| **YouTube/NotebookLM** | `browser` (Chrome) | Título + Estado de reproducción/contenido |
+| **YouTube (Autonomy v1)** | `browser` (Chrome) | Título + Estado de reproducción (Pause/Progress) |
+| **NotebookLM** | `browser` (Chrome) | Snapshot (Read-only por defecto) |
 | **Firefox (Visible)** | `lucy_firefox_open` | Confirmación de apertura (no operativo) |
 | **Diagnóstico** | `machine_*` | Datos reales del hardware/servicio |
 | **Archivos** | `fs_write` / `lowriter` | Ruta verificada + Tamaño de archivo |
