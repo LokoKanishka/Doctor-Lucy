@@ -8,6 +8,7 @@ const TIMEOUT_MS = 15000;
 const ACCESS_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_access_command.py");
 const STATUS_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_status_command.py");
 const READ_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_read_command.py");
+const FIREFOX_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_firefox_command.py");
 
 function runJsonScript(scriptPath, args) {
   return new Promise((resolvePromise) => {
@@ -89,6 +90,19 @@ function requirePath(params) {
     throw new Error("Missing path argument");
   }
   return pathValue;
+}
+
+function requireUrl(params) {
+  const urlValue = typeof params?.url === "string" ? params.url.trim() : "";
+  if (!urlValue) {
+    throw new Error("Missing url argument");
+  }
+  return urlValue;
+}
+
+function optionalMode(params) {
+  const mode = typeof params?.mode === "string" ? params.mode.trim() : "";
+  return mode === "window" ? "window" : "tab";
 }
 
 function registerSimpleTool(api, tool) {
@@ -251,6 +265,39 @@ export default {
         },
         scriptPath: READ_SCRIPT,
         buildArgs: (params) => ["brief", requirePath(params)],
+      },
+      {
+        name: "lucy_firefox_status",
+        description: "Verifica si Firefox del host esta disponible o corriendo. Usar antes de abrir Firefox si hace falta confirmar disponibilidad.",
+        parameters: {
+          type: "object",
+          additionalProperties: false,
+          properties: {},
+        },
+        scriptPath: FIREFOX_SCRIPT,
+        buildArgs: () => ["status"],
+      },
+      {
+        name: "lucy_firefox_open",
+        description: "Abre una URL segura en Firefox visible del host. Usar cuando Diego pide abrir algo en Firefox o que Firefox se abra solo. No lee ni confirma contenido DOM; para lectura/click/playback con evidencia usa una herramienta de navegador automatizable si esta disponible.",
+        parameters: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            url: {
+              type: "string",
+              description: "URL http/https segura o about:blank para abrir en Firefox.",
+            },
+            mode: {
+              type: "string",
+              enum: ["tab", "window"],
+              description: "Abrir en nueva pestana o nueva ventana. Por defecto: tab.",
+            },
+          },
+          required: ["url"],
+        },
+        scriptPath: FIREFOX_SCRIPT,
+        buildArgs: (params) => ["open", requireUrl(params), optionalMode(params)],
       },
     ];
 

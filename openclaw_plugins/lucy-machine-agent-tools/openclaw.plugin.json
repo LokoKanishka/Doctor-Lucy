@@ -14,7 +14,9 @@
       "lucy_machine_gpu",
       "lucy_machine_disk",
       "lucy_machine_read",
-      "lucy_machine_doc_brief"
+      "lucy_machine_doc_brief",
+      "lucy_firefox_status",
+      "lucy_firefox_open"
     ]
   },
   "configSchema": {

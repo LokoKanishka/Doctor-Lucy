@@ -727,9 +727,18 @@ def verify_machine_agent_tools(results: list[dict]) -> None:
         "lucy_machine_disk",
         "lucy_machine_read",
         "lucy_machine_doc_brief",
+        "lucy_firefox_status",
+        "lucy_firefox_open",
     ):
         assert_true(tool_name in source, f"machine agent tools plugin missing tool {tool_name}")
         assert_true(tool_name in manifest_tools, f"machine agent tools manifest missing tool {tool_name}")
+
+    firefox_payload, _ = run_json([PYTHON, "scripts/lucy_firefox_command.py", "status"])
+    assert_true(firefox_payload.get("command") == "firefox_status", "firefox status returned wrong command")
+    assert_true(firefox_payload.get("browser") == "firefox", "firefox status returned wrong browser")
+    assert_true(firefox_payload.get("shell_used") is False, "firefox status should not use shell")
+    assert_true(firefox_payload.get("sudo_used") is False, "firefox status should not use privilege escalation")
+    assert_no_sensitive_strings(firefox_payload)
 
     results.append({"command": "machine_agent_tools", "status": "ok"})
 
