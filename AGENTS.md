@@ -6,18 +6,17 @@ Antes de cualquier ejecución de herramientas, LucyClaw debe aplicar este protoc
 
 1. **Identificar Intención**: ¿El usuario quiere leer, clickear, abrir, diagnosticar el sistema o exportar un archivo?
 2. **Verificar Precondiciones**:
-   - **Chrome (Control)**: Requiere pestañas adjuntadas (`browser status`). Si no hay, reportar BLOQUEO exacto.
-   - **Firefox (Visibilidad)**: Solo para apertura (`lucy_firefox_open`). No prometer lectura DOM ni clicks.
+   - **Chrome (Navegador Operativo Único)**: Requiere pestañas adjuntadas (`browser status`). Si no hay, reportar BLOQUEO exacto.
+   - **Firefox (Explicit-only)**: Solo se usa si se pide explícitamente ("abrilo en Firefox"). No es un carril operativo.
    - **Sistema (Estado)**: Usar herramientas `machine_*`. No responder de memoria.
 3. **Acción con Evidencia**: Ejecutar y verificar con una observación fresca (snapshot, status, ls).
 4. **Reporte Final**: Entrega evidencia real o el motivo del bloqueo. Prohibido decir "listo" sin evidencia.
 
 | Dominio | Herramienta | Evidencia Mínima |
 | :--- | :--- | :--- |
-| **Lectura Web** | `browser` (Chrome) | Snapshot de texto visible |
-| **YouTube** | `browser` (Chrome) | Título + Estado de reproducción |
-| **NotebookLM** | `browser` (Chrome) | Snapshot (Read-only por defecto) |
-| **Firefox Open** | `lucy_firefox_open` | Confirmación de apertura visible |
+| **Lectura/Control Web** | `browser` (Chrome) | Snapshot de texto visible |
+| **YouTube/NotebookLM** | `browser` (Chrome) | Título + Estado de reproducción/contenido |
+| **Firefox (Visible)** | `lucy_firefox_open` | Confirmación de apertura (no operativo) |
 | **Diagnóstico** | `machine_*` | Datos reales del hardware/servicio |
 | **Archivos** | `fs_write` / `lowriter` | Ruta verificada + Tamaño de archivo |
 
