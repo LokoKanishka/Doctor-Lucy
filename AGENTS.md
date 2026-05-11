@@ -15,11 +15,17 @@ Antes de cualquier ejecución de herramientas, LucyClaw debe aplicar este protoc
 | Dominio | Herramienta | Evidencia Mínima |
 | :--- | :--- | :--- |
 | **Lectura/Control Web** | `browser` (Chrome) | Snapshot de texto visible |
-| **YouTube (Autonomy v1)** | `browser` (Chrome) | Título + Estado de reproducción (Pause/Progress) |
+| **YouTube (Autonomy v2)** | `browser` (Chrome) | Título + Playback Evidence + Candidates |
 | **NotebookLM** | `browser` (Chrome) | Snapshot (Read-only por defecto) |
 | **Firefox (Visible)** | `lucy_firefox_open` | Confirmación de apertura (no operativo) |
 | **Diagnóstico** | `machine_*` | Datos reales del hardware/servicio |
 | **Archivos** | `fs_write` / `lowriter` | Ruta verificada + Tamaño de archivo |
+
+### 🔍 YouTube Robust Search (AG-YOUTUBE2)
+- **Search Evidence**: "Búsqueda realizada" requires one of: (a) URL contains `search_query`, (b) Query is in UI search box, (c) Candidates with Title/Channel are visible in `snapshot`.
+- **Direct URL Fallback**: If UI search fails, navigate directly to `https://www.youtube.com/results?search_query=<query>`.
+- **Candidate Verification**: PROHIBITED to open "probable results" without visible metadata.
+- **Playback Prerequisite**: No "play" without verified video page (`watch?v=`) and player interface.
 
 ---
 
