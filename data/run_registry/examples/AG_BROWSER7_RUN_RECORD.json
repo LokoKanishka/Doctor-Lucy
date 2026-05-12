@@ -1,0 +1,30 @@
+{
+  "run_id": "AG_BROWSER7_20260512",
+  "timestamp": "2026-05-12T20:52:00-03:00",
+  "milestone": "AG-BROWSER7",
+  "objective": "Controlled local browser navigation",
+  "state": "CLOSED",
+  "target_commit": "PENDING",
+  "commit": "PENDING",
+  "evidence": {
+    "page1": "http://127.0.0.1:8770/diagnostics/browser_nav_page1.html",
+    "page2": "http://127.0.0.1:8770/diagnostics/browser_nav_page2.html",
+    "flow": [
+      {
+        "action": "click link to page 2",
+        "ref": "e1",
+        "result": "Página actual: 2"
+      },
+      {
+        "action": "click link back to page 1",
+        "ref": "e6",
+        "result": "Página actual: 1"
+      }
+    ]
+  },
+  "security_check": {
+    "no_external_nav": true,
+    "no_type": true,
+    "no_coordinates": true
+  }
+}

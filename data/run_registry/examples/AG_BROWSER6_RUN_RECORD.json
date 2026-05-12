@@ -4,8 +4,8 @@
   "milestone": "AG-BROWSER6",
   "objective": "Controlled browser text input",
   "state": "CLOSED",
-  "target_commit": "PENDING",
-  "commit": "PENDING",
+  "target_commit": "ba62753",
+  "commit": "ba62753",
   "evidence": {
     "local_page": "diagnostics/browser_input_test.html",
     "http_loopback": "http://127.0.0.1:8768",
