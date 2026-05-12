@@ -4,8 +4,8 @@
   "milestone": "AG-BROWSER5",
   "objective": "Controlled browser accordion interaction",
   "state": "CLOSED",
-  "target_commit": "PENDING",
-  "commit": "PENDING",
+  "target_commit": "91a9220",
+  "commit": "91a9220",
   "evidence": {
     "local_page": "diagnostics/browser_accordion_test.html",
     "http_loopback": "http://127.0.0.1:8766",
