@@ -35,7 +35,7 @@ LOG_BEARER_RE = re.compile(r"(?i)" + "authori" + "zation" + r"\s*:\s*" + "bear" 
 LOG_STRUCTURAL_BLOCK_RE = re.compile(
     r"(?i)(?:^|[^a-z])(?:credentials|database\.sqlite|n8n_data/|n8n_backups/|/workflows|workflow[s]?/)(?:[^a-z]|$)"
 )
-FULLY_REDACTED_VALUE_RE = re.compile(r"^[*\-._<>\[\]{}()=,:;!?/\\|]+$")
+FULLY_REDACTED_VALUE_RE = re.compile(r"^[*\-._<>\[\]{}()=,:;!?/\\|]+(?:_reused)?$")
 
 
 def run_json(args: list[str]) -> tuple[dict, str]:

@@ -10,9 +10,9 @@
 - **risk_level**: YELLOW_RUNTIME_CONFIG
 - **runtime_touched**: true
 - **restart_count**: 0
-- **telegram_verified**: false
-- **technical_close**: false
-- **functional_close**: false
+- **telegram_verified**: true
+- **technical_close**: true
+- **functional_close**: true
 - **no_tts**: true
 - **sensitive_clean**: true
 
@@ -33,6 +33,9 @@ Iniciado el frente de auditoría para el Browser Relay. El gateway está escucha
 - **Tabs Connected**: 0
 - **Extension Path**: `~/.openclaw/browser/chrome-extension`
 
-## Pending
+## Closure Notes
 
-- User must attach a tab manually to complete the functional verification of the relay.
+- **Functional Verification**: Diego attached a YouTube tab.
+- **Relay Performance**: Stable connection to port 18792.
+- **Read-Only Test**: Titles and snapshots successfully retrieved.
+- **Verdict**: AG-BROWSER1 is CLOSED.
