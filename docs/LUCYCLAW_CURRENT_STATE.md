@@ -12,7 +12,7 @@ Date: 2026-05-06
 - [x] **AG-HOST1B**: Estado de máquina/procesos/RAM/disco/GPU (`/machine_status`, `/machine_processes`, `/machine_ram`, `/machine_disk`, `/machine_gpu`).
 - [x] **AG-HOST1C**: Lectura segura de documentos permitidos (`/machine_read`, `/machine_doc_brief`).
 - [x] **AG-TOOLS1**: Capacidades de máquina expuestas como agent tools reales para lenguaje natural.
-- [~] **AG-TOOLS2**: Runtime del agente `main` corregido para exponer `lucy_machine_*` dentro del sandbox/tool policy; validación Telegram pendiente.
+- [x] **AG-TOOLS2**: Runtime del agente `main` corregido para exponer `lucy_machine_*` dentro del sandbox/tool policy; validación Telegram confirmada (CLOSED).
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
 - [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
@@ -339,6 +339,7 @@ Preferred order:
 12. `AG-Y4` — QA1 Rollback Plan Validator Integration (Completed).
 13. `AG-Y5` — Yellow Preflight Command (Completed).
 14. `AG-Y6` — Daemon Brief Command (Completed).
+15. `AG-TOOLS2` — Agent Tools Functional Verification (Completed).
 
 ## 13. Non-Regression Rules
 
