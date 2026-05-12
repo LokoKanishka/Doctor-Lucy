@@ -14,6 +14,7 @@ Date: 2026-05-06
 - [x] **AG-TOOLS1**: Capacidades de máquina expuestas como agent tools reales para lenguaje natural.
 - [x] **AG-TOOLS2**: Runtime del agente `main` corregido para exponer `lucy_machine_*` dentro del sandbox/tool policy; validación Telegram confirmada (CLOSED).
 - [x] **AG-BROWSER1**: Auditoría de Browser Relay completada; relay activo y lectura de pestaña adjunta verificada (CLOSED).
+- [x] **AG-BROWSER2**: Lectura y resumen de pestaña adjunta desde lenguaje natural verificada; percepción completa (CLOSED).
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
 - [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
@@ -342,6 +343,7 @@ Preferred order:
 14. `AG-Y6` — Daemon Brief Command (Completed).
 15. `AG-TOOLS2` — Agent Tools Functional Verification (Completed).
 16. `AG-BROWSER1` — Browser Relay read-only (Completed).
+17. `AG-BROWSER2` — Browser Read-Only Language Flow (Completed).
 
 ## 13. Non-Regression Rules
 
