@@ -24,4 +24,4 @@
 - `manual_intervention`: required for profile activation (Diego)
 
 ## Hash / Commit
-- **Commit**: [TO BE UPDATED]
+- **Commit**: c057657

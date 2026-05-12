@@ -8,7 +8,7 @@
   "risk_level": "YELLOW_RUNTIME_CONFIG",
   "final_decision": "CLOSED",
   "base_commit": "cc7d0c9",
-  "target_commit": "pending",
+  "target_commit": "a0f986c",
   "branch": "memoria/bunker",
   "repo_path": "/home/lucy-ubuntu/Escritorio/doctora-lucy",
   "evidence_path": "docs/LUCYCLAW_BROWSER_SCROLL_AG_BROWSER3.md",

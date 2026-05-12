@@ -4,6 +4,8 @@
   "milestone": "AG-BROWSER4",
   "objective": "Controlled browser click by ref",
   "state": "CLOSED",
+  "target_commit": "c057657",
+  "commit": "c057657",
   "evidence": {
     "local_page": "diagnostics/browser_click_test.html",
     "http_loopback": "http://127.0.0.1:8765",
