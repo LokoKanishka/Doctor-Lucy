@@ -16,6 +16,7 @@ Date: 2026-05-06
 - [x] **AG-BROWSER1**: Auditoría de Browser Relay completada; relay activo y lectura de pestaña adjunta verificada (CLOSED).
 - [x] **AG-BROWSER2**: Lectura y resumen de pestaña adjunta desde lenguaje natural verificada; percepción completa (CLOSED).
 - [x] **AG-BROWSER3**: Acciones mínimas controladas (scroll/press) verificadas; control de viewport funcional (CLOSED).
+- [x] **AG-BROWSER4**: Click controlado por referencia en página local validado; interacción básica funcional (CLOSED).
 - [x] **AG-HOST-NL2**: Router local de lenguaje natural para máquina implementado y validado localmente; quedó documentado como diagnóstico `NEEDS_REVIEW`.
 - [~] **AG-HOST-NL3**: Intercepto runtime intentado y luego desactivado por hotfix; el patch externo quedó rollbackeado tras romper mensajes naturales y conversación normal. Estado `NEEDS_REVIEW`.
 No está activo Daemon v3 ni reparación. La capa de seguridad queda congelada salvo falla real.
@@ -346,6 +347,7 @@ Preferred order:
 16. `AG-BROWSER1` — Browser Relay read-only (Completed).
 17. `AG-BROWSER2` — Browser Read-Only Language Flow (Completed).
 18. `AG-BROWSER3` — Minimal Browser Control: Scroll/Press (Completed).
+19. `AG-BROWSER4` — Controlled Browser Click (Completed).
 
 ## 13. Non-Regression Rules
 

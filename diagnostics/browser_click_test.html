@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>LucyClaw Browser Click Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f0f2f5; color: #1c1e21; }
+    .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h1 { color: #1877f2; }
+    button { 
+      background: #1877f2; color: white; border: none; padding: 10px 20px; 
+      border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem;
+    }
+    button:hover { background: #166fe5; }
+    #estado { font-weight: bold; margin-top: 1rem; }
+    #resultado { color: #65676b; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LucyClaw Browser Click Test</h1>
+    <p id="estado">Estado: antes del click</p>
+    <button id="boton-prueba" onclick="document.getElementById('estado').textContent='Estado: click confirmado'; document.getElementById('resultado').textContent='Resultado: botón presionado correctamente';">
+      Botón de prueba seguro
+    </button>
+    <p id="resultado">Resultado: pendiente</p>
+  </div>
+</body>
+</html>
