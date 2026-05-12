@@ -1,0 +1,22 @@
+{
+  "run_id": "AG_BROWSER6_20260512",
+  "timestamp": "2026-05-12T20:37:00-03:00",
+  "milestone": "AG-BROWSER6",
+  "objective": "Controlled browser text input",
+  "state": "CLOSED",
+  "target_commit": "PENDING",
+  "commit": "PENDING",
+  "evidence": {
+    "local_page": "diagnostics/browser_input_test.html",
+    "http_loopback": "http://127.0.0.1:8768",
+    "input_ref": "e1",
+    "text_written": "LucyClaw prueba de escritura local",
+    "validation_ref": "e7",
+    "final_state": "Estado: texto validado localmente"
+  },
+  "security_check": {
+    "no_coordinates": true,
+    "no_external_submit": true,
+    "no_external_nav": true
+  }
+}

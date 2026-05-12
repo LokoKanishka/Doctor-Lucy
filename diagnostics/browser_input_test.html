@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>LucyClaw Browser Input Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9fafb; color: #111827; }
+    .card { max-width: 760px; background: white; border: 1px solid #d1d5db; border-radius: 10px; padding: 1.5rem; }
+    label { display: block; font-weight: 700; margin-bottom: .5rem; }
+    input { width: 100%; max-width: 520px; padding: 10px; border: 1px solid #9ca3af; border-radius: 6px; font-size: 1rem; }
+    button { margin-top: 1rem; padding: 10px 16px; border: 0; border-radius: 6px; background: #2563eb; color: white; cursor: pointer; font-weight: 700; }
+    .status { font-weight: 700; margin-top: 1rem; }
+    .result { margin-top: .75rem; padding: .75rem; background: #ecfdf5; border: 1px solid #86efac; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>LucyClaw Browser Input Test</h1>
+    <p>Esta página local prueba escritura controlada sin envío externo.</p>
+
+    <label for="mensaje">Campo de prueba local</label>
+    <input id="mensaje" name="mensaje" autocomplete="off" placeholder="Escribir texto de prueba">
+
+    <button id="validar" onclick="
+      const value = document.getElementById('mensaje').value;
+      document.getElementById('estado').textContent = 'Estado: texto validado localmente';
+      document.getElementById('resultado').textContent = 'Resultado: ' + value;
+    ">Validar texto local</button>
+
+    <p id="estado" class="status">Estado: esperando texto</p>
+    <p id="resultado" class="result">Resultado: pendiente</p>
+  </main>
+</body>
+</html>
