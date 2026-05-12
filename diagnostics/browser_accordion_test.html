@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>LucyClaw Browser Accordion Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f8fafc; color: #111827; }
+    .card { max-width: 720px; background: white; border: 1px solid #d1d5db; border-radius: 10px; padding: 1.5rem; }
+    button { padding: 10px 16px; border: 0; border-radius: 6px; cursor: pointer; font-weight: 700; }
+    #toggle { background: #2563eb; color: white; }
+    #panel { margin-top: 1rem; padding: 1rem; border: 1px solid #93c5fd; border-radius: 8px; background: #eff6ff; }
+    .hidden { display: none; }
+    .status { font-weight: 700; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>LucyClaw Browser Accordion Test</h1>
+    <p>Esta página local sirve para probar una interacción compleja controlada.</p>
+    <p id="estado" class="status">Estado: panel cerrado</p>
+    <button id="toggle" aria-expanded="false" aria-controls="panel" onclick="
+      const panel = document.getElementById('panel');
+      const estado = document.getElementById('estado');
+      const btn = document.getElementById('toggle');
+      const closed = panel.classList.contains('hidden');
+      if (closed) {
+        panel.classList.remove('hidden');
+        btn.textContent = 'Cerrar panel seguro';
+        btn.setAttribute('aria-expanded', 'true');
+        estado.textContent = 'Estado: panel abierto';
+      } else {
+        panel.classList.add('hidden');
+        btn.textContent = 'Abrir panel seguro';
+        btn.setAttribute('aria-expanded', 'false');
+        estado.textContent = 'Estado: panel cerrado';
+      }
+    ">Abrir panel seguro</button>
+    <section id="panel" class="hidden" aria-live="polite">
+      <h2>Panel de prueba visible</h2>
+      <p>Resultado: el panel fue abierto correctamente.</p>
+    </section>
+  </main>
+</body>
+</html>

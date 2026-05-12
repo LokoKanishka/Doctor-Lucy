@@ -1,0 +1,30 @@
+{
+  "run_id": "AG_BROWSER5_20260512",
+  "timestamp": "2026-05-12T20:23:00-03:00",
+  "milestone": "AG-BROWSER5",
+  "objective": "Controlled browser accordion interaction",
+  "state": "CLOSED",
+  "target_commit": "PENDING",
+  "commit": "PENDING",
+  "evidence": {
+    "local_page": "diagnostics/browser_accordion_test.html",
+    "http_loopback": "http://127.0.0.1:8766",
+    "actions": [
+      {
+        "step": "open",
+        "ref": "e1",
+        "result_text": "Estado: panel abierto"
+      },
+      {
+        "step": "close",
+        "ref": "e6",
+        "result_text": "Estado: panel cerrado"
+      }
+    ]
+  },
+  "security_check": {
+    "no_coordinates": true,
+    "no_type": true,
+    "no_external_nav": true
+  }
+}
