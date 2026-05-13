@@ -20,7 +20,7 @@
     <h1>LucyClaw Telegram E2E Test</h1>
     <p class="status">Estado general: listo</p>
 
-    <button id="toggle" onclick="
+    <button id="toggle" aria-ref="1" onclick="
       const panel = document.getElementById('panel');
       if (panel.classList.contains('hidden')) {
         panel.classList.remove('hidden');
@@ -33,16 +33,16 @@
     </div>
 
     <label for="mensaje">Campo Telegram local</label>
-    <input id="mensaje" name="mensaje" autocomplete="off" placeholder="Escribir aquí">
+    <input id="mensaje" name="mensaje" aria-ref="2" autocomplete="off" placeholder="Escribir aquí">
 
-    <button id="validar" onclick="
+    <button id="validar" aria-ref="3" onclick="
       const value = document.getElementById('mensaje').value;
       document.getElementById('resultado').textContent = 'Resultado Telegram: ' + value;
     ">Validar texto Telegram</button>
 
     <p id="resultado" class="result">Resultado Telegram: pendiente</p>
 
-    <a id="ir-pagina-2" href="/diagnostics/browser_telegram_e2e_page2.html">Ir a página 2 E2E</a>
+    <a id="ir-pagina-2" aria-ref="4" href="/diagnostics/browser_telegram_e2e_page2.html">Ir a página 2 E2E</a>
   </main>
 </body>
 </html>

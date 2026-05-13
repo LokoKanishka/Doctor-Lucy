@@ -148,6 +148,45 @@ def delegate_mission(prompt, agent=DEFAULT_AGENT, stream=False):
     lowered_prompt = prompt.lower()
     
     if any(kw in lowered_prompt for kw in browser_keywords):
+        # DETECTOR DETERMINÍSTICO E2E
+        e2e_action = None
+        if "mirá la pestaña" in lowered_prompt or "decime qué ves" in lowered_prompt:
+            e2e_action = "read"
+        elif "abrí el panel" in lowered_prompt or "abrir el panel" in lowered_prompt:
+            e2e_action = "open_panel"
+        elif "validalo" in lowered_prompt or "validá" in lowered_prompt:
+            e2e_action = "type_validate"
+        elif "página 2 e2e" in lowered_prompt or "página 2" in lowered_prompt:
+            e2e_action = "navigate_roundtrip"
+
+        if e2e_action:
+            try:
+                # Extraer texto para type_validate si aplica
+                e2e_args = ""
+                if e2e_action == "type_validate":
+                    # Intentar extraer lo que sigue a "local:" o similar
+                    match_text = re.search(r"(?:local|escribí|texto):\s*(.*)", prompt, re.IGNORECASE)
+                    if match_text:
+                        e2e_args = match_text.group(1).strip()
+
+                cmd_res = subprocess.run(
+                    ["python3", f"{WORKSPACE}/scripts/lucy_browser_e2e_command.py", e2e_action, e2e_args],
+                    capture_output=True, text=True, timeout=60
+                )
+                data = json.loads(cmd_res.stdout)
+                if data.get("ok"):
+                    # Devolver respuesta formateada directamente, sin pasar por el modelo
+                    msg = data.get("message", "Acción completada.")
+                    snap = data.get("snapshot", data.get("content", ""))
+                    # Limpiar snapshot de warnings para Diego
+                    snap_clean = re.sub(r"◇  Doctor warnings.*?├──────────────────────────────────────────────────────────────────────────╯", "", snap, flags=re.DOTALL).strip()
+                    return f"🩺 **LucyClaw E2E:** {msg}\n\n**Snapshot:**\n{snap_clean}\n🩺"
+                else:
+                    return f"🩺 **LucyClaw E2E Error:** {data.get('error')}\n🩺"
+            except Exception as e:
+                return f"🩺 **LucyClaw E2E Exception:** {e}\n🩺"
+
+        # Si no es acción determinística, seguimos con la inyección de contexto normal
         try:
             pre_res = subprocess.run(
                 ["python3", f"{WORKSPACE}/scripts/lucy_browser_preflight.py"],
