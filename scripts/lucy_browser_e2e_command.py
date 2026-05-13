@@ -11,14 +11,29 @@ OPENCLAW_BIN = os.getenv("OPENCLAW_BIN", "/home/lucy-ubuntu/.npm-global/bin/open
 if not os.path.exists(OPENCLAW_BIN):
     OPENCLAW_BIN = "openclaw"
 
-def run_command(args, timeout=20):
+def run_command(args, target_id=None, timeout=20):
     cmd = [OPENCLAW_BIN, "browser", "--browser-profile", "chrome"] + args
+    if target_id:
+        cmd.extend(["--target-id", target_id])
     res = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
     return res
 
-def get_snapshot(retries=2):
+def run_preflight():
+    preflight_script = os.path.join(os.path.dirname(__file__), "lucy_browser_preflight.py")
+    res = subprocess.run(["python3", preflight_script], capture_output=True, text=True)
+    try:
+        return json.loads(res.stdout)
+    except Exception:
+        return {
+            "ok": False,
+            "error": "Falla al ejecutar preflight",
+            "stdout": res.stdout.strip(),
+            "stderr": res.stderr.strip(),
+        }
+
+def get_snapshot(target_id=None, retries=2):
     for i in range(retries):
-        res = run_command(["snapshot", "--interactive"])
+        res = run_command(["snapshot", "--interactive"], target_id=target_id)
         if res.returncode == 0 and res.stdout.strip():
             return res.stdout
         time.sleep(1)
@@ -36,25 +51,41 @@ def extract_ref(snapshot, text_pattern):
 
 def execute_browser_action(action, args=None):
     # Asegurar que estamos en la URL correcta primero (Preflight)
-    # No navegamos, solo verificamos.
+    ctx = run_preflight()
+    if not ctx.get("ok"):
+        return ctx
+
+    tab_id = ctx.get("tab_id")
+    if not tab_id:
+        return {"ok": False, "error": "Preflight ok, pero sin tab_id E2E"}
     
     if action == "read":
-        snapshot = get_snapshot()
+        snapshot = get_snapshot(target_id=tab_id)
+        if not snapshot.strip():
+            return {"ok": False, "error": "Snapshot E2E vacío", "tab_id": tab_id}
         return {
             "ok": True,
+            "title": ctx.get("title"),
+            "url": ctx.get("url"),
             "summary": "Página de prueba E2E activa.",
             "content": snapshot
         }
 
     elif action == "open_panel":
-        snap = get_snapshot()
+        snap = get_snapshot(target_id=tab_id)
+        if "Panel abierto desde Telegram" in snap:
+            return {
+                "ok": True,
+                "message": "Panel ya estaba abierto.",
+                "snapshot": snap
+            }
         ref = extract_ref(snap, "Abrir panel de prueba")
         if not ref:
             return {"ok": False, "error": "No encontré el botón 'Abrir panel de prueba' en el snapshot"}
         
-        run_command(["click", ref])
+        run_command(["click", ref], target_id=tab_id)
         time.sleep(1)
-        post_snap = get_snapshot()
+        post_snap = get_snapshot(target_id=tab_id)
         return {
             "ok": True,
             "message": "Panel abierto.",
@@ -63,23 +94,23 @@ def execute_browser_action(action, args=None):
 
     elif action == "type_validate":
         text_to_type = args if args else "prueba completa desde Telegram"
-        snap = get_snapshot()
+        snap = get_snapshot(target_id=tab_id)
         ref_input = extract_ref(snap, "Campo Telegram local")
         if not ref_input:
             return {"ok": False, "error": "No encontré el campo de texto"}
         
-        run_command(["type", ref_input, text_to_type])
+        run_command(["type", ref_input, text_to_type], target_id=tab_id)
         time.sleep(1)
         
-        snap2 = get_snapshot()
+        snap2 = get_snapshot(target_id=tab_id)
         ref_btn = extract_ref(snap2, "Validar texto Telegram")
         if not ref_btn:
             return {"ok": False, "error": "No encontré el botón de validar"}
         
-        run_command(["click", ref_btn])
+        run_command(["click", ref_btn], target_id=tab_id)
         time.sleep(1)
         
-        final_snap = get_snapshot()
+        final_snap = get_snapshot(target_id=tab_id)
         return {
             "ok": True,
             "message": f"Validado: {text_to_type}",
@@ -87,15 +118,15 @@ def execute_browser_action(action, args=None):
         }
 
     elif action == "navigate_roundtrip":
-        snap = get_snapshot()
+        snap = get_snapshot(target_id=tab_id)
         ref_link = extract_ref(snap, "Ir a página 2 E2E")
         if not ref_link:
             return {"ok": False, "error": "No encontré el link a la página 2"}
         
-        run_command(["click", ref_link])
+        run_command(["click", ref_link], target_id=tab_id)
         time.sleep(2)
         
-        snap2 = get_snapshot()
+        snap2 = get_snapshot(target_id=tab_id)
         if "Página E2E actual: 2" not in snap2:
             return {"ok": False, "error": "No parece que hayamos llegado a la página 2", "snapshot": snap2}
         
@@ -103,10 +134,10 @@ def execute_browser_action(action, args=None):
         if not ref_back:
             return {"ok": False, "error": "No encontré el link de vuelta"}
         
-        run_command(["click", ref_back])
+        run_command(["click", ref_back], target_id=tab_id)
         time.sleep(2)
         
-        final_snap = get_snapshot()
+        final_snap = get_snapshot(target_id=tab_id)
         return {
             "ok": True,
             "message": "Ida y vuelta completada.",
