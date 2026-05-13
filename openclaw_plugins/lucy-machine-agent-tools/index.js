@@ -119,11 +119,22 @@ function formatTelegramE2eReply(result) {
   }
   if (result.ok) {
     const sections = [TELEGRAM_E2E_PREFIX];
+    if (typeof result.title === "string" && result.title.trim()) {
+      sections.push(`Título: ${result.title.trim()}`);
+    }
+    if (typeof result.url === "string" && result.url.trim()) {
+      sections.push(`URL: ${result.url.trim()}`);
+    }
     if (typeof result.message === "string" && result.message.trim()) {
       sections.push(result.message.trim());
     }
+    if (typeof result.summary === "string" && result.summary.trim()) {
+      sections.push(result.summary.trim());
+    }
     if (typeof result.snapshot === "string" && result.snapshot.trim()) {
       sections.push(result.snapshot.trim());
+    } else if (typeof result.content === "string" && result.content.trim()) {
+      sections.push(result.content.trim());
     }
     return sections.join("\n\n");
   }
