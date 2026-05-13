@@ -164,8 +164,10 @@ def delegate_mission(prompt, agent=DEFAULT_AGENT, stream=False):
                 )
             else:
                 browser_context = f"\n[AVISO BROWSER]: {pre_data.get('error', 'No se pudo resolver el contexto.')}\n"
+            print(f"DEBUG: BROWSER_PREFLIGHT_USED=true OK={pre_data.get('ok')} TITLE={pre_data.get('title')}", file=sys.stderr)
         except Exception as e:
             browser_context = f"\n[ERROR PREFLIGHT]: {e}\n"
+            print(f"DEBUG: BROWSER_PREFLIGHT_ERROR={e}", file=sys.stderr)
 
     mission = f"{_today_context()}\n{browser_context}\nMisión recibida desde Doctora Lucy:\n{prompt}"
 

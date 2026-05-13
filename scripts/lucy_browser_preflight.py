@@ -48,7 +48,7 @@ def resolve_e2e_context():
             "available_tabs": [{"title": t.get("title"), "url": t.get("url")} for t in tabs]
         }
 
-    tab_id = e2e_tab.get("id")
+    tab_id = e2e_tab.get("targetId") or e2e_tab.get("id")
     
     try:
         # Foco y Snapshot
