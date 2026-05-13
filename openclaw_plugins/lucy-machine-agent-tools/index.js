@@ -9,6 +9,8 @@ const ACCESS_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_access_com
 const STATUS_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_status_command.py");
 const READ_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_machine_read_command.py");
 const FIREFOX_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_firefox_command.py");
+const BROWSER_E2E_SCRIPT = resolve(PLUGIN_DIR, "../../scripts/lucy_browser_e2e_command.py");
+const TELEGRAM_E2E_PREFIX = "🩺 LucyClaw E2E";
 
 function runJsonScript(scriptPath, args) {
   return new Promise((resolvePromise) => {
@@ -84,6 +86,98 @@ function buildTextResult(result) {
   };
 }
 
+function normalizeTelegramText(text) {
+  return String(text || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function resolveTelegramE2eRequest(text) {
+  const normalized = normalizeTelegramText(text);
+  if (!normalized) {
+    return null;
+  }
+  if (normalized.includes("mira la pestana adjunta") || normalized.includes("decime que ves")) {
+    return { action: "read", args: [] };
+  }
+  if (normalized.includes("abri el panel") || normalized.includes("panel de prueba")) {
+    return { action: "open_panel", args: [] };
+  }
+  if (normalized.includes("campo telegram local") || normalized.includes("validalo")) {
+    return { action: "type_validate", args: ["prueba completa desde Telegram"] };
+  }
+  if (normalized.includes("pagina 2 e2e") || normalized.includes("volve a la pagina 1")) {
+    return { action: "navigate_roundtrip", args: [] };
+  }
+  return null;
+}
+
+function formatTelegramE2eReply(result) {
+  if (!result || typeof result !== "object") {
+    return `${TELEGRAM_E2E_PREFIX}\n\nError: respuesta inválida del handler local.`;
+  }
+  if (result.ok) {
+    const sections = [TELEGRAM_E2E_PREFIX];
+    if (typeof result.message === "string" && result.message.trim()) {
+      sections.push(result.message.trim());
+    }
+    if (typeof result.snapshot === "string" && result.snapshot.trim()) {
+      sections.push(result.snapshot.trim());
+    }
+    return sections.join("\n\n");
+  }
+  const errorText =
+    typeof result.error === "string" && result.error.trim()
+      ? result.error.trim()
+      : "falló la ejecución local del browser E2E.";
+  return `${TELEGRAM_E2E_PREFIX}\n\nError: ${errorText}`;
+}
+
+function installTelegramE2eRuntimePatch(api) {
+  const replyRuntime = api?.runtime?.channel?.reply;
+  if (!replyRuntime || typeof replyRuntime.dispatchReplyFromConfig !== "function") {
+    api.logger.warn("lucy-machine-agent-tools: runtime reply dispatcher unavailable for Telegram E2E patch");
+    return;
+  }
+  if (replyRuntime.__lucyTelegramE2ePatched === true) {
+    return;
+  }
+
+  const originalDispatch = replyRuntime.dispatchReplyFromConfig.bind(replyRuntime);
+  replyRuntime.dispatchReplyFromConfig = async function patchedDispatchReplyFromConfig(params) {
+    const channel = String(params?.ctx?.Surface ?? params?.ctx?.Provider ?? "").trim().toLowerCase();
+    if (channel === "telegram") {
+      const inboundText =
+        (typeof params?.ctx?.BodyForCommands === "string" && params.ctx.BodyForCommands) ||
+        (typeof params?.ctx?.CommandBody === "string" && params.ctx.CommandBody) ||
+        (typeof params?.ctx?.RawBody === "string" && params.ctx.RawBody) ||
+        (typeof params?.ctx?.Body === "string" && params.ctx.Body) ||
+        "";
+      const e2eRequest = resolveTelegramE2eRequest(inboundText);
+      if (e2eRequest) {
+        api.logger.info(
+          `lucy-machine-agent-tools: telegram E2E intercept action=${e2eRequest.action}`,
+        );
+        const result = await runJsonScript(BROWSER_E2E_SCRIPT, [
+          e2eRequest.action,
+          ...e2eRequest.args,
+        ]);
+        const queuedFinal = params.dispatcher.sendFinalReply({
+          text: formatTelegramE2eReply(result),
+        });
+        return {
+          queuedFinal,
+          counts: params.dispatcher.getQueuedCounts(),
+        };
+      }
+    }
+    return originalDispatch(params);
+  };
+  replyRuntime.__lucyTelegramE2ePatched = true;
+  api.logger.info("lucy-machine-agent-tools: Telegram E2E runtime patch active");
+}
+
 function requirePath(params) {
   const pathValue = typeof params?.path === "string" ? params.path.trim() : "";
   if (!pathValue) {
@@ -131,6 +225,7 @@ export default {
   name: "Lucy Machine Agent Tools",
   description: "Read-only machine capabilities exposed as agent tools for LucyClaw.",
   register(api) {
+    installTelegramE2eRuntimePatch(api);
     const tools = [
       {
         name: "lucy_machine_downloads",
