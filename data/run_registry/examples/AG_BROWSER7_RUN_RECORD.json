@@ -4,8 +4,8 @@
   "milestone": "AG-BROWSER7",
   "objective": "Controlled local browser navigation",
   "state": "CLOSED",
-  "target_commit": "PENDING",
-  "commit": "PENDING",
+  "target_commit": "65264e8",
+  "commit": "65264e8",
   "evidence": {
     "page1": "http://127.0.0.1:8770/diagnostics/browser_nav_page1.html",
     "page2": "http://127.0.0.1:8770/diagnostics/browser_nav_page2.html",

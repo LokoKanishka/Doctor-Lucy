@@ -87,6 +87,9 @@ def route_message(message: str) -> dict:
     ):
         return build_match("machine_status", "machine_status")
 
+    if has_any(normalized, ("pestana adjunta", "mira la pestana", "abrir el panel", "campo telegram local", "pagina 2 e2e", "vuelve a la pagina 1", "navegador", "browser")):
+        return build_match("browser_resolve", "openclaw browser --browser-profile chrome tabs")
+
     return build_fallback()
 
 

@@ -18,4 +18,4 @@
 - `coordinates_used`: false
 
 ## Hash / Commit
-- **Commit**: [TO BE UPDATED]
+- **Commit**: 65264e8

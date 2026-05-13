@@ -17,6 +17,7 @@ DEFAULT_AGENT = "main"
 REQUEST_TIMEOUT_S = int(os.getenv("OPENCLAW_BRIDGE_TIMEOUT_S", "180"))
 BRIDGE_MODE = os.getenv("OPENCLAW_BRIDGE_MODE", "auto").strip().lower()
 OPENCLAW_SCOPES = os.getenv("OPENCLAW_SCOPES", "operator.read,operator.write").strip()
+WORKSPACE = os.getenv("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
 
 
 def _load_gateway_token():
@@ -95,8 +96,7 @@ def _call_openclaw_cli(prompt, agent=DEFAULT_AGENT):
 
 
 def _call_openclaw_http(prompt, agent=DEFAULT_AGENT, stream=False):
-    workspace = os.getenv("WORKSPACE_ROOT", "/home/lucy-ubuntu/Escritorio/doctor de lucy")
-    soul_path = f"{workspace}/SOUL.md"
+    soul_path = f"{WORKSPACE}/SOUL.md"
     if os.path.exists(soul_path):
         with open(soul_path, "r") as f:
             soul = f.read()
@@ -143,7 +143,31 @@ def delegate_mission(prompt, agent=DEFAULT_AGENT, stream=False):
     - intenta HTTP si hay token de gateway;
     - si HTTP falla por permisos/scope o disponibilidad, usa el CLI oficial.
     """
-    mission = f"{_today_context()}\n\nMisión recibida desde Doctora Lucy:\n{prompt}"
+    browser_context = ""
+    browser_keywords = ["pestaña", "browser", "navegador", "chrome", "panel", "local", "e2e", "mirá", "escribí", "click", "ventana"]
+    lowered_prompt = prompt.lower()
+    
+    if any(kw in lowered_prompt for kw in browser_keywords):
+        try:
+            pre_res = subprocess.run(
+                ["python3", f"{WORKSPACE}/scripts/lucy_browser_preflight.py"],
+                capture_output=True, text=True, timeout=20
+            )
+            pre_data = json.loads(pre_res.stdout)
+            if pre_data.get("ok"):
+                browser_context = (
+                    f"\n[CONTEXTO BROWSER ACTUAL]\n"
+                    f"Pestaña: {pre_data.get('title')}\n"
+                    f"URL: {pre_data.get('url')}\n"
+                    f"Snapshot:\n{pre_data.get('snapshot')}\n"
+                    f"[FIN CONTEXTO]\n"
+                )
+            else:
+                browser_context = f"\n[AVISO BROWSER]: {pre_data.get('error', 'No se pudo resolver el contexto.')}\n"
+        except Exception as e:
+            browser_context = f"\n[ERROR PREFLIGHT]: {e}\n"
+
+    mission = f"{_today_context()}\n{browser_context}\nMisión recibida desde Doctora Lucy:\n{prompt}"
 
     if BRIDGE_MODE == "cli":
         return _call_openclaw_cli(mission, agent)

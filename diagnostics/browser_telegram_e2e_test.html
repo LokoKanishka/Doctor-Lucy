@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>LucyClaw Telegram E2E Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9fafb; color: #111827; }
+    .card { max-width: 760px; background: white; border: 1px solid #d1d5db; border-radius: 10px; padding: 1.5rem; }
+    button { padding: 10px 16px; border: 0; border-radius: 6px; background: #2563eb; color: white; cursor: pointer; font-weight: 700; margin-bottom: 1rem; }
+    input { width: 100%; max-width: 520px; padding: 10px; border: 1px solid #9ca3af; border-radius: 6px; font-size: 1rem; margin-bottom: 1rem; }
+    label { display: block; font-weight: 700; margin-bottom: .5rem; margin-top: 1.5rem; }
+    a { display: inline-block; padding: 10px 16px; border-radius: 6px; background: #059669; color: white; text-decoration: none; font-weight: 700; margin-top: 1rem; }
+    .hidden { display: none; }
+    .status { font-weight: 700; margin-bottom: 1rem; }
+    .result { padding: .75rem; background: #ecfdf5; border: 1px solid #86efac; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>LucyClaw Telegram E2E Test</h1>
+    <p class="status">Estado general: listo</p>
+
+    <button id="toggle" onclick="
+      const panel = document.getElementById('panel');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+      } else {
+        panel.classList.add('hidden');
+      }
+    ">Abrir panel de prueba</button>
+    <div id="panel" class="hidden">
+      <p>Panel abierto desde Telegram</p>
+    </div>
+
+    <label for="mensaje">Campo Telegram local</label>
+    <input id="mensaje" name="mensaje" autocomplete="off" placeholder="Escribir aquí">
+
+    <button id="validar" onclick="
+      const value = document.getElementById('mensaje').value;
+      document.getElementById('resultado').textContent = 'Resultado Telegram: ' + value;
+    ">Validar texto Telegram</button>
+
+    <p id="resultado" class="result">Resultado Telegram: pendiente</p>
+
+    <a id="ir-pagina-2" href="/diagnostics/browser_telegram_e2e_page2.html">Ir a página 2 E2E</a>
+  </main>
+</body>
+</html>
